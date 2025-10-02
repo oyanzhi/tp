@@ -4,6 +4,7 @@
 ---
 
 # About Us
+[[homepage](https://githubAY2526S1-CS2103T-F09-1/tp)]
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -11,13 +12,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Jun Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junhaow3.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/JunhaoW3)]
+[[portfolio](team/junhao.md)]
 
 * Role: Project Advisor
 
