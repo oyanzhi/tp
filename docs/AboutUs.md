@@ -21,15 +21,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Yan Zhi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/oyanzhi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/oyanzhi)]
+[[portfolio](team/oyanzhi.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Logic
 
 ### Johnny Doe
 
@@ -50,12 +50,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Chloe Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chloeongzy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chloeongzy)]
+[[portfolio](team/chloeongzy.md)]
 
 * Role: Developer
 * Responsibilities: UI
