@@ -280,8 +280,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: Centralised platform for keeping track of all work-related information, organising large amounts of information and helping with progress management of clients.
 
 ### User stories
 
