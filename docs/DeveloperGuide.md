@@ -284,14 +284,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                          | So that I can…​                                                     |
+|----------|--------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                   | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                         |                                                                        |
+| `* * *`  | user                                       | delete a person                                          | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                    | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                             | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                                     | locate a person easily                                                 |
+| `* * *`  | user                                       | delete reminders                                         | remove any outdated/non-necessary/wrongly set-up reminders             |
+| `* *`    | user                                       | receive alerts                                           | maintain regular engagement                                            |
+| `* *`    | user                                       | see upcoming policy renewal dates                        | proactively reach out to clients before policy expires                 |
+| `* *`    | user                                       | keep track of my client's deadline that is coming soon   | better prioritise and manage my time                                   |
+| `*`      | user                                       | assign priority levels to tasks                          | manage time more efficiently                                           |
+| `*`      | user                                       | view a client history timeline                           | see a chronological record of interactions                             |
+ 
 
 *{More to be added}*
 
