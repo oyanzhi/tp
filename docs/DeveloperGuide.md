@@ -284,30 +284,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​             |  I want to …​                                       | So that I can…​                                                                      |
-|----------|------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`  | user                   | save the data I input                                  | not have to input them again on start-up                                                |
-| `* * *`  | user                   | search clients by name                                 | easily find a specific client’s information                                             |
-| `* * *`  | user                   | delete reminders                                       | remove any outdated/non-necessary/wrongly set-up reminders                              |
-| `* * *`  | user                   | add a new client's contact                             | keep track of his information                                                           |
-| `* * *`  | user                   | delete a client's contact                              | keep my contacts clean                                                                  |
-| `* * `   | user                   | search clients by phone number                         | find specific clients through their phone number                                        |
-| `* * `   | user                   | search clients by email                                | find specific clients through their email                                               |
+| Priority | As a …​                | I want to …​                 | So that I can…​                                                                    |
+|----------|------------------------|------------------------------|------------------------------------------------------------------------------------|
+| `* * *`  | user                   | save the data I input                                  | not have to input them again on start-up                                           |
+| `* * *`  | user                   | search clients by name                                 | easily find a specific client’s information                                        |
+| `* * *`  | user                   | delete reminders                                       | remove any outdated/non-necessary/wrongly set-up reminders                         |
+| `* * *`  | user                   | add a new client's contact                             | keep track of his information                                                      |
+| `* * *`  | user                   | delete a client's contact                              | keep my contacts clean                                                             |
+| `* * *`  | user                   | set reminders for policy renewal dates, birthdays, or important dates | maintain strong client relationships and be reminded to follow up              |
+| `* * `   | user                   | search clients by phone number                         | find specific clients through their phone number                                   |
+| `* * `   | user                   | search clients by email                                | find specific clients through their email                                          |
 | `* *`    | user                   | mark my client as completed                            | easily keep track of which clients are already onboarded and who is yet to be onboarded |
-| `* *`    | user                   | receive alerts                                         | maintain regular engagement                                                             |
-| `* *`    | user                   | see upcoming policy renewal dates                      | proactively reach out to clients before policy expires                                  |
-| `* *`    | user                   | keep track of my client's deadline that is coming soon | better prioritise and manage my time                                                    |
-| `* * `   | forgetful user         | be alerted when I try to add a duplicate client        | keep my contacts organised                                                              |
-| `* *`    | user                   | edit a client's information                            | update changing information                                                             |
-| `* `     | user                   | be able to tag a client with a custom label            | customize the grouping of clients                                                       |
-| `* `     | user                   | bookmark “star clients” for quick access               | jump to top clients immediately                                                         |
-| `*`      | user                   | assign priority levels to tasks                        | manage time more efficiently                                                            |
-| `*`      | user                   | view a client history timeline                         | see a chronological record of interactions                                              |
-| `* `     | user                   | see in-app tutorials                                   | easily familiarise with FinHub's features                                               |
-| `*`      | user with many clients | save the data I enter                                  | save time re-entering all data each time I open the app                                 |
+| `* *`    | user                   | receive alerts                                         | maintain regular engagement                                                        |
+| `* *`    | user                   | see upcoming policy renewal dates                      | proactively reach out to clients before policy expires                             |
+| `* *`    | user                   | keep track of my client's deadline that is coming soon | better prioritise and manage my time                                               |
+| `* * `   | forgetful user         | be alerted when I try to add a duplicate client        | keep my contacts organised                                                         |
+| `* *`    | user                   | edit a client's information                            | update changing information                                                        |
+| `* *`    | user                   | record client meeting notes                                           | remember key discussion points with each client                                    |
+| `* *`    | user                   | view revenue/profit per client                                        | identify my most valuable clients.                                                 |
+| `* *`    | user                   | record client preferences for preferred communication channel         | contact them in the best way possible                                              |
+| `* *`    | user                   | group my clients by policy type                                       | quickly filter relevant contacts                                                   |
+| `* *`    | user                   | edit reminders                                                        | make changes to reminders when I change my mind                                    
+| `* `     | user                   | be able to tag a client with a custom label            | customize the grouping of clients                                                  |
+| `* `     | user                   | bookmark “star clients” for quick access               | jump to top clients immediately                                                    |
+| `*`      | user                   | assign priority levels to tasks                        | manage time more efficiently                                                       |
+| `*`      | user                   | view a client history timeline                         | see a chronological record of interactions                                         |
+| `* `     | user                   | see in-app tutorials                                   | easily familiarise with FinHub's features                                          |
+| `*`      | user with many clients | save the data I enter                                  | save time re-entering all data each time I open the app                            
 
-
-*{More to be added}*
 
 ### Use cases
 
@@ -380,7 +384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
 **Use case: UC04 - Mark client as complete**
 
@@ -561,6 +565,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Step 2a1 is repeated until a correct task and priority level has been selected.
 
       Use case resumes at step 3.
+    
+**Use case: UC12 - Set reminder for clients**
+
+**MSS**
+
+1.  User searches for the client by their name (UC01) to view their given index.
+2.  User selects the option to set reminder for the client by their index, and enters the reminder and the date and time to remind.
+3.  FinHub validates the updated data.
+4.  FinHub displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User inputs invalid index.
+
+    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+
+    * Step 2a1 is repeated until a correct index has been entered.
+
+      Use case resumes from step 3.
+
+* 2b. User enters invalid date/time inputs.
+
+    * 2b1. FinHub prompts the user to enter proper date/time.
+
+    * Step 2b1 is repeated until a correct input has been entered.
+
+      Use case resumes at step 3.
+
+**Use case: UC13 - Edit reminder for clients**
+
+**MSS**
+
+1.  User searches for the client by their name (UC01) to view their given index.
+2.  User selects the option to edit reminder for the client by their index, and enters the amended reminder and the date and time to remind.
+3.  FinHub validates the updated data.
+4.  FinHub displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User inputs invalid index.
+
+    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+
+    * Step 2a1 is repeated until a correct index has been entered.
+
+      Use case resumes from step 3.
+
+* 2b. User enters invalid date/time inputs.
+
+    * 2b1. FinHub prompts the user to enter proper date/time.
+
+    * Step 2b1 is repeated until a correct input has been entered.
+
+      Use case resumes at step 3.
+
+**Use case: UC14 - Add client meeting notes**
+
+**MSS**
+
+1.  User searches for the client by their name (UC01) to view their given index.
+2.  User selects the option to add meeting notes for the client by their index, and enters the meeting notes.
+3.  FinHub validates the updated data.
+4.  FinHub displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User inputs invalid index.
+
+    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+
+    * Step 2a1 is repeated until a correct index has been entered.
+
+      Use case resumes from step 3.
 
 ### Non-Functional Requirements
 
