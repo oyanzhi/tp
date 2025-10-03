@@ -284,13 +284,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                   | So that I can…​                                                                            |
-|--------|----------------------------------------|--------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *` | user                                   | save the data I input          | not have to input them again on start-up                                                   |
-| `* * *` | user                                   | search clients by name         | easily find a specific client’s information                                                |
-| `* * ` | user                                   | search clients by phone number | find specific clients through their phone number                                           |
-| `* * ` | user                                   | search clients by email        | find specific clients through their email                                                  |
-| `* *`  | user                                   | mark my client as completed   | easily keep track of which clients are already onboarded and who is yet to be onboarded    |
+| Priority | As a …​  | I want to …​                                | So that I can…​                                                                             |
+|----------|----------|---------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | user     | save the data I input                       | not have to input them again on start-up                                                    |
+| `* * *`  | user     | search clients by name                      | easily find a specific client’s information                                                 |
+| `* * `   | user     | search clients by phone number              | find specific clients through their phone number                                            |
+| `* * `   | user     | search clients by email                     | find specific clients through their email                                                   |
+| `* *`    | user     | mark my client as completed                 | easily keep track of which clients are already onboarded and who is yet to be onboarded     |
+| `* `     | user     | be able to tag a client with a custom label | customize the grouping of clients                                                           |
+| `* `     | user     | bookmark “star clients” for quick access    | jump to top clients immediately                                                             |
 
 *{More to be added}*
 
