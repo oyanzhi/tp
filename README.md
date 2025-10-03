@@ -1,5 +1,5 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/AY2526S1-CS2103T-F09-1/tp/graph/badge.svg?token=61HUZMYGX7)](https://codecov.io/gh/AY2526S1-CS2103T-F09-1/tp)
+[![Java CI](https://github.com/AY2526S1-CS2103T-F09-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2526S1-CS2103T-F09-1/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2526S1-CS2103T-F09-1/tp/branch/master/graph/badge.svg)](https://app.codecov.io/gh/AY2526S1-CS2103T-F09-1/tp)
 ![Ui](docs/images/Ui.png)
 
 * This is **a sample project for Software Engineering (SE) students**.<br>
