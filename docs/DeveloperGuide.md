@@ -284,43 +284,96 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                    | So that I can…​                                         |
+|---------|--------------------------------------------|-------------------------------------------------|---------------------------------------------------------|
+| `* `    | user                                       | see in-app tutorials                            | easily familiarise with FinHub's features               |
+| `* * *` | user                                       | add a new client's contact                      | keep track of his information                           |
+| `* * `  | forgetful user                             | be alerted when I try to add a duplicate client | keep my contacts organised                              |
+| `* * *` | user                                       | delete a client's contact                       | keep my contacts clean                                  |
+| `* *`   | user                                       | edit a client's information                     | update changing information                             |
+| `*`     | user with many clients in the address book | save the data I enter                           | save time re-entering all data each time I open the app |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FinHub` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC05 - Add a client's contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1.  The user selects the option to add clients. 
+2.  The user enters the client's details (name, telephone number, email address). 
+3.  FinHub validates the input. 
+4.  FinHub adds the new client into the address book. 
+5.  FinHub displays a confirmation message.  
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The user enters invalid/missing inputs.
+    * 3a1. FinHub prompts the user to enter the correct details.
+      
+      Use case resumes from step 2.
 
-  Use case ends.
+* 3b. The user enters an email/telephone number that has been added before.
+    * 3b1. FinHub warns that a duplicate entry is not allowed.
 
-* 3a. The given index is invalid.
+      Use case ends. 
 
-    * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
+**Use case: UC06 - Delete a client's contact** <br>
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client to delete by their name (UC01)</u> to view their given index. 
+2.  The user selects the option to delete the client by their index.
+3.  FinHub asks for confirmation of the deletion. 
+4.  FinHub removes the client from the address book. 
+5.  FinHub displays a success message. <br>
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user inputs an invalid index.
+    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+
+      Step 2a1 is repeated until a correct index has been entered.
+
+      Use case resumes to step 3.
+
+    
+* 3a. The user cancels the deletion.  
+Use case ends.
+ 
+
+**Use case: UC07 - Edit a client's information** <br>
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client to edit by their name (UC01)</u> to view their given index.
+2.  The user selects the option to edit the client by their index, and enters one or more updated fields.
+3.  FinHub validates the updated data.
+4.  FinHub displays a success message. <br>
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user inputs an invalid index.
+    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+
+      Step 2a1 is repeated until a correct index has been entered.
+
+      Use case resumes to step 3
+
+
+* 2b. The user enters invalid inputs.
+    * 2b1. FinHub prompts the user to enter the correct details. <br>
+      Use case resumes from step 2. 
+
 
 *{More to be added}*
 
