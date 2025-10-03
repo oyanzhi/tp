@@ -4,6 +4,7 @@
 [![codecov](https://codecov.io/gh/AY2526S1-CS2103T-F09-1/tp/graph/badge.svg?token=61HUZMYGX7)](https://codecov.io/gh/AY2526S1-CS2103T-F09-1/tp)
 ![Ui](docs/images/Ui.png)
 
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 * FinHub is an **addressbook** for insurance agents to manage clients. It helps them to better organise all information related to each client. <br>
   Example usages:
