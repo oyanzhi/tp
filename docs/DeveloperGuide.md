@@ -432,7 +432,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: UC06 - Delete a client's contact** <br>
+**Use case: UC06 - Delete a client's contact**
+
 **Precondition**: Client list must not be empty.
 
 **MSS**
@@ -459,7 +460,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC07 - Edit a client's information** <br>
+**Use case: UC07 - Edit a client's information** 
+
 **Precondition**: Client list must not be empty.
 
 **MSS**
