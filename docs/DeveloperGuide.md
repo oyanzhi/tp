@@ -326,7 +326,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by name. <br>
+    * 1a2. The user re-enters the command to search the client by name. 
+  
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
   
       Use case resumes at step 2.
@@ -348,7 +349,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by email. <br>
+    * 1a2. The user re-enters the command to search the client by email. 
+  
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
 
       Use case resumes at step 2.
@@ -370,7 +372,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by phone number. <br>
+    * 1a2. The user re-enters the command to search the client by phone number. 
+  
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
 
       Use case resumes at step 2.
@@ -398,7 +401,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. FinHub detects an error in the command entered.
     * 3a1. FinHub displays an error message and prompts the user to input again.
-    * 3a2. The user re-enters the command to search the client by name. <br>
+    * 3a2. The user re-enters the command to search the client by name. 
+  
       Steps 3a1-3a2 are repeated until the command and data entered are correct. 
 
       Use case resumes at step 4.
@@ -437,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  The user selects the option to delete the client by their index.
 3.  FinHub asks for confirmation of the deletion.
 4.  FinHub removes the client from the address book.
-5.  FinHub displays a success message. <br>
+5.  FinHub displays a success message. 
 
     Use case ends.
 
@@ -463,7 +467,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  The user <u>searches for the client to edit by their name (UC01)</u> to view their given index.
 2.  The user selects the option to edit the client by their index, and enters one or more updated fields.
 3.  FinHub validates the updated data.
-4.  FinHub displays a success message. <br>
+4.  FinHub displays a success message. 
+
     Use case ends.
 
 **Extensions**
@@ -477,7 +482,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 2b. The user enters invalid inputs.
-    * 2b1. FinHub prompts the user to enter the correct details. <br>
+    * 2b1. FinHub prompts the user to enter the correct details. 
+  
       Use case resumes at step 2.
 
 **Use case: UC08 - Delete reminder**
@@ -494,7 +500,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The user inputs invalid index for either client or reminder.
-  * 2a1. FinHub warns and specifies which invalid index has been entered, and prompts the user to input the correct index.
+  * 2a1. FinHub warns and specifies which invalid index has been entered, and prompts the user to input the correct index. 
+  
     Step 2a1 is repeated until a correct index has been entered.
     
     Use case resumes at step 3.
@@ -547,7 +554,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The user inputs invalid index for either task or invalid priority level.
-    * 2a1. FinHub warns and specifies which invalid input has been entered, and prompts the user to input the correct index/ priority level. <br>
+    * 2a1. FinHub warns and specifies which invalid input has been entered, and prompts the user to input the correct index/ priority level. 
+  
       Step 2a1 is repeated until a correct index/ priority level has been entered.
 
       Use case resumes at step 3.
