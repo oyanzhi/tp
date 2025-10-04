@@ -284,20 +284,111 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ |  I want to …​                            | So that I can…​                                                                      |
+|----------|------------|---------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | user       | save the data I input                       | not have to input them again on start-up                                                |
+| `* * *`  | user       | search clients by name                      | easily find a specific client’s information                                             |
+| `* * `   | user       | search clients by phone number              | find specific clients through their phone number                                        |
+| `* * `   | user       | search clients by email                     | find specific clients through their email                                               |
+| `* *`    | user       | mark my client as completed                 | easily keep track of which clients are already onboarded and who is yet to be onboarded |
+| `* `     | user       | be able to tag a client with a custom label | customize the grouping of clients                                                       |
+| `* `     | user       | bookmark “star clients” for quick access    | jump to top clients immediately                                                         |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FinHub` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - Search client by name**
+
+**MSS**
+
+1.  The user searches for the client by their name.
+2.  FinHub shows details of clients with matching names.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FinHub detects an error in the command entered.
+    * 1a1. FinHub displays an error message and prompts the user to input again.
+    * 1a2. The user re-enters the command to search the client by name.
+      Steps 1a1-1a2 are repeated until the command and data entered are correct.
+  
+      Use case resumes at step 2.
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+**Use case: UC02 - Search client by email**
+
+**MSS**
+
+1.  The user searches for the client by their email.
+2.  FinHub shows details of clients with matching emails.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FinHub detects an error in the command entered.
+    * 1a1. FinHub displays an error message and prompts the user to input again.
+    * 1a2. The user re-enters the command to search the client by email.
+      Steps 1a1-1a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 2.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC03 - Search client by phone number**
+
+**MSS**
+
+1.  The user searches for the client by their phone number.
+2.  FinHub shows details of clients with matching phone number.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FinHub detects an error in the command entered.
+    * 1a1. FinHub displays an error message and prompts the user to input again.
+    * 1a2. The user re-enters the command to search the client by phone number.
+      Steps 1a1-1a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 2.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC04 - Mark client as complete**
+
+**MSS**
+
+1. User <ins>search client by their name (UC01)</ins>.
+2. FinHub displays a list of clients. 
+3. User selects the client to be marked as complete. 
+4. FinHub successfully marks the client as complete and displays a success message. 
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to search the client by name.
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
 
 **Use case: Delete a person**
 
