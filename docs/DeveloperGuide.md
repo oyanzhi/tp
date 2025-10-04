@@ -284,21 +284,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ |  I want to …​                            | So that I can…​                                                                      |
-|----------|------------|---------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`  | user       | save the data I input                       | not have to input them again on start-up                                                |
-| `* * *`  | user       | search clients by name                      | easily find a specific client’s information                                             |
-| `* * `   | user       | search clients by phone number              | find specific clients through their phone number                                        |
-| `* * `   | user       | search clients by email                     | find specific clients through their email                                               |
-| `* *`    | user       | mark my client as completed                 | easily keep track of which clients are already onboarded and who is yet to be onboarded |
-| `* `     | user       | be able to tag a client with a custom label | customize the grouping of clients                                                       |
-| `* `     | user       | bookmark “star clients” for quick access    | jump to top clients immediately                                                         |
+| Priority | As a …​               | I want to …​                                        | So that I can…​                                                                      |
+|----------|--------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | user                     | save the data I input                                  | not have to input them again on start-up                                                |
+| `* * *`  | user                     | search clients by name                                 | easily find a specific client’s information                                             |
+| `* * *`  | user                     | delete reminders                                       | remove any outdated/non-necessary/wrongly set-up reminders                              |
+| `* * `   | user                     | search clients by phone number                         | find specific clients through their phone number                                        |
+| `* * `   | user                     | search clients by email                                | find specific clients through their email                                               |
+| `* *`    | user                     | mark my client as completed                            | easily keep track of which clients are already onboarded and who is yet to be onboarded |
+| `* *`    | user                     | receive alerts                                         | maintain regular engagement                                                             |
+| `* *`    | user                     | see upcoming policy renewal dates                      | proactively reach out to clients before policy expires                                  |
+| `* *`    | user                     | keep track of my client's deadline that is coming soon | better prioritise and manage my time                                                    |
+| `* `     | user                     | be able to tag a client with a custom label            | customize the grouping of clients                                                       |
+| `* `     | user                     | bookmark “star clients” for quick access               | jump to top clients immediately                                                         |
+| `*`      | user                     | assign priority levels to tasks                        | manage time more efficiently                                                            |
+| `*`      | user                     | view a client history timeline                         | see a chronological record of interactions                                              |
+ 
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `FinHub` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FinHub` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Search client by name**
 
@@ -320,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: UC02 - Search client by email**
 
@@ -390,30 +397,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use case: Delete a person**
+**Use case: UC08 - Delete reminder**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  The user <u>searches for the client to edit by their name (UC01)</u> to view their given index. 
+2.  The user selects the index of the user and the corresponding reminder index.
+3.  FinHub displays a success message. 
+4.  FinHub shows the client the list without the deleted reminder.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The user inputs invalid index for either client or reminder.
+  * 2a1. FinHub warns and specifies which invalid index has been entered, and prompts the user to input the correct index.
+  * Step 2a1 is repeated until a correct index has been entered.
+    
+    Use case resumes at step 3.
 
-  Use case ends.
+**Use case: UC09 - Receive alerts if client has not been contacted in a specified period**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1.  User starts up the application.
+2.  System displays a message containing all the clients that has not been contacted in a specific period of time.
+3.  System returns to landing display.
 
-      Use case resumes at step 2.
+    Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+* 2a. There is no clients that are under this criteria.
+    * 2a1. FinHub displays an empty message.
+
+      Use case resumes at step 3.
+
+**Use case: UC10 - List of all upcoming policy renewal dates**
+
+**MSS**
+
+1.  User starts up the application.
+2.  System displays a message showing the few upcoming policy renewal dates in chronological order within a set interval.
+3.  System returns to landing display.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There are no policy renewal dates in the data.
+    * 2a1. FinHub displays an empty message.
+
+      Use case resumes at step 3.
+
+**Use case: UC11 - Assign priority levels to tasks**
+
+**MSS**
+
+1.  System will display a list of tasks saved.
+2.  User will select the index of the task that they want to assign a priority level to and the priority level.
+3.  System will update the task with the corresponding level.
+4.  System returns to landing display.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user inputs invalid index for either task or invalid priority level.
+    * 2a1. FinHub warns and specifies which invalid input has been entered, and prompts the user to input the correct index/ priority level.
+    * Step 2a1 is repeated until a correct index/ priority level has been entered.
+
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
