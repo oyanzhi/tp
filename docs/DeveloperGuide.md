@@ -326,7 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by name.
+    * 1a2. The user re-enters the command to search the client by name. <br>
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
   
       Use case resumes at step 2.
@@ -348,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by email.
+    * 1a2. The user re-enters the command to search the client by email. <br>
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
 
       Use case resumes at step 2.
@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by phone number.
+    * 1a2. The user re-enters the command to search the client by phone number. <br>
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
 
       Use case resumes at step 2.
@@ -398,8 +398,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. FinHub detects an error in the command entered.
     * 3a1. FinHub displays an error message and prompts the user to input again.
-    * 3a2. The user re-enters the command to search the client by name.
-      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+    * 3a2. The user re-enters the command to search the client by name. <br>
+      Steps 3a1-3a2 are repeated until the command and data entered are correct. 
 
       Use case resumes at step 4.
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The user enters invalid/missing inputs.
     * 3a1. FinHub prompts the user to enter the correct details.
 
-      Use case resumes from step 2.
+      Use case resumes at step 2.
 
 * 3b. The user enters an email/telephone number that has been added before.
     * 3b1. FinHub warns that a duplicate entry is not allowed.
@@ -448,7 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Step 2a1 is repeated until a correct index has been entered.
 
-      Use case resumes to step 3.
+      Use case resumes at step 3.
 
 
 * 3a. The user cancels the deletion.  
@@ -473,12 +473,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Step 2a1 is repeated until a correct index has been entered.
 
-      Use case resumes to step 3
+      Use case resumes at step 3
 
 
 * 2b. The user enters invalid inputs.
     * 2b1. FinHub prompts the user to enter the correct details. <br>
-      Use case resumes from step 2.
+      Use case resumes at step 2.
 
 **Use case: UC08 - Delete reminder**
 
@@ -495,7 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user inputs invalid index for either client or reminder.
   * 2a1. FinHub warns and specifies which invalid index has been entered, and prompts the user to input the correct index.
-  * Step 2a1 is repeated until a correct index has been entered.
+    Step 2a1 is repeated until a correct index has been entered.
     
     Use case resumes at step 3.
 
@@ -503,9 +503,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User starts up the application.
-2.  System displays a message containing all the clients that has not been contacted in a specific period of time.
-3.  System returns to landing display.
+1.  The user starts up the application.
+2.  FinHub displays a message containing all the clients that has not been contacted in a specific period of time.
+3.  FinHub returns to landing display.
 
     Use case ends.
 
@@ -520,9 +520,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User starts up the application.
-2.  System displays a message showing the few upcoming policy renewal dates in chronological order within a set interval.
-3.  System returns to landing display.
+1.  The user starts up the application.
+2.  FinHub displays a message showing the few upcoming policy renewal dates in chronological order within a set interval.
+3.  FinHub returns to landing display.
 
     Use case ends.
 
@@ -537,18 +537,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  System will display a list of tasks saved.
-2.  User will select the index of the task that they want to assign a priority level to and the priority level.
-3.  System will update the task with the corresponding level.
-4.  System returns to landing display.
+1.  FinHub will display a list of tasks saved.
+2.  The user will select the index of the task that they want to assign a priority level to and the priority level.
+3.  FinHub will update the task with the corresponding level.
+4.  FinHub returns to landing display.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The user inputs invalid index for either task or invalid priority level.
-    * 2a1. FinHub warns and specifies which invalid input has been entered, and prompts the user to input the correct index/ priority level.
-    * Step 2a1 is repeated until a correct index/ priority level has been entered.
+    * 2a1. FinHub warns and specifies which invalid input has been entered, and prompts the user to input the correct index/ priority level. <br>
+      Step 2a1 is repeated until a correct index/ priority level has been entered.
 
       Use case resumes at step 3.
 
