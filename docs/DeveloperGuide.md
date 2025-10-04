@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use Case: Archive Client**
+**Use Case: UC15 - Archive Client**
 
 **Preconditions:**
 1. User is logged into the CLI System.
@@ -350,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: Enter Application with Password**
+**Use Case: UC16 - Enter Application with Password**
 
 **MSS**
 
