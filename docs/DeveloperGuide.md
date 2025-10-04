@@ -327,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: UC02 - Search client by email**
 
