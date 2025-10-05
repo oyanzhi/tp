@@ -494,6 +494,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC08 - Delete reminder**
 
+**Precondition**: Client list must not be empty.
+
 **MSS**
 
 1.  The user <u>searches for the client to edit by their name (UC01)</u>. 
@@ -598,6 +600,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC13 - Edit reminder for clients**
 
+**Precondition**: Client list must not be empty.
+
 **MSS**
 
 1.  The user <u>searches for the client by their name (UC01)</u>.
@@ -625,6 +629,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 3.
 
 **Use case: UC14 - Add client meeting notes**
+
+**Precondition**: Client list must not be empty.
 
 **MSS**
 
