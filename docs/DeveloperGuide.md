@@ -650,7 +650,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The user selects an invalid client.
-    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
+    * 2a1. FinHub warns that user does not exist and prompts the user to select again.
 
       Step 2a1 is repeated until a correct selection.
 
@@ -662,18 +662,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  The user types the archive command.
-2.  FinHub validates the client ID.
-3.  FinHub prompts for confirmation.
-4.  The user confirms.
-5.  FinHub changes the client's status from active to archived in the database.
-6.  FinHub displays a success message.
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user types the archive command.
+3.  FinHub validates the client ID.
+4.  FinHub prompts for confirmation.
+5.  The user confirms.
+6.  FinHub changes the client's status from active to archived in the database.
+7.  FinHub displays a success message.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The client ID does not exist. 
+* 2a. The user selects an invalid client. 
     * 2a1. FinHub displays a message that client is not found.
   
       Use case ends.
@@ -699,6 +700,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 6a. The user account does not exist.
     * 6a1. FinHub will display an error message.
+
+      Use case ends.
+
+* 6b. The password entered is wrong.
+    * 6b1. FinHub will display an error message.
 
       Use case ends.
 
