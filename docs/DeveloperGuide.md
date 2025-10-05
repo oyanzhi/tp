@@ -386,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <ins>search client by their name (UC01)</ins>.
+1. User <u>search client by their name (UC01)</u>.
 2. FinHub displays a list of clients. 
 3. User selects the client to be marked as complete. 
 4. FinHub successfully marks the client as complete and displays a success message. 
@@ -401,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. FinHub detects an error in the command entered.
     * 3a1. FinHub displays an error message and prompts the user to input again.
-    * 3a2. The user re-enters the command to search the client by name. 
+    * 3a2. The user re-enters the command to mark client as completed.
   
       Steps 3a1-3a2 are repeated until the command and data entered are correct. 
 
@@ -438,8 +438,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  The user <u>searches for the client to delete by their name (UC01)</u> to view their given index.
-2.  The user selects the option to delete the client by their index.
+1.  The user <u>searches for the client to delete by their name (UC01)</u>.
+2.  The user selects the client to be deleted.
 3.  FinHub asks for confirmation of the deletion.
 4.  FinHub removes the client from the address book.
 5.  FinHub displays a success message. 
@@ -448,10 +448,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user inputs an invalid index.
-    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+* 2a. The user selects an invalid client.
+    * 2a1. FinHub warns that an invalid client has been selected, and prompts the user to select again.
 
-      Step 2a1 is repeated until a correct index has been entered.
+      Step 2a1 is repeated until a valid client has been selected.
 
       Use case resumes at step 3.
 
@@ -466,8 +466,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  The user <u>searches for the client to edit by their name (UC01)</u> to view their given index.
-2.  The user selects the option to edit the client by their index, and enters one or more updated fields.
+1.  The user <u>searches for the client to edit by their name (UC01)</u>.
+2.  The user selects the client to be edited, and enters one or more updated fields.
 3.  FinHub validates the updated data.
 4.  FinHub displays a success message. 
 
@@ -475,15 +475,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user inputs an invalid index.
-    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+* 2a. The user selects an invalid client.
+    * 2a1. FinHub warns that an invalid client has been selected, and prompts the user to select again.
 
-      Step 2a1 is repeated until a correct index has been entered.
+      Step 2a1 is repeated until a correct client has been selected.
 
       Use case resumes at step 3
 
 
-* 2b. The user enters invalid inputs.
+* 2b. The user enters invalid fields.
     * 2b1. FinHub prompts the user to enter the correct details. 
   
       Use case resumes at step 2.
@@ -492,8 +492,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  The user <u>searches for the client to edit by their name (UC01)</u> to view their given index. 
-2.  The user selects the index of the user and the corresponding reminder index.
+1.  The user <u>searches for the client to edit by their name (UC01)</u>. 
+2.  The user selects which user and which reminder to delete.
 3.  FinHub displays a success message. 
 4.  FinHub shows the client the list without the deleted reminder.
 
@@ -501,10 +501,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user inputs invalid index for either client or reminder.
-  * 2a1. FinHub warns and specifies which invalid index has been entered, and prompts the user to input the correct index. 
+* 2a. The user selects an invalid client or reminder.
+  * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again. 
   
-    Step 2a1 is repeated until a correct index has been entered.
+    Step 2a1 is repeated until a correct selection.
     
     Use case resumes at step 3.
 
@@ -547,7 +547,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  FinHub will display a list of tasks saved.
-2.  The user will select the index of the task that they want to assign a priority level to and the priority level.
+2.  The user will select the task that they want to assign a priority level to and the priority level.
 3.  FinHub will update the task with the corresponding level.
 4.  FinHub returns to landing display.
 
@@ -555,10 +555,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user inputs invalid index for either task or invalid priority level.
-    * 2a1. FinHub warns and specifies which invalid input has been entered, and prompts the user to input the correct index/ priority level. 
+* 2a. The user selects either invalid task or invalid priority level.
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select correct task/ priority level. 
   
-      Step 2a1 is repeated until a correct index/ priority level has been entered.
+      Step 2a1 is repeated until a correct task and priority level has been selected.
 
       Use case resumes at step 3.
 
