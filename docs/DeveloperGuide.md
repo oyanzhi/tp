@@ -284,31 +284,124 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                        | So that I can…​                                                                                         |
-|----------|---------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| `*`      | user    | view a dashboard summary of activities              | get an overview of my workload                                                                          |
-| `*`      | user    | keep track of insurance claims requested by clients | easily see what claims are made for the different clients, as well as when the claim has been requested |
-| `*`      | user    | archive inactive clients                            | keep my workspace uncluttered                                                                           |
-| `*`      | user    | export data as a spreadsheet                        | view it more easily                                                                                     |
-| `* * *`  | user    | use CLI                                             | easily find what I am looking for rather than navigating a GUI                                          |
-| `*`      | user    | access FinHub with a password                       | keep my client's information confidential                                                               |
+| Priority | As a …​                | I want to …​                                                          | So that I can…​                                                                                         |
+|----------|------------------------|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| `* * *`  | user                   | save the data I input                                                 | not have to input them again on start-up                                                                |
+| `* * *`  | user                   | search clients by name                                                | easily find a specific client’s information                                                             |
+| `* * *`  | user                   | delete reminders                                                      | remove any outdated/non-necessary/wrongly set-up reminders                                              |
+| `* * *`  | user                   | add a new client's contact                                            | keep track of his information                                                                           |
+| `* * *`  | user                   | delete a client's contact                                             | keep my contacts clean                                                                                  |
+| `* * *`  | user                   | set reminders for policy renewal dates, birthdays, or important dates | maintain strong client relationships and be reminded to follow up                                       |
+| `* * `   | user                   | search clients by phone number                                        | find specific clients through their phone number                                                        |
+| `* * `   | user                   | search clients by email                                               | find specific clients through their email                                                               |
+| `* *`    | user                   | mark my client as completed                                           | easily keep track of which clients are already onboarded and who is yet to be onboarded                 |
+| `* *`    | user                   | receive alerts                                                        | maintain regular engagement                                                                             |
+| `* *`    | user                   | see upcoming policy renewal dates                                     | proactively reach out to clients before policy expires                                                  |
+| `* *`    | user                   | keep track of my client's deadline that is coming soon                | better prioritise and manage my time                                                                    |
+| `* * `   | forgetful user         | be alerted when I try to add a duplicate client                       | keep my contacts organised                                                                              |
+| `* *`    | user                   | edit a client's information                                           | update changing information                                                                             |
+| `* *`    | user                   | record client meeting notes                                           | remember key discussion points with each client                                                         |
+| `* *`    | user                   | view revenue/profit per client                                        | identify my most valuable clients.                                                                      |
+| `* *`    | user                   | record client preferences for preferred communication channel         | contact them in the best way possible                                                                   |
+| `* *`    | user                   | group my clients by policy type                                       | quickly filter relevant contacts                                                                        |
+| `* *`    | user                   | edit reminders                                                        | make changes to reminders when I change my mind                                                         |
+| `* `     | user                   | be able to tag a client with a custom label                           | customize the grouping of clients                                                                       |
+| `* `     | user                   | bookmark “star clients” for quick access                              | jump to top clients immediately                                                                         |
+| `*`      | user                   | assign priority levels to tasks                                       | manage time more efficiently                                                                            |
+| `*`      | user                   | view a client history timeline                                        | see a chronological record of interactions                                                              |
+| `* `     | user                   | see in-app tutorials                                                  | easily familiarise with FinHub's features                                                               |
+| `*`      | user with many clients | save the data I enter                                                 | save time re-entering all data each time I open the app                                                 |
+| `*`      | user                   | view a dashboard summary of activities                                | get an overview of my workload                                                                          |
+| `*`      | user                   | keep track of insurance claims requested by clients                   | easily see what claims are made for the different clients, as well as when the claim has been requested |
+| `*`      | user                   | archive inactive clients                                              | keep my workspace uncluttered                                                                           |
+| `*`      | user                   | export data as a spreadsheet                                          | view it more easily                                                                                     |
+| `* * *`  | user                   | use CLI                                                               | easily find what I am looking for rather than navigating a GUI                                          |
+| `*`      | user                   | access FinHub with a password                                         | keep my client's information confidential                                                               |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FinHub` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Search client by name**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  The user searches for the client by their name.
+2.  FinHub shows details of clients with matching names.
 
     Use case ends.
+
+**Extensions**
+
+* 1a. FinHub detects an error in the command entered.
+    * 1a1. FinHub displays an error message and prompts the user to input again.
+    * 1a2. The user re-enters the command to search the client by name. 
+  
+      Steps 1a1-1a2 are repeated until the command and data entered are correct.
+  
+      Use case resumes at step 2.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC02 - Search client by email**
+
+**MSS**
+
+1.  The user searches for the client by their email.
+2.  FinHub shows details of clients with matching emails.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FinHub detects an error in the command entered.
+    * 1a1. FinHub displays an error message and prompts the user to input again.
+    * 1a2. The user re-enters the command to search the client by email. 
+  
+      Steps 1a1-1a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 2.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC03 - Search client by phone number**
+
+**MSS**
+
+1.  The user searches for the client by their phone number.
+2.  FinHub shows details of clients with matching phone number.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FinHub detects an error in the command entered.
+    * 1a1. FinHub displays an error message and prompts the user to input again.
+    * 1a2. The user re-enters the command to search the client by phone number. 
+  
+      Steps 1a1-1a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 2.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC04 - Mark client as complete**
+
+**MSS**
+
+1. The user <u>search client by their name (UC01)</u>.
+2. FinHub displays a list of clients. 
+3. The user selects the client to be marked as complete. 
+4. FinHub successfully marks the client as complete and displays a success message. 
+
+   Use case ends.
 
 **Extensions**
 
@@ -316,12 +409,252 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to mark client as completed.
+  
+      Steps 3a1-3a2 are repeated until the command and data entered are correct. 
 
-    * 3a1. AddressBook shows an error message.
+      Use case resumes at step 4.
+
+**Use case: UC05 - Add a client's contact**
+
+**MSS**
+
+1.  The user selects the option to add clients.
+2.  The user enters the client's details (name, telephone number, email address).
+3.  FinHub validates the input.
+4.  FinHub adds the new client into the address book.
+5.  FinHub displays a confirmation message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The user enters invalid/missing inputs.
+    * 3a1. FinHub prompts the user to enter the correct details.
 
       Use case resumes at step 2.
 
+* 3b. The user enters an email/telephone number that has been added before.
+    * 3b1. FinHub warns that a duplicate entry is not allowed.
+
+      Use case ends.
+
+
+**Use case: UC06 - Delete a client's contact**
+
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client to delete by their name (UC01)</u>.
+2.  The user selects the client to be deleted.
+3.  FinHub asks for confirmation of the deletion.
+4.  FinHub removes the client from the address book.
+5.  FinHub displays a success message. 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid client.
+    * 2a1. FinHub warns that an invalid client has been selected, and prompts the user to select again.
+
+      Step 2a1 is repeated until a valid client has been selected.
+
+      Use case resumes at step 3.
+
+
+* 3a. The user cancels the deletion.  
+  Use case ends.
+
+
+**Use case: UC07 - Edit a client's information** 
+
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client to edit by their name (UC01)</u>.
+2.  The user selects the client to be edited, and enters one or more updated fields.
+3.  FinHub validates the updated data.
+4.  FinHub displays a success message. 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid client.
+    * 2a1. FinHub warns that an invalid client has been selected, and prompts the user to select again.
+
+      Step 2a1 is repeated until a correct client has been selected.
+
+      Use case resumes at step 3
+
+
+* 2b. The user enters invalid fields.
+    * 2b1. FinHub prompts the user to enter the correct details. 
+  
+      Use case resumes at step 2.
+
+**Use case: UC08 - Delete reminder**
+
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client to edit by their name (UC01)</u>. 
+2.  The user selects which client and which reminder to delete.
+3.  FinHub displays a success message. 
+4.  FinHub shows the client the list without the deleted reminder.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid client or reminder.
+  * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again. 
+  
+    Step 2a1 is repeated until a correct selection.
+    
+    Use case resumes at step 3.
+
+**Use case: UC09 - Receive alerts if client has not been contacted in a specified period**
+
+**MSS**
+
+1.  The user starts up the application.
+2.  FinHub displays a message containing all the clients that has not been contacted in a specific period of time.
+3.  FinHub returns to landing display.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no clients that are under this criteria.
+    * 2a1. FinHub displays an empty message.
+
+      Use case resumes at step 3.
+
+**Use case: UC10 - List of all upcoming policy renewal dates**
+
+**MSS**
+
+1.  The user starts up the application.
+2.  FinHub displays a message showing the few upcoming policy renewal dates in chronological order within a set interval.
+3.  FinHub returns to landing display.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There are no policy renewal dates in the data.
+    * 2a1. FinHub displays an empty message.
+
+      Use case resumes at step 3.
+
+**Use case: UC11 - Assign priority levels to tasks**
+
+**MSS**
+
+1.  FinHub will display a list of tasks saved.
+2.  The user will select the task that they want to assign a priority level to and the priority level.
+3.  FinHub will update the task with the corresponding level.
+4.  FinHub returns to landing display.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects either invalid task or invalid priority level.
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select correct task/ priority level. 
+  
+      Step 2a1 is repeated until a correct task and priority level has been selected.
+
+      Use case resumes at step 3.
+    
+**Use case: UC12 - Set reminder for clients**
+
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user selects which client and set reminder for the client by their index, and enters the reminder and the date and time to remind.
+3.  FinHub validates the updated data.
+4.  FinHub displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid client or reminder.
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
+
+      Step 2a1 is repeated until a correct selection.
+
+      Use case resumes at step 3.
+
+* 2b. The user enters invalid date/time inputs.
+
+    * 2b1. FinHub prompts the user to enter proper date/time.
+
+      Step 2b1 is repeated until a correct input has been entered.
+
+      Use case resumes at step 3.
+
+**Use case: UC13 - Edit reminder for clients**
+
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user selects which client and edit reminder for the client by their index, and enters the amended reminder and the date and time to remind.
+3.  FinHub validates the updated data.
+4.  FinHub displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid client or reminder.
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
+
+      Step 2a1 is repeated until a correct selection.
+
+      Use case resumes at step 3.
+
+* 2b. The user enters invalid date/time inputs.
+
+    * 2b1. FinHub prompts the user to enter proper date/time.
+
+      Step 2b1 is repeated until a correct input has been entered.
+
+      Use case resumes at step 3.
+
+**Use case: UC14 - Add client meeting notes**
+
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user selects the option to add meeting notes for the client by their index, and enters the meeting notes.
+3.  FinHub validates the updated data.
+4.  FinHub displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid client.
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
+
+      Step 2a1 is repeated until a correct selection.
+
+      Use case resumes at step 3.
 **Use Case: UC15 - Archive client**
 
 **Precondition**: User is logged into the CLI System.
@@ -373,8 +706,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4. The product should be for a single user 
+5. The data should be stored locally and should be in a human editable text file, instead of a database management system.
+6. The software should work without requiring an installer. 
+7. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%. 
+8. The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%. 
+9. The product should be packaged into a `.jar` file 
+10. The product file size should be reasonable and should not exceed 100Mb. 
+11. The product is not required to cover communication with clients from the app, policy and financial calculation and payment and billing system.
 
 ### Glossary
 
