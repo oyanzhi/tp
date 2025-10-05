@@ -386,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <ins>search client by their name (UC01)</ins>.
+1. User <u>search client by their name (UC01)</u>.
 2. FinHub displays a list of clients. 
 3. User selects the client to be marked as complete. 
 4. FinHub successfully marks the client as complete and displays a success message. 
