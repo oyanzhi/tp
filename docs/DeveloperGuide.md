@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The user selects an invalid client.
-    * 2a1. FinHub warns that an invalid client has been Selected, and prompts the user to select again.
+    * 2a1. FinHub warns that an invalid client has been selected, and prompts the user to select again.
 
       Step 2a1 is repeated until a valid client has been selected.
 
