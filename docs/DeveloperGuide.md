@@ -384,7 +384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: UC04 - Mark client as complete**
 
@@ -583,7 +583,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
 
-    * Step 2a1 is repeated until a correct index has been entered.
+      Step 2a1 is repeated until a correct index has been entered.
 
       Use case resumes from step 3.
 
@@ -591,7 +591,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2b1. FinHub prompts the user to enter proper date/time.
 
-    * Step 2b1 is repeated until a correct input has been entered.
+      Step 2b1 is repeated until a correct input has been entered.
 
       Use case resumes at step 3.
 
@@ -612,7 +612,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
 
-    * Step 2a1 is repeated until a correct index has been entered.
+      Step 2a1 is repeated until a correct index has been entered.
 
       Use case resumes from step 3.
 
@@ -620,7 +620,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2b1. FinHub prompts the user to enter proper date/time.
 
-    * Step 2b1 is repeated until a correct input has been entered.
+      Step 2b1 is repeated until a correct input has been entered.
 
       Use case resumes at step 3.
 
@@ -641,7 +641,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
 
-    * Step 2a1 is repeated until a correct index has been entered.
+      Step 2a1 is repeated until a correct index has been entered.
 
       Use case resumes from step 3.
 
