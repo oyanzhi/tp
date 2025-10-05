@@ -401,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. FinHub detects an error in the command entered.
     * 3a1. FinHub displays an error message and prompts the user to input again.
-    * 3a2. The user re-enters the command to search the client by name. 
+    * 3a2. The user re-enters the command to <u>search the client by name (UC01) </u>. 
   
       Steps 3a1-3a2 are repeated until the command and data entered are correct. 
 
