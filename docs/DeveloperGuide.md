@@ -322,10 +322,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use Case: UC15 - Archive Client**
+**Use Case: UC15 - Archive client**
 
-**Preconditions:**
-1. User is logged into the CLI System.
+**Precondition**: User is logged into the CLI System.
 
 **MSS**
 
@@ -340,17 +339,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The client ID does not exist.
-    
+* 2a. The client ID does not exist. 
     * 2a1. The system displays a message that client is not found.
   
       Use case ends.
 
 * 3a. The user cancels at the confirmation step.
+  Use case ends.
 
-    Use case ends.
-
-**Use Case: UC16 - Enter Application with Password**
+**Use Case: UC16 - Enter application with password**
 
 **MSS**
 
@@ -362,10 +359,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  The system validates the credentials against stored records.
 7.  If valid, the user is granted access.
 
+    Use case ends.
+
 **Extensions**
 
 * 6a. The user account does not exist.
-
     * 6a1. The system will display a message.
 
       Use case ends.
