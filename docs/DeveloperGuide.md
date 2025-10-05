@@ -284,33 +284,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                                                          | So that I can…​                                                                         |
-|----------|------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`  | user                   | save the data I input                                                 | not have to input them again on start-up                                                |
-| `* * *`  | user                   | search clients by name                                                | easily find a specific client’s information                                             |
-| `* * *`  | user                   | delete reminders                                                      | remove any outdated/non-necessary/wrongly set-up reminders                              |
-| `* * *`  | user                   | add a new client's contact                                            | keep track of his information                                                           |
-| `* * *`  | user                   | delete a client's contact                                             | keep my contacts clean                                                                  |
-| `* * *`  | user                   | set reminders for policy renewal dates, birthdays, or important dates | maintain strong client relationships and be reminded to follow up                       |
-| `* * `   | user                   | search clients by phone number                                        | find specific clients through their phone number                                        |
-| `* * `   | user                   | search clients by email                                               | find specific clients through their email                                               |
-| `* *`    | user                   | mark my client as completed                                           | easily keep track of which clients are already onboarded and who is yet to be onboarded |
-| `* *`    | user                   | receive alerts                                                        | maintain regular engagement                                                             |
-| `* *`    | user                   | see upcoming policy renewal dates                                     | proactively reach out to clients before policy expires                                  |
-| `* *`    | user                   | keep track of my client's deadline that is coming soon                | better prioritise and manage my time                                                    |
-| `* * `   | forgetful user         | be alerted when I try to add a duplicate client                       | keep my contacts organised                                                              |
-| `* *`    | user                   | edit a client's information                                           | update changing information                                                             |
-| `* *`    | user                   | record client meeting notes                                           | remember key discussion points with each client                                         |
-| `* *`    | user                   | view revenue/profit per client                                        | identify my most valuable clients.                                                      |
-| `* *`    | user                   | record client preferences for preferred communication channel         | contact them in the best way possible                                                   |
-| `* *`    | user                   | group my clients by policy type                                       | quickly filter relevant contacts                                                        |
-| `* *`    | user                   | edit reminders                                                        | make changes to reminders when I change my mind                                         |
-| `* `     | user                   | be able to tag a client with a custom label                           | customize the grouping of clients                                                       |
-| `* `     | user                   | bookmark “star clients” for quick access                              | jump to top clients immediately                                                         |
-| `*`      | user                   | assign priority levels to tasks                                       | manage time more efficiently                                                            |
-| `*`      | user                   | view a client history timeline                                        | see a chronological record of interactions                                              |
-| `* `     | user                   | see in-app tutorials                                                  | easily familiarise with FinHub's features                                               |
-| `*`      | user with many clients | save the data I enter                                                 | save time re-entering all data each time I open the app                                 |
+| Priority | As a …​                | I want to …​                                                          | So that I can…​                                                                                         |
+|----------|------------------------|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| `* * *`  | user                   | save the data I input                                                 | not have to input them again on start-up                                                                |
+| `* * *`  | user                   | search clients by name                                                | easily find a specific client’s information                                                             |
+| `* * *`  | user                   | delete reminders                                                      | remove any outdated/non-necessary/wrongly set-up reminders                                              |
+| `* * *`  | user                   | add a new client's contact                                            | keep track of his information                                                                           |
+| `* * *`  | user                   | delete a client's contact                                             | keep my contacts clean                                                                                  |
+| `* * *`  | user                   | set reminders for policy renewal dates, birthdays, or important dates | maintain strong client relationships and be reminded to follow up                                       |
+| `* * *`  | user                   | use CLI                                                               | easily find what I am looking for rather than navigating a GUI                                          |
+| `* *`    | user                   | search clients by phone number                                        | find specific clients through their phone number                                                        |
+| `* *`    | user                   | search clients by email                                               | find specific clients through their email                                                               |
+| `* *`    | user                   | mark my client as completed                                           | easily keep track of which clients are already onboarded and who is yet to be onboarded                 |
+| `* *`    | user                   | receive alerts                                                        | maintain regular engagement                                                                             |
+| `* *`    | user                   | see upcoming policy renewal dates                                     | proactively reach out to clients before policy expires                                                  |
+| `* *`    | user                   | keep track of my client's deadline that is coming soon                | better prioritise and manage my time                                                                    |
+| `* *`    | forgetful user         | be alerted when I try to add a duplicate client                       | keep my contacts organised                                                                              |
+| `* *`    | user                   | edit a client's information                                           | update changing information                                                                             |
+| `* *`    | user                   | record client meeting notes                                           | remember key discussion points with each client                                                         |
+| `* *`    | user                   | view revenue/profit per client                                        | identify my most valuable clients.                                                                      |
+| `* *`    | user                   | record client preferences for preferred communication channel         | contact them in the best way possible                                                                   |
+| `* *`    | user                   | group my clients by policy type                                       | quickly filter relevant contacts                                                                        |
+| `* *`    | user                   | edit reminders                                                        | make changes to reminders when I change my mind                                                         |
+| `*`      | user                   | be able to tag a client with a custom label                           | customize the grouping of clients                                                                       |
+| `*`      | user                   | bookmark “star clients” for quick access                              | jump to top clients immediately                                                                         |
+| `*`      | user                   | assign priority levels to tasks                                       | manage time more efficiently                                                                            |
+| `*`      | user                   | view a client history timeline                                        | see a chronological record of interactions                                                              |
+| `*`      | user                   | see in-app tutorials                                                  | easily familiarise with FinHub's features                                                               |
+| `*`      | user with many clients | save the data I enter                                                 | save time re-entering all data each time I open the app                                                 |
+| `*`      | user                   | view a dashboard summary of activities                                | get an overview of my workload                                                                          |
+| `*`      | user                   | keep track of insurance claims requested by clients                   | easily see what claims are made for the different clients, as well as when the claim has been requested |
+| `*`      | user                   | archive inactive clients                                              | keep my workspace uncluttered                                                                           |
+| `*`      | user                   | export data as a spreadsheet                                          | view it more easily                                                                                     |
+| `*`      | user                   | access FinHub with a password                                         | keep my client's information confidential                                                               |
 
 
 ### Use cases
@@ -644,11 +650,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The user selects an invalid client.
-    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
+    * 2a1. FinHub warns that user does not exist and prompts the user to select again.
 
       Step 2a1 is repeated until a correct selection.
 
       Use case resumes at step 3.
+
+**Use Case: UC15 - Archive client**
+
+**Precondition**: User is logged into the CLI System.
+
+**MSS**
+
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user types the archive command.
+3.  FinHub prompts for confirmation.
+4.  The user confirms.
+5.  FinHub changes the client's status from active to archived in the database.
+6.  FinHub displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid client. 
+    * 2a1. FinHub displays a message that client is not found.
+  
+      Use case ends.
+
+* 3a. The user cancels at the confirmation step.
+  Use case ends.
+
+**Use Case: UC16 - Enter application with password**
+
+**MSS**
+
+1.  The user launches the application.
+2.  FinHub prompts user to enter username.
+3.  The user enters their username.
+4.  FinHub prompts for password.
+5.  The user enters their password.
+6.  FinHub validates the credentials against stored records.
+7.  If valid, the user is granted access.
+
+    Use case ends.
+
+**Extensions**
+
+* 6a. The user account does not exist.
+    * 6a1. FinHub will display an error message.
+
+      Use case ends.
+
+* 6b. The password entered is wrong.
+    * 6b1. FinHub will display an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
