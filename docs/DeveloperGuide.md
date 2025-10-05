@@ -655,6 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Step 2a1 is repeated until a correct selection.
 
       Use case resumes at step 3.
+
 **Use Case: UC15 - Archive client**
 
 **Precondition**: User is logged into the CLI System.
