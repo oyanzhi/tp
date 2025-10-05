@@ -329,18 +329,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  The user types the archive command.
-2.  The system validates the client ID.
-3.  The system prompts for confirmation.
+2.  FinHub validates the client ID.
+3.  FinHub prompts for confirmation.
 4.  The user confirms.
-5.  The system changes the client's status from active to archived in the database.
-6.  The system displays a success message.
+5.  FinHub changes the client's status from active to archived in the database.
+6.  FinHub displays a success message.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The client ID does not exist. 
-    * 2a1. The system displays a message that client is not found.
+    * 2a1. FinHub displays a message that client is not found.
   
       Use case ends.
 
@@ -352,11 +352,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  The user launches the application.
-2.  The system prompts user to enter username.
+2.  FinHub prompts user to enter username.
 3.  The user enters their username.
-4.  The system prompts for password.
+4.  FinHub prompts for password.
 5.  The user enters their password.
-6.  The system validates the credentials against stored records.
+6.  FinHub validates the credentials against stored records.
 7.  If valid, the user is granted access.
 
     Use case ends.
@@ -364,7 +364,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 6a. The user account does not exist.
-    * 6a1. The system will display a message.
+    * 6a1. FinHub will display an error message.
 
       Use case ends.
 
