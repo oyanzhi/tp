@@ -390,9 +390,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <u>search client by their name (UC01)</u>.
+1. The user <u>search client by their name (UC01)</u>.
 2. FinHub displays a list of clients. 
-3. User selects the client to be marked as complete. 
+3. The user selects the client to be marked as complete. 
 4. FinHub successfully marks the client as complete and displays a success message. 
 
    Use case ends.
@@ -497,7 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  The user <u>searches for the client to edit by their name (UC01)</u>. 
-2.  The user selects which user and which reminder to delete.
+2.  The user selects which client and which reminder to delete.
 3.  FinHub displays a success message. 
 4.  FinHub shows the client the list without the deleted reminder.
 
@@ -568,10 +568,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 **Use case: UC12 - Set reminder for clients**
 
+**Precondition**: Client list must not be empty.
+
 **MSS**
 
-1.  User searches for the client by their name (UC01) to view their given index.
-2.  User selects the option to set reminder for the client by their index, and enters the reminder and the date and time to remind.
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user selects which client and set reminder for the client by their index, and enters the reminder and the date and time to remind.
 3.  FinHub validates the updated data.
 4.  FinHub displays a success message.
 
@@ -579,15 +581,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User inputs invalid index.
+* 2a. The user selects an invalid client or reminder.
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
 
-    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+      Step 2a1 is repeated until a correct selection.
 
-      Step 2a1 is repeated until a correct index has been entered.
+      Use case resumes at step 3.
 
-      Use case resumes from step 3.
-
-* 2b. User enters invalid date/time inputs.
+* 2b. The user enters invalid date/time inputs.
 
     * 2b1. FinHub prompts the user to enter proper date/time.
 
@@ -599,8 +600,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User searches for the client by their name (UC01) to view their given index.
-2.  User selects the option to edit reminder for the client by their index, and enters the amended reminder and the date and time to remind.
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user selects which client and edit reminder for the client by their index, and enters the amended reminder and the date and time to remind.
 3.  FinHub validates the updated data.
 4.  FinHub displays a success message.
 
@@ -608,15 +609,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User inputs invalid index.
+* 2a. The user selects an invalid client or reminder.
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
 
-    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+      Step 2a1 is repeated until a correct selection.
 
-      Step 2a1 is repeated until a correct index has been entered.
+      Use case resumes at step 3.
 
-      Use case resumes from step 3.
-
-* 2b. User enters invalid date/time inputs.
+* 2b. The user enters invalid date/time inputs.
 
     * 2b1. FinHub prompts the user to enter proper date/time.
 
@@ -628,8 +628,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User searches for the client by their name (UC01) to view their given index.
-2.  User selects the option to add meeting notes for the client by their index, and enters the meeting notes.
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user selects the option to add meeting notes for the client by their index, and enters the meeting notes.
 3.  FinHub validates the updated data.
 4.  FinHub displays a success message.
 
@@ -637,13 +637,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User inputs invalid index.
+* 2a. The user selects an invalid client.
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
 
-    * 2a1. FinHub warns that an invalid index has been entered, and prompts the user to input the correct index.
+      Step 2a1 is repeated until a correct selection.
 
-      Step 2a1 is repeated until a correct index has been entered.
-
-      Use case resumes from step 3.
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
