@@ -60,4 +60,19 @@ public class Reminder {
     public String toString() {
         return String.format("%s, due by %s", this.header, this.deadline);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        //instanceof handles null
+        if (!(other instanceof Reminder)) {
+            return false;
+        }
+
+        Reminder r = (Reminder) other;
+        return r.deadline.equals(this.deadline) && r.header.equals(this.header);
+    }
 }
