@@ -3,6 +3,7 @@ package seedu.address.model.reminder;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 /**
@@ -37,12 +38,14 @@ public class Reminder {
      * Returns true if string is a valid deadline after today
      */
     public static boolean isValidDeadline(String test) {
-        LocalDateTime testTime = LocalDateTime.parse(test);
-
-        if (testTime.isBefore(LocalDateTime.now())) {
+        try {
+            LocalDateTime testTime = LocalDateTime.parse(test);
+            if (testTime.isBefore(LocalDateTime.now())) {
+                return false;
+            }
+        } catch (DateTimeException e) {
             return false;
         }
-
         return true;
     }
 
