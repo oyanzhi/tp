@@ -223,7 +223,7 @@ public class ParserUtilTest {
     @Test
     public void parseDeadline_invalidPastDate_throwsParseException() {
         String pastDate = LocalDateTime.now().minusDays(1).toString();
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(pastDate));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(pastDate));
     }
 
 }
