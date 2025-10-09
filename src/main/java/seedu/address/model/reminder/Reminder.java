@@ -27,11 +27,18 @@ public class Reminder {
      * @param deadline A valid deadline.
      */
     public Reminder(String header, String deadline) {
-        requireAllNonNull(deadline, header);
-        checkArgument(isValidDeadline(deadline), DEADLINE_MESSAGE_CONSTRAINTS);
+        requireAllNonNull(header, deadline);
         checkArgument(isValidHeader(header), HEADER_MESSAGE_CONSTRAINTS);
-        this.deadline = LocalDateTime.parse(deadline);
+        checkArgument(isValidDeadline(deadline), DEADLINE_MESSAGE_CONSTRAINTS);
         this.header = header;
+        this.deadline = LocalDateTime.parse(deadline);
+    }
+
+    /**
+     * Returns true if string is a non-empty header
+     */
+    public static boolean isValidHeader(String header) {
+        return header.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -49,15 +56,23 @@ public class Reminder {
         return true;
     }
 
-    /**
-     * Returns true if string is a non-empty header
-     */
-    public static boolean isValidHeader(String header) {
-        return header.matches(VALIDATION_REGEX);
-    }
-
     @Override
     public String toString() {
         return String.format("%s, due by %s", this.header, this.deadline);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        //instanceof handles null
+        if (!(other instanceof Reminder)) {
+            return false;
+        }
+
+        Reminder r = (Reminder) other;
+        return r.deadline.equals(this.deadline) && r.header.equals(this.header);
     }
 }
