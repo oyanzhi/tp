@@ -22,7 +22,6 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MULTIPLE_SPACES_REGEX = "\\s+";
-    
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -45,11 +44,9 @@ public class ParserUtil {
     public static Index[] parseDualIndex(String oneBasedDualIndex) throws ParseException {
         String trimmed = oneBasedDualIndex.trim();
         String[] parts = trimmed.split(MULTIPLE_SPACES_REGEX); // split the indices by one or more spaces
-        
         if (parts.length != 2) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        
         //check 1st and 2nd index
         if (!StringUtil.isNonZeroUnsignedInteger(parts[0]) || !StringUtil.isNonZeroUnsignedInteger(parts[1])) {
             throw new ParseException(MESSAGE_INVALID_INDEX);

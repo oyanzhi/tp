@@ -65,7 +65,7 @@ public class ParserUtilTest {
     @Test
     public void parseDualIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-                -> ParserUtil.parseDualIndex(Long.toString(Integer.MAX_VALUE + 1) 
+                -> ParserUtil.parseDualIndex(Long.toString(Integer.MAX_VALUE + 1)
                 + " " + Long.toString(Integer.MAX_VALUE + 1)));
     }
 
@@ -76,7 +76,6 @@ public class ParserUtilTest {
 
         // No whitespaces for 2nd index
         assertEquals(INDEX_SECOND_PERSON, ParserUtil.parseDualIndex("1 2")[1]);
-        
         // Leading and trailing whitespaces for 1st index
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseDualIndex("  1 1  ")[0]);
 

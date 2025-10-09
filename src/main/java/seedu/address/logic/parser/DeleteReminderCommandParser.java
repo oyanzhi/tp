@@ -3,13 +3,13 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteReminderCommand object
  */
-public class DeleteReminderCommandParser {
+public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteReminderCommand
@@ -22,8 +22,7 @@ public class DeleteReminderCommandParser {
             return new DeleteReminderCommand(indices[0], indices[1]);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteReminderCommand.MESSAGE_USAGE), pe);
         }
     }
-    
 }
