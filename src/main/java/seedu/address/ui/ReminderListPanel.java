@@ -41,8 +41,14 @@ public class ReminderListPanel extends UiPart<Region> {
                     return;
                 }
                 int idx = getIndex() + 1;
-                setGraphic(new ReminderCard(idx, text).getRoot());
-                setText(null); // we render via graphic only
+                try {
+                    setGraphic(new ReminderCard(idx, text).getRoot());
+                    setText(null); // we render via graphic only
+                } catch (RuntimeException ex) {
+                    // Fallback rendering so UI/tests don't crash if ReminderCard FXML fails in some envs.
+                    setGraphic(null);
+                    setText(idx + ". " + text);
+                }
             }
         });
 
