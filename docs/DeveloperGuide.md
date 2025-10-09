@@ -275,7 +275,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Insurance Agent who manage multiple clients
-* Who may need to find contacts of particular clients 
+* Who may need to find contacts of particular clients
 * Who has to keep track of many meetings with clients
 
 **Value proposition**: Centralised platform for keeping track of all work-related information, organising large amounts of information and helping with progress management of clients.
@@ -715,10 +715,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. The product should be for a single user 
 5. The data should be stored locally and should be in a human editable text file, instead of a database management system.
 6. The software should work without requiring an installer. 
-7. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%. 
-8. The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%. 
-9. The product should be packaged into a `.jar` file 
-10. The product file size should be reasonable and should not exceed 100Mb. 
+7. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%.
+8. The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%.
+9. The product should be packaged into a `.jar` file
+10. The product file size should be reasonable and should not exceed 100Mb.
 11. The product is not required to cover communication with clients from the app, policy and financial calculation and payment and billing system.
 
 ### Glossary
