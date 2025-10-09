@@ -72,6 +72,10 @@ public class Person {
         return this.reminders;
     }
 
+    /**
+     * @param reminder to be added to the person
+     * @return if the person already has a similar reminder
+     */
     public boolean hasReminder(Reminder reminder) {
         requireNonNull(reminder);
         return reminders.contains(reminder);
