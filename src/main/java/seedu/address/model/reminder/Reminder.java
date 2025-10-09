@@ -30,7 +30,7 @@ public class Reminder {
         requireAllNonNull(deadline, header);
         checkArgument(isValidDeadline(deadline), DEADLINE_MESSAGE_CONSTRAINTS);
         checkArgument(isValidHeader(header), HEADER_MESSAGE_CONSTRAINTS);
-        this.deadline = LocalDateTime.parse("decide from parser");
+        this.deadline = LocalDateTime.parse(deadline);
         this.header = header;
     }
 
