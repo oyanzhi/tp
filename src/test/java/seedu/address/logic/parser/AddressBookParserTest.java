@@ -22,6 +22,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -48,6 +49,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
+        DeleteReminderCommand command = (DeleteReminderCommand) parser.parseCommand(
+                DeleteReminderCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+        + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteReminderCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deleteReminder() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
