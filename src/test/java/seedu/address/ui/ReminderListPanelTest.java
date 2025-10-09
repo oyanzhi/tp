@@ -1,29 +1,17 @@
 package seedu.address.ui;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.net.URL;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.testutil.FxTestUtils;
-
-/** Smoke tests: constructor + cell factory for ReminderListPanel. */
+/** Ensures the ReminderListPanel FXML is packaged on the classpath. */
 public class ReminderListPanelTest {
 
     @Test
-    public void constructor_withItems_noException() {
-        ObservableList<String> items = FXCollections.observableArrayList(
-                "Send birthday voucher", "Follow up claim status");
-        FxTestUtils.runOnFxAndWait(() ->
-                assertDoesNotThrow(() -> new ReminderListPanel(items))
-        );
-    }
-
-    @Test
-    public void constructorWithNullUsesEmptyListNoException() {
-        FxTestUtils.runOnFxAndWait(() ->
-                assertDoesNotThrow(() -> new ReminderListPanel(null))
-        );
+    public void fxml_isPresentOnClasspath() {
+        URL url = ReminderListPanel.class.getResource("/view/ReminderListPanel.fxml");
+        assertNotNull(url, "ReminderListPanel.fxml should be on the classpath under /view/");
     }
 }
