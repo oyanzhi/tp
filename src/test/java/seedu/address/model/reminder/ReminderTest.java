@@ -12,25 +12,23 @@ public class ReminderTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Reminder(null, null));
-        assertThrows(NullPointerException.class, () -> new Reminder(null, "valid header"));
-        assertThrows(NullPointerException.class, () -> new Reminder("2023-10-27T10:30:00", null));
+        assertThrows(NullPointerException.class, () -> new Reminder("valid header", null));
+        assertThrows(NullPointerException.class, () -> new Reminder(null, "2023-10-27T10:30:00"));
     }
 
     @Test
     public void constructor_invalidHeader_throwsIllegalArgumentException() {
         String invalidHeader = "";
-        assertThrows(IllegalArgumentException.class, () -> new Reminder("2023-10-27T10:30:00", invalidHeader));
+        assertThrows(IllegalArgumentException.class, () -> new Reminder(invalidHeader, "2023-10-27T10:30:00"));
     }
 
     @Test
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidDeadline = "100";
-        assertThrows(IllegalArgumentException.class, () -> new Reminder(invalidDeadline,
-                "valid header"));
+        assertThrows(IllegalArgumentException.class, () -> new Reminder("valid header", invalidDeadline));
 
         String invalidDate = "2023-10-27T10:30:00";
-        assertThrows(IllegalArgumentException.class, () -> new Reminder(invalidDate,
-                "valid header"));
+        assertThrows(IllegalArgumentException.class, () -> new Reminder("valid header", invalidDate));
     }
 
     @Test
@@ -61,7 +59,7 @@ public class ReminderTest {
     public void constructor_successfulReminder() {
         String deadline = "2026-10-27T10:30:40";
         String header = "This is a valid header.";
-        Reminder r = new Reminder(deadline, header);
+        Reminder r = new Reminder(header, deadline);
         assertEquals(r.toString(), String.format("%s, due by %s", header, deadline));
     }
 
