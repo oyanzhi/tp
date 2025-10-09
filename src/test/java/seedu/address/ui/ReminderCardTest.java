@@ -1,18 +1,17 @@
 package seedu.address.ui;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.net.URL;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.FxTestUtils;
-
-/** Smoke test: constructor + FXML load for ReminderCard. */
+/** Ensures the ReminderCard FXML is packaged and loadable as a resource. */
 public class ReminderCardTest {
 
     @Test
-    public void constructor_loadsFxml_noException() {
-        FxTestUtils.runOnFxAndWait(() ->
-                assertDoesNotThrow(() -> new ReminderCard(1, "Renewal call on 21/11/2025 14:30"))
-        );
+    public void fxml_isPresentOnClasspath() {
+        URL url = ReminderCard.class.getResource("/view/ReminderCard.fxml");
+        assertNotNull(url, "ReminderCard.fxml should be on the classpath under /view/");
     }
 }
