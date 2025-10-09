@@ -8,8 +8,8 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.reminder.Header;
-import seedu.address.model.reminder.Date;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.Reminder;
 
 public class AddReminderParser implements Parser<AddReminderCommand> {
     /**
@@ -34,8 +34,8 @@ public class AddReminderParser implements Parser<AddReminderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE), pe);
         }
 
-        Header header = ParserUtil.parseHeader(argMultimap.getValue(PREFIX_HEADER).get());
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        String header = ParserUtil.parseHeader(argMultimap.getValue(PREFIX_HEADER).get());
+        String date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
         Reminder reminder = new Reminder(index, header, date);
 

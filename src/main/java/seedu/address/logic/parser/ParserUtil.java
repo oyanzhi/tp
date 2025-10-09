@@ -128,13 +128,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code header} is invalid.
      */
-    public static Header parseHeader(String header) throws ParseException {
+    public static String parseHeader(String header) throws ParseException {
         requireNonNull(header);
         String trimmedHeader = header.trim();
-        if (!Header.isValidHeader(trimmedHeader)) {
-            throw new ParseException(Header.MESSAGE_CONSTRAINTS);
+        if (!Reminder.isValidHeader(trimmedHeader)) {
+            throw new ParseException(HEADER_MESSAGE_CONSTRAINTS);
         }
-        return new Header(trimmedHeader);
+        return trimmedHeader;
     }
 
     /**
@@ -143,12 +143,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Name parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+    public static String parseDate(String deaodline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Reminder.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(DEADLINE_MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedDate);
+        return trimmedDeadline;
     }
 }
