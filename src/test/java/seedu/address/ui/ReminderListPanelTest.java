@@ -2,11 +2,12 @@ package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.FxTestUtils;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /** Smoke tests: constructor + cell factory for ReminderListPanel. */
 public class ReminderListPanelTest {
@@ -21,7 +22,7 @@ public class ReminderListPanelTest {
     }
 
     @Test
-    public void constructor_withNull_usesEmptyList_noException() {
+    public void constructorWithNullUsesEmptyListNoException() {
         FxTestUtils.runOnFxAndWait(() ->
                 assertDoesNotThrow(() -> new ReminderListPanel(null))
         );
