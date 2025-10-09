@@ -105,12 +105,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
+        //TODO - Update to include reminders
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
+        //TODO - Update to include reminders
     }
 
     @Override
@@ -122,6 +124,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .toString();
+        //TODO - Update to include reminders
     }
 
 }

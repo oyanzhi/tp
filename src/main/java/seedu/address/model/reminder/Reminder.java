@@ -1,5 +1,7 @@
 package seedu.address.model.reminder;
 
+import seedu.address.model.person.Person;
+
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -59,5 +61,20 @@ public class Reminder {
     @Override
     public String toString() {
         return String.format("%s, due by %s", this.header, this.deadline);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        //instanceof handles null
+        if (!(other instanceof Reminder)) {
+            return false;
+        }
+
+        Reminder r = (Reminder) other;
+        return r.deadline.equals(this.deadline) && r.header.equals(this.header);
     }
 }
