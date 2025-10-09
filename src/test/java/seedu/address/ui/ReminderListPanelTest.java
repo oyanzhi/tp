@@ -36,7 +36,7 @@ public class ReminderListPanelTest {
     }
 
     @Test
-    public void constructor_withNull_usesEmptyList_noException() {
+    public void constructor_withNull_usesEmptyList() {
         assertDoesNotThrow(() -> new ReminderListPanel(null));
     }
 }
