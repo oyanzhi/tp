@@ -55,4 +55,8 @@ public class ReminderListPanel extends UiPart<Region> {
         // Cosmetic: avoid stealing focus when navigating the parent card.
         reminderListView.setFocusTraversable(false);
     }
+
+    static String formatFallbackText(int index, String text) {
+        return index + ". " + text;
+    }
 }
