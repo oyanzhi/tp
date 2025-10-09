@@ -63,4 +63,32 @@ public class ReminderTest {
         assertEquals(r.toString(), String.format("%s, due by %s", header, deadline));
     }
 
+    @Test
+    public void equals() {
+        String deadline = "2026-10-27T10:30:40";
+        String header = "This is a valid header.";
+
+        String differentDeadline = "2027-10-27T10:30:40";
+        String differentHeader = "Different header";
+        Reminder r = new Reminder(header, deadline);
+
+        //same values -> true
+        assertTrue(r.equals(new Reminder(header, deadline)));
+
+        //same object -> true
+        assertTrue(r.equals(r));
+
+        // null -> returns false
+        assertFalse(r.equals(null));
+
+        // different types -> returns false
+        assertFalse(r.equals(""));
+
+        // different header -> returns false
+        assertFalse(r.equals(new Reminder(differentHeader, deadline)));
+
+        // different deadline -> returns false
+        assertFalse(r.equals(new Reminder(header, differentDeadline)));
+    }
+
 }
