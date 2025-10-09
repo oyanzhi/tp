@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.reminder.Reminder.DEADLINE_MESSAGE_CONSTRAINTS;
+import static seedu.address.model.reminder.Reminder.HEADER_MESSAGE_CONSTRAINTS;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +123,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String header} into a {@code Header}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code header} is invalid.
+     */
+    public static String parseHeader(String header) throws ParseException {
+        requireNonNull(header);
+        String trimmedHeader = header.trim();
+        if (!Reminder.isValidHeader(trimmedHeader)) {
+            throw new ParseException(HEADER_MESSAGE_CONSTRAINTS);
+        }
+        return trimmedHeader;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static String parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Reminder.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(DEADLINE_MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDeadline;
     }
 }

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_REMIDNER_HEADER = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_REMINDER_HEADER = "follow up meeting";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,4 +196,34 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseHeader_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHeader((String) null));
+    }
+
+    @Test
+    public void parseHeader_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeader(INVALID_REMIDNER_HEADER));
+    }
+
+    @Test
+    public void parseHeader_validValueWithoutWhitespace_returnsHeader() throws Exception {
+        String expectedName = VALID_REMINDER_HEADER;
+        assertEquals(expectedName, ParserUtil.parseHeader(VALID_REMINDER_HEADER));
+    }
+
+    @Test
+    public void parseHeader_validValueWithWhitespace_returnsTrimmedHeader() throws Exception {
+        String headerWithWhitespace = WHITESPACE + VALID_REMINDER_HEADER + WHITESPACE;
+        String expectedName = VALID_REMINDER_HEADER;
+        assertEquals(expectedName, ParserUtil.parseHeader(headerWithWhitespace));
+    }
+
+    @Test
+    public void parseDeadline_invalidPastDate_throwsParseException() {
+        String pastDate = LocalDateTime.now().minusDays(1).toString();
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(pastDate));
+    }
+
 }
