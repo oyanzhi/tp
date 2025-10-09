@@ -5,27 +5,36 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 /**
- * A UI component that displays a single reminder line for a client.
+ * A small UI component that displays a single reminder in a two-column style:
+ * an index label (1-based) and the reminder text.
+ *
+ * <p>Its FXML has no {@code fx:controller}; the controller instance is supplied
+ * by {@link UiPart} via the constructor.</p>
  */
-
 public class ReminderCard extends UiPart<Region> {
 
-    /** Path to the FXML resource. */
+    /** Relative path under {@code src/main/resources/view}. */
     public static final String FXML = "ReminderCard.fxml";
 
-    @FXML private Label index;
-    @FXML private Label content;
+    @FXML
+    private Label indexLabel;
+
+    @FXML
+    private Label contentLabel;
 
     /**
-     * Creates a {@code ReminderCard} with the given display index and text.
+     * Creates a {@code ReminderCard}.
      *
-     * @param displayedIndex 1-based index to show before the reminder.
-     * @param text The reminder text to display. Must not be {@code null}.
+     * @param displayedIndex 1-based index to show on the card
+     * @param content reminder text to show
      */
-    public ReminderCard(int displayedIndex, String text) {
+    public ReminderCard(int displayedIndex, String content) {
         super(FXML);
-        // Populate simple labels.
-        index.setText(displayedIndex + ".");
-        content.setText(text);
+        // Defensive defaults to avoid NPEs if cell text is null.
+        String safe = (content == null) ? "" : content;
+        indexLabel.setText(displayedIndex + ".");
+        contentLabel.setText(safe);
+        // Prefer the label content for accessibility; graphics are set by the ListCell.
+        getRoot().setAccessibleText(displayedIndex + ". " + safe);
     }
 }
