@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
 
 import java.util.stream.Stream;
@@ -10,8 +10,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.Reminder;
 
+/**
+ * Parses input arguments and creates a new AddReminderParser object
+ */
 public class AddReminderParser implements Parser<AddReminderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddReminderCommand
@@ -20,10 +22,10 @@ public class AddReminderParser implements Parser<AddReminderCommand> {
      */
     public AddReminderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_HEADER, PREFIX_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_HEADER, PREFIX_DEADLINE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_HEADER)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_HEADER, PREFIX_DEADLINE)
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
 
@@ -31,16 +33,17 @@ public class AddReminderParser implements Parser<AddReminderCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE), pe);
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE),
+                    e);
         }
 
         String header = ParserUtil.parseHeader(argMultimap.getValue(PREFIX_HEADER).get());
-        String date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        String date = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
 
-        Reminder reminder = new Reminder(index, header, date);
+        Reminder reminder = new Reminder(header, date);
 
-        return new AddReminderCommand(reminder);
+        return new AddReminderCommand(index, reminder);
     }
 
     /**

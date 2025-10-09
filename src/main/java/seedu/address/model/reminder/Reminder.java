@@ -23,10 +23,10 @@ public class Reminder {
     /**
      * Constructs a {@code Reminder}.
      *
-     * @param deadline A valid deadline.
      * @param header A valid header.
+     * @param deadline A valid deadline.
      */
-    public Reminder(String deadline, String header) {
+    public Reminder(String header, String deadline) {
         requireAllNonNull(deadline, header);
         checkArgument(isValidDeadline(deadline), DEADLINE_MESSAGE_CONSTRAINTS);
         checkArgument(isValidHeader(header), HEADER_MESSAGE_CONSTRAINTS);

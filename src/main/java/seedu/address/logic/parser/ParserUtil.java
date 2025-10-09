@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.reminder.Reminder.DEADLINE_MESSAGE_CONSTRAINTS;
+import static seedu.address.model.reminder.Reminder.HEADER_MESSAGE_CONSTRAINTS;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -143,7 +146,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static String parseDate(String deaodline) throws ParseException {
+    public static String parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         if (!Reminder.isValidDeadline(trimmedDeadline)) {

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -214,9 +215,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseHeader_validValueWithWhitespace_returnsTrimmedHeader() throws Exception {
-        String headerWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        String headerWithWhitespace = WHITESPACE + VALID_REMINDER_HEADER + WHITESPACE;
         String expectedName = VALID_REMINDER_HEADER;
         assertEquals(expectedName, ParserUtil.parseHeader(headerWithWhitespace));
+    }
+
+    @Test
+    public void parseDeadline_invalidPastDate_throwsParseException() {
+        String pastDate = LocalDateTime.now().minusDays(1).toString();
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(pastDate));
     }
 
 }
