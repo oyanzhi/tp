@@ -47,7 +47,7 @@ public class ReminderListPanel extends UiPart<Region> {
                 } catch (RuntimeException ex) {
                     // Fallback rendering so UI/tests don't crash if ReminderCard FXML fails in some envs.
                     setGraphic(null);
-                    setText(idx + ". " + text);
+                    setText(ReminderTextUtil.formatItem(idx, text));
                 }
             }
         });
