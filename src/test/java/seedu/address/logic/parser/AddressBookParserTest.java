@@ -13,7 +13,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteReminderCommand;
@@ -26,6 +28,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -95,6 +98,22 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_reminder() throws Exception {
+        Reminder reminder = new Reminder("meeting soon", "2026-10-10T09:00");
+
+        String commandString = AddReminderCommand.COMMAND_WORD
+                + " 1"
+                + " h/ meeting soon "
+                + "d/2026-10-10T09:00";
+
+        // Parse the command
+        AddReminderCommand command = (AddReminderCommand) parser.parseCommand(commandString);
+
+        // Assert that the parser returns the expected AddReminderCommand
+        assertEquals(new AddReminderCommand(Index.fromOneBased(1), reminder), command);
     }
 
     @Test

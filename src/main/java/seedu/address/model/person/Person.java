@@ -2,12 +2,14 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +26,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final ArrayList<Reminder> reminders = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -62,6 +65,13 @@ public class Person {
     }
 
     /**
+     * Returns the list of reminders tagged to this person
+     */
+    public ArrayList<Reminder> getReminders() {
+        return this.reminders;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -95,12 +105,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
+        //TODO - Update to include reminders
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
+        //TODO - Update to include reminders
     }
 
     @Override
@@ -112,6 +124,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .toString();
+        //TODO - Update to include reminders
     }
 
 }
