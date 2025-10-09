@@ -275,7 +275,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Insurance Agent who manage multiple clients
-* Who may need to find contacts of particular clients 
+* Who may need to find contacts of particular clients
 * Who has to keep track of many meetings with clients
 
 **Value proposition**: Centralised platform for keeping track of all work-related information, organising large amounts of information and helping with progress management of clients.
@@ -336,10 +336,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by name. 
-  
+    * 1a2. The user re-enters the command to search the client by name.
+
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
-  
+
       Use case resumes at step 2.
 
 * 2a. The list is empty.
@@ -359,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by email. 
+    * 1a2. The user re-enters the command to search the client by email.
   
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
 
@@ -382,8 +382,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
-    * 1a2. The user re-enters the command to search the client by phone number. 
-  
+    * 1a2. The user re-enters the command to search the client by phone number.
+
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
 
       Use case resumes at step 2.
@@ -397,9 +397,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. The user <u>search client by their name (UC01)</u>.
-2. FinHub displays a list of clients. 
-3. The user selects the client to be marked as complete. 
-4. FinHub successfully marks the client as complete and displays a success message. 
+2. FinHub displays a list of clients.
+3. The user selects the client to be marked as complete.
+4. FinHub successfully marks the client as complete and displays a success message.
 
    Use case ends.
 
@@ -412,8 +412,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. FinHub detects an error in the command entered.
     * 3a1. FinHub displays an error message and prompts the user to input again.
     * 3a2. The user re-enters the command to mark client as completed.
-  
-      Steps 3a1-3a2 are repeated until the command and data entered are correct. 
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
 
       Use case resumes at step 4.
 
@@ -452,7 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  The user selects the client to be deleted.
 3.  FinHub asks for confirmation of the deletion.
 4.  FinHub removes the client from the address book.
-5.  FinHub displays a success message. 
+5.  FinHub displays a success message.
 
     Use case ends.
 
@@ -466,11 +466,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 3.
 
 
-* 3a. The user cancels the deletion.  
+* 3a. The user cancels the deletion.
   Use case ends.
 
 
-**Use case: UC07 - Edit a client's information** 
+**Use case: UC07 - Edit a client's information**
 
 **Precondition**: Client list must not be empty.
 
@@ -479,7 +479,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  The user <u>searches for the client to edit by their name (UC01)</u>.
 2.  The user selects the client to be edited, and enters one or more updated fields.
 3.  FinHub validates the updated data.
-4.  FinHub displays a success message. 
+4.  FinHub displays a success message.
 
     Use case ends.
 
@@ -494,8 +494,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 2b. The user enters invalid fields.
-    * 2b1. FinHub prompts the user to enter the correct details. 
-  
+    * 2b1. FinHub prompts the user to enter the correct details.
+
       Use case resumes at step 2.
 
 **Use case: UC08 - Delete reminder**
@@ -504,9 +504,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  The user <u>searches for the client to edit by their name (UC01)</u>. 
+1.  The user <u>searches for the client to edit by their name (UC01)</u>.
 2.  The user selects which client and which reminder to delete.
-3.  FinHub displays a success message. 
+3.  FinHub displays a success message.
 4.  FinHub shows the client the list without the deleted reminder.
 
     Use case ends.
@@ -514,10 +514,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The user selects an invalid client or reminder.
-  * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again. 
-  
+  * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select again.
+
     Step 2a1 is repeated until a correct selection.
-    
+
     Use case resumes at step 3.
 
 **Use case: UC09 - Receive alerts if client has not been contacted in a specified period**
@@ -568,12 +568,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The user selects either invalid task or invalid priority level.
-    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select correct task/ priority level. 
-  
+    * 2a1. FinHub warns and specifies which is the invalid selection, and prompts the user to select correct task/ priority level.
+
       Step 2a1 is repeated until a correct task and priority level has been selected.
 
       Use case resumes at step 3.
-    
+
 **Use case: UC12 - Set reminder for clients**
 
 **Precondition**: Client list must not be empty.
@@ -673,9 +673,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user selects an invalid client. 
+* 2a. The user selects an invalid client.
     * 2a1. FinHub displays a message that client is not found.
-  
+
       Use case ends.
 
 * 3a. The user cancels at the confirmation step.
@@ -712,13 +712,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The product should be for a single user 
+4. The product should be for a single user
 5. The data should be stored locally and should be in a human editable text file, instead of a database management system.
-6. The software should work without requiring an installer. 
-7. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%. 
-8. The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%. 
-9. The product should be packaged into a `.jar` file 
-10. The product file size should be reasonable and should not exceed 100Mb. 
+6. The software should work without requiring an installer.
+7. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%.
+8. The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%.
+9. The product should be packaged into a `.jar` file
+10. The product file size should be reasonable and should not exceed 100Mb.
 11. The product is not required to cover communication with clients from the app, policy and financial calculation and payment and billing system.
 
 ### Glossary

@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.reminder.Reminder.DEADLINE_MESSAGE_CONSTRAINTS;
+import static seedu.address.model.reminder.Reminder.HEADER_MESSAGE_CONSTRAINTS;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,7 +24,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
+    public static final String MULTIPLE_SPACES_REGEX = "\\s+";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -33,6 +36,27 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedDualIndex} into {@code Index[]} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * Example: "3 3" → [Index(3), Index(3)]
+     * @throws ParseException if the specified indices is invalid (not non-zero unsigned integer).
+     */
+    public static Index[] parseDualIndex(String oneBasedDualIndex) throws ParseException {
+        String trimmed = oneBasedDualIndex.trim();
+        String[] parts = trimmed.split(MULTIPLE_SPACES_REGEX); // split the indices by one or more spaces
+        if (parts.length != 2) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        //check 1st and 2nd index
+        if (!StringUtil.isNonZeroUnsignedInteger(parts[0]) || !StringUtil.isNonZeroUnsignedInteger(parts[1])) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        Index[] indices = {Index.fromOneBased(Integer.parseInt(parts[0])),
+                Index.fromOneBased(Integer.parseInt(parts[1]))};
+        return indices;
     }
 
     /**
@@ -120,5 +144,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String header} into a {@code Header}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code header} is invalid.
+     */
+    public static String parseHeader(String header) throws ParseException {
+        requireNonNull(header);
+        String trimmedHeader = header.trim();
+        if (!Reminder.isValidHeader(trimmedHeader)) {
+            throw new ParseException(HEADER_MESSAGE_CONSTRAINTS);
+        }
+        return trimmedHeader;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static String parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Reminder.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(DEADLINE_MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDeadline;
     }
 }
