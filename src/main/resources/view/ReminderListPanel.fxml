@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <TitledPane text="Reminders"
+                    collapsible="true"
+                    expanded="false"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
+            <content>
+                <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER">
+                    <content>
+                        <ListView fx:id="reminderListView"/>
+                    </content>
+                </ScrollPane>
+            </content>
+        </TitledPane>
+    </children>
+</AnchorPane>
