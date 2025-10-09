@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +49,27 @@ public class AddReminderCommandParserTest {
 
         // zero index
         assertParseFailure(parser, "0" + "meeting" + "2026-10-15T09:00", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_invalidIndex_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("-5"));
+    }
+
+    // Missing prefixes
+    @Test
+    public void parse_missingPrefixes_throwsParseException() {
+        String commandString = AddReminderCommand.COMMAND_WORD + " meeting 2025-10-10T09:00";
+
+        assertParseFailure(parser, commandString, MESSAGE_INVALID_FORMAT);
+    }
+
+    // Empty preamble
+    @Test
+    public void parse_emptyPreamble_throwsParseException() {
+        String commandString = AddReminderCommand.COMMAND_WORD + " ";
+
+        assertParseFailure(parser, commandString, MESSAGE_INVALID_FORMAT);
     }
 
 }
