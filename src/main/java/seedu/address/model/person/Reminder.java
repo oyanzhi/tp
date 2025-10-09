@@ -1,10 +1,14 @@
 package seedu.address.model.person;
 
-import java.time.LocalDateTime;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+
+/**
+ * Represents a single reminder for a person
+ * Guarantees: immutable; is valid as declared in {@link #isValidDeadline} and {@link #isValidHeader(String)}
+ */
 public class Reminder {
 
     public static final String DEADLINE_MESSAGE_CONSTRAINTS = "Deadline should be minimally from today.";
