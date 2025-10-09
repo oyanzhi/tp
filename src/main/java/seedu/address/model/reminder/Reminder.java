@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.reminder;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
