@@ -42,7 +42,7 @@ public class ReminderListPanelTest {
 
             root.applyCss();
             root.layout();
-            lv.getSelectionModel().select(0);  // helps force cell creation
+            lv.getSelectionModel().select(0); // helps force cell creation
             lv.scrollTo(0);
 
             // Lookup the first visible ListCell
