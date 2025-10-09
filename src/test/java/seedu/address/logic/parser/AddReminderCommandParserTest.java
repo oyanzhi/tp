@@ -16,7 +16,7 @@ import seedu.address.model.reminder.Reminder;
 public class AddReminderCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE);
-    private final AddReminderParser parser = new AddReminderParser();
+    private final AddReminderCommandParser parser = new AddReminderCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {

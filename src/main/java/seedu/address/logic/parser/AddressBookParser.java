@@ -70,7 +70,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case AddReminderCommand.COMMAND_WORD:
-            return new AddReminderParser().parse(arguments);
+            return new AddReminderCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

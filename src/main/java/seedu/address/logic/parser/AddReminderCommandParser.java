@@ -14,7 +14,7 @@ import seedu.address.model.reminder.Reminder;
 /**
  * Parses input arguments and creates a new AddReminderParser object
  */
-public class AddReminderParser implements Parser<AddReminderCommand> {
+public class AddReminderCommandParser implements Parser<AddReminderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddReminderCommand
      * and returns an AddReminderCommand object for execution.
