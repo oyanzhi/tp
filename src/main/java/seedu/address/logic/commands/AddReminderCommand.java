@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -20,8 +23,10 @@ public class AddReminderCommand extends Command {
     public static final String COMMAND_WORD = "reminder";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a reminder to the person identified by the index number in the displayed person list.\n"
-            + "Parameters: Index (must be a positive integer) "
-            + "r/REMINDER\n"
+            + "Parameters:"
+            + "reminder [index] "
+            + PREFIX_HEADER + "HEADER "
+            + PREFIX_DEADLINE + "DEADLINE "
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/Meet client on Monday";
 
