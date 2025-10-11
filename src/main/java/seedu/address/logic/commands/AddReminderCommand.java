@@ -27,7 +27,8 @@ public class AddReminderCommand extends Command {
             + PREFIX_HEADER + "HEADER "
             + PREFIX_DEADLINE + "DEADLINE "
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/Meet client on Monday";
+            + "h/header"
+            + "d/deadline";
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Reminder added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_REMINDER = "A similar reminder has already been added for this person";
