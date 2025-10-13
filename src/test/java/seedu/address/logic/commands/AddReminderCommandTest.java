@@ -22,6 +22,9 @@ import seedu.address.model.reminder.Reminder;
 
 public class AddReminderCommandTest {
 
+    private static final String SAMPLE_HEADER = "Meet client on Monday";
+    private static final String SAMPLE_DEADLINE = "2026-10-12T09:00";
+
     private Model model;
 
     @BeforeEach
@@ -32,7 +35,7 @@ public class AddReminderCommandTest {
     @Test
     public void execute_addReminder_success() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reminder reminder = new Reminder("Meet client on Monday", "2026-10-12T09:00");
+        Reminder reminder = new Reminder(SAMPLE_HEADER, SAMPLE_DEADLINE);
         AddReminderCommand command = new AddReminderCommand(INDEX_FIRST_PERSON, reminder);
 
         Person editedPerson = personToEdit.addReminder(reminder);
@@ -48,7 +51,7 @@ public class AddReminderCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        Reminder reminder = new Reminder("Meet client on Monday", "2026-10-12T09:00");
+        Reminder reminder = new Reminder(SAMPLE_HEADER, SAMPLE_DEADLINE);
         AddReminderCommand command = new AddReminderCommand(outOfBoundIndex, reminder);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -85,8 +88,8 @@ public class AddReminderCommandTest {
 
     @Test
     public void equals() {
-        Reminder reminder1 = new Reminder("Meet client on Monday", "2026-10-12T09:00");
-        Reminder reminder2 = new Reminder("Meet client on Tuesday", "2026-10-12T09:00");
+        Reminder reminder1 = new Reminder(SAMPLE_HEADER, SAMPLE_DEADLINE);
+        Reminder reminder2 = new Reminder("Meet client on Tuesday", SAMPLE_DEADLINE);
 
         AddReminderCommand addReminderFirstCommand = new AddReminderCommand(INDEX_FIRST_PERSON, reminder1);
         AddReminderCommand addReminderSecondCommand = new AddReminderCommand(INDEX_FIRST_PERSON, reminder2);
@@ -110,7 +113,7 @@ public class AddReminderCommandTest {
 
     @Test
     public void toStringMethod() {
-        Reminder reminder = new Reminder("Meet client on Monday", "2026-10-12T09:00");
+        Reminder reminder = new Reminder(SAMPLE_HEADER, SAMPLE_DEADLINE);
         AddReminderCommand command = new AddReminderCommand(INDEX_FIRST_PERSON, reminder);
         String expected = AddReminderCommand.class.getCanonicalName() + "{index=" + INDEX_FIRST_PERSON
                 + ", reminder=" + reminder + "}";
