@@ -20,10 +20,10 @@ public class AddReminderCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {
-        String userInput = "1 h/client's birthday d/2026-10-15T09:00";
+        String userInput = "2 h/client's birthday d/2026-10-15T09:00";
 
         Reminder expectedReminder = new Reminder("client's birthday", "2026-10-15T09:00");
-        AddReminderCommand expectedCommand = new AddReminderCommand(Index.fromZeroBased(1), expectedReminder);
+        AddReminderCommand expectedCommand = new AddReminderCommand(Index.fromOneBased(2), expectedReminder);
 
         AddReminderCommand actualCommand = parser.parse(userInput);
 

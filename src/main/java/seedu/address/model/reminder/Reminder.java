@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Represents a single reminder for a person
@@ -54,6 +55,11 @@ public class Reminder {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(header, deadline);
     }
 
     @Override

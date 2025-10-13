@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -69,6 +70,30 @@ public class Person {
      */
     public ArrayList<Reminder> getReminders() {
         return this.reminders;
+    }
+
+    /**
+     * @param reminder to be added to the person
+     * @return if the person already has a similar reminder
+     */
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminders.contains(reminder);
+    }
+
+    /**
+     * @param reminder to be added to the person
+     * @return Person that has the reminder added to them
+     */
+    public Person addReminder(Reminder reminder) {
+        requireNonNull(reminder);
+
+        // defensive copy of the existing reminders
+        ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
+        updatedReminders.add(reminder);
+
+        // return a NEW Person with all existing fields but updated reminders
+        return new Person(name, phone, email, address, tags);
     }
 
     /**
