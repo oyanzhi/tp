@@ -22,13 +22,12 @@ public class AddReminderCommand extends Command {
     public static final String COMMAND_WORD = "reminder";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a reminder to the person identified by the index number in the displayed person list.\n"
-            + "Parameters:"
-            + "reminder [index] "
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_HEADER + "HEADER "
-            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_DEADLINE + "DEADLINE (must be in yyyy-MM-dd'T'HH:mm format) \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "h/header"
-            + "d/deadline";
+            + PREFIX_HEADER + "birthday "
+            + PREFIX_DEADLINE + "2025-12-25T09:00";
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Reminder added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_REMINDER = "A similar reminder has already been added for this person";
