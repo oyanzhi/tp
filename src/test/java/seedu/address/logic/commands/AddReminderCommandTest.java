@@ -23,7 +23,7 @@ import seedu.address.model.reminder.Reminder;
 public class AddReminderCommandTest {
 
     private static final String SAMPLE_HEADER = "Meet client on Monday";
-    private static final String SAMPLE_DEADLINE = "2026-10-12T09:00";
+    private static final String SAMPLE_DEADLINE = "2026-04-24 16:00";
 
     private Model model;
 
@@ -59,7 +59,7 @@ public class AddReminderCommandTest {
 
     @Test
     public void execute_sameReminderDifferentPersons_success() {
-        Reminder reminder = new Reminder("Team meeting", "2026-12-01T09:00");
+        Reminder reminder = new Reminder("Team meeting", "2026-12-01 09:00");
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());

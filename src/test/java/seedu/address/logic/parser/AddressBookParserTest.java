@@ -102,12 +102,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_reminder() throws Exception {
-        Reminder reminder = new Reminder("meeting soon", "2026-10-10T09:00");
+        Reminder reminder = new Reminder("meeting soon", "2026-10-10 09:00");
 
         String commandString = AddReminderCommand.COMMAND_WORD
                 + " 1"
                 + " h/ meeting soon "
-                + "d/2026-10-10T09:00";
+                + "d/2026-10-10 09:00";
 
         // Parse the command
         AddReminderCommand command = (AddReminderCommand) parser.parseCommand(commandString);

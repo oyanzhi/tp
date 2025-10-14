@@ -20,9 +20,9 @@ public class AddReminderCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {
-        String userInput = "2 h/client's birthday d/2026-10-15T09:00";
+        String userInput = "2 h/client's birthday d/2026-10-15 09:00";
 
-        Reminder expectedReminder = new Reminder("client's birthday", "2026-10-15T09:00");
+        Reminder expectedReminder = new Reminder("client's birthday", "2026-10-15 09:00");
         AddReminderCommand expectedCommand = new AddReminderCommand(Index.fromOneBased(2), expectedReminder);
 
         AddReminderCommand actualCommand = parser.parse(userInput);
@@ -32,7 +32,7 @@ public class AddReminderCommandParserTest {
 
     @Test
     public void parse_missingHeader_failure() {
-        String userInput = "1 d/2025-12-01T09:00";
+        String userInput = "1 d/2025-12-01 09:00";
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
 
@@ -45,10 +45,10 @@ public class AddReminderCommandParserTest {
     @Test
     public void parse_invalidIndex_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + "meeting" + "2026-10-15T09:00", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + "meeting" + "2026-10-15 09:00", MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + "meeting" + "2026-10-15T09:00", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + "meeting" + "2026-10-15 09:00", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class AddReminderCommandParserTest {
     // Missing prefixes
     @Test
     public void parse_missingPrefixes_throwsParseException() {
-        String commandString = AddReminderCommand.COMMAND_WORD + " meeting 2025-10-10T09:00";
+        String commandString = AddReminderCommand.COMMAND_WORD + " meeting 2025-10-10 09:00";
 
         assertParseFailure(parser, commandString, MESSAGE_INVALID_FORMAT);
     }

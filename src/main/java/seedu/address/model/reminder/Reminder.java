@@ -34,7 +34,7 @@ public class Reminder {
         checkArgument(isValidHeader(header), HEADER_MESSAGE_CONSTRAINTS);
         checkArgument(isValidDeadline(deadline), DEADLINE_MESSAGE_CONSTRAINTS);
         this.header = header;
-        this.deadline = LocalDateTime.parse(deadline);
+        this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN));
     }
 
     /**
@@ -67,7 +67,9 @@ public class Reminder {
 
     @Override
     public String toString() {
-        return String.format("%s, due by %s", this.header, this.deadline);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN);
+        String formattedDeadline = this.deadline.format(formatter);
+        return String.format("%s, due by %s", this.header, formattedDeadline);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class AddReminderCommand extends Command {
             + PREFIX_HEADER + "HEADER "
             + PREFIX_DEADLINE + "DEADLINE "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_HEADER + "Meeting at starbucks"
+            + PREFIX_HEADER + "Meeting at starbucks "
             + PREFIX_DEADLINE + "2026-04-24 16:00";
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Reminder added to %1$s: %2$s";
