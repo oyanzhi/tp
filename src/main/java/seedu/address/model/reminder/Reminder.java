@@ -60,10 +60,16 @@ public class Reminder {
         return true;
     }
 
+    /**
+     * Guarantees immutable from final field
+     */
     public String getHeader() {
         return this.header;
     }
 
+    /**
+     * Guarantees immutable from final field
+     */
     public LocalDateTime getDeadline() {
         return this.deadline;
     }
