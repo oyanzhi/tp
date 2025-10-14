@@ -24,13 +24,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
 public class AddReminderCommandTest {
-
-<<<<<<< HEAD
-    private static final String SAMPLE_HEADER = "Meet client on Monday";
-    private static final String SAMPLE_DEADLINE = "2026-04-24 16:00";
-
-=======
->>>>>>> master
     private Model model;
 
     @BeforeEach
