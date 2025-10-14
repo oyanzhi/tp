@@ -13,13 +13,13 @@ public class ReminderTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Reminder(null, null));
         assertThrows(NullPointerException.class, () -> new Reminder("valid header", null));
-        assertThrows(NullPointerException.class, () -> new Reminder(null, "2023-10-27T10:30:00"));
+        assertThrows(NullPointerException.class, () -> new Reminder(null, "2023-10-27 10:30"));
     }
 
     @Test
     public void constructor_invalidHeader_throwsIllegalArgumentException() {
         String invalidHeader = "";
-        assertThrows(IllegalArgumentException.class, () -> new Reminder(invalidHeader, "2023-10-27T10:30:00"));
+        assertThrows(IllegalArgumentException.class, () -> new Reminder(invalidHeader, "2023-10-27 10:30"));
     }
 
     @Test
@@ -49,15 +49,15 @@ public class ReminderTest {
         assertThrows(NullPointerException.class, () -> Reminder.isValidDeadline(null));
 
         // invalid deadline (deadline before now)
-        assertFalse(Reminder.isValidDeadline("2023-10-27T10:30:00"));
+        assertFalse(Reminder.isValidDeadline("2023-10-27 10:30"));
 
         // valid deadline
-        assertTrue(Reminder.isValidDeadline("2026-10-27T10:30:00"));
+        assertTrue(Reminder.isValidDeadline("2026-10-27 10:30"));
     }
 
     @Test
     public void constructor_successfulReminder() {
-        String deadline = "2026-10-27T10:30:40";
+        String deadline = "2026-10-27 10:30";
         String header = "This is a valid header.";
         Reminder r = new Reminder(header, deadline);
         assertEquals(r.toString(), String.format("%s, due by %s", header, deadline));
@@ -65,10 +65,10 @@ public class ReminderTest {
 
     @Test
     public void equals() {
-        String deadline = "2026-10-27T10:30:40";
+        String deadline = "2026-10-27 10:30";
         String header = "This is a valid header.";
 
-        String differentDeadline = "2027-10-27T10:30:40";
+        String differentDeadline = "2027-10-27 10:30";
         String differentHeader = "Different header";
         Reminder r = new Reminder(header, deadline);
 

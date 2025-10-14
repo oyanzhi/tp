@@ -40,7 +40,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_REMINDER_HEADER_AMY = "Meeting Client";
     public static final String VALID_REMINDER_HEADER_BOB = "Birthday";
-    public static final String VALID_REMINDER_DEADLINE = "2025-12-25T09:00";
+    public static final String VALID_REMINDER_DEADLINE = "2025-12-25 09:00";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
