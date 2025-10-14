@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -65,4 +66,27 @@ public class DeleteReminderCommand extends Command {
                 reminderToDelete));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteCommand)) {
+            return false;
+        }
+
+        DeleteReminderCommand otherDeleteReminderCommand = (DeleteReminderCommand) other;
+        return clientIndex.equals(otherDeleteReminderCommand.clientIndex)
+                && reminderIndex.equals(otherDeleteReminderCommand.reminderIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("clientIndex", clientIndex)
+                .add("reminderIndex", reminderIndex)
+                .toString();
+    }
 }
