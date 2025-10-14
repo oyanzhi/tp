@@ -146,6 +146,35 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding a reminder : `reminder`
+
+Adds a reminder to an existing person in the address book. 
+
+Format: `reminder INDEX h/HEADER d/DEADLINE`
+
+* Adds a reminder to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer 1, 2, 3, ...**
+* Both the header and deadline must be provided. 
+* Only one reminder can be added at a time. 
+* More than one reminder can be added to each person. 
+
+Examples: 
+* `reminder 1 h/Birthday d/2025-12-25T09:00` Adds the reminder Birthday, due by 25 Dec 2025 9am to the 1st person. 
+
+### Deleteing a reminder : `rDelete`
+
+Deletes an existing reminder from a person in the address book.
+
+Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
+
+* Deletes the reminder at `REMINDER_INDEX` from the client’s list of reminders, where the client is specified by `CLIENT_INDEX`. Both indices **must be a positive integer 1, 2, 3, ...**
+* Both the `CLIENT_INDEX` and `REMINDER_INDEX` must be provided.
+* Only one reminder can be deleted at a time.
+
+Examples:
+* `rDelete 1 1` Deletes the first reminder from the 1st person.
+
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -195,12 +224,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+Action              | Format, Examples
+--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear**           | `clear`
+**Delete**          | `delete INDEX`<br> e.g., `delete 3`
+**Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Add Reminder**    | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting d/2025-12-25T-0:00`
+**Delete Reminder** | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 1 1`
+**Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List**            | `list`
+**Help**            | `help`
