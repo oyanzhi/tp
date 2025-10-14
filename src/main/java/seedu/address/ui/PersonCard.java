@@ -2,8 +2,8 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+/*import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;*/
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -11,9 +11,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-
-
-
 
 
 /**
@@ -80,17 +77,15 @@ public class PersonCard extends UiPart<Region> {
                         reminders.getChildren().add(new Label(reminder.header));
                     }
                 });
-        
-//        ObservableList<String> tempReminders = FXCollections.observableArrayList(
-//                "Call to review policy renewal on 21/11/2025 14:30",
-//                "Send birthday voucher on 03/12/2025",
-//                "Follow-up: claim form status next Mon"
-//        );
-//        ReminderListPanel reminderListPanel = new ReminderListPanel(tempReminders);
-//        remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
-//        AnchorPane.setTopAnchor(reminderListPanel.getRoot(), 0.0);
-//        AnchorPane.setLeftAnchor(reminderListPanel.getRoot(), 0.0);
-//        AnchorPane.setRightAnchor(reminderListPanel.getRoot(), 0.0);
-
+        //        ObservableList<String> tempReminders = FXCollections.observableArrayList(
+        //                "Call to review policy renewal on 21/11/2025 14:30",
+        //                "Send birthday voucher on 03/12/2025",
+        //                "Follow-up: claim form status next Mon"
+        //        );
+        //        ReminderListPanel reminderListPanel = new ReminderListPanel(tempReminders);
+        //        remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
+        //        AnchorPane.setTopAnchor(reminderListPanel.getRoot(), 0.0);
+        //        AnchorPane.setLeftAnchor(reminderListPanel.getRoot(), 0.0);
+        //        AnchorPane.setRightAnchor(reminderListPanel.getRoot(), 0.0);
     }
 }

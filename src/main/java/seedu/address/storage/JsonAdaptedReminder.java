@@ -1,48 +1,62 @@
 package seedu.address.storage;
 
+import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.reminder.Reminder;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Reminder}.
  */
-class JsonAdaptedTag {
+class JsonAdaptedReminder {
 
-    private final String tagName;
+    private final String header;
+    private final String deadline;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedReminder} with the given {@code reminderHeader reminderDeadline}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
-        this.tagName = tagName;
+    public JsonAdaptedReminder(@JsonProperty("header") String header,
+                               @JsonProperty("deadline") String deadline) {
+        this.header = header;
+        this.deadline = deadline;
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Reminder} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+    public JsonAdaptedReminder(Reminder source) {
+        header = source.header;
+        deadline = source.deadline.format(DateTimeFormatter.ofPattern(Reminder.DATE_INPUT_PATTERN));
     }
 
-    @JsonValue
-    public String getTagName() {
-        return tagName;
+    public String getReminderHeader() {
+        return header;
+    }
+
+    public String getReminderDeadline() {
+        return deadline;
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted Reminder object into the model's {@code Reminder} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Reminder.
      */
-    public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+    public Reminder toModelType() throws IllegalValueException {
+        System.out.println("Parsing deadline: " + deadline);
+        if (!Reminder.isValidHeader(header)) {
+            throw new IllegalValueException(Reminder.HEADER_MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+
+        if (!Reminder.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Reminder.DEADLINE_MESSAGE_CONSTRAINTS);
+        }
+        return new Reminder(header, deadline);
     }
 
 }

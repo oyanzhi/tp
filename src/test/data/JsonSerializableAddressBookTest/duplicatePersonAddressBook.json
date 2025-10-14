@@ -4,7 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+    "tags": [ "friends" ],
+    "reminders": [
+      {
+        "header": "Meeting with Bob",
+        "deadline": "2025-12-15 10:00"
+      }
+    ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
