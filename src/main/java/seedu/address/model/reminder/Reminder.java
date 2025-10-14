@@ -18,8 +18,8 @@ public class Reminder {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private final LocalDateTime deadline;
-    private final String header;
+    public final LocalDateTime deadline;
+    public final String header;
 
     /**
      * Constructs a {@code Reminder}.

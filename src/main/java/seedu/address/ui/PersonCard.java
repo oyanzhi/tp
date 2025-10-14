@@ -48,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private FlowPane reminders;
+    @FXML
     private AnchorPane remindersPlaceholder;
 
     /**
@@ -64,16 +66,31 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        ObservableList<String> tempReminders = FXCollections.observableArrayList(
-                "Call to review policy renewal on 21/11/2025 14:30",
-                "Send birthday voucher on 03/12/2025",
-                "Follow-up: claim form status next Mon"
-        );
-        ReminderListPanel reminderListPanel = new ReminderListPanel(tempReminders);
-        remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
-        AnchorPane.setTopAnchor(reminderListPanel.getRoot(), 0.0);
-        AnchorPane.setLeftAnchor(reminderListPanel.getRoot(), 0.0);
-        AnchorPane.setRightAnchor(reminderListPanel.getRoot(), 0.0);
+        if (person.getReminders().isEmpty()) {
+            System.out.println("No reminders for this person.");
+        } else {
+            System.out.println("Found " + person.getReminders().size() + " reminders.");
+        }
+        person.getReminders().stream()
+                .sorted(Comparator.comparing(reminder -> reminder.header))
+                .forEach(reminder -> {
+                    if (reminder.header == null || reminder.header.isEmpty()) {
+                        System.out.println("Reminder has no header.");
+                    } else {
+                        reminders.getChildren().add(new Label(reminder.header));
+                    }
+                });
+        
+//        ObservableList<String> tempReminders = FXCollections.observableArrayList(
+//                "Call to review policy renewal on 21/11/2025 14:30",
+//                "Send birthday voucher on 03/12/2025",
+//                "Follow-up: claim form status next Mon"
+//        );
+//        ReminderListPanel reminderListPanel = new ReminderListPanel(tempReminders);
+//        remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
+//        AnchorPane.setTopAnchor(reminderListPanel.getRoot(), 0.0);
+//        AnchorPane.setLeftAnchor(reminderListPanel.getRoot(), 0.0);
+//        AnchorPane.setRightAnchor(reminderListPanel.getRoot(), 0.0);
 
     }
 }
