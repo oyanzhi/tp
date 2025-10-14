@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,27 +26,33 @@ import seedu.address.model.reminder.Reminder;
  * {@code DeleteReminderCommand}.
  */
 public class DeleteReminderCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private static final Index INDEX_FIRST_REMINDER = Index.fromOneBased(1);
+    private static final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @BeforeAll
-    public void addReminders() {
-        Reminder reminderOneToAdd = new Reminder("This is a valid reminder.", "2026-10-27T10:30:00");
-        Reminder reminderTwoToAdd = new Reminder("This is also valid.", "2026-10-27T10:30:00");
+    public static void addReminders() {
+        Reminder reminderOneToAdd = new Reminder("This is a valid reminder.", "2026-10-27 10:30");
+        Reminder reminderTwoToAdd = new Reminder("This is also valid.", "2026-10-27 10:30");
 
         AddReminderCommand addReminderCommand;
 
-        addReminderCommand = new AddReminderCommand(INDEX_FIRST_PERSON, reminderOneToAdd);
-        addReminderCommand.execute();
+        try {
+            addReminderCommand = new AddReminderCommand(INDEX_FIRST_PERSON, reminderOneToAdd);
+            addReminderCommand.execute(model);
 
-        addReminderCommand = new AddReminderCommand(INDEX_FIRST_PERSON, reminderTwoToAdd);
-        addReminderCommand.execute();
+            addReminderCommand = new AddReminderCommand(INDEX_FIRST_PERSON, reminderTwoToAdd);
+            addReminderCommand.execute(model);
+        } catch (CommandException e) {
+            fail();
+        }
+
     }
+
     @Test
     public void execute_validIndexes_success() {
         List<Person> personList = model.getFilteredPersonList();
         Person personToDeleteFrom = personList.get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Index INDEX_FIRST_REMINDER = Index.fromOneBased(1);
         ArrayList<Reminder> reminderList = personToDeleteFrom.getReminders();
         Reminder reminderToDelete = reminderList.get(INDEX_FIRST_REMINDER.getZeroBased());
 
