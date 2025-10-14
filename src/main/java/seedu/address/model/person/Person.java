@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -72,6 +73,30 @@ public class Person {
     }
 
     /**
+     * @param reminder to be added to the person
+     * @return if the person already has a similar reminder
+     */
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminders.contains(reminder);
+    }
+
+    /**
+     * @param reminder to be added to the person
+     * @return Person that has the reminder added to them
+     */
+    public Person addReminder(Reminder reminder) {
+        requireNonNull(reminder);
+
+        // defensive copy of the existing reminders
+        ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
+        updatedReminders.add(reminder);
+
+        // return a NEW Person with all existing fields but updated reminders
+        return new Person(name, phone, email, address, tags);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -105,12 +130,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
+        //TODO - Update to include reminders
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
+        //TODO - Update to include reminders
     }
 
     @Override
@@ -122,6 +149,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .toString();
+        //TODO - Update to include reminders
     }
 
 }

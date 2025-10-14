@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Represents a single reminder for a person
@@ -16,6 +18,7 @@ public class Reminder {
     public static final String HEADER_MESSAGE_CONSTRAINTS = "Reminder can take any value but cannot be blank.";
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String DATE_INPUT_PATTERN = "yyyy-MM-dd HH:mm";
 
     private final LocalDateTime deadline;
     private final String header;
@@ -31,7 +34,7 @@ public class Reminder {
         checkArgument(isValidHeader(header), HEADER_MESSAGE_CONSTRAINTS);
         checkArgument(isValidDeadline(deadline), DEADLINE_MESSAGE_CONSTRAINTS);
         this.header = header;
-        this.deadline = LocalDateTime.parse(deadline);
+        this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN));
     }
 
     /**
@@ -46,7 +49,8 @@ public class Reminder {
      */
     public static boolean isValidDeadline(String test) {
         try {
-            LocalDateTime testTime = LocalDateTime.parse(test);
+            LocalDateTime testTime = LocalDateTime.parse(test, DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN));
+
             if (testTime.isBefore(LocalDateTime.now())) {
                 return false;
             }
@@ -57,7 +61,29 @@ public class Reminder {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(header, deadline);
+    }
+
+    @Override
     public String toString() {
-        return String.format("%s, due by %s", this.header, this.deadline);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN);
+        String formattedDeadline = this.deadline.format(formatter);
+        return String.format("%s, due by %s", this.header, formattedDeadline);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        //instanceof handles null
+        if (!(other instanceof Reminder)) {
+            return false;
+        }
+
+        Reminder r = (Reminder) other;
+        return r.deadline.equals(this.deadline) && r.header.equals(this.header);
     }
 }
