@@ -24,7 +24,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
 public class AddReminderCommandTest {
-
     private Model model;
 
     @BeforeEach

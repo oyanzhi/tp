@@ -64,7 +64,6 @@ public class AddReminderCommandParserTest {
     public void parse_missingPrefixes_throwsParseException() {
         String commandString = AddReminderCommand.COMMAND_WORD + " " + VALID_REMINDER_HEADER_AMY + " "
                 + VALID_REMINDER_DEADLINE;
-
         assertParseFailure(parser, commandString, MESSAGE_INVALID_FORMAT);
     }
 
