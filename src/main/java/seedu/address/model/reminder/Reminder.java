@@ -60,6 +60,14 @@ public class Reminder {
         return true;
     }
 
+    public String getHeader() {
+        return this.header;
+    }
+
+    public LocalDateTime getDeadline() {
+        return this.deadline;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(header, deadline);

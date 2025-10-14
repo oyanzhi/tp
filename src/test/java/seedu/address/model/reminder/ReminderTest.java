@@ -3,9 +3,13 @@ package seedu.address.model.reminder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.reminder.Reminder.DATE_INPUT_PATTERN;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ReminderTest {
 
@@ -62,6 +66,22 @@ public class ReminderTest {
         Reminder r = new Reminder(header, deadline);
         assertEquals(r.toString(), String.format("%s, due by %s", header, deadline));
     }
+
+    @Test
+    public void getHeader_successful() {
+        String header = "This is a valid header.";
+        String deadline = "2026-10-27 10:30";
+        assertEquals(header, new Reminder(header, deadline).getHeader());
+    }
+
+    @Test
+    public void getDeadline_successful() {
+        String header = "This is a valid header.";
+        String deadline = "2026-10-27 10:30";
+        LocalDateTime expectedDeadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN));
+        assertEquals(expectedDeadline, new Reminder(header, deadline).getDeadline());
+    }
+
 
     @Test
     public void equals() {
