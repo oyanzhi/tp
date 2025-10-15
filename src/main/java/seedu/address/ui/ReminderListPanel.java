@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
-import javafx.collections.FXCollections;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.Region;
 
 /**
@@ -32,13 +33,34 @@ public class ReminderListPanel extends UiPart<Region> {
     public ReminderListPanel(ObservableList<String> reminders) {
         super(FXML);
 
-        ObservableList<String> safeList = (reminders == null)
-                ? FXCollections.observableArrayList()
-                : reminders;
+        reminderListView.setItems(reminders);
+        reminderListView.setCellFactory(list -> new ListCell<>() {
+            @Override
+            protected void updateItem(String text, boolean empty) {
+                super.updateItem(text, empty);
+                setText(null);
+                setGraphic(null);
+                if (!empty && text != null) {
+                    // correct order: (index, text)
+                    setGraphic(new ReminderCard(getIndex() + 1, text).getRoot());
+                }
+            }
+        });
 
-        reminderListView.setItems(safeList);
-        reminderListView.setCellFactory(listView -> new ReminderListViewCell());
+
+        // Make the list visually read-only & avoid dim selected state
+        reminderListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        reminderListView.getSelectionModel().clearSelection();
+        reminderListView.setFocusTraversable(false);
+        reminderListView.setMouseTransparent(true);
+
+        // Ensure we start at the top on first layout pass
+        Platform.runLater(() -> {
+            reminderListView.scrollTo(0);
+            reminderListView.getSelectionModel().clearSelection();
+        });
     }
+
 
     /**
      * ListCell that renders each reminder.

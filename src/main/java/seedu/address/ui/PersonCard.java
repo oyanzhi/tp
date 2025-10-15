@@ -6,10 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 
@@ -31,7 +32,7 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
+    private SplitPane cardPane;
     @FXML
     private Label name;
     @FXML
@@ -45,7 +46,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane reminders;
+    private VBox leftBox;
     @FXML
     private AnchorPane remindersPlaceholder;
 
@@ -70,9 +71,15 @@ public class PersonCard extends UiPart<Region> {
         );
         ReminderListPanel reminderListPanel = new ReminderListPanel(tempReminders);
         remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
+        Region remindersRoot = reminderListPanel.getRoot();
+
+        remindersPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
+        remindersPlaceholder.maxHeightProperty().bind(leftBox.heightProperty());
+        remindersRoot.prefHeightProperty().bind(leftBox.heightProperty());
+        remindersRoot.maxHeightProperty().bind(leftBox.heightProperty());
         AnchorPane.setTopAnchor(reminderListPanel.getRoot(), 0.0);
         AnchorPane.setLeftAnchor(reminderListPanel.getRoot(), 0.0);
         AnchorPane.setRightAnchor(reminderListPanel.getRoot(), 0.0);
-
+        AnchorPane.setBottomAnchor(reminderListPanel.getRoot(), 0.0);
     }
 }
