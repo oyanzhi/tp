@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -27,18 +26,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Reminder> reminders = new ArrayList<>();
+    private final Set<Reminder> reminders = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Reminder> reminders) {
+        requireAllNonNull(name, phone, email, address, tags, reminders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.reminders.addAll(reminders);
     }
 
     public Name getName() {
@@ -68,8 +68,8 @@ public class Person {
     /**
      * Returns the list of reminders tagged to this person
      */
-    public ArrayList<Reminder> getReminders() {
-        return this.reminders;
+    public Set<Reminder> getReminders() {
+        return Collections.unmodifiableSet(reminders);
     }
 
     /**
@@ -88,12 +88,11 @@ public class Person {
     public Person addReminder(Reminder reminder) {
         requireNonNull(reminder);
 
-        // defensive copy of the existing reminders
-        ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
+        // Defensive copy of the existing reminders to avoid modifying the original set
+        Set<Reminder> updatedReminders = new HashSet<>(reminders);
         updatedReminders.add(reminder);
 
-        // return a NEW Person with all existing fields but updated reminders
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, updatedReminders);
     }
 
     /**
@@ -131,6 +130,7 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
         //TODO - Update to include reminders
+        //may not need to implement as reminders is not core identity of person
     }
 
     @Override
@@ -148,8 +148,8 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("reminders", reminders)
                 .toString();
-        //TODO - Update to include reminders
     }
 
 }

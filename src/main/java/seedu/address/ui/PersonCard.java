@@ -13,9 +13,6 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 
-
-
-
 /**
  * A UI component that displays information of a {@code Person}.
  */
@@ -47,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane reminders;
     @FXML
     private AnchorPane remindersPlaceholder;
 
