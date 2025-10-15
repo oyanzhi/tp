@@ -40,7 +40,6 @@ public class JsonAdaptedPersonTest {
             .collect(Collectors.toList());
     private static final JsonAdaptedReminder VALID_REMINDER = new JsonAdaptedReminder(VALID_HEADER, VALID_DEADLINE);
     private static final List<JsonAdaptedReminder> VALID_REMINDERS = Arrays.asList(VALID_REMINDER);
-
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
