@@ -70,4 +70,15 @@ public class DeleteReminderCommandTest {
             fail();
         }
     }
+
+    @Test
+    public void toStringMethod() {
+        DeleteReminderCommand deleteReminderCommand = new DeleteReminderCommand(INDEX_FIRST_PERSON,
+                INDEX_FIRST_REMINDER);
+        String expected = DeleteReminderCommand.class.getCanonicalName() + "{clientIndex=" + INDEX_FIRST_PERSON
+                + ", " + "reminderIndex=" + INDEX_FIRST_REMINDER + "}";
+        assertEquals(deleteReminderCommand.toString(), expected);
+    }
+
+
 }
