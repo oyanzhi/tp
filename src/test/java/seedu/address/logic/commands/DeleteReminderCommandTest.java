@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.DeleteReminderCommand.MESSAGE_DELETE_REMINDER_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -80,5 +79,23 @@ public class DeleteReminderCommandTest {
         assertEquals(deleteReminderCommand.toString(), expected);
     }
 
+    @Test
+    public void equals() {
+        DeleteReminderCommand deleteReminderCommand = new DeleteReminderCommand(INDEX_FIRST_PERSON,
+                INDEX_FIRST_REMINDER);
+
+        //returns true with itself
+        assertTrue(deleteReminderCommand.equals(deleteReminderCommand));
+
+        DeleteReminderCommand otherDeleteReminderCommand = new DeleteReminderCommand(INDEX_FIRST_PERSON,
+                INDEX_FIRST_REMINDER);
+
+        //returns true with same input
+        assertTrue(deleteReminderCommand.equals(otherDeleteReminderCommand));
+
+        //returns false with null
+        assertFalse(deleteReminderCommand.equals(null));
+
+    }
 
 }
