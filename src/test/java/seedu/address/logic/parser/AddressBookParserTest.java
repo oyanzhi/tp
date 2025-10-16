@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddReminderCommand;
+import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteReminderCommand;
@@ -113,6 +114,19 @@ public class AddressBookParserTest {
 
         // Assert that the parser returns the expected AddReminderCommand
         assertEquals(new AddReminderCommand(INDEX_FIRST_PERSON, reminder), command);
+    }
+
+    @Test
+    public void parseCommand_archive() throws Exception {
+        // Archive the first person
+        ArchiveCommand command = (ArchiveCommand) parser.parseCommand(
+                ArchiveCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), command);
+
+        // Should work with trailing spaces
+        ArchiveCommand commandWithSpaces = (ArchiveCommand) parser.parseCommand(
+                ArchiveCommand.COMMAND_WORD + "   " + INDEX_FIRST_PERSON.getOneBased() + "   ");
+        assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), commandWithSpaces);
     }
 
     @Test
