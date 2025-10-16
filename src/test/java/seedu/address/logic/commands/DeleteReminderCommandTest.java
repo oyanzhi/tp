@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.DeleteReminderCommand.MESSAGE_DELETE_REMINDER_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ import seedu.address.model.reminder.Reminder;
  */
 public class DeleteReminderCommandTest {
     private static final Index INDEX_FIRST_REMINDER = Index.fromOneBased(1);
+    private static final Index INDEX_SECOND_REMINDER = Index.fromOneBased(2);
     private static final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @BeforeAll
@@ -96,6 +101,15 @@ public class DeleteReminderCommandTest {
         //returns false with null
         assertFalse(deleteReminderCommand.equals(null));
 
+        //returns false with different client index
+        DeleteReminderCommand deleteReminderCommandDifferentClient = new DeleteReminderCommand(INDEX_SECOND_PERSON,
+                INDEX_FIRST_REMINDER);
+        assertFalse(deleteReminderCommand.equals(deleteReminderCommandDifferentClient));
+
+        //returns false with different reminder index
+        DeleteReminderCommand deleteReminderCommandDifferentReminder = new DeleteReminderCommand(INDEX_FIRST_PERSON,
+                INDEX_SECOND_REMINDER);
+        assertFalse(deleteReminderCommand.equals(deleteReminderCommandDifferentReminder));
     }
 
 }
