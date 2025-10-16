@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -26,12 +27,12 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Reminder> reminders = new HashSet<>();
+    private final ArrayList<Reminder> reminders = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Reminder> reminders) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders) {
         requireAllNonNull(name, phone, email, address, tags, reminders);
         this.name = name;
         this.phone = phone;
@@ -68,8 +69,8 @@ public class Person {
     /**
      * Returns the list of reminders tagged to this person
      */
-    public Set<Reminder> getReminders() {
-        return Collections.unmodifiableSet(reminders);
+    public ArrayList<Reminder> getReminders() {
+        return this.reminders;
     }
 
     /**
@@ -89,7 +90,7 @@ public class Person {
         requireNonNull(reminder);
 
         // Defensive copy of the existing reminders to avoid modifying the original set
-        Set<Reminder> updatedReminders = new HashSet<>(reminders);
+        ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
 
         return new Person(name, phone, email, address, tags, updatedReminders);
