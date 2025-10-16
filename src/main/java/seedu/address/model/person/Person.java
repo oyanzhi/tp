@@ -32,13 +32,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders) {
+        requireAllNonNull(name, phone, email, address, tags, reminders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.reminders.addAll(reminders);
     }
 
     public Name getName() {
@@ -88,12 +89,11 @@ public class Person {
     public Person addReminder(Reminder reminder) {
         requireNonNull(reminder);
 
-        // defensive copy of the existing reminders
+        // Defensive copy of the existing reminders to avoid modifying the original set
         ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
 
-        // return a NEW Person with all existing fields but updated reminders
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, updatedReminders);
     }
 
     /**
@@ -131,6 +131,7 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
         //TODO - Update to include reminders
+        //may not need to implement as reminders is not core identity of person
     }
 
     @Override
@@ -148,8 +149,8 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("reminders", reminders)
                 .toString();
-        //TODO - Update to include reminders
     }
 
 }

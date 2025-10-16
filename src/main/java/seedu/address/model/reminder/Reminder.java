@@ -20,8 +20,8 @@ public class Reminder {
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String DATE_INPUT_PATTERN = "yyyy-MM-dd HH:mm";
 
-    private final LocalDateTime deadline;
-    private final String header;
+    public final LocalDateTime deadline;
+    public final String header;
 
     /**
      * Constructs a {@code Reminder}.
