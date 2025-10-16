@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMINDER_DEADLINE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMINDER_HEADER_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMINDER_HEADER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -21,10 +24,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
 public class AddReminderCommandTest {
-
-    private static final String SAMPLE_HEADER = "Meet client on Monday";
-    private static final String SAMPLE_DEADLINE = "2026-10-12T09:00";
-
     private Model model;
 
     @BeforeEach
@@ -35,7 +34,7 @@ public class AddReminderCommandTest {
     @Test
     public void execute_addReminder_success() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reminder reminder = new Reminder(SAMPLE_HEADER, SAMPLE_DEADLINE);
+        Reminder reminder = new Reminder(VALID_REMINDER_HEADER_AMY, VALID_REMINDER_DEADLINE);
         AddReminderCommand command = new AddReminderCommand(INDEX_FIRST_PERSON, reminder);
 
         Person editedPerson = personToEdit.addReminder(reminder);
@@ -51,7 +50,7 @@ public class AddReminderCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        Reminder reminder = new Reminder(SAMPLE_HEADER, SAMPLE_DEADLINE);
+        Reminder reminder = new Reminder(VALID_REMINDER_HEADER_AMY, VALID_REMINDER_DEADLINE);
         AddReminderCommand command = new AddReminderCommand(outOfBoundIndex, reminder);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -59,7 +58,7 @@ public class AddReminderCommandTest {
 
     @Test
     public void execute_sameReminderDifferentPersons_success() {
-        Reminder reminder = new Reminder("Team meeting", "2026-12-01T09:00");
+        Reminder reminder = new Reminder(VALID_REMINDER_HEADER_AMY, VALID_REMINDER_DEADLINE);
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
@@ -88,8 +87,8 @@ public class AddReminderCommandTest {
 
     @Test
     public void equals() {
-        Reminder reminder1 = new Reminder(SAMPLE_HEADER, SAMPLE_DEADLINE);
-        Reminder reminder2 = new Reminder("Meet client on Tuesday", SAMPLE_DEADLINE);
+        Reminder reminder1 = new Reminder(VALID_REMINDER_HEADER_AMY, VALID_REMINDER_DEADLINE);
+        Reminder reminder2 = new Reminder(VALID_REMINDER_HEADER_BOB, VALID_REMINDER_DEADLINE);
 
         AddReminderCommand addReminderFirstCommand = new AddReminderCommand(INDEX_FIRST_PERSON, reminder1);
         AddReminderCommand addReminderSecondCommand = new AddReminderCommand(INDEX_FIRST_PERSON, reminder2);
@@ -113,7 +112,7 @@ public class AddReminderCommandTest {
 
     @Test
     public void toStringMethod() {
-        Reminder reminder = new Reminder(SAMPLE_HEADER, SAMPLE_DEADLINE);
+        Reminder reminder = new Reminder(VALID_REMINDER_HEADER_AMY, VALID_REMINDER_DEADLINE);
         AddReminderCommand command = new AddReminderCommand(INDEX_FIRST_PERSON, reminder);
         String expected = AddReminderCommand.class.getCanonicalName() + "{index=" + INDEX_FIRST_PERSON
                 + ", reminder=" + reminder + "}";
