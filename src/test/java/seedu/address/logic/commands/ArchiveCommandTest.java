@@ -40,6 +40,7 @@ public class ArchiveCommandTest {
                 Messages.format(personToArchive));
 
         // You can create a copy of the model if archivePerson is not yet implemented
+        // TODO: Update this once archivePeron(person) is implemented
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         // Once implemented, you should call expectedModel.archivePerson(personToArchive);
 
