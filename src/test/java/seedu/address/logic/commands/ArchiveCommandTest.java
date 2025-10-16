@@ -39,10 +39,8 @@ public class ArchiveCommandTest {
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS,
                 Messages.format(personToArchive));
 
-        // You can create a copy of the model if archivePerson is not yet implemented
         // TODO: Update this once archivePeron(person) is implemented
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        // Once implemented, you should call expectedModel.archivePerson(personToArchive);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
@@ -60,20 +58,15 @@ public class ArchiveCommandTest {
         ArchiveCommand archiveFirstCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
         ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_SECOND_PERSON);
 
-        // same object -> returns true
         assertTrue(archiveFirstCommand.equals(archiveFirstCommand));
 
-        // same values -> returns true
         ArchiveCommand archiveFirstCommandCopy = new ArchiveCommand(INDEX_FIRST_PERSON);
         assertTrue(archiveFirstCommand.equals(archiveFirstCommandCopy));
 
-        // different types -> returns false
         assertFalse(archiveFirstCommand.equals(1));
 
-        // null -> returns false
         assertFalse(archiveFirstCommand.equals(null));
 
-        // different index -> returns false
         assertFalse(archiveFirstCommand.equals(archiveSecondCommand));
     }
 
