@@ -73,7 +73,7 @@ public class DeleteReminderCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteReminderCommand)) {
             return false;
         }
 
