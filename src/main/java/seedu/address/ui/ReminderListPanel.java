@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -33,8 +34,8 @@ public class ReminderListPanel extends UiPart<Region> {
     public ReminderListPanel(ObservableList<String> reminders) {
         super(FXML);
 
-        reminderListView.setItems(reminders);
-        reminderListView.setCellFactory(list -> new ListCell<>() {
+        reminderListView.setItems(reminders != null ? reminders : FXCollections.observableArrayList());
+        reminderListView.setCellFactory(list -> new ReminderListViewCell() {
             @Override
             protected void updateItem(String text, boolean empty) {
                 super.updateItem(text, empty);
@@ -61,6 +62,10 @@ public class ReminderListPanel extends UiPart<Region> {
         });
     }
 
+    /** Replace the items displayed by this list view. Safe no-op if {@code items} is null. */
+    public void setItems(ObservableList<String> items) {
+        reminderListView.setItems(items != null ? items : FXCollections.observableArrayList());
+    }
 
     /**
      * ListCell that renders each reminder.
