@@ -723,8 +723,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Archive**: Clients who are archived are inactive, but not deleted
+* **Client**: Customer who has signed or is going to sign an insurance policy with the user
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Reminder**: A note linked to a specific client, with a message and due date
+* **User**: Insurance agent using the address book 
 
 --------------------------------------------------------------------------------------------------------------------
 
