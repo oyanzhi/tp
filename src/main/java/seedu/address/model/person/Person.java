@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
@@ -28,18 +30,21 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
+    private final ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders) {
-        requireAllNonNull(name, phone, email, address, tags, reminders);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  ArrayList<Reminder> reminders, ArrayList<MeetingNote> meetingNotes) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, meetingNotes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
+        this.meetingNotes.addAll(meetingNotes);
     }
 
     public Name getName() {
@@ -64,6 +69,34 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns the list of meeting notes tagged ot this person
+     */
+    public ArrayList<MeetingNote> getMeetingNotes() { return this.meetingNotes; }
+
+    /**
+     * @param meetingNote to be added to the person
+     * @return if the person already has a similar meeting note
+     */
+    public boolean hasMeetingNote(MeetingNote meetingNote) {
+        requireNonNull(meetingNote);
+        return meetingNotes.contains(meetingNote);
+    }
+
+    /**
+     * @param meetingNote to be added to the person
+     * @return Person that has the meeting note added to them
+     */
+    public Person addMeetingNote(MeetingNote meetingNote) {
+        requireNonNull(meetingNote);
+
+        // Defensive copy of the existing meeting notes to avoid modifying the original set
+        ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(meetingNotes);
+        updatedMeetingNotes.add(meetingNote);
+
+        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes);
     }
 
     /**
@@ -93,7 +126,7 @@ public class Person {
         ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
 
-        return new Person(name, phone, email, address, tags, updatedReminders);
+        return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes);
     }
 
     /**
@@ -150,6 +183,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("reminders", reminders)
+                .add("meeting notes", meetingNotes)
                 .toString();
     }
 
