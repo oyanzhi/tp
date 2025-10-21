@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -46,10 +47,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        // add command does not allow adding reminders straight away
+        // add command does not allow adding reminders or meeting notes straight away
         ArrayList<Reminder> reminderList = new ArrayList<>();
+        ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
 
-        Person person = new Person(name, phone, email, address, tagList, reminderList);
+        Person person = new Person(name, phone, email, address, tagList, reminderList, meetingNotes);
 
         return new AddCommand(person);
     }
