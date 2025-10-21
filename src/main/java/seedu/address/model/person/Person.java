@@ -28,21 +28,21 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
-    private final boolean favourite;
+    private final boolean starred;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders, 
-                  boolean favourite) {
-        requireAllNonNull(name, phone, email, address, tags, reminders, favourite);
+                  boolean starred) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, starred);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
-        this.favourite = favourite;
+        this.starred = starred;
     }
 
     public Name getName() {
@@ -79,8 +79,17 @@ public class Person {
     /**
      * Returns the boolean favourite state of person
      */
-    public boolean isfavourite() {
-        return this.favourite;
+    public boolean isStarred() {
+        return this.starred;
+    }
+
+    /**
+     * @param starred boolean that starred will be set to
+     * @return Person that has starred set to the parameter
+     */
+    public Person withStarredStatus(boolean starred) {
+        requireNonNull(starred);
+        return new Person(name, phone, email, address, tags, reminders, starred);
     }
 
     /**
@@ -103,7 +112,7 @@ public class Person {
         ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
 
-        return new Person(name, phone, email, address, tags, updatedReminders, favourite);
+        return new Person(name, phone, email, address, tags, updatedReminders, starred);
     }
 
     /**
@@ -160,7 +169,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("reminders", reminders)
-                .add("favourite", favourite)
+                .add("starred", starred)
                 .toString();
     }
 
