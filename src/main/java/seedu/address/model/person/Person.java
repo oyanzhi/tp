@@ -28,18 +28,21 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
+    private final boolean favourite;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders) {
-        requireAllNonNull(name, phone, email, address, tags, reminders);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders, 
+                  boolean favourite) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, favourite);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
+        this.favourite = favourite;
     }
 
     public Name getName() {
@@ -74,6 +77,13 @@ public class Person {
     }
 
     /**
+     * Returns the boolean favourite state of person
+     */
+    public boolean isfavourite() {
+        return this.favourite;
+    }
+
+    /**
      * @param reminder to be added to the person
      * @return if the person already has a similar reminder
      */
@@ -93,7 +103,7 @@ public class Person {
         ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
 
-        return new Person(name, phone, email, address, tags, updatedReminders);
+        return new Person(name, phone, email, address, tags, updatedReminders, favourite);
     }
 
     /**
@@ -150,6 +160,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("reminders", reminders)
+                .add("favourite", favourite)
                 .toString();
     }
 
