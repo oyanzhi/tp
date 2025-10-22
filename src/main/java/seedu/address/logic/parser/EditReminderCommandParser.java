@@ -27,7 +27,7 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_HEADER, PREFIX_DEADLINE)
                 || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditReminderCommand.MESSAGE_USAGE));
         }
 
         Index clientIndex;
