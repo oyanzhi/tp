@@ -27,11 +27,12 @@ public class MeetingNote {
      * @param note A valid note.
      * @param createdAt The time when the note is created.
      */
-    public MeetingNote(String note, LocalDateTime createdAt) {
+    public MeetingNote(String note, String createdAt) {
         requireAllNonNull(note, createdAt);
         checkArgument(isValidNote(note), NOTE_MESSAGE_CONSTRAINTS);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
         this.note = note;
-        this.createdAt = createdAt;
+        this.createdAt = LocalDateTime.parse(createdAt, formatter);
     }
 
     /**
@@ -76,6 +77,7 @@ public class MeetingNote {
         }
 
         MeetingNote otherMeetingNote = (MeetingNote) other;
-        return note.equals(otherMeetingNote.note);
+        return note.equals(otherMeetingNote.note)
+                && createdAt.equals(otherMeetingNote.createdAt);
     }
 }

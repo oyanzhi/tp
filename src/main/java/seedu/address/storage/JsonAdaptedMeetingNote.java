@@ -1,11 +1,9 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meetingnote.MeetingNote;
@@ -52,6 +50,6 @@ public class JsonAdaptedMeetingNote {
         if (!MeetingNote.isValidNote(note)) {
             throw new IllegalValueException(MeetingNote.NOTE_MESSAGE_CONSTRAINTS);
         }
-        return new MeetingNote(note, LocalDateTime.parse(createdAt));
+        return new MeetingNote(note, createdAt);
     }
 }

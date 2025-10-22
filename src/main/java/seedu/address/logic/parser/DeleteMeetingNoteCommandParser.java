@@ -4,7 +4,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteMeetingNoteCommand;
-import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -23,7 +22,7 @@ public class DeleteMeetingNoteCommandParser implements Parser<DeleteMeetingNoteC
             return new DeleteMeetingNoteCommand(indices[0], indices[1]);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteReminderCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingNoteCommand.MESSAGE_USAGE), pe);
         }
     }
 }

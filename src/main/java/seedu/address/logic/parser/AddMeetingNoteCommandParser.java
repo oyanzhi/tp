@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.time.LocalDateTime;
-import java.util.stream.Stream;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingNoteCommand;
@@ -35,7 +35,8 @@ public class AddMeetingNoteCommandParser implements Parser<AddMeetingNoteCommand
         try {
             Index index = ParserUtil.parseIndex(splitArgs[0]);
             String note = ParserUtil.parseNote(splitArgs[1]);
-            MeetingNote meetingNote = new MeetingNote(note, LocalDateTime.now());
+            String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
+            MeetingNote meetingNote = new MeetingNote(note, date);
             return new AddMeetingNoteCommand(index, meetingNote);
         } catch (ParseException pe) {
             throw new ParseException(
