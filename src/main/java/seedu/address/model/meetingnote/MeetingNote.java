@@ -15,6 +15,8 @@ public class MeetingNote {
 
     public static final String NOTE_MESSAGE_CONSTRAINTS = "Note cannot be empty, must be less than 200 characters, and must contain only printable ASCII characters.";
 
+    public static final String DATE_PATTERN = "yyyy-MM-dd HH:mm";
+
     private final String note;
     private final LocalDateTime createdAt;
 
@@ -53,7 +55,7 @@ public class MeetingNote {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
         String formattedCreatedAt = this.createdAt.format(formatter);
         return String.format("[%s] %s", formattedCreatedAt, this.note);
     }
