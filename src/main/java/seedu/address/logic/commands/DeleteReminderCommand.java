@@ -70,7 +70,10 @@ public class DeleteReminderCommand extends Command {
         }
 
         Person edited = rebuildPersonWithReminders(target, updated);
+
         model.setPerson(target, edited);
+        model.deleteGeneralReminder(toRemove);
+
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(

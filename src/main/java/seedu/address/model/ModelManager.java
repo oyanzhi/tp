@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -25,7 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ArrayList<Reminder> generalReminderList;
+    private final ObservableList<Reminder> generalReminderList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,7 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.generalReminderList = new ArrayList<>();
+        this.generalReminderList = FXCollections.observableArrayList();
         filteredPersons.forEach(person -> this.generalReminderList.addAll(person.getReminders()));
     }
 
@@ -117,6 +116,18 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void addGeneralReminder(Reminder target) {
+        requireNonNull(target);
+        this.generalReminderList.add(target);
+    }
+
+    @Override
+    public void deleteGeneralReminder(Reminder target) {
+        requireNonNull(target);
+        this.generalReminderList.remove(target);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -130,7 +141,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Reminder> getGeneralReminderList() {
-        return FXCollections.observableList(this.generalReminderList);
+        return this.generalReminderList;
     }
 
     @Override
