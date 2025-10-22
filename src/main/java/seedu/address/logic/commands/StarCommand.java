@@ -29,7 +29,7 @@ public class StarCommand extends Command {
     public static final String MESSAGE_PERSON_IS_STARRED = "Chosen person is already starred";
 
     // Static comparator for sorting
-    private static final Comparator<Person> STARRED_STATUS_COMPARATOR = Comparator
+    public static final Comparator<Person> STARRED_STATUS_COMPARATOR = Comparator
             .comparing(Person::isStarred, Comparator.reverseOrder())
             .thenComparing(Person::getName);
 
