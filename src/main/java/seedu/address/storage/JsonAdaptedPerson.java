@@ -69,13 +69,6 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Defensive new copy of a list of JsonAdaptedReminder
-     */
-    public List<JsonAdaptedReminder> getReminders() {
-        return new ArrayList<>(this.reminders);
-    }
-
-    /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
