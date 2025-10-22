@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddReminderCommand;
-import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.commands.EditReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.Reminder;
