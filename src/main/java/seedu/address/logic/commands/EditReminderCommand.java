@@ -1,5 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -8,15 +17,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Edits a reminder attached to a client using both of their displayed indexes and the new edited reminder
+ */
 public class EditReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "rEdit";
@@ -39,6 +42,11 @@ public class EditReminderCommand extends Command {
     private final Index reminderIndex;
     private final Reminder editedReminder;
 
+    /**
+     * @param clientIndex of the person to have the edited reminder
+     * @param reminderIndex reminder to be edited
+     * @param editedReminder the new edited reminder
+     */
     public EditReminderCommand(Index clientIndex, Index reminderIndex, Reminder editedReminder) {
         requireAllNonNull(clientIndex, reminderIndex, editedReminder);
         this.clientIndex = clientIndex;

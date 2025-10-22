@@ -1,16 +1,15 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddReminderCommand;
-import seedu.address.logic.commands.EditReminderCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.reminder.Reminder;
-
-import java.util.stream.Stream;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
+
+import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditReminderCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * Parses input arguments and creates a new EditReminderParser object
