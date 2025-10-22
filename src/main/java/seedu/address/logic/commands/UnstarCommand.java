@@ -64,7 +64,7 @@ public class UnstarCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StarCommand)) {
+        if (!(other instanceof UnstarCommand)) {
             return false;
         }
 
