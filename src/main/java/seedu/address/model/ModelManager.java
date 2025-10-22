@@ -119,24 +119,15 @@ public class ModelManager implements Model {
     @Override
     public void addGeneralReminder(Reminder target) {
         requireNonNull(target);
-        boolean isAdded = this.generalReminderList.add(target);
-        if (isAdded) {
-            logger.info(String.format("Result: Reminder {%s} also added to General Reminders", target));
-        } else {
-            logger.info(String.format("Result: Reminder {%s} fail to add to General Reminders", target));
-        }
+        this.generalReminderList.add(target);
+        logger.info(String.format("Result: Reminder {%s} also added to General Reminders", target));
     }
 
     @Override
     public void deleteGeneralReminder(Reminder target) {
         requireNonNull(target);
-        boolean isRemoved = this.generalReminderList.remove(target);
-
-        if (isRemoved) {
-            logger.info(String.format("Result: Reminder {%s} also deleted from General Reminders", target));
-        } else {
-            logger.info(String.format("Result: Reminder {%s} failed to delete from General Reminders", target));
-        }
+        this.generalReminderList.remove(target);
+        logger.info(String.format("Result: Reminder {%s} also deleted from General Reminders", target));
     }
 
     //=========== Filtered Person List Accessors =============================================================
