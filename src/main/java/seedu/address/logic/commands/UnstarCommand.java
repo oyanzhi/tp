@@ -47,6 +47,10 @@ public class UnstarCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToUnstar = lastShownList.get(targetIndex.getZeroBased());
+
+        // Assert person is not null
+        assert personToUnstar != null : "Person to unstar is null. Index: " + targetIndex.getZeroBased();
+
         // Check if person starred status has been removed
         if (!personToUnstar.isStarred()) {
             logger.log(Level.WARNING, MESSAGE_PERSON_IS_UNSTARRED);

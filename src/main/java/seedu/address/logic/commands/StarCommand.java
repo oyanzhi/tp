@@ -52,6 +52,10 @@ public class StarCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToStar = lastShownList.get(targetIndex.getZeroBased());
+
+        // Assert person is not null
+        assert personToStar != null : "Person to star is null. Index: " + targetIndex.getZeroBased();
+
         // Check if person has already been starred
         if (personToStar.isStarred()) {
             logger.log(Level.WARNING, MESSAGE_PERSON_IS_STARRED);
