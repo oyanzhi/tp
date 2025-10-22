@@ -42,19 +42,6 @@ public class Person {
         this.reminders.addAll(reminders);
     }
 
-    /**
-     * Every field must be present and not null.
-     * No reminders required
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-    }
-
     public Name getName() {
         return name;
     }
@@ -102,11 +89,10 @@ public class Person {
     public Person addReminder(Reminder reminder) {
         requireNonNull(reminder);
 
-        // defensive copy of the existing reminders
+        // Defensive copy of the existing reminders to avoid modifying the original set
         ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
 
-        // return a NEW Person with all existing fields but updated reminders
         return new Person(name, phone, email, address, tags, updatedReminders);
     }
 
@@ -115,7 +101,6 @@ public class Person {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
-        //TODO if required to edit
         if (otherPerson == this) {
             return true;
         }
@@ -144,14 +129,16 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags)
-                && reminders.equals(otherPerson.reminders);
+                && tags.equals(otherPerson.tags);
+        //TODO - Update to include reminders
+        //may not need to implement as reminders is not core identity of person
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, reminders);
+        return Objects.hash(name, phone, email, address, tags);
+        //TODO - Update to include reminders
     }
 
     @Override

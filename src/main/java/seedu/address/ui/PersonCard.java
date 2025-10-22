@@ -1,19 +1,21 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
-
-
-
+import seedu.address.model.reminder.Reminder;
 
 
 /**
@@ -31,10 +33,15 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
+    // Must match DeleteReminderCommand’s ordering so indices align.
+    private static final java.util.Comparator<seedu.address.model.reminder.Reminder> REMINDER_UI_ORDER =
+            java.util.Comparator.comparing(String::valueOf);
+
     public final Person person;
+    private final int displayedIndex;
 
     @FXML
-    private HBox cardPane;
+    private SplitPane cardPane;
     @FXML
     private Label name;
     @FXML
@@ -48,6 +55,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private VBox leftBox;
+    @FXML
     private AnchorPane remindersPlaceholder;
 
     /**
@@ -56,6 +65,8 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        this.displayedIndex = displayedIndex;
+
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -64,16 +75,58 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        ObservableList<String> tempReminders = FXCollections.observableArrayList(
-                "Call to review policy renewal on 21/11/2025 14:30",
-                "Send birthday voucher on 03/12/2025",
-                "Follow-up: claim form status next Mon"
-        );
-        ReminderListPanel reminderListPanel = new ReminderListPanel(tempReminders);
+
+        ObservableList<String> reminderTexts = deriveReminderTexts(person);
+        ReminderListPanel reminderListPanel = new ReminderListPanel(reminderTexts);
+
         remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
+        Region remindersRoot = reminderListPanel.getRoot();
+        remindersPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
+        remindersPlaceholder.maxHeightProperty().bind(leftBox.heightProperty());
+        remindersRoot.prefHeightProperty().bind(leftBox.heightProperty());
+        remindersRoot.maxHeightProperty().bind(leftBox.heightProperty());
         AnchorPane.setTopAnchor(reminderListPanel.getRoot(), 0.0);
         AnchorPane.setLeftAnchor(reminderListPanel.getRoot(), 0.0);
         AnchorPane.setRightAnchor(reminderListPanel.getRoot(), 0.0);
+        AnchorPane.setBottomAnchor(reminderListPanel.getRoot(), 0.0);
+    }
 
+    /**
+     * Returns observable display strings for this person's reminders with minimal coupling.
+     * Works with any of the following model shapes:
+     *   {@code person.getReminderStrings() -> Collection<String>} (or {@code String[]} )
+     *   {@code person.getReminders() -> Collection<?>} (or {@code Object[]} ), using {@code toString()}
+     *   Falls back to empty if neither exists.
+     */
+    private ObservableList<String> deriveReminderTexts(Person p) {
+        Collection<Reminder> src = p.getReminders();
+        List<Reminder> list = new ArrayList<>(src);
+
+        list.sort(REMINDER_UI_ORDER);
+
+        List<String> out = new ArrayList<>(list.size());
+        for (Reminder r : list) {
+            out.add(String.valueOf(r));
+        }
+        return javafx.collections.FXCollections.observableArrayList(out);
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PersonCard)) {
+            return false;
+        }
+
+        // state check
+        PersonCard card = (PersonCard) other;
+        return displayedIndex == card.displayedIndex
+                && Objects.equals(person, card.person);
     }
 }

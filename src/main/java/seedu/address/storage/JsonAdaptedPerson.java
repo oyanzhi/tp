@@ -39,7 +39,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
+                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -66,7 +66,6 @@ class JsonAdaptedPerson {
         reminders.addAll(source.getReminders().stream()
                 .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
-
     }
 
     /**
@@ -76,8 +75,13 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Reminder> personReminders = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        for (JsonAdaptedReminder reminder : reminders) {
+            personReminders.add(reminder.toModelType());
         }
 
         if (name == null) {
@@ -113,19 +117,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-
-        final ArrayList<Reminder> modelReminders = new ArrayList<>();
-        for (JsonAdaptedReminder reminder : reminders) {
-            if (!Reminder.isValidHeader(reminder.getHeader())) {
-                throw new IllegalValueException(Reminder.HEADER_MESSAGE_CONSTRAINTS);
-            }
-
-            if (!Reminder.isValidDeadline(reminder.getDeadline())) {
-                throw new IllegalValueException(Reminder.DEADLINE_MESSAGE_CONSTRAINTS);
-            }
-            modelReminders.add(reminder.toModelType());
-        }
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminders);
+        final ArrayList<Reminder> modelReminder = new ArrayList<>(personReminders);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder);
     }
 
 }

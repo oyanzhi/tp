@@ -1,4 +1,4 @@
----
+ ---
   layout: default.md
     title: "User Guide"
     pageNav: 3
@@ -114,8 +114,9 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed person list. 
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -171,6 +172,9 @@ Format: `reminder INDEX h/HEADER d/DEADLINE`
 * Adds a reminder to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Both the header and deadline must be provided.
+* Only one reminder can be added at a time.
+* More than one reminder can be added to each person.
 
 Examples:
 
@@ -186,6 +190,8 @@ Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 * Deletes the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
 * The indices refer to the index number shown in the displayed person list.
 * The indices **must be positive integers** 1, 2, 3, …​
+* Both the client index and reminder index must be provided.
+* Only one reminder can be deleted at a time.
 
 Examples:
 
