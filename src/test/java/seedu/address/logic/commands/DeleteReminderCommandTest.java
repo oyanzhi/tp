@@ -16,7 +16,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -64,7 +63,7 @@ public class DeleteReminderCommandTest {
                 INDEX_FIRST_REMINDER);
 
         String expectedMessage = String.format(MESSAGE_DELETE_REMINDER_SUCCESS,
-                Messages.format(personToDeleteFrom),
+                personToDeleteFrom.getName(),
                 INDEX_FIRST_REMINDER.getOneBased(),
                 reminderToDelete);
 

@@ -2,6 +2,9 @@ package seedu.address.model.reminder;
 
 import java.util.Comparator;
 
+/**
+ * A sorter class that works on reminders
+ */
 public class ReminderSorter implements Comparator<Reminder> {
     @Override
     public int compare(Reminder reminder1, Reminder reminder2) {
