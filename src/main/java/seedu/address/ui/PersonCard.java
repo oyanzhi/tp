@@ -74,7 +74,6 @@ public class PersonCard extends UiPart<Region> {
 
         ObservableList<String> reminderTexts = deriveReminderTexts(person);
         ReminderListPanel reminderListPanel = new ReminderListPanel(reminderTexts);
-
         remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
         Region remindersRoot = reminderListPanel.getRoot();
         remindersPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
