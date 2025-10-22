@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -158,6 +158,12 @@ public class Person {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
         //TODO - Update to include reminders
+    }
+
+    @Override
+    public int compareTo(Person other) {
+        // Default sorting by name
+        return this.name.compareTo(other.name);
     }
 
     @Override

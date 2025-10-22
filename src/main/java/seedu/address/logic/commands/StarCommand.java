@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -27,6 +28,11 @@ public class StarCommand extends Command {
     public static final String MESSAGE_STARRED_PERSON_SUCCESS = "Starred Person: %1$s";
     public static final String MESSAGE_PERSON_IS_STARRED = "Chosen person is already starred";
 
+    // Static comparator for sorting
+    private static final Comparator<Person> STARRED_STATUS_COMPARATOR = Comparator
+            .comparing(Person::isStarred, Comparator.reverseOrder())
+            .thenComparing(Person::getName);
+
     private final Index targetIndex;
 
     public StarCommand(Index targetIndex) {
@@ -50,6 +56,7 @@ public class StarCommand extends Command {
         Person starredPerson = personToStar.withStarredStatus(true);
 
         model.setPerson(personToStar, starredPerson);
+        model.sortPersons(STARRED_STATUS_COMPARATOR);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_STARRED_PERSON_SUCCESS, Messages.format(personToStar)));
     }
