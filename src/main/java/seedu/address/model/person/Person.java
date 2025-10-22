@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -74,7 +73,9 @@ public class Person {
     /**
      * Returns the list of meeting notes tagged ot this person
      */
-    public ArrayList<MeetingNote> getMeetingNotes() { return this.meetingNotes; }
+    public ArrayList<MeetingNote> getMeetingNotes() {
+        return meetingNotes;
+    }
 
     /**
      * @param meetingNote to be added to the person

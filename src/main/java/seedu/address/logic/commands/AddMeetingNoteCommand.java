@@ -15,9 +15,12 @@ import seedu.address.model.Model;
 import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Person;
 
-public class AddMeetingNoteCommand extends Command{
+/**
+ * Adds a meeting note to a person
+ */
+public class AddMeetingNoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USbAGE = COMMAND_WORD
             + ": Adds a meeting note to the person identified by the index number in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "NOTE \n"

@@ -23,13 +23,15 @@ public class DeleteMeetingNoteCommand extends Command {
     public static final String COMMAND_WORD = "nDelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the meeting note identified by the index number used in the targeted person's meeting notes list.\n"
+            + ": Deletes the meeting note identified by the index number used in the targeted person's "
+            + "meeting notes list.\n"
             + "Parameters: CLIENT_INDEX (must be a positive integer), MEETING_NOTE_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 1";
 
     public static final String MESSAGE_DELETE_MEETING_NOTE_SUCCESS = "Deleted Client %1$s's Meeting note %2$d: %3$s";
 
-    public static final String MESSAGE_INVALID_MEETING_NOTE_DISPLAYED_INDEX = "The meeting note index provided is invalid";
+    public static final String MESSAGE_INVALID_MEETING_NOTE_DISPLAYED_INDEX =
+            "The meeting note index provided is invalid";
 
     private static final Comparator<MeetingNote> UI_ORDER =
             java.util.Comparator.comparing(String::valueOf);

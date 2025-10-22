@@ -24,7 +24,15 @@ public class AddMeetingNoteCommandParser implements Parser<AddMeetingNoteCommand
     public AddMeetingNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmedArgs = args.trim();
+
         String[] splitArgs = trimmedArgs.split("\\s+", 2);
+
+        // Defensive check
+        if (splitArgs.length < 2) {
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingNoteCommand.MESSAGE_USAGE));
+        }
+
         try {
             Index index = ParserUtil.parseIndex(splitArgs[0]);
             String note = ParserUtil.parseNote(splitArgs[1]);

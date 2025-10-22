@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.meetingnote.MeetingNote.NOTE_MESSAGE_CONSTRAINTS;
 import static seedu.address.model.reminder.Reminder.DEADLINE_MESSAGE_CONSTRAINTS;
 import static seedu.address.model.reminder.Reminder.HEADER_MESSAGE_CONSTRAINTS;
-import static seedu.address.model.meetingnote.MeetingNote.NOTE_MESSAGE_CONSTRAINTS;
 
 import java.util.Collection;
 import java.util.HashSet;

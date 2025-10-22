@@ -7,13 +7,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * Represents a single meeting note for a person
+ * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
+ */
 public class MeetingNote {
-    /**
-     * Represents a single meeting note for a person
-     * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
-     */
 
-    public static final String NOTE_MESSAGE_CONSTRAINTS = "Note cannot be empty, must be less than 200 characters, and must contain only printable ASCII characters.";
+    public static final String NOTE_MESSAGE_CONSTRAINTS = "Note cannot be empty, must be less than 200 characters, "
+            + "and must contain only printable ASCII characters.";
 
     public static final String DATE_PATTERN = "yyyy-MM-dd HH:mm";
 
@@ -50,8 +51,11 @@ public class MeetingNote {
         return this.createdAt;
     }
 
+
     @Override
-    public int hashCode() { return Objects.hash(note, createdAt); }
+    public int hashCode() {
+        return Objects.hash(note, createdAt);
+    }
 
     @Override
     public String toString() {

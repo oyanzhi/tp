@@ -6,11 +6,9 @@ import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meetingnote.MeetingNote;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link MeetingNote}.
@@ -43,8 +41,9 @@ public class JsonAdaptedMeetingNote {
     }
 
     @JsonValue
-    public String getCreatedAt() { return createdAt; }
-
+    public String getCreatedAt() {
+        return createdAt;
+    }
 
     /**
      * Converts this Jackson-friendly adapted MeetingNote object into the model's {@code MeetingNote} object.
@@ -55,6 +54,7 @@ public class JsonAdaptedMeetingNote {
         if (!MeetingNote.isValidNote(note)) {
             throw new IllegalValueException(MeetingNote.NOTE_MESSAGE_CONSTRAINTS);
         }
-        return new MeetingNote(note, LocalDateTime.parse(createdAt, DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN)));
+        LocalDateTime date = LocalDateTime.parse(createdAt, DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
+        return new MeetingNote(note, date);
     }
 }
