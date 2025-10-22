@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.AddReminderCommand.MESSAGE_DUPLICATE_REMINDER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Stars a person identified using it's displayed index from the address book.
+ * Stars a person identified using their displayed index from the address book.
  */
 public class StarCommand extends Command {
 
@@ -43,7 +42,6 @@ public class StarCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToStar = lastShownList.get(targetIndex.getZeroBased());
-        
         // Check if person has already been starred
         if (personToStar.isStarred()) {
             throw new CommandException(MESSAGE_PERSON_IS_STARRED);
@@ -53,7 +51,6 @@ public class StarCommand extends Command {
 
         model.setPerson(personToStar, starredPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        
         return new CommandResult(String.format(MESSAGE_STARRED_PERSON_SUCCESS, Messages.format(personToStar)));
     }
 

@@ -88,7 +88,8 @@ public class DeleteReminderCommand extends Command {
                 original.getEmail(),
                 original.getAddress(),
                 original.getTags(),
-                new ArrayList<>(newReminders)
+                new ArrayList<>(newReminders),
+                original.isStarred()
         );
     }
 

@@ -33,7 +33,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders, 
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders,
                   boolean starred) {
         requireAllNonNull(name, phone, email, address, tags, reminders, starred);
         this.name = name;

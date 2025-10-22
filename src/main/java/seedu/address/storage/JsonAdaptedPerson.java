@@ -24,13 +24,15 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
+    public static final String INVALID_STARRED_MESSAGE = "Starred status should be either 'true' or 'false'.";
+    public static final String STARRED_SIMPLE_NAME = "Starred status";
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
+    private final String starred;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +41,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
+                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
+                             @JsonProperty("starred") String starred) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +53,7 @@ class JsonAdaptedPerson {
         if (reminders != null) {
             this.reminders.addAll(reminders);
         }
+        this.starred = starred;
     }
 
     /**
@@ -66,6 +70,7 @@ class JsonAdaptedPerson {
         reminders.addAll(source.getReminders().stream()
                 .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
+        starred = String.valueOf(source.isStarred());
     }
 
     /**
@@ -118,7 +123,16 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<Reminder> modelReminder = new ArrayList<>(personReminders);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder);
+
+        if (starred == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, STARRED_SIMPLE_NAME));
+        }
+
+        if (!starred.equalsIgnoreCase("true") && !starred.equalsIgnoreCase("false")) {
+            throw new IllegalValueException(INVALID_STARRED_MESSAGE);
+        }
+        final boolean modelStarred = Boolean.parseBoolean(starred);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder, modelStarred);
     }
 
 }
