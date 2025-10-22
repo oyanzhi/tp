@@ -35,12 +35,10 @@ public class JsonAdaptedMeetingNote {
         createdAt = source.getCreatedAt().format(DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
     }
 
-    @JsonValue
     public String getNote() {
         return note;
     }
 
-    @JsonValue
     public String getCreatedAt() {
         return createdAt;
     }
@@ -54,7 +52,6 @@ public class JsonAdaptedMeetingNote {
         if (!MeetingNote.isValidNote(note)) {
             throw new IllegalValueException(MeetingNote.NOTE_MESSAGE_CONSTRAINTS);
         }
-        LocalDateTime date = LocalDateTime.parse(createdAt, DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
-        return new MeetingNote(note, date);
+        return new MeetingNote(note, LocalDateTime.parse(createdAt));
     }
 }
