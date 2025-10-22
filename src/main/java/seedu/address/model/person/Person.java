@@ -97,6 +97,15 @@ public class Person {
     }
 
     /**
+     * Temporary Stub Method
+     * @param reminder to be removed
+     * @return Person with the reminder removed
+     */
+    public Person removeReminder(Reminder reminder) {
+        return this;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
