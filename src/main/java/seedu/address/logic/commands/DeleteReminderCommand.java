@@ -60,14 +60,7 @@ public class DeleteReminderCommand extends Command {
         }
 
         Reminder reminderToDelete = reminderList.get(reminderIndex.getZeroBased());
-        reminderList.remove(reminderToDelete);
-
-        Person editedPerson = new Person(personToDeleteFrom.getName(),
-                personToDeleteFrom.getPhone(),
-                personToDeleteFrom.getEmail(),
-                personToDeleteFrom.getAddress(),
-                personToDeleteFrom.getTags(),
-                reminderList);
+        Person editedPerson = personToDeleteFrom.removeReminder(reminderToDelete);
 
         model.setPerson(personToDeleteFrom, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

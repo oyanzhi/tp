@@ -99,6 +99,20 @@ public class Person {
     }
 
     /**
+     * @param reminder to be removed
+     * @return Person with the reminder removed
+     */
+    public Person removeReminder(Reminder reminder) {
+        requireNonNull(reminder);
+
+        ArrayList<Reminder> updatedReminders = new ArrayList<>(this.reminders);
+        updatedReminders.remove(reminder);
+        updatedReminders.sort(new ReminderSorter());
+
+        return new Person(name, phone, email, address, tags, updatedReminders);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
