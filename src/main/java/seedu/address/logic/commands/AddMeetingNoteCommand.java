@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -49,6 +50,7 @@ public class AddMeetingNoteCommand extends Command{
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
+        assert meetingNote.getCreatedAt().isBefore(LocalDateTime.now().plusSeconds(1));
         Person editedPerson = personToEdit.addMeetingNote(meetingNote);
 
         model.setPerson(personToEdit, editedPerson);
