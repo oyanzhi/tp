@@ -23,28 +23,28 @@ public class UnarchiveCommandParserTest {
     @Test
     public void parse_invalidArgsNonInteger_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE),
-                () -> parser.parse("abc"));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        UnarchiveCommand.MESSAGE_USAGE), () -> parser.parse("abc"));
     }
 
     @Test
     public void parse_emptyArgs_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE),
-                () -> parser.parse("   "));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        UnarchiveCommand.MESSAGE_USAGE), () -> parser.parse("   "));
     }
 
     @Test
     public void parse_zeroIndex_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE),
-                () -> parser.parse("0"));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        UnarchiveCommand.MESSAGE_USAGE), () -> parser.parse("0"));
     }
 
     @Test
     public void parse_negativeIndex_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE),
-                () -> parser.parse("-5"));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        UnarchiveCommand.MESSAGE_USAGE), () -> parser.parse("-5"));
     }
 }
