@@ -136,7 +136,6 @@ public class ModelManager implements Model {
     public void deleteGeneralReminder(Reminder target) {
         requireNonNull(target);
         this.generalReminderList.remove(target);
-        this.generalReminderList.sort(new ReminderSorter());
         logger.info(String.format("Result: Reminder {%s} also deleted from General Reminders", target));
     }
 
