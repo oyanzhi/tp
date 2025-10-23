@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -29,18 +29,21 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
+    private final boolean starred;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders) {
-        requireAllNonNull(name, phone, email, address, tags, reminders);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders,
+                  boolean starred) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, starred);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
+        this.starred = starred;
     }
 
     public Name getName() {
@@ -75,6 +78,22 @@ public class Person {
     }
 
     /**
+     * Returns the boolean favourite state of person
+     */
+    public boolean isStarred() {
+        return this.starred;
+    }
+
+    /**
+     * @param starred boolean that starred will be set to
+     * @return Person that has starred set to the parameter
+     */
+    public Person rebuildWithStarredStatus(boolean starred) {
+        requireNonNull(starred);
+        return new Person(name, phone, email, address, tags, reminders, starred);
+    }
+
+    /**
      * @param reminder to be added to the person
      * @return if the person already has a similar reminder
      */
@@ -95,7 +114,7 @@ public class Person {
         updatedReminders.add(reminder);
         updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders);
+        return new Person(name, phone, email, address, tags, updatedReminders, starred);
     }
 
     /**
@@ -109,7 +128,7 @@ public class Person {
         updatedReminders.remove(reminder);
         updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders);
+        return new Person(name, phone, email, address, tags, updatedReminders, starred);
     }
 
     /**
@@ -158,6 +177,12 @@ public class Person {
     }
 
     @Override
+    public int compareTo(Person other) {
+        // Default sorting by name
+        return this.name.compareTo(other.name);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
@@ -166,6 +191,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("reminders", reminders)
+                .add("starred", starred)
                 .toString();
     }
 

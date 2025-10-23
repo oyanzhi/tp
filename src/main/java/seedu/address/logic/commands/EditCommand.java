@@ -104,7 +104,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         // edit command does not allow editing of reminders
         ArrayList<Reminder> updatedReminders = personToEdit.getReminders();
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedReminders);
+        // edit command does not allow editing of starred
+        boolean isStarred = personToEdit.isStarred();
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedReminders,
+                isStarred);
     }
 
     @Override
