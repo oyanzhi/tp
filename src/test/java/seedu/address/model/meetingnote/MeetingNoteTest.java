@@ -50,8 +50,8 @@ public class MeetingNoteTest {
         }
         assertFalse(MeetingNote.isValidNote(sb.toString()));
 
-        // invalid note containing non basic printable ASCII character
-        assertFalse(MeetingNote.isValidNote("abcć"));
+        // invalid note containing nonbasic printable ASCII character
+        assertFalse(MeetingNote.isValidNote("ć"));
 
         // valid note
         assertTrue(MeetingNote.isValidNote("Discussed policy renewal and add-on coverage."));
@@ -83,6 +83,13 @@ public class MeetingNoteTest {
         Duration diff = Duration.between(createdAt, now);
         assertTrue(diff.abs().getSeconds() < 60,
                 "createdAt should be within 60s of now, diff = " + diff.getSeconds());
+    }
+
+    @Test
+    public void checkHash_success() {
+        MeetingNote meetingNote1 = new MeetingNote(VALID_MEETING_NOTE_AMY, VALID_MEETING_NOTE_CREATED_BY_AMY);
+        MeetingNote meetingNote2 = new MeetingNote(VALID_MEETING_NOTE_AMY, VALID_MEETING_NOTE_CREATED_BY_AMY);
+        assertEquals(meetingNote1.hashCode(), meetingNote2.hashCode());
     }
 
     @Test

@@ -30,9 +30,6 @@ public class DeleteMeetingNoteCommand extends Command {
 
     public static final String MESSAGE_DELETE_MEETING_NOTE_SUCCESS = "Deleted Client %1$s's Meeting note %2$d: %3$s";
 
-    public static final String MESSAGE_INVALID_MEETING_NOTE_DISPLAYED_INDEX =
-            "The meeting note index provided is invalid";
-
     private static final Comparator<MeetingNote> UI_ORDER =
             java.util.Comparator.comparing(String::valueOf);
 
@@ -61,7 +58,7 @@ public class DeleteMeetingNoteCommand extends Command {
         List<MeetingNote> ordered = new ArrayList<>(target.getMeetingNotes());
         ordered.sort(UI_ORDER);
         if (meetingNoteIndex.getZeroBased() >= ordered.size()) {
-            throw new CommandException(MESSAGE_INVALID_MEETING_NOTE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_NOTE_INDEX);
         }
         MeetingNote toRemove = ordered.get(meetingNoteIndex.getZeroBased());
 

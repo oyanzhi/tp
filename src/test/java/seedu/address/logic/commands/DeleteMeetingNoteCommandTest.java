@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.DeleteMeetingNoteCommand.MESSAGE_DELETE_MEETING_NOTE_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -73,6 +74,26 @@ public class DeleteMeetingNoteCommandTest {
         } catch (CommandException e) {
             fail();
         }
+    }
+
+    @Test
+    public void invalidClientIndex_fail() {
+        int invalidClientIndex = model.getFilteredPersonList().size() + 1;
+        Index INVALID_CLIENT_INDEX = Index.fromZeroBased(invalidClientIndex);
+        DeleteMeetingNoteCommand deleteMeetingNoteCommand = new DeleteMeetingNoteCommand(INVALID_CLIENT_INDEX,
+                INDEX_FIRST_NOTE);
+        assertCommandFailure(deleteMeetingNoteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void invalidMeetingNoteIndex_fail() {
+        List<Person> personList = model.getFilteredPersonList();
+        Person personToDeleteFrom = personList.get(INDEX_FIRST_PERSON.getZeroBased());
+        int invalidMeetingNoteIndex = personToDeleteFrom.getMeetingNotes().size() + 1;
+        Index INVALID_MEETING_NOTE_INDEX = Index.fromZeroBased(invalidMeetingNoteIndex);
+        DeleteMeetingNoteCommand deleteMeetingNoteCommand = new DeleteMeetingNoteCommand(INDEX_FIRST_PERSON,
+                INVALID_MEETING_NOTE_INDEX);
+        assertCommandFailure(deleteMeetingNoteCommand, model, Messages.MESSAGE_INVALID_MEETING_NOTE_INDEX);
     }
 
     @Test
