@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -31,8 +31,6 @@ public class DeleteReminderCommand extends Command {
 
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
 
-    private static final Comparator<Reminder> UI_ORDER =
-            java.util.Comparator.comparing(String::valueOf);
     private final Index clientIndex;
     private final Index reminderIndex;
 
@@ -49,47 +47,27 @@ public class DeleteReminderCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person target = lastShownList.get(clientIndex.getZeroBased());
 
-        // Resolve reminder by the SAME order as UI
-        List<Reminder> ordered = new ArrayList<>(target.getReminders());
-        ordered.sort(UI_ORDER);
-        if (reminderIndex.getZeroBased() >= ordered.size()) {
+        Person personToDeleteFrom = lastShownList.get(clientIndex.getZeroBased());
+        ArrayList<Reminder> reminderList = personToDeleteFrom.getReminders();
+
+        if (reminderIndex.getZeroBased() >= reminderList.size()) {
             throw new CommandException(MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
-        Reminder toRemove = ordered.get(reminderIndex.getZeroBased());
 
-        // Build new reminders collection and replace Person
-        List<Reminder> updated = new ArrayList<>(target.getReminders());
-        boolean removed = updated.remove(toRemove);
-        if (!removed) {
-            throw new CommandException("Failed to delete reminder (not found).");
-        }
+        Reminder reminderToDelete = reminderList.get(reminderIndex.getZeroBased());
+        Person editedPerson = personToDeleteFrom.removeReminder(reminderToDelete);
 
-        Person edited = rebuildPersonWithReminders(target, updated);
-        model.setPerson(target, edited);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-
-        return new CommandResult(String.format(
-                MESSAGE_DELETE_REMINDER_SUCCESS,
-                Messages.format(edited),
+        model.setPerson(personToDeleteFrom, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS,
+                personToDeleteFrom.getName(),
                 reminderIndex.getOneBased(),
-                toRemove));
-    }
-
-    /** Rebuilds a Person with updated reminders. */
-    private Person rebuildPersonWithReminders(Person original, List<Reminder> newReminders) {
-        return new Person(
-                original.getName(),
-                original.getPhone(),
-                original.getEmail(),
-                original.getAddress(),
-                original.getTags(),
-                new ArrayList<>(newReminders)
-        );
+                reminderToDelete));
     }
 
     @Override

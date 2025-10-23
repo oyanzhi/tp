@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderSorter;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -92,6 +93,21 @@ public class Person {
         // Defensive copy of the existing reminders to avoid modifying the original set
         ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
+        updatedReminders.sort(new ReminderSorter());
+
+        return new Person(name, phone, email, address, tags, updatedReminders);
+    }
+
+    /**
+     * @param reminder to be removed
+     * @return Person with the reminder removed
+     */
+    public Person removeReminder(Reminder reminder) {
+        requireNonNull(reminder);
+
+        ArrayList<Reminder> updatedReminders = new ArrayList<>(this.reminders);
+        updatedReminders.remove(reminder);
+        updatedReminders.sort(new ReminderSorter());
 
         return new Person(name, phone, email, address, tags, updatedReminders);
     }
