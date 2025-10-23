@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NOTE_BO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NOTE_CREATED_BY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -56,6 +57,22 @@ public class AddMeetingNoteCommandTest {
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_duplicateMeetingNote_throwsCommandException() {
+        Person targetPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        MeetingNote newNote = new MeetingNote(VALID_MEETING_NOTE_AMY, VALID_MEETING_NOTE_CREATED_BY_AMY);
+
+        // Add meeting note
+        Person editedPerson = targetPerson.addMeetingNote(newNote);
+        model.setPerson(targetPerson, editedPerson);
+
+        // Try to add the same note again
+        AddMeetingNoteCommand command = new AddMeetingNoteCommand(INDEX_FIRST_PERSON, newNote);
+
+        assertCommandFailure(command, model, AddMeetingNoteCommand.MESSAGE_DUPLICATE_MEETING_NOTE);
+    }
+
 
     @Test
     public void execute_sameMeetingNoteDifferentPersons_success() {
