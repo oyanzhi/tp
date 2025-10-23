@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderSorter;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.generalReminderList = FXCollections.observableArrayList();
         filteredPersons.forEach(person -> this.generalReminderList.addAll(person.getReminders()));
+        this.generalReminderList.sort(new ReminderSorter());
     }
 
     public ModelManager() {
@@ -126,6 +128,7 @@ public class ModelManager implements Model {
     public void addGeneralReminder(Reminder target) {
         requireNonNull(target);
         this.generalReminderList.add(target);
+        this.generalReminderList.sort(new ReminderSorter());
         logger.info(String.format("Result: Reminder {%s} also added to General Reminders", target));
     }
 
@@ -133,6 +136,7 @@ public class ModelManager implements Model {
     public void deleteGeneralReminder(Reminder target) {
         requireNonNull(target);
         this.generalReminderList.remove(target);
+        this.generalReminderList.sort(new ReminderSorter());
         logger.info(String.format("Result: Reminder {%s} also deleted from General Reminders", target));
     }
 
