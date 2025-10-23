@@ -34,10 +34,6 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    // Must match DeleteReminderCommand’s ordering so indices align.
-    private static final java.util.Comparator<seedu.address.model.reminder.Reminder> REMINDER_UI_ORDER =
-            java.util.Comparator.comparing(String::valueOf);
-
     public final Person person;
     private final int displayedIndex;
 
@@ -53,6 +49,8 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label starred;
     @FXML
     private FlowPane tags;
     @FXML
@@ -75,6 +73,12 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        if (person.isStarred()) {
+            starred.setText("★");
+            starred.setStyle("-fx-text-fill: gold; -fx-font-size: 16px;");
+        } else {
+            starred.setText("");
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -128,8 +132,6 @@ public class PersonCard extends UiPart<Region> {
     private ObservableList<String> deriveReminderTexts(Person p) {
         Collection<Reminder> src = p.getReminders();
         List<Reminder> list = new ArrayList<>(src);
-
-        list.sort(REMINDER_UI_ORDER);
 
         List<String> out = new ArrayList<>(list.size());
         for (Reminder r : list) {

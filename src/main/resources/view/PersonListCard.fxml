@@ -16,34 +16,35 @@
            xmlns:fx="http://javafx.com/fxml/1"
            dividerPositions="0.33, 0.66">
 
-  <items>
-    <GridPane>
-      <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS"/>
-      </columnConstraints>
-      <rowConstraints>
-        <RowConstraints vgrow="ALWAYS"/>
-      </rowConstraints>
+    <items>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="ALWAYS"/>
+            </rowConstraints>
 
-      <children>
-        <VBox fx:id="leftBox" spacing="6">
-          <HBox spacing="8">
-            <Label fx:id="id"   styleClass="cell_small_label"/>
-            <Label fx:id="name" styleClass="cell_big_label"/>
-          </HBox>
+            <children>
+                <VBox fx:id="leftBox" spacing="6">
+                    <HBox spacing="8">
+                        <Label fx:id="id" styleClass="cell_small_label"/>
+                        <Label fx:id="name" styleClass="cell_big_label"/>
+                        <Label fx:id="starred" styleClass="cell_big_label"/>
+                    </HBox>
 
-          <FlowPane fx:id="tags"/>
+                    <FlowPane fx:id="tags"/>
 
-          <Label fx:id="phone"   styleClass="cell_small_label"/>
-          <Label fx:id="address" styleClass="cell_small_label"/>
-          <Label fx:id="email"   styleClass="cell_small_label"/>
-        </VBox>
-      </children>
+                    <Label fx:id="phone" styleClass="cell_small_label"/>
+                    <Label fx:id="address" styleClass="cell_small_label"/>
+                    <Label fx:id="email" styleClass="cell_small_label"/>
+                </VBox>
+            </children>
 
-      <padding>
-        <Insets top="8" right="8" bottom="8" left="8"/>
-      </padding>
-    </GridPane>
+            <padding>
+                <Insets top="8" right="8" bottom="8" left="8"/>
+            </padding>
+        </GridPane>
 
     <AnchorPane fx:id="remindersPlaceholder"/>
     <AnchorPane fx:id="meetingNotesPlaceholder"/>

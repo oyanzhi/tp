@@ -69,19 +69,6 @@ public class DeleteMeetingNoteCommand extends Command {
                 meetingNoteToDelete));
     }
 
-    /** Rebuilds a Person with updated meeting notes. */
-    private Person rebuildPersonWithMeetingNotes(Person original, List<MeetingNote> newMeetingNotes) {
-        return new Person(
-                original.getName(),
-                original.getPhone(),
-                original.getEmail(),
-                original.getAddress(),
-                original.getTags(),
-                original.getReminders(),
-                new ArrayList<>(newMeetingNotes)
-        );
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

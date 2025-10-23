@@ -31,6 +31,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private ArrayList<Reminder> reminders;
     private ArrayList<MeetingNote> meetingNotes;
+    private boolean starred;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -42,6 +43,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         reminders = new ArrayList<>();
         meetingNotes = new ArrayList<>();
+        starred = false;
     }
 
     /**
@@ -55,6 +57,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         reminders = new ArrayList<>(personToCopy.getReminders());
         meetingNotes = new ArrayList<>(personToCopy.getMeetingNotes());
+        starred = personToCopy.isStarred();
     }
 
     /**
@@ -106,8 +109,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Starred} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStarred(String starred) {
+        this.starred = Boolean.parseBoolean(starred);;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, reminders, meetingNotes);
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred);
     }
 
 }

@@ -47,11 +47,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        // add command does not allow adding reminders or meeting notes straight away
+        // add command does not allow adding reminders straight away
         ArrayList<Reminder> reminderList = new ArrayList<>();
+        // add command does not allow adding meeting notes straight away
         ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
-
-        Person person = new Person(name, phone, email, address, tagList, reminderList, meetingNotes);
+        // add command does not allow adding starred straight away
+        boolean starred = false;
+        Person person = new Person(name, phone, email, address, tagList, reminderList, meetingNotes, starred);
 
         return new AddCommand(person);
     }

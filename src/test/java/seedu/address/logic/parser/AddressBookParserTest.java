@@ -29,6 +29,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.StarCommand;
+import seedu.address.logic.commands.UnstarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -74,19 +76,6 @@ public class AddressBookParserTest {
 
         // Assert that the parser returns the expected AddReminderCommand
         assertEquals(new AddReminderCommand(INDEX_FIRST_PERSON, reminder), command);
-    }
-
-    @Test
-    public void parseCommand_archive() throws Exception {
-        // Archive the first person
-        ArchiveCommand command = (ArchiveCommand) parser.parseCommand(
-                ArchiveCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), command);
-
-        // Should work with trailing spaces
-        ArchiveCommand commandWithSpaces = (ArchiveCommand) parser.parseCommand(
-                ArchiveCommand.COMMAND_WORD + "   " + INDEX_FIRST_PERSON.getOneBased() + "   ");
-        assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), commandWithSpaces);
     }
 
     @Test
@@ -151,6 +140,49 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_reminder() throws Exception {
+        Reminder reminder = new Reminder("meeting soon", "2026-10-10 09:00");
+
+        String commandString = AddReminderCommand.COMMAND_WORD
+                + " 1 "
+                + "h/meeting soon "
+                + "d/2026-10-10 09:00";
+
+        // Parse the command
+        AddReminderCommand command = (AddReminderCommand) parser.parseCommand(commandString);
+
+        // Assert that the parser returns the expected AddReminderCommand
+        assertEquals(new AddReminderCommand(INDEX_FIRST_PERSON, reminder), command);
+    }
+
+    @Test
+    public void parseCommand_archive() throws Exception {
+        // Archive the first person
+        ArchiveCommand command = (ArchiveCommand) parser.parseCommand(
+                ArchiveCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), command);
+
+        // Should work with trailing spaces
+        ArchiveCommand commandWithSpaces = (ArchiveCommand) parser.parseCommand(
+                ArchiveCommand.COMMAND_WORD + "   " + INDEX_FIRST_PERSON.getOneBased() + "   ");
+        assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), commandWithSpaces);
+    }
+
+    @Test
+    public void parseCommand_star() throws Exception {
+        StarCommand command = (StarCommand) parser.parseCommand(
+                StarCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new StarCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_unstar() throws Exception {
+        UnstarCommand command = (UnstarCommand) parser.parseCommand(
+                UnstarCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new UnstarCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

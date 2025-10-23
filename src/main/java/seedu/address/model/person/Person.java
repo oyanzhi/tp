@@ -12,13 +12,14 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderSorter;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -30,13 +31,15 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
     private final ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
+    private final boolean starred;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ArrayList<Reminder> reminders, ArrayList<MeetingNote> meetingNotes) {
-        requireAllNonNull(name, phone, email, address, tags, reminders, meetingNotes);
+                  ArrayList<Reminder> reminders, ArrayList<MeetingNote> meetingNotes,
+                  boolean starred) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, meetingNotes, starred);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +47,7 @@ public class Person {
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
         this.meetingNotes.addAll(meetingNotes);
+        this.starred = starred;
     }
 
     public Name getName() {
@@ -97,7 +101,7 @@ public class Person {
         ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(meetingNotes);
         updatedMeetingNotes.add(meetingNote);
 
-        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes);
+        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes, starred);
     }
 
     /**
@@ -110,7 +114,7 @@ public class Person {
         ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(this.meetingNotes);
         updatedMeetingNotes.remove(meetingNote);
 
-        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes);
+        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes, starred);
     }
 
 
@@ -119,6 +123,22 @@ public class Person {
      */
     public ArrayList<Reminder> getReminders() {
         return new ArrayList<>(reminders);
+    }
+
+    /**
+     * Returns the boolean favourite state of person
+     */
+    public boolean isStarred() {
+        return this.starred;
+    }
+
+    /**
+     * @param starred boolean that starred will be set to
+     * @return Person that has starred set to the parameter
+     */
+    public Person rebuildWithStarredStatus(boolean starred) {
+        requireNonNull(starred);
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred);
     }
 
     /**
@@ -140,8 +160,23 @@ public class Person {
         // Defensive copy of the existing reminders to avoid modifying the original set
         ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
+        updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes);
+        return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes, starred);
+    }
+
+    /**
+     * @param reminder to be removed
+     * @return Person with the reminder removed
+     */
+    public Person removeReminder(Reminder reminder) {
+        requireNonNull(reminder);
+
+        ArrayList<Reminder> updatedReminders = new ArrayList<>(this.reminders);
+        updatedReminders.remove(reminder);
+        updatedReminders.sort(new ReminderSorter());
+
+        return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes, starred);
     }
 
     /**
@@ -190,6 +225,12 @@ public class Person {
     }
 
     @Override
+    public int compareTo(Person other) {
+        // Default sorting by name
+        return this.name.compareTo(other.name);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
@@ -199,6 +240,7 @@ public class Person {
                 .add("tags", tags)
                 .add("reminders", reminders)
                 .add("meeting notes", meetingNotes)
+                .add("starred", starred)
                 .toString();
     }
 
