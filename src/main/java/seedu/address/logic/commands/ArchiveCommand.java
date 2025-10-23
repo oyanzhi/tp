@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Archives a person identified using it's displayed index from the address book.
+ * Archives a person identified using it's displayed index from the active address book.
  */
 public class ArchiveCommand extends Command {
 
@@ -52,6 +52,7 @@ public class ArchiveCommand extends Command {
 
         Person archivedPerson = personToArchive.archive();
         model.setPerson(personToArchive, archivedPerson);
+        model.updateFilteredPersonList(person -> !person.isArchived());
         return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, Messages.format(personToArchive)));
     }
 

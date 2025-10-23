@@ -44,8 +44,12 @@ public class Person {
         this.isArchived = false;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders,
                   boolean isArchived) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, isArchived);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -113,11 +117,11 @@ public class Person {
     }
 
     public Person archive() {
-        return new Person(name, phone, email, address, tags, true);
+        return new Person(name, phone, email, address, tags, reminders, true);
     }
 
     public Person unarchive() {
-        return new Person(name, phone, email, address, tags, false);
+        return new Person(name, phone, email, address, tags, reminders, false);
     }
 
     /**

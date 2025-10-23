@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Unarchives a person identified using it's displayed index from the archive address book.
+ */
 public class UnarchiveCommand extends Command {
     public static final String COMMAND_WORD = "unarchive";
 
@@ -23,6 +26,9 @@ public class UnarchiveCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex of person from archive address book to unarchive.
+     */
     public UnarchiveCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
@@ -44,6 +50,7 @@ public class UnarchiveCommand extends Command {
 
         Person unarchivedPerson = personToUnarchive.unarchive();
         model.setPerson(personToUnarchive, unarchivedPerson);
+        model.updateFilteredPersonList(person -> !person.isArchived());
         return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, unarchivedPerson));
     }
 

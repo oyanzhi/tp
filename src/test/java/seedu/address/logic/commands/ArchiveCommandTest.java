@@ -34,13 +34,15 @@ public class ArchiveCommandTest {
     @Test
     public void execute_validIndex_success() throws CommandException {
         Person personToArchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person archivedPerson = personToArchive.archive();
+
         ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS,
-                Messages.format(personToArchive));
+                Messages.format(archivedPerson));
 
-        // TODO: Update this once archivePeron(person) is implemented
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(personToArchive, archivedPerson);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }

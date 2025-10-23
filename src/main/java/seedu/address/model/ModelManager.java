@@ -36,6 +36,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         archivedPersons = new FilteredList<>(this.addressBook.getPersonList(), Person::isArchived);
+        updateFilteredPersonList(person -> !person.isArchived());
     }
 
     public ModelManager() {
