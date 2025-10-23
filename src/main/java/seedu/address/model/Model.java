@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -77,13 +78,31 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Sorts the persons list according to the {@code comparator}.
+     *
+     * @param comparator the comparator to use for sorting.
+     */
+    void sortPersons(Comparator<Person> comparator);
+
+    /**
+     * Adds a reminder to the general list of reminders
+     * @param target the reminder to be added
+     */
     void addGeneralReminder(Reminder target);
 
+    /**
+     * Deletes a reminder to the general list of reminders
+     * @param target the reminder to be deleted
+     */
     void deleteGeneralReminder(Reminder target);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /**
+     * Returns the list of general reminders
+     */
     ObservableList<Reminder> getGeneralReminderList();
 
     /**
