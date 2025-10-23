@@ -9,11 +9,13 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMeetingNoteCommand;
 import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMeetingNoteCommand;
 import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditReminderCommand;
@@ -94,6 +96,12 @@ public class AddressBookParser {
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
+
+        case AddMeetingNoteCommand.COMMAND_WORD:
+            return new AddMeetingNoteCommandParser().parse(arguments);
+
+        case DeleteMeetingNoteCommand.COMMAND_WORD:
+            return new DeleteMeetingNoteCommandParser().parse(arguments);
 
         case StarCommand.COMMAND_WORD:
             return new StarCommandParser().parse(arguments);

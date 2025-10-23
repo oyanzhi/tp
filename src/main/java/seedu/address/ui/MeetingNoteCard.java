@@ -7,16 +7,12 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 /**
- * A small UI component that displays a single reminder in a two-column style:
- * an index label (1-based) and the reminder text.
- *
- * <p>Its FXML has no {@code fx:controller}; the controller instance is supplied
- * by {@link UiPart} via the constructor.</p>
+ * A small UI component that displays a single meeting note in two columns:
+ * an index label (1-based) and the meeting note text.
  */
-public class ReminderCard extends UiPart<Region> {
+public class MeetingNoteCard extends UiPart<Region> {
 
-    /** Relative path under {@code src/main/resources/view}. */
-    public static final String FXML = "ReminderCard.fxml";
+    public static final String FXML = "MeetingNoteCard.fxml";
 
     @FXML
     private Label indexLabel;
@@ -25,22 +21,21 @@ public class ReminderCard extends UiPart<Region> {
     private Label contentLabel;
 
     /**
-     * Creates a {@code ReminderCard}.
+     * Creates a {@code MeetingNoteCard}.
      *
      * @param displayedIndex 1-based index to show on the card
-     * @param content reminder text to show
+     * @param content meeting note text to show
      */
-    public ReminderCard(int displayedIndex, String content) {
+    public MeetingNoteCard(int displayedIndex, String content) {
         super(FXML);
-        // Defensive defaults to avoid NPEs if cell text is null.
         String safe = (content == null) ? "" : content;
         indexLabel.setText(displayedIndex + ".");
         contentLabel.setText(safe);
-        // Prefer the label content for accessibility; graphics are set by the ListCell.
         getRoot().setAccessibleText(displayedIndex + ". " + safe);
 
         contentLabel.setWrapText(true);
         contentLabel.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(contentLabel, Priority.ALWAYS);
+
     }
 }

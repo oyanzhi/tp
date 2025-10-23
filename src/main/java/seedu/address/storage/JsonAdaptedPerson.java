@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
+    private final List<JsonAdaptedMeetingNote> meetingNotes = new ArrayList<>();
     private final String starred;
 
     /**
@@ -39,9 +41,10 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
+                             @JsonProperty("meeting notes")List<JsonAdaptedMeetingNote> meetingNotes,
                              @JsonProperty("starred") String starred) {
         this.name = name;
         this.phone = phone;
@@ -52,6 +55,9 @@ class JsonAdaptedPerson {
         }
         if (reminders != null) {
             this.reminders.addAll(reminders);
+        }
+        if (meetingNotes != null) {
+            this.meetingNotes.addAll(meetingNotes);
         }
         this.starred = starred;
     }
@@ -70,6 +76,9 @@ class JsonAdaptedPerson {
         reminders.addAll(source.getReminders().stream()
                 .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
+        meetingNotes.addAll(source.getMeetingNotes().stream()
+                .map(JsonAdaptedMeetingNote::new)
+                .collect(Collectors.toList()));
         starred = String.valueOf(source.isStarred());
     }
 
@@ -81,12 +90,17 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         final List<Reminder> personReminders = new ArrayList<>();
+        final List<MeetingNote> personMeetingNotes = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
 
         for (JsonAdaptedReminder reminder : reminders) {
             personReminders.add(reminder.toModelType());
+        }
+
+        for (JsonAdaptedMeetingNote meetingNote : meetingNotes) {
+            personMeetingNotes.add(meetingNote.toModelType());
         }
 
         if (name == null) {
@@ -123,6 +137,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<Reminder> modelReminder = new ArrayList<>(personReminders);
+        final ArrayList<MeetingNote> modelMeetingNotes = new ArrayList<>(personMeetingNotes);
 
         if (starred == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, STARRED_SIMPLE_NAME));
@@ -132,7 +147,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(INVALID_STARRED_MESSAGE);
         }
         final boolean modelStarred = Boolean.parseBoolean(starred);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder, modelStarred);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder,
+                modelMeetingNotes, modelStarred);
     }
 
 }
