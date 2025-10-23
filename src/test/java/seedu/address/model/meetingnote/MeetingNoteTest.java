@@ -52,6 +52,9 @@ public class MeetingNoteTest {
 
         // invalid note containing nonbasic printable ASCII character
         assertFalse(MeetingNote.isValidNote("ć"));
+        assertFalse(MeetingNote.isValidNote("\nNewline not allowed"));
+        assertFalse(MeetingNote.isValidNote("Emoji 😃 not allowed"));
+
 
         // valid note
         assertTrue(MeetingNote.isValidNote("Discussed policy renewal and add-on coverage."));
