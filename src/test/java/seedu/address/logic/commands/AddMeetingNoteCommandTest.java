@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NOTE_BO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NOTE_CREATED_BY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
