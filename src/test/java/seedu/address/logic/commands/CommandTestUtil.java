@@ -41,6 +41,9 @@ public class CommandTestUtil {
     public static final String VALID_REMINDER_HEADER_AMY = "Meeting Client";
     public static final String VALID_REMINDER_HEADER_BOB = "Birthday";
     public static final String VALID_REMINDER_DEADLINE = "2025-12-25 09:00";
+    public static final String VALID_MEETING_NOTE_AMY = "Client is interested in policy abc";
+    public static final String VALID_MEETING_NOTE_BOB = "Client wants to switch policy";
+    public static final String VALID_MEETING_NOTE_CREATED_BY_AMY = "2025-12-20 12:30";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -55,6 +58,7 @@ public class CommandTestUtil {
     public static final String REMINDER_HEADER_DESC_AMY = " " + PREFIX_HEADER + VALID_REMINDER_HEADER_AMY;
     public static final String REMINDER_HEADER_DESC_BOB = " " + PREFIX_HEADER + VALID_REMINDER_HEADER_BOB;
     public static final String REMINDER_DEADLINE_DESC = " " + PREFIX_DEADLINE + VALID_REMINDER_DEADLINE;
+    public static final String MEETING_NOTE_DESC_AMY = " " + VALID_MEETING_NOTE_AMY;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

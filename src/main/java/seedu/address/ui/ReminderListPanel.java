@@ -53,7 +53,7 @@ public class ReminderListPanel extends UiPart<Region> {
         reminderListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         reminderListView.getSelectionModel().clearSelection();
         reminderListView.setFocusTraversable(false);
-        reminderListView.setMouseTransparent(true);
+        reminderListView.setFixedCellSize(-1);
 
         // Ensure we start at the top on first layout pass
         Platform.runLater(() -> {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -29,6 +30,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private ArrayList<Reminder> reminders;
+    private ArrayList<MeetingNote> meetingNotes;
     private boolean starred;
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         reminders = new ArrayList<>();
+        meetingNotes = new ArrayList<>();
         starred = false;
     }
 
@@ -53,6 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         reminders = new ArrayList<>(personToCopy.getReminders());
+        meetingNotes = new ArrayList<>(personToCopy.getMeetingNotes());
         starred = personToCopy.isStarred();
     }
 
@@ -114,7 +118,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, reminders, starred);
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred);
     }
 
 }
