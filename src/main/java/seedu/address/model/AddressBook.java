@@ -18,9 +18,10 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
+
     private final UniquePersonList persons;
 
-    private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
