@@ -12,8 +12,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -92,9 +98,78 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags()
-                + ", reminders=" + ALICE.getReminders() + "}";
-        assertEquals(expected, ALICE.toString());
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
+        String name = editPersonDescriptor.getName().isPresent()
+                ? editPersonDescriptor.getName().get().toString()
+                : "Default Name";
+        String phone = editPersonDescriptor.getPhone().isPresent()
+                ? editPersonDescriptor.getPhone().get().toString()
+                : "Default Phone";
+        String email = editPersonDescriptor.getEmail().isPresent()
+                ? editPersonDescriptor.getEmail().get().toString()
+                : "Default Email";
+        String address = editPersonDescriptor.getAddress().isPresent()
+                ? editPersonDescriptor.getAddress().get().toString()
+                : "Default Address";
+        String tags = editPersonDescriptor.getTags().isPresent()
+                ? editPersonDescriptor.getTags().get().toString()
+                : "Default Tags";
+        String policy = editPersonDescriptor.getPolicy().isPresent()
+                ? editPersonDescriptor.getPolicy().get().toString()
+                : "Default Policy";
+
+        String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
+                + name + ", phone="
+                + phone + ", email="
+                + email + ", address="
+                + address + ", tags="
+                + tags + ", policy="
+                + policy + "}";
+
+        assertEquals(expected, editPersonDescriptor.toString());
+    }
+
+
+    @Test
+    public void testPersonWithPolicy() {
+        Name name = new Name("John Doe");
+        Phone phone = new Phone("98765432");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("311, Clementi Ave 2, #02-25");
+        Set<Tag> tags = Set.of(new Tag("friends"));
+        InsurancePolicy policy = new InsurancePolicy("AIB Secure Plan");
+
+        Person person = new Person(name, phone, email, address, tags, new ArrayList<>(), Optional.of(policy));
+
+        assertEquals("AIB Secure Plan", person.getPolicy().get().toString());
+    }
+
+    @Test
+    public void testPersonWithoutPolicy() {
+        Name name = new Name("John Doe");
+        Phone phone = new Phone("98765432");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("311, Clementi Ave 2, #02-25");
+        Set<Tag> tags = Set.of(new Tag("friends"));
+
+        Person person = new Person(name, phone, email, address, tags, new ArrayList<>(), Optional.empty());
+
+        assertTrue(person.getPolicy().isEmpty());
+    }
+
+    @Test
+    public void testPersonEqualityWithPolicy() {
+        Name name = new Name("John Doe");
+        Phone phone = new Phone("98765432");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("311, Clementi Ave 2, #02-25");
+        Set<Tag> tags = Set.of(new Tag("friends"));
+        InsurancePolicy policy = new InsurancePolicy("AIB Secure Plan");
+
+        Person person1 = new Person(name, phone, email, address, tags, new ArrayList<>(), Optional.of(policy));
+        Person person2 = new Person(name, phone, email, address, tags, new ArrayList<>(), Optional.of(policy));
+
+        assertTrue(person1.equals(person2));
     }
 }

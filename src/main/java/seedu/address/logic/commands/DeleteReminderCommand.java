@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -88,7 +89,8 @@ public class DeleteReminderCommand extends Command {
                 original.getEmail(),
                 original.getAddress(),
                 original.getTags(),
-                new ArrayList<>(newReminders)
+                new ArrayList<>(newReminders),
+                Optional.empty()
         );
     }
 

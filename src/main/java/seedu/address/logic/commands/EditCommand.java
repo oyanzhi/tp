@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InsurancePolicy;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -45,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_POLICY + "INSURANCE_POLICY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -104,7 +107,11 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         // edit command does not allow editing of reminders
         ArrayList<Reminder> updatedReminders = personToEdit.getReminders();
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedReminders);
+        Optional<InsurancePolicy> updatedPolicy = editPersonDescriptor.getPolicy().isPresent()
+                ? editPersonDescriptor.getPolicy()
+                : personToEdit.getPolicy();
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedReminders, updatedPolicy);
     }
 
     @Override
@@ -140,9 +147,12 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Optional<InsurancePolicy> policy;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+            this.policy = Optional.empty();
+        }
 
         /**
          * Copy constructor.
@@ -153,6 +163,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setPolicy(toCopy.policy);
             setTags(toCopy.tags);
         }
 
@@ -160,7 +171,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policy);
         }
 
         public void setName(Name name) {
@@ -212,6 +223,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setPolicy(Optional<InsurancePolicy> policy) {
+            this.policy = (policy != null) ? policy : Optional.empty();
+        }
+
+        public Optional<InsurancePolicy> getPolicy() {
+            return policy;
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -228,7 +247,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(policy, otherEditPersonDescriptor.policy);
         }
 
         @Override
@@ -239,6 +259,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("insurance policy", policy.map(InsurancePolicy::toString).orElse("-"))
                     .toString();
         }
     }

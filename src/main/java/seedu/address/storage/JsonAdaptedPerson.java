@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InsurancePolicy;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
+    private final String policy;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +42,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
+                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
+                             @JsonProperty("insurancePolicy") String policy) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +54,8 @@ class JsonAdaptedPerson {
         if (reminders != null) {
             this.reminders.addAll(reminders);
         }
+
+        this.policy = policy;
     }
 
     /**
@@ -66,6 +72,7 @@ class JsonAdaptedPerson {
         reminders.addAll(source.getReminders().stream()
                 .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
+        policy = source.getPolicy().map(InsurancePolicy::toString).orElse(null);
     }
 
     /**
@@ -118,7 +125,19 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<Reminder> modelReminder = new ArrayList<>(personReminders);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder);
+
+        final Optional<InsurancePolicy> modelPolicy;
+        if (policy == null) {
+            modelPolicy = Optional.empty();
+        } else {
+            if (!InsurancePolicy.isValidPolicy(policy)) {
+                throw new IllegalValueException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+            }
+            modelPolicy = Optional.of(new InsurancePolicy(policy));
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder,
+                modelPolicy);
     }
 
 }

@@ -37,6 +37,7 @@
           <Label fx:id="phone"   styleClass="cell_small_label"/>
           <Label fx:id="address" styleClass="cell_small_label"/>
           <Label fx:id="email"   styleClass="cell_small_label"/>
+          <Label fx:id="policy"   styleClass="cell_small_label"/>
         </VBox>
       </children>
 

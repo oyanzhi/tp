@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -23,6 +24,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Optional<InsurancePolicy> policy;
 
     // Data fields
     private final Address address;
@@ -30,16 +32,18 @@ public class Person {
     private final ArrayList<Reminder> reminders = new ArrayList<>();
 
     /**
-     * Every field must be present and not null.
+     * All fields except policy must be non-null. policy must be a non-null Optional that may be empty.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Reminder> reminders) {
-        requireAllNonNull(name, phone, email, address, tags, reminders);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, ArrayList<Reminder> reminders, Optional<InsurancePolicy> policy) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, policy);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
+        this.policy = policy != null ? policy : Optional.empty();
     }
 
     public Name getName() {
@@ -56,6 +60,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Optional<InsurancePolicy> getPolicy() {
+        return policy;
     }
 
     /**
@@ -93,7 +101,7 @@ public class Person {
         ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
 
-        return new Person(name, phone, email, address, tags, updatedReminders);
+        return new Person(name, phone, email, address, tags, updatedReminders, policy);
     }
 
     /**
@@ -129,7 +137,8 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && policy.equals(otherPerson.policy);
         //TODO - Update to include reminders
         //may not need to implement as reminders is not core identity of person
     }
@@ -137,7 +146,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, policy);
         //TODO - Update to include reminders
     }
 
@@ -148,6 +157,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("insurance policy", policy.map(InsurancePolicy::toString).orElse("-"))
                 .add("tags", tags)
                 .add("reminders", reminders)
                 .toString();
