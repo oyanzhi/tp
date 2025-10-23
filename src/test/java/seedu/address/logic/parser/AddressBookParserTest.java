@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMeetingNoteCommand;
 import seedu.address.logic.commands.AddReminderCommand;
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.DeleteMeetingNoteCommand;
 import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditReminderCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -156,6 +158,24 @@ public class AddressBookParserTest {
 
         // Assert that the parser returns the expected AddReminderCommand
         assertEquals(new AddReminderCommand(INDEX_FIRST_PERSON, reminder), command);
+    }
+
+    @Test
+    public void parseCommand_editReminder() throws Exception {
+        String reminderHeader = "Test Parser";
+        String reminderDeadline = "2030-10-10 10:00";
+        Reminder reminder = new Reminder(reminderHeader, reminderDeadline);
+
+        String commandString = EditReminderCommand.COMMAND_WORD
+                + " 1 1 "
+                + "h/" + reminderHeader + " "
+                + "d/" + reminderDeadline;
+
+        EditReminderCommand command = (EditReminderCommand) parser.parseCommand(commandString);
+
+        Index reminderIndex = Index.fromOneBased(1);
+
+        assertEquals(new EditReminderCommand(INDEX_FIRST_PERSON, reminderIndex, reminder), command);
     }
 
     @Test
