@@ -31,7 +31,7 @@ public class StarCommandTest {
         String expectedMessage = String.format(StarCommand.MESSAGE_STARRED_PERSON_SUCCESS,
                 Messages.format(personToStar));
 
-        Person starredPerson = personToStar.withStarredStatus(true);
+        Person starredPerson = personToStar.rebuildWithStarredStatus(true);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         expectedModel.setPerson(personToStar, starredPerson);
@@ -48,7 +48,7 @@ public class StarCommandTest {
         Person personToStar = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         StarCommand starCommand = new StarCommand(INDEX_FIRST_PERSON);
 
-        Person starredPerson = personToStar.withStarredStatus(true);
+        Person starredPerson = personToStar.rebuildWithStarredStatus(true);
         model.setPerson(personToStar, starredPerson);
 
         assertCommandFailure(starCommand, model, StarCommand.MESSAGE_PERSON_IS_STARRED);
@@ -72,7 +72,7 @@ public class StarCommandTest {
         String expectedMessage = String.format(StarCommand.MESSAGE_STARRED_PERSON_SUCCESS,
                 Messages.format(personToStar));
 
-        Person starredPerson = personToStar.withStarredStatus(true);
+        Person starredPerson = personToStar.rebuildWithStarredStatus(true);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToStar, starredPerson);
         expectedModel.sortPersons(StarCommand.STARRED_STATUS_COMPARATOR);

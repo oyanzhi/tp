@@ -27,7 +27,7 @@ public class UnstarCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Person personToUnstar = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         // Star the person before unstar
-        Person starredPerson = personToUnstar.withStarredStatus(true);
+        Person starredPerson = personToUnstar.rebuildWithStarredStatus(true);
         model.setPerson(personToUnstar, starredPerson);
 
         UnstarCommand unstarCommand = new UnstarCommand(INDEX_FIRST_PERSON);
@@ -35,7 +35,7 @@ public class UnstarCommandTest {
         String expectedMessage = String.format(UnstarCommand.MESSAGE_UNSTARRED_PERSON_SUCCESS,
                 Messages.format(personToUnstar));
 
-        Person unstarredPerson = personToUnstar.withStarredStatus(false);
+        Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToUnstar, unstarredPerson);
         expectedModel.sortPersons(StarCommand.STARRED_STATUS_COMPARATOR);
@@ -51,7 +51,7 @@ public class UnstarCommandTest {
         Person personToUnstar = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         UnstarCommand unstarCommand = new UnstarCommand(INDEX_FIRST_PERSON);
 
-        Person unstarredPerson = personToUnstar.withStarredStatus(false);
+        Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
         model.setPerson(personToUnstar, unstarredPerson);
 
         assertCommandFailure(unstarCommand, model, UnstarCommand.MESSAGE_PERSON_IS_UNSTARRED);
@@ -71,7 +71,7 @@ public class UnstarCommandTest {
 
         Person personToUnstar = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         // Star the person before unstar
-        Person starredPerson = personToUnstar.withStarredStatus(true);
+        Person starredPerson = personToUnstar.rebuildWithStarredStatus(true);
         model.setPerson(personToUnstar, starredPerson);
 
         UnstarCommand unstarCommand = new UnstarCommand(INDEX_FIRST_PERSON);
@@ -79,7 +79,7 @@ public class UnstarCommandTest {
         String expectedMessage = String.format(UnstarCommand.MESSAGE_UNSTARRED_PERSON_SUCCESS,
                 Messages.format(personToUnstar));
 
-        Person unstarredPerson = personToUnstar.withStarredStatus(false);
+        Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToUnstar, unstarredPerson);
         expectedModel.sortPersons(StarCommand.STARRED_STATUS_COMPARATOR);
