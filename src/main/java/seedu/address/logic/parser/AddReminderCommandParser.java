@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.Reminder;
 
 /**
- * Parses input arguments and creates a new AddReminderParser object
+ * Parses input arguments and creates a new AddReminderCommand object
  */
 public class AddReminderCommandParser implements Parser<AddReminderCommand> {
     /**
