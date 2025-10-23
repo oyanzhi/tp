@@ -25,8 +25,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListActiveCommand;
 import seedu.address.logic.commands.ListArchiveCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.StarCommand;
+import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.UnstarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

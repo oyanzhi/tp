@@ -179,7 +179,7 @@ public class AddCommandTest {
         public ObservableList<Person> getArchivedPersonList() {
             throw new AssertionError("This method should not be called.");
         }
-      
+
         @Override
         public ObservableList<Reminder> getGeneralReminderList() {
             throw new AssertionError("This method should not be called.");

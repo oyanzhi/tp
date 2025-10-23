@@ -47,6 +47,8 @@ public class Person implements Comparable<Person> {
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
+        this.meetingNotes.addAll(meetingNotes);
+        this.starred = starred;
         this.isArchived = false;
     }
 
@@ -201,11 +203,11 @@ public class Person implements Comparable<Person> {
     }
 
     public Person archive() {
-        return new Person(name, phone, email, address, tags, reminders, true);
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred, true);
     }
 
     public Person unarchive() {
-        return new Person(name, phone, email, address, tags, reminders, false);
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred, false);
     }
 
     /**

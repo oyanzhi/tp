@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     public ObservableList<Person> getArchivedPersonList() {
         return archivedPersons;
     }
-  
+
     @Override
     public ObservableList<Reminder> getGeneralReminderList() {
         return this.generalReminderList;
