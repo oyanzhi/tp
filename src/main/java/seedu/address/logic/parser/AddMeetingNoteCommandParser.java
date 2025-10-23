@@ -4,13 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ParserUtil.LOGGING_MESSAGE_PARSE_INDEX;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingNoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;

@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddMeetingNoteCommand;
 import seedu.address.logic.commands.DeleteMeetingNoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -26,10 +25,10 @@ public class DeleteMeetingNoteCommandParser implements Parser<DeleteMeetingNoteC
     public DeleteMeetingNoteCommand parse(String args) throws ParseException {
         try {
             Index[] indices = ParserUtil.parseDualIndex(args);
-            Index CLIENT_INDEX = indices[0];
-            Index MEETING_NOTE_INDEX = indices[1];
-            logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + CLIENT_INDEX.getOneBased());
-            logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + MEETING_NOTE_INDEX.getOneBased());
+            Index clientIndex = indices[0];
+            Index meetingNoteIndex = indices[1];
+            logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + clientIndex.getOneBased());
+            logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + meetingNoteIndex.getOneBased());
             return new DeleteMeetingNoteCommand(indices[0], indices[1]);
         } catch (ParseException pe) {
             throw new ParseException(
