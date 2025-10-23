@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.REMINDER_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.REMINDER_HEADER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMINDER_DEADLINE;
@@ -101,7 +102,7 @@ public class EditReminderCommandParserTest {
     // Empty preamble
     @Test
     public void parse_emptyPreamble_throwsParseException() {
-        String commandString = EditReminderCommand.COMMAND_WORD + " ";
+        String commandString = EditReminderCommand.COMMAND_WORD + PREAMBLE_WHITESPACE;
 
         assertParseFailure(parser, commandString, MESSAGE_INVALID_FORMAT);
     }
