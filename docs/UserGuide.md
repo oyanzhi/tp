@@ -199,6 +199,38 @@ Examples:
 * `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st person in the results of the `find`
   command.
 
+### Archiving a person : `archive`
+
+Archives the specified person from the address book.
+
+Format: `archive INDEX`
+
+* Archives the peron at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Only one person can be archived at a time.
+
+Examples:
+
+* `list` followed by `archive 1` archives the 1st person in the list
+* `list` followed by `archive 2` archives the 2nd person in the list
+
+### Unarchiving a person : `unarchive`
+
+Unarchive the specified person from the address book.
+
+Format: `unarchive INDEX`
+
+* Unarchives the person at the specified `INDEX`
+* The index refers to the index number shown in the archived person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Only one person can be unarchived at a time.
+
+Examples:
+
+* `archivelist` followed by `unarchive 1` unarchives the 1st person in the list
+* `archivelist` followed by `unarchive 2` unarchives the 2nd person in the list
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -257,14 +289,16 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
- Action       | Format, Examples                                                                                                                                                      
---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Clear**    | `clear`                                                                                                                                                               
- **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
- **Reminder** | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    
- **rDelete**  | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         
- **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
- **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
- **List**     | `list`                                                                                                                                                                
- **Help**     | `help`                                                                                                                                                                
+| Action        | Format, Examples                                                                                                                                                      |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**     | `clear`                                                                                                                                                               |
+| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Reminder**  | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    |
+| **rDelete**   | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         |
+| **Archive**   | `archive INDEX`<br> e.g., `archive 1`                                                                                                                                 |
+| **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                             |
+| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**      | `list`                                                                                                                                                                |
+| **Help**      | `help`                                                                                                                                                                |
