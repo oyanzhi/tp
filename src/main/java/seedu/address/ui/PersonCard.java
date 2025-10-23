@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -58,6 +59,8 @@ public class PersonCard extends UiPart<Region> {
     private VBox leftBox;
     @FXML
     private AnchorPane remindersPlaceholder;
+    @FXML
+    private AnchorPane meetingNotesPlaceholder;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -89,6 +92,32 @@ public class PersonCard extends UiPart<Region> {
         AnchorPane.setLeftAnchor(reminderListPanel.getRoot(), 0.0);
         AnchorPane.setRightAnchor(reminderListPanel.getRoot(), 0.0);
         AnchorPane.setBottomAnchor(reminderListPanel.getRoot(), 0.0);
+
+        ObservableList<String> meetingNoteTexts = deriveMeetingNoteTexts(person);
+        MeetingNoteListPanel meetingNoteListPanel = new MeetingNoteListPanel(meetingNoteTexts);
+        meetingNotesPlaceholder.getChildren().add(meetingNoteListPanel.getRoot());
+
+        Region notesRoot = meetingNoteListPanel.getRoot();
+        meetingNotesPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
+        meetingNotesPlaceholder.maxHeightProperty().bind(leftBox.heightProperty());
+        notesRoot.prefHeightProperty().bind(leftBox.heightProperty());
+        notesRoot.maxHeightProperty().bind(leftBox.heightProperty());
+        AnchorPane.setTopAnchor(notesRoot, 0.0);
+        AnchorPane.setLeftAnchor(notesRoot, 0.0);
+        AnchorPane.setRightAnchor(notesRoot, 0.0);
+        AnchorPane.setBottomAnchor(notesRoot, 0.0);
+
+        reminderListPanel.getRoot().minWidthProperty().set(150);
+        meetingNoteListPanel.getRoot().minWidthProperty().set(150);
+
+        // Ensure equal default width for reminders and meeting notes
+        cardPane.setDividerPositions(0.33, 0.66);
+        //prevents resizing of boxes
+        // cardPane.getDividers().forEach(divider -> divider.positionProperty().addListener((obs, oldVal, newVal) -> {
+        //     Platform.runLater(() -> cardPane.setDividerPositions(0.33, 0.66))
+        // }));
+
+
     }
 
     /**
@@ -107,6 +136,19 @@ public class PersonCard extends UiPart<Region> {
         List<String> out = new ArrayList<>(list.size());
         for (Reminder r : list) {
             out.add(String.valueOf(r));
+        }
+        return javafx.collections.FXCollections.observableArrayList(out);
+    }
+
+    private ObservableList<String> deriveMeetingNoteTexts(Person p) {
+        Collection<MeetingNote> src = p.getMeetingNotes();
+        List<MeetingNote> list = new ArrayList<>(src);
+
+        list.sort(Comparator.comparing(String::valueOf));
+
+        List<String> out = new ArrayList<>(list.size());
+        for (MeetingNote n : list) {
+            out.add(String.valueOf(n));
         }
         return javafx.collections.FXCollections.observableArrayList(out);
     }
