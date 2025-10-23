@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -61,5 +65,43 @@ public class UnarchiveCommandTest {
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(outOfBoundsIndex);
 
         assertThrows(CommandException.class, () -> unarchiveCommand.execute(model));
+    }
+
+    @Test
+    public void equals() {
+        UnarchiveCommand firstCommand = new UnarchiveCommand(INDEX_FIRST_PERSON);
+        UnarchiveCommand secondCommand = new UnarchiveCommand(INDEX_SECOND_PERSON);
+
+        // same object -> returns true
+        assertEquals(firstCommand, firstCommand);
+
+        // same values -> returns true
+        UnarchiveCommand firstCommandCopy = new UnarchiveCommand(INDEX_FIRST_PERSON);
+        assertEquals(firstCommand, firstCommandCopy);
+
+        // different values -> returns false
+        assertEquals(false, firstCommand.equals(secondCommand));
+
+        // different type -> returns false
+        assertEquals(false, firstCommand.equals(1));
+
+        // null -> returns false
+        assertEquals(false, firstCommand.equals(null));
+    }
+
+    @Test
+    public void toStringMethod() {
+        Index targetIndex = Index.fromOneBased(1);
+        UnarchiveCommand command = new UnarchiveCommand(targetIndex);
+
+        String expected = UnarchiveCommand.class.getCanonicalName()
+                + "{targetIndex=" + targetIndex + "}";
+
+        String commandString = command.toString();
+
+        assertTrue(commandString.contains("targetIndex=" + targetIndex),
+                "toString() should contain the targetIndex");
+        assertTrue(commandString.contains("UnarchiveCommand"),
+                "toString() should contain class name");
     }
 }
