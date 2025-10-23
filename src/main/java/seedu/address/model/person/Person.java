@@ -71,10 +71,10 @@ public class Person {
     }
 
     /**
-     * Returns the list of meeting notes tagged ot this person
+     * Returns the list of meeting notes tagged to this person
      */
     public ArrayList<MeetingNote> getMeetingNotes() {
-        return meetingNotes;
+        return new ArrayList<>(meetingNotes);
     }
 
     /**
@@ -101,10 +101,24 @@ public class Person {
     }
 
     /**
+     * @param meetingNote to be removed
+     * @return Person with the meeting note removed
+     */
+    public Person removeMeetingNote(MeetingNote meetingNote) {
+        requireNonNull(meetingNote);
+
+        ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(this.meetingNotes);
+        updatedMeetingNotes.remove(meetingNote);
+
+        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes);
+    }
+
+
+    /**
      * Returns the list of reminders tagged to this person
      */
     public ArrayList<Reminder> getReminders() {
-        return this.reminders;
+        return new ArrayList<>(reminders);
     }
 
     /**

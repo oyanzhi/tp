@@ -65,7 +65,7 @@ public class DeleteMeetingNoteCommandTest {
                 INDEX_FIRST_NOTE);
 
         String expectedMessage = String.format(MESSAGE_DELETE_MEETING_NOTE_SUCCESS,
-                Messages.format(personToDeleteFrom),
+                personToDeleteFrom.getName(),
                 INDEX_FIRST_NOTE.getOneBased(),
                 meetingNoteToDelete);
 

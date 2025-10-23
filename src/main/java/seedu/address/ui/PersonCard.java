@@ -81,7 +81,6 @@ public class PersonCard extends UiPart<Region> {
 
         ObservableList<String> reminderTexts = deriveReminderTexts(person);
         ReminderListPanel reminderListPanel = new ReminderListPanel(reminderTexts);
-
         remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
         Region remindersRoot = reminderListPanel.getRoot();
         remindersPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
@@ -96,7 +95,6 @@ public class PersonCard extends UiPart<Region> {
         ObservableList<String> meetingNoteTexts = deriveMeetingNoteTexts(person);
         MeetingNoteListPanel meetingNoteListPanel = new MeetingNoteListPanel(meetingNoteTexts);
         meetingNotesPlaceholder.getChildren().add(meetingNoteListPanel.getRoot());
-
         Region notesRoot = meetingNoteListPanel.getRoot();
         meetingNotesPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
         meetingNotesPlaceholder.maxHeightProperty().bind(leftBox.heightProperty());
@@ -143,8 +141,6 @@ public class PersonCard extends UiPart<Region> {
     private ObservableList<String> deriveMeetingNoteTexts(Person p) {
         Collection<MeetingNote> src = p.getMeetingNotes();
         List<MeetingNote> list = new ArrayList<>(src);
-
-        list.sort(Comparator.comparing(String::valueOf));
 
         List<String> out = new ArrayList<>(list.size());
         for (MeetingNote n : list) {

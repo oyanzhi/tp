@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -30,14 +30,11 @@ public class DeleteMeetingNoteCommand extends Command {
 
     public static final String MESSAGE_DELETE_MEETING_NOTE_SUCCESS = "Deleted Client %1$s's Meeting note %2$d: %3$s";
 
-    private static final Comparator<MeetingNote> UI_ORDER =
-            java.util.Comparator.comparing(String::valueOf);
-
     private final Index clientIndex;
     private final Index meetingNoteIndex;
 
     /**
-     * Creates an DeleteMeetingNoteCommand to delete the specified {@code MeetingNote} from the specified {@code Person}
+     * Creates a DeleteMeetingNoteCommand to delete the specified {@code MeetingNote} from the specified {@code Person}
      */
     public DeleteMeetingNoteCommand(Index clientIndex, Index meetingNoteIndex) {
         requireAllNonNull(clientIndex, meetingNoteIndex);
@@ -49,35 +46,27 @@ public class DeleteMeetingNoteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        if (clientIndex.getZeroBased() >= lastShownList.size()) {
+
+        if (lastShownList.size() < clientIndex.getOneBased()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person target = lastShownList.get(clientIndex.getZeroBased());
 
-        // Resolve meeting note by the SAME order as UI
-        List<MeetingNote> ordered = new ArrayList<>(target.getMeetingNotes());
-        ordered.sort(UI_ORDER);
-        if (meetingNoteIndex.getZeroBased() >= ordered.size()) {
+        Person personToDeleteFrom = lastShownList.get(clientIndex.getZeroBased());
+        ArrayList<MeetingNote> meetingNotes = personToDeleteFrom.getMeetingNotes();
+
+        if (meetingNotes.size() < meetingNoteIndex.getOneBased()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_NOTE_INDEX);
         }
-        MeetingNote toRemove = ordered.get(meetingNoteIndex.getZeroBased());
 
-        // Build new meeting note collection and replace Person
-        List<MeetingNote> updated = new ArrayList<>(target.getMeetingNotes());
-        boolean removed = updated.remove(toRemove);
-        if (!removed) {
-            throw new CommandException("Failed to delete meeting note (not found).");
-        }
+        MeetingNote meetingNoteToDelete = meetingNotes.get(meetingNoteIndex.getZeroBased());
+        Person editedPerson = personToDeleteFrom.removeMeetingNote(meetingNoteToDelete);
 
-        Person edited = rebuildPersonWithMeetingNotes(target, updated);
-        model.setPerson(target, edited);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-
-        return new CommandResult(String.format(
-                MESSAGE_DELETE_MEETING_NOTE_SUCCESS,
-                Messages.format(edited),
+        model.setPerson(personToDeleteFrom, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_DELETE_MEETING_NOTE_SUCCESS,
+                personToDeleteFrom.getName(),
                 meetingNoteIndex.getOneBased(),
-                toRemove));
+                meetingNoteToDelete));
     }
 
     /** Rebuilds a Person with updated meeting notes. */
