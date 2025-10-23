@@ -2,7 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ParserUtil.LOGGING_MESSAGE_PARSE_INDEX;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,6 +20,8 @@ import seedu.address.model.meetingnote.MeetingNote;
  * Parses input arguments and creates a new AddMeetingNoteCommand object
  */
 public class AddMeetingNoteCommandParser implements Parser<AddMeetingNoteCommand> {
+    private static final Logger logger = LogsCenter.getLogger(AddMeetingNoteCommandParser.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddMeetingNoteCommand
      * and returns an AddMeetingNoteCommand object for execution.
@@ -34,6 +41,7 @@ public class AddMeetingNoteCommandParser implements Parser<AddMeetingNoteCommand
 
         try {
             Index index = ParserUtil.parseIndex(splitArgs[0]);
+            logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + index.getOneBased());
             String note = ParserUtil.parseNote(splitArgs[1]);
             String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
             MeetingNote meetingNote = new MeetingNote(note, date);
