@@ -114,7 +114,7 @@ public class Person implements Comparable<Person> {
         updatedReminders.add(reminder);
         updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders);
+        return new Person(name, phone, email, address, tags, updatedReminders, starred);
     }
 
     /**
