@@ -51,7 +51,7 @@ public class UnarchiveCommand extends Command {
         Person unarchivedPerson = personToUnarchive.unarchive();
         model.setPerson(personToUnarchive, unarchivedPerson);
         model.updateFilteredPersonList(person -> !person.isArchived());
-        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, unarchivedPerson));
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, Messages.format(unarchivedPerson)));
     }
 
 }

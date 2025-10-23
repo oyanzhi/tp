@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -53,6 +54,19 @@ public class ArchiveCommandTest {
         ArchiveCommand archiveCommand = new ArchiveCommand(Index.fromOneBased(outOfBoundIndex));
 
         assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_personAlreadyArchived_throwsCommandException() {
+        Person originalPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person archivedPerson = originalPerson.archive();
+        model.setPerson(originalPerson, archivedPerson);
+
+        model.updateFilteredPersonList(person -> true);
+
+        ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
+
+        assertThrows(CommandException.class, () -> archiveCommand.execute(model));
     }
 
     @Test
