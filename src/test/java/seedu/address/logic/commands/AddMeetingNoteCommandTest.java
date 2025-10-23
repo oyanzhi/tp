@@ -95,6 +95,7 @@ public class AddMeetingNoteCommandTest {
 
         AddMeetingNoteCommand addMeetingNoteFirstCommand = new AddMeetingNoteCommand(INDEX_FIRST_PERSON, meetingNote1);
         AddMeetingNoteCommand addMeetingNoteSecondCommand = new AddMeetingNoteCommand(INDEX_FIRST_PERSON, meetingNote2);
+        AddMeetingNoteCommand addMeetingNoteThirdCommand = new AddMeetingNoteCommand(INDEX_SECOND_PERSON, meetingNote1);
 
         // same object -> returns true
         assertTrue(addMeetingNoteFirstCommand.equals(addMeetingNoteFirstCommand));
@@ -110,8 +111,11 @@ public class AddMeetingNoteCommandTest {
         // null -> returns false
         assertFalse(addMeetingNoteFirstCommand.equals(null));
 
-        // different reminder -> returns false
+        // different meeting note -> returns false
         assertFalse(addMeetingNoteFirstCommand.equals(addMeetingNoteSecondCommand));
+
+        // different index -> returns false
+        assertFalse(addMeetingNoteFirstCommand.equals(addMeetingNoteThirdCommand));
     }
 
     @Test

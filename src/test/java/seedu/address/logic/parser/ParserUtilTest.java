@@ -29,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_REMINDER_HEADER = " ";
+    private static final String INVALID_MEETING_NOTE = "";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -251,6 +252,11 @@ public class ParserUtilTest {
     public void parseDeadline_invalidPastDate_throwsParseException() {
         String pastDate = LocalDateTime.now().minusDays(1).toString();
         assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(pastDate));
+    }
+
+    @Test
+    public void parseMeetingNote_invalidNote_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNote(INVALID_MEETING_NOTE));
     }
 
 }

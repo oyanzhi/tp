@@ -40,8 +40,18 @@ public class MeetingNoteTest {
         // null note
         assertThrows(NullPointerException.class, () -> MeetingNote.isValidNote(null));
 
-        // invalid note
+        // invalid empty note
         assertFalse(MeetingNote.isValidNote(""));
+
+        // invalid note more than 200 characters
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 201; i++) {
+            sb.append('A');
+        }
+        assertFalse(MeetingNote.isValidNote(sb.toString()));
+
+        // invalid note containing non basic printable ASCII character
+        assertFalse(MeetingNote.isValidNote("abcć"));
 
         // valid note
         assertTrue(MeetingNote.isValidNote("Discussed policy renewal and add-on coverage."));
