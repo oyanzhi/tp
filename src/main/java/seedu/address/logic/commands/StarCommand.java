@@ -57,7 +57,7 @@ public class StarCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_IS_STARRED);
         }
 
-        Person starredPerson = personToStar.withStarredStatus(true);
+        Person starredPerson = personToStar.rebuildWithStarredStatus(true);
 
         model.setPerson(personToStar, starredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);

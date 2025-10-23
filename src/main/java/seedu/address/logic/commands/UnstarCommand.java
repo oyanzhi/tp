@@ -52,7 +52,7 @@ public class UnstarCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_IS_UNSTARRED);
         }
 
-        Person unstarredPerson = personToUnstar.withStarredStatus(false);
+        Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
 
         model.setPerson(personToUnstar, unstarredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);

@@ -87,7 +87,7 @@ public class Person implements Comparable<Person> {
      * @param starred boolean that starred will be set to
      * @return Person that has starred set to the parameter
      */
-    public Person withStarredStatus(boolean starred) {
+    public Person rebuildWithStarredStatus(boolean starred) {
         requireNonNull(starred);
         return new Person(name, phone, email, address, tags, reminders, starred);
     }
