@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.meetingnote.MeetingNote.NOTE_MESSAGE_CONSTRAINTS;
 import static seedu.address.model.reminder.Reminder.DEADLINE_MESSAGE_CONSTRAINTS;
 import static seedu.address.model.reminder.Reminder.HEADER_MESSAGE_CONSTRAINTS;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -177,5 +179,20 @@ public class ParserUtil {
             throw new ParseException(DEADLINE_MESSAGE_CONSTRAINTS);
         }
         return trimmedDeadline;
+    }
+
+    /**
+     * Parses a {@code String note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static String parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!MeetingNote.isValidNote(trimmedNote)) {
+            throw new ParseException(NOTE_MESSAGE_CONSTRAINTS);
+        }
+        return trimmedNote;
     }
 }

@@ -8,11 +8,14 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderSorter;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ObservableList<Reminder> generalReminderList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +39,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.generalReminderList = FXCollections.observableArrayList();
+        filteredPersons.forEach(person -> this.generalReminderList.addAll(person.getReminders()));
+        this.generalReminderList.sort(new ReminderSorter());
     }
 
     public ModelManager() {
@@ -117,6 +124,21 @@ public class ModelManager implements Model {
         addressBook.sortPersons(comparator);
     }
 
+    @Override
+    public void addGeneralReminder(Reminder target) {
+        requireNonNull(target);
+        this.generalReminderList.add(target);
+        this.generalReminderList.sort(new ReminderSorter());
+        logger.info(String.format("Result: Reminder {%s} also added to General Reminders", target));
+    }
+
+    @Override
+    public void deleteGeneralReminder(Reminder target) {
+        requireNonNull(target);
+        this.generalReminderList.remove(target);
+        logger.info(String.format("Result: Reminder {%s} also deleted from General Reminders", target));
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +148,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Reminder> getGeneralReminderList() {
+        return this.generalReminderList;
     }
 
     @Override
