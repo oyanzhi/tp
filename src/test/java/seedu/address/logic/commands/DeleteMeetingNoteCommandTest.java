@@ -78,9 +78,9 @@ public class DeleteMeetingNoteCommandTest {
 
     @Test
     public void invalidClientIndex_fail() {
-        int invalidClientIndex = model.getFilteredPersonList().size() + 1;
-        Index INVALID_CLIENT_INDEX = Index.fromZeroBased(invalidClientIndex);
-        DeleteMeetingNoteCommand deleteMeetingNoteCommand = new DeleteMeetingNoteCommand(INVALID_CLIENT_INDEX,
+        int invalidClientInt = model.getFilteredPersonList().size() + 1;
+        Index invalidClientIndex = Index.fromZeroBased(invalidClientInt);
+        DeleteMeetingNoteCommand deleteMeetingNoteCommand = new DeleteMeetingNoteCommand(invalidClientIndex,
                 INDEX_FIRST_NOTE);
         assertCommandFailure(deleteMeetingNoteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -89,10 +89,10 @@ public class DeleteMeetingNoteCommandTest {
     public void invalidMeetingNoteIndex_fail() {
         List<Person> personList = model.getFilteredPersonList();
         Person personToDeleteFrom = personList.get(INDEX_FIRST_PERSON.getZeroBased());
-        int invalidMeetingNoteIndex = personToDeleteFrom.getMeetingNotes().size() + 1;
-        Index INVALID_MEETING_NOTE_INDEX = Index.fromZeroBased(invalidMeetingNoteIndex);
+        int invalidMeetingNoteInt = personToDeleteFrom.getMeetingNotes().size() + 1;
+        Index invalidMeetingNoteIndex = Index.fromZeroBased(invalidMeetingNoteInt);
         DeleteMeetingNoteCommand deleteMeetingNoteCommand = new DeleteMeetingNoteCommand(INDEX_FIRST_PERSON,
-                INVALID_MEETING_NOTE_INDEX);
+                invalidMeetingNoteIndex);
         assertCommandFailure(deleteMeetingNoteCommand, model, Messages.MESSAGE_INVALID_MEETING_NOTE_INDEX);
     }
 
