@@ -37,7 +37,6 @@ public class EditReminderCommandParserTest {
         Reminder expectedReminder = new Reminder(VALID_REMINDER_HEADER_AMY, VALID_REMINDER_DEADLINE);
         EditReminderCommand expectedCommand = new EditReminderCommand(INDEX_FIRST_PERSON,
                 INDEX_FIRST_REMINDER, expectedReminder);
-        System.out.println(expectedCommand);
 
         try {
             EditReminderCommand actualCommand = parser.parse(userInput);
