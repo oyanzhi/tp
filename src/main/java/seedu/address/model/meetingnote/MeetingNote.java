@@ -29,6 +29,7 @@ public class MeetingNote {
      */
     public MeetingNote(String note, String createdAt) {
         requireAllNonNull(note, createdAt);
+        assert !createdAt.isBlank() : "CreatedAt string cannot be blank";
         checkArgument(isValidNote(note), NOTE_MESSAGE_CONSTRAINTS);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
         this.note = note;
