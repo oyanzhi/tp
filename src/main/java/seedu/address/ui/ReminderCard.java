@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 /**
@@ -36,5 +38,9 @@ public class ReminderCard extends UiPart<Region> {
         contentLabel.setText(safe);
         // Prefer the label content for accessibility; graphics are set by the ListCell.
         getRoot().setAccessibleText(displayedIndex + ". " + safe);
+
+        contentLabel.setWrapText(true);
+        contentLabel.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(contentLabel, Priority.ALWAYS);
     }
 }
