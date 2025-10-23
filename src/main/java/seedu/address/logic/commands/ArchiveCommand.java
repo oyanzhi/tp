@@ -24,6 +24,7 @@ public class ArchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Person archived: %1$s";
+    public static final String MESSAGE_ALREADY_ARCHIVED = "This person is already archived.";
 
     private final Index targetIndex;
 
@@ -45,8 +46,12 @@ public class ArchiveCommand extends Command {
         }
 
         Person personToArchive = lastShownList.get(targetIndex.getZeroBased());
-        // TODO: Implement archivePerson command for addressbook
-        // model.archivePerson(personToArchive);
+        if (personToArchive.isArchived()) {
+            throw new CommandException(MESSAGE_ALREADY_ARCHIVED);
+        }
+
+        Person archivedPerson = personToArchive.archive();
+        model.setPerson(personToArchive, archivedPerson);
         return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, Messages.format(personToArchive)));
     }
 

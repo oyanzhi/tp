@@ -31,15 +31,19 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
+    private final boolean isArchived;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
+                             @JsonProperty("isArchived") boolean isArchived) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +54,7 @@ class JsonAdaptedPerson {
         if (reminders != null) {
             this.reminders.addAll(reminders);
         }
+        this.isArchived = isArchived;
     }
 
     /**
@@ -66,6 +71,7 @@ class JsonAdaptedPerson {
         reminders.addAll(source.getReminders().stream()
                 .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
+        isArchived = source.isArchived();
     }
 
     /**
@@ -118,7 +124,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<Reminder> modelReminder = new ArrayList<>(personReminders);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder, isArchived);
     }
 
 }

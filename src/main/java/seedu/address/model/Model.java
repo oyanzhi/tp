@@ -57,6 +57,8 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    boolean hasArchivedPerson(Person person);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -78,6 +80,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    ObservableList<Person> getArchivedPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
