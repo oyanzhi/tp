@@ -5,8 +5,6 @@ import static seedu.address.logic.commands.StarCommand.STARRED_STATUS_COMPARATOR
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -30,7 +28,6 @@ public class UnstarCommand extends Command {
     public static final String MESSAGE_UNSTARRED_PERSON_SUCCESS = "Starred status removed from Person: %1$s";
     public static final String MESSAGE_PERSON_IS_UNSTARRED = "Chosen person is not starred";
 
-    private static Logger logger = Logger.getLogger(UnstarCommand.class.getSimpleName());
     private final Index targetIndex;
 
     public UnstarCommand(Index targetIndex) {
@@ -43,7 +40,6 @@ public class UnstarCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            logger.log(Level.WARNING, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToUnstar = lastShownList.get(targetIndex.getZeroBased());
@@ -53,7 +49,6 @@ public class UnstarCommand extends Command {
 
         // Check if person starred status has been removed
         if (!personToUnstar.isStarred()) {
-            logger.log(Level.WARNING, MESSAGE_PERSON_IS_UNSTARRED);
             throw new CommandException(MESSAGE_PERSON_IS_UNSTARRED);
         }
 
@@ -62,7 +57,6 @@ public class UnstarCommand extends Command {
         model.setPerson(personToUnstar, unstarredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        logger.log(Level.INFO, String.format(MESSAGE_UNSTARRED_PERSON_SUCCESS, personToUnstar));
         return new CommandResult(String.format(MESSAGE_UNSTARRED_PERSON_SUCCESS, Messages.format(personToUnstar)));
     }
 

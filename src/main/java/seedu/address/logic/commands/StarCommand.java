@@ -5,8 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -34,7 +32,6 @@ public class StarCommand extends Command {
             .comparing(Person::isStarred, Comparator.reverseOrder())
             .thenComparing(Person::getName);
 
-    private static Logger logger = Logger.getLogger(StarCommand.class.getSimpleName());
 
     private final Index targetIndex;
 
@@ -48,7 +45,6 @@ public class StarCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            logger.log(Level.WARNING, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToStar = lastShownList.get(targetIndex.getZeroBased());
@@ -58,7 +54,6 @@ public class StarCommand extends Command {
 
         // Check if person has already been starred
         if (personToStar.isStarred()) {
-            logger.log(Level.WARNING, MESSAGE_PERSON_IS_STARRED);
             throw new CommandException(MESSAGE_PERSON_IS_STARRED);
         }
 
@@ -67,7 +62,6 @@ public class StarCommand extends Command {
         model.setPerson(personToStar, starredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        logger.log(Level.INFO, String.format(MESSAGE_STARRED_PERSON_SUCCESS, personToStar));
         return new CommandResult(String.format(MESSAGE_STARRED_PERSON_SUCCESS, Messages.format(personToStar)));
     }
 

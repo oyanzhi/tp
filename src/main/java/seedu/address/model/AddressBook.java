@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -18,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
+    private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -102,6 +105,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void sortPersons(Comparator<Person> comparator) {
         persons.sort(comparator);
+        logger.info("Sort Persons using a comparator");
     }
 
     //// util methods
