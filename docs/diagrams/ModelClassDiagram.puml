@@ -1,8 +1,12 @@
 @startuml
 !include style.puml
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor #FFFFFF
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+show members
+hide empty members
 
 Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
@@ -20,6 +24,7 @@ Class Name
 Class Phone
 Class Tag
 Class InsurancePolicy
+Class Reminder
 
 Class I #FFFFFF
 }
@@ -44,6 +49,7 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 Person *--> InsurancePolicy
+Person *--> "*" Reminder
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
