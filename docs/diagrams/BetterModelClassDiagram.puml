@@ -18,5 +18,6 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> "*" MeetingNote
 Person -right> "*" Reminder
 @enduml
