@@ -3,10 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,8 +54,6 @@ public class UnarchiveCommandTest {
 
     @Test
     public void execute_personNotArchived_throwsCommandException() {
-        Person activePerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(INDEX_FIRST_PERSON);
 
         assertThrows(CommandException.class, () -> unarchiveCommand.execute(model));
@@ -64,6 +65,57 @@ public class UnarchiveCommandTest {
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(outOfBoundsIndex);
 
         assertThrows(CommandException.class, () -> unarchiveCommand.execute(model));
+    }
+
+    @Test
+    public void execute_lastPerson_success() throws Exception {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+        ArchiveCommand archiveCommand = new ArchiveCommand(Index.fromOneBased(model.getFilteredPersonList().size()));
+        archiveCommand.execute(model);
+
+        List<Person> archivedList = model.getArchivedPersonList();
+        Person archivedLastPerson = archivedList.get(archivedList.size() - 1);
+
+        UnarchiveCommand unarchiveCommand = new UnarchiveCommand(Index.fromOneBased(archivedList.size()));
+
+        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS,
+                Messages.format(archivedLastPerson));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Person unarchivedPerson = archivedLastPerson.unarchive();
+        expectedModel.setPerson(archivedLastPerson, unarchivedPerson);
+
+        assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_unarchivedPersonAppearsInActiveList() throws Exception {
+        // Archive first
+        Person personToArchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person archivedPerson = personToArchive.archive();
+        model.setPerson(personToArchive, archivedPerson);
+
+        // Unarchive
+        new UnarchiveCommand(INDEX_FIRST_PERSON).execute(model);
+
+        // The person should now be in the filtered active list
+        assertTrue(model.getFilteredPersonList().stream().anyMatch(p -> p.getName().equals(personToArchive.getName())));
+    }
+
+    @Test
+    public void execute_invalidIndexAfterFiltering_throwsCommandException() {
+        // Archive someone to make sure archive list isn’t empty
+        Person personToArchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person archivedPerson = personToArchive.archive();
+        model.setPerson(personToArchive, archivedPerson);
+
+        // Filter active list so only one person is visible
+        model.updateFilteredPersonList(p -> !p.getName().fullName.equals(personToArchive.getName()));
+
+        // Out-of-bound index in filtered list should fail
+        UnarchiveCommand unarchiveCommand = new UnarchiveCommand(Index.fromOneBased(2));
+        assertCommandFailure(unarchiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
