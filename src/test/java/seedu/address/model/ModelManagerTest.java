@@ -89,8 +89,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasArchivedPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasArchivedPerson(null));
+    }
+
+    @Test
+    public void hasArchivedPerson_personNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasArchivedPerson(ALICE));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getArchivedPersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getArchivedPersonList().remove(0));
     }
 
     @Test

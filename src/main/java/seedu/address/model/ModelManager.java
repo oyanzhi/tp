@@ -106,6 +106,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasArchivedPerson(Person person) {
+        requireNonNull(person);
         return addressBook.getPersonList().stream().anyMatch(p -> p.isArchived() && p.isSamePerson(person));
     }
 
