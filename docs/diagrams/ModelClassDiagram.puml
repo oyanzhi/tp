@@ -25,6 +25,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class MeetingNote
 Class Reminder
 
 Class I #FFFFFF
@@ -49,6 +50,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" MeetingNote
 Person *--> "*" Reminder
 
 Person -[hidden]up--> I
