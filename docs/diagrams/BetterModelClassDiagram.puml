@@ -26,6 +26,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> "*" MeetingNote
 Person *--> InsurancePolicy
 Person -right> "*" Reminder
 @enduml

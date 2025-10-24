@@ -25,6 +25,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class MeetingNote
 Class InsurancePolicy
 Class Reminder
 
@@ -50,6 +51,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" MeetingNote
 Person *--> InsurancePolicy
 Person *--> "*" Reminder
 
