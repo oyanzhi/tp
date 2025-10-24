@@ -30,6 +30,7 @@ public class Person implements Comparable<Person> {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
+    private final boolean isArchived;
     private final ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
     private final boolean starred;
 
@@ -48,6 +49,24 @@ public class Person implements Comparable<Person> {
         this.reminders.addAll(reminders);
         this.meetingNotes.addAll(meetingNotes);
         this.starred = starred;
+        this.isArchived = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  ArrayList<Reminder> reminders, ArrayList<MeetingNote> meetingNotes,
+                  boolean starred, boolean isArchived) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, meetingNotes, starred, isArchived);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.meetingNotes.addAll(meetingNotes);
+        this.starred = starred;
+        this.isArchived = isArchived;
     }
 
     public Name getName() {
@@ -179,6 +198,18 @@ public class Person implements Comparable<Person> {
         return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes, starred);
     }
 
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public Person archive() {
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred, true);
+    }
+
+    public Person unarchive() {
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred, false);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -212,7 +243,8 @@ public class Person implements Comparable<Person> {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && isArchived == otherPerson.isArchived;
         //TODO - Update to include reminders
         //may not need to implement as reminders is not core identity of person
     }
