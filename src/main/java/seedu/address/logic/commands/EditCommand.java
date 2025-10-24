@@ -107,9 +107,9 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         // edit command does not allow editing of reminders
         ArrayList<Reminder> updatedReminders = personToEdit.getReminders();
-        Optional<InsurancePolicy> updatedPolicy = editPersonDescriptor.getPolicy().isPresent()
-                ? editPersonDescriptor.getPolicy()
-                : personToEdit.getPolicy();
+        InsurancePolicy updatedPolicy =
+              editPersonDescriptor.getPolicy().orElse(personToEdit.getPolicy());
+
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedReminders, updatedPolicy);
     }
@@ -147,11 +147,10 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Optional<InsurancePolicy> policy;
+        private InsurancePolicy policy;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
-            this.policy = Optional.empty();
         }
 
         /**
@@ -223,12 +222,12 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setPolicy(Optional<InsurancePolicy> policy) {
-            this.policy = (policy != null) ? policy : Optional.empty();
+        public void setPolicy(InsurancePolicy policy) {
+            this.policy = policy;
         }
 
         public Optional<InsurancePolicy> getPolicy() {
-            return policy;
+            return Optional.ofNullable(policy);
         }
 
         @Override
@@ -259,7 +258,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
-                    .add("insurance policy", policy.map(InsurancePolicy::toString).orElse("-"))
+                    .add("insurance policy", policy)
                     .toString();
         }
     }

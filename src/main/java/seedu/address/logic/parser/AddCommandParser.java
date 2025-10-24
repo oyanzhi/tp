@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -39,7 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_POLICY, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_POLICY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -52,14 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         // add command does not allow adding reminders straight away
         ArrayList<Reminder> reminderList = new ArrayList<>();
-        Optional<InsurancePolicy> policy = Optional.empty(); // Default to empty policy
-        if (argMultimap.getValue(PREFIX_POLICY).isPresent()) {
-            String policyInput = argMultimap.getValue(PREFIX_POLICY).get().trim();
-            if (policyInput.isEmpty()) {
-                throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS); // Reject whitespace-only
-            }
-            policy = Optional.of(ParserUtil.parsePolicy(policyInput)); // Set the policy if valid
-        }
+        InsurancePolicy policy = ParserUtil.parsePolicy(argMultimap.getValue(PREFIX_POLICY).get());
 
         Person person = new Person(name, phone, email, address, tagList, reminderList, policy);
 

@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -139,23 +138,8 @@ public class PersonTest {
         Address address = new Address("311, Clementi Ave 2, #02-25");
         Set<Tag> tags = Set.of(new Tag("friends"));
         InsurancePolicy policy = new InsurancePolicy("AIB Secure Plan");
-
-        Person person = new Person(name, phone, email, address, tags, new ArrayList<>(), Optional.of(policy));
-
-        assertEquals("AIB Secure Plan", person.getPolicy().get().toString());
-    }
-
-    @Test
-    public void testPersonWithoutPolicy() {
-        Name name = new Name("John Doe");
-        Phone phone = new Phone("98765432");
-        Email email = new Email("johndoe@example.com");
-        Address address = new Address("311, Clementi Ave 2, #02-25");
-        Set<Tag> tags = Set.of(new Tag("friends"));
-
-        Person person = new Person(name, phone, email, address, tags, new ArrayList<>(), Optional.empty());
-
-        assertTrue(person.getPolicy().isEmpty());
+        Person person = new Person(name, phone, email, address, tags, new ArrayList<>(), policy);
+        assertEquals("AIB Secure Plan", person.getPolicy().toString());
     }
 
     @Test
@@ -167,8 +151,8 @@ public class PersonTest {
         Set<Tag> tags = Set.of(new Tag("friends"));
         InsurancePolicy policy = new InsurancePolicy("AIB Secure Plan");
 
-        Person person1 = new Person(name, phone, email, address, tags, new ArrayList<>(), Optional.of(policy));
-        Person person2 = new Person(name, phone, email, address, tags, new ArrayList<>(), Optional.of(policy));
+        Person person1 = new Person(name, phone, email, address, tags, new ArrayList<>(), policy);
+        Person person2 = new Person(name, phone, email, address, tags, new ArrayList<>(), policy);
 
         assertTrue(person1.equals(person2));
     }

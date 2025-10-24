@@ -14,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.person.InsurancePolicy;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -75,7 +74,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        policy.setText(person.getPolicy().map(InsurancePolicy::toString).orElse("-"));
+        policy.setText(person.getPolicy().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

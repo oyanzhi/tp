@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -24,18 +23,18 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Optional<InsurancePolicy> policy;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
+    private final InsurancePolicy policy;
 
     /**
-     * All fields except policy must be non-null. policy must be a non-null Optional that may be empty.
+     * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, ArrayList<Reminder> reminders, Optional<InsurancePolicy> policy) {
+                  Set<Tag> tags, ArrayList<Reminder> reminders, InsurancePolicy policy) {
         requireAllNonNull(name, phone, email, address, tags, reminders, policy);
         this.name = name;
         this.phone = phone;
@@ -43,7 +42,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
-        this.policy = policy != null ? policy : Optional.empty();
+        this.policy = policy;
     }
 
     public Name getName() {
@@ -62,7 +61,7 @@ public class Person {
         return address;
     }
 
-    public Optional<InsurancePolicy> getPolicy() {
+    public InsurancePolicy getPolicy() {
         return policy;
     }
 
@@ -157,7 +156,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("insurance policy", policy.map(InsurancePolicy::toString).orElse("-"))
+                .add("insurance policy", policy)
                 .add("tags", tags)
                 .add("reminders", reminders)
                 .toString();

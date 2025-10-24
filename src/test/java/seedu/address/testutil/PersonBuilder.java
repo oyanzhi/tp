@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -32,7 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private ArrayList<Reminder> reminders;
-    private Optional<InsurancePolicy> policy;
+    private InsurancePolicy policy;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -43,7 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         reminders = new ArrayList<>();
-        policy = Optional.empty();
+        policy = new InsurancePolicy(DEFAULT_POLICY);
     }
 
     /**
@@ -113,13 +112,7 @@ public class PersonBuilder {
      * Sets the {@code Insurance Policy} of the {@code Person} that we are building.
      */
     public PersonBuilder withPolicy(String policy) {
-        this.policy = Optional.of(new InsurancePolicy(policy));
-        return this;
-    }
-
-    /** Clears the insurance policy (explicit absence). */
-    public PersonBuilder withoutPolicy() {
-        this.policy = Optional.empty();
+        this.policy = new InsurancePolicy(policy);
         return this;
     }
 

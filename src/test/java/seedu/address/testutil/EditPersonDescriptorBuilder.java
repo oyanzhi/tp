@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -87,11 +86,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code InsurancePolicy} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPolicy(String policy) {
-        if (policy != null && !policy.trim().isEmpty()) {
-            descriptor.setPolicy(Optional.of(new InsurancePolicy(policy)));
-        } else {
-            descriptor.setPolicy(Optional.empty());
-        }
+        descriptor.setPolicy(new InsurancePolicy(policy));
         return this;
     }
 

@@ -3,7 +3,6 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -72,7 +71,7 @@ class JsonAdaptedPerson {
         reminders.addAll(source.getReminders().stream()
                 .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
-        policy = source.getPolicy().map(InsurancePolicy::toString).orElse(null);
+        policy = source.getPolicy().toString();
     }
 
     /**
@@ -126,15 +125,13 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<Reminder> modelReminder = new ArrayList<>(personReminders);
 
-        final Optional<InsurancePolicy> modelPolicy;
         if (policy == null) {
-            modelPolicy = Optional.empty();
-        } else {
-            if (!InsurancePolicy.isValidPolicy(policy)) {
-                throw new IllegalValueException(InsurancePolicy.MESSAGE_CONSTRAINTS);
-            }
-            modelPolicy = Optional.of(new InsurancePolicy(policy));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "InsurancePolicy"));
         }
+        if (!InsurancePolicy.isValidPolicy(policy)) {
+            throw new IllegalValueException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+        }
+        final InsurancePolicy modelPolicy = new InsurancePolicy(policy);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder,
                 modelPolicy);
