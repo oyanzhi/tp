@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -27,7 +29,9 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private Set<Reminder> reminders;
+    private ArrayList<Reminder> reminders;
+    private ArrayList<MeetingNote> meetingNotes;
+    private boolean starred;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -37,7 +41,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        reminders = new HashSet<>();
+        reminders = new ArrayList<>();
+        meetingNotes = new ArrayList<>();
+        starred = false;
     }
 
     /**
@@ -49,7 +55,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        reminders = new HashSet<>(personToCopy.getReminders());
+        reminders = new ArrayList<>(personToCopy.getReminders());
+        meetingNotes = new ArrayList<>(personToCopy.getMeetingNotes());
+        starred = personToCopy.isStarred();
     }
 
     /**
@@ -101,8 +109,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Starred} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStarred(String starred) {
+        this.starred = Boolean.parseBoolean(starred);;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, reminders);
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred);
     }
 
 }

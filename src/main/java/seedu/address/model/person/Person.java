@@ -3,20 +3,23 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderSorter;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -26,19 +29,25 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Reminder> reminders = new HashSet<>();
+    private final ArrayList<Reminder> reminders = new ArrayList<>();
+    private final ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
+    private final boolean starred;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Reminder> reminders) {
-        requireAllNonNull(name, phone, email, address, tags, reminders);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  ArrayList<Reminder> reminders, ArrayList<MeetingNote> meetingNotes,
+                  boolean starred) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, meetingNotes, starred);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
+        this.meetingNotes.addAll(meetingNotes);
+        this.starred = starred;
     }
 
     public Name getName() {
@@ -66,10 +75,70 @@ public class Person {
     }
 
     /**
+     * Returns the list of meeting notes tagged to this person
+     */
+    public ArrayList<MeetingNote> getMeetingNotes() {
+        return new ArrayList<>(meetingNotes);
+    }
+
+    /**
+     * @param meetingNote to be added to the person
+     * @return if the person already has a similar meeting note
+     */
+    public boolean hasMeetingNote(MeetingNote meetingNote) {
+        requireNonNull(meetingNote);
+        return meetingNotes.contains(meetingNote);
+    }
+
+    /**
+     * @param meetingNote to be added to the person
+     * @return Person that has the meeting note added to them
+     */
+    public Person addMeetingNote(MeetingNote meetingNote) {
+        requireNonNull(meetingNote);
+
+        // Defensive copy of the existing meeting notes to avoid modifying the original set
+        ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(meetingNotes);
+        updatedMeetingNotes.add(meetingNote);
+
+        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes, starred);
+    }
+
+    /**
+     * @param meetingNote to be removed
+     * @return Person with the meeting note removed
+     */
+    public Person removeMeetingNote(MeetingNote meetingNote) {
+        requireNonNull(meetingNote);
+
+        ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(this.meetingNotes);
+        updatedMeetingNotes.remove(meetingNote);
+
+        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes, starred);
+    }
+
+
+    /**
      * Returns the list of reminders tagged to this person
      */
-    public Set<Reminder> getReminders() {
-        return Collections.unmodifiableSet(reminders);
+    public ArrayList<Reminder> getReminders() {
+        return new ArrayList<>(reminders);
+    }
+
+    /**
+     * Returns the boolean favourite state of person
+     */
+    public boolean isStarred() {
+        return this.starred;
+    }
+
+    /**
+     * @param starred boolean that starred will be set to
+     * @return Person that has starred set to the parameter
+     */
+    public Person rebuildWithStarredStatus(boolean starred) {
+        requireNonNull(starred);
+        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred);
     }
 
     /**
@@ -89,10 +158,25 @@ public class Person {
         requireNonNull(reminder);
 
         // Defensive copy of the existing reminders to avoid modifying the original set
-        Set<Reminder> updatedReminders = new HashSet<>(reminders);
+        ArrayList<Reminder> updatedReminders = new ArrayList<>(reminders);
         updatedReminders.add(reminder);
+        updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders);
+        return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes, starred);
+    }
+
+    /**
+     * @param reminder to be removed
+     * @return Person with the reminder removed
+     */
+    public Person removeReminder(Reminder reminder) {
+        requireNonNull(reminder);
+
+        ArrayList<Reminder> updatedReminders = new ArrayList<>(this.reminders);
+        updatedReminders.remove(reminder);
+        updatedReminders.sort(new ReminderSorter());
+
+        return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes, starred);
     }
 
     /**
@@ -141,6 +225,12 @@ public class Person {
     }
 
     @Override
+    public int compareTo(Person other) {
+        // Default sorting by name
+        return this.name.compareTo(other.name);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
@@ -149,6 +239,8 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("reminders", reminders)
+                .add("meeting notes", meetingNotes)
+                .add("starred", starred)
                 .toString();
     }
 

@@ -60,6 +60,28 @@ public class Reminder {
         return true;
     }
 
+    /**
+     * Guarantees immutable from final field
+     */
+    public String getHeader() {
+        return this.header;
+    }
+
+    /**
+     * Guarantees immutable from final field
+     */
+    public LocalDateTime getDeadline() {
+        return this.deadline;
+    }
+
+    public int compareDeadline(Reminder otherReminder) {
+        return this.deadline.compareTo(otherReminder.deadline);
+    }
+
+    public int compareHeader(Reminder otherReminder) {
+        return this.header.compareTo(otherReminder.header);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(header, deadline);

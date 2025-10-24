@@ -1,4 +1,4 @@
----
+ ---
   layout: default.md
     title: "User Guide"
     pageNav: 3
@@ -114,8 +114,9 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -171,6 +172,9 @@ Format: `reminder INDEX h/HEADER d/DEADLINE`
 * Adds a reminder to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Both the header and deadline must be provided.
+* Only one reminder can be added at a time.
+* More than one reminder can be added to each person.
 
 Examples:
 
@@ -179,18 +183,87 @@ Examples:
 
 ### Deleting a reminder : `rDelete`
 
-Deletes the specified person from the address book.
+Deletes a reminder from a specified person from the address book.
 
 Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
 * Deletes the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
 * The indices refer to the index number shown in the displayed person list.
 * The indices **must be positive integers** 1, 2, 3, …​
+* Both the client index and reminder index must be provided.
+* Only one reminder can be deleted at a time.
 
 Examples:
 
 * `list` followed by `rDelete 2 1` deletes the 1st reminder of the 2nd person in the address book.
 * `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st person in the results of the `find`
+  command.
+
+### Archiving a person : `archive`
+
+Archives the specified person from the address book.
+
+Format: `archive INDEX`
+
+* Archives the peron at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Only one person can be archived at a time.
+
+Examples:
+
+* `list` followed by `archive 1` archives the 1st person in the list
+* `list` followed by `archive 2` archives the 2nd person in the list
+
+### Unarchiving a person : `unarchive`
+
+Unarchive the specified person from the address book.
+
+Format: `unarchive INDEX`
+
+* Unarchives the person at the specified `INDEX`
+* The index refers to the index number shown in the archived person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Only one person can be unarchived at a time.
+
+Examples:
+
+* `archivelist` followed by `unarchive 1` unarchives the 1st person in the list
+* `archivelist` followed by `unarchive 2` unarchives the 2nd person in the list
+### Adding a meeting note : `note`
+
+Adds a meeting note to the specified person from the address book.
+
+Format: `note INDEX NOTE`
+
+* Adds a meeting note to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The note cannot be empty. 
+* Only one meeting note can be added at a time.
+* More than one meeting note can be added to each person.
+
+Examples:
+
+* `note 1 Client is interested in policy abc`
+* `note 2 Client wants to renew policy`
+
+### Deleting a meeting note : `nDelete`
+
+Deletes a meeting note from a specified person from the address book.
+
+Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
+
+* Deletes the meeting note at the specified `MEETING_NOTE_INDEX` of the specified person at `CLIENT_INDEX`.
+* The indices refer to the index number shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Both the client index and meeting note index must be provided.
+* Only one meeting note can be deleted at a time.
+
+Examples:
+
+* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd person in the address book.
+* `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st person in the results of the `find`
   command.
 
 ### Clearing all entries : `clear`
@@ -251,14 +324,18 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
- Action       | Format, Examples                                                                                                                                                      
---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Clear**    | `clear`                                                                                                                                                               
- **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
- **Reminder** | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    
- **rDelete**  | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         
- **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
- **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
- **List**     | `list`                                                                                                                                                                
- **Help**     | `help`                                                                                                                                                                
+| Action        | Format, Examples                                                                                                                                                      |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**     | `clear`                                                                                                                                                               |
+| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Reminder**  | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    |
+| **rDelete**   | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         |
+| **Archive**   | `archive INDEX`<br> e.g., `archive 1`                                                                                                                                 |
+| **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                             |  
+| **Note**      | `note INDEX NOTE`<br> e.g., `note 1 Client wants to know about policy abc`
+| **nDelete**   | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`
+| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
+| **List**      | `list`
+| **Help**      | `help`                                                                                                                                                                

@@ -1,16 +1,22 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 
 /**
@@ -29,9 +35,10 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+    private final int displayedIndex;
 
     @FXML
-    private HBox cardPane;
+    private SplitPane cardPane;
     @FXML
     private Label name;
     @FXML
@@ -43,11 +50,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label starred;
+    @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane reminders;
+    private VBox leftBox;
     @FXML
     private AnchorPane remindersPlaceholder;
+    @FXML
+    private AnchorPane meetingNotesPlaceholder;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,24 +66,107 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        this.displayedIndex = displayedIndex;
+
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        if (person.isStarred()) {
+            starred.setText("★");
+            starred.setStyle("-fx-text-fill: gold; -fx-font-size: 16px;");
+        } else {
+            starred.setText("");
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        ObservableList<String> tempReminders = FXCollections.observableArrayList(
-                "Call to review policy renewal on 21/11/2025 14:30",
-                "Send birthday voucher on 03/12/2025",
-                "Follow-up: claim form status next Mon"
-        );
-        ReminderListPanel reminderListPanel = new ReminderListPanel(tempReminders);
+
+        ObservableList<String> reminderTexts = deriveReminderTexts(person);
+        ReminderListPanel reminderListPanel = new ReminderListPanel(reminderTexts);
         remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
+        Region remindersRoot = reminderListPanel.getRoot();
+        remindersPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
+        remindersPlaceholder.maxHeightProperty().bind(leftBox.heightProperty());
+        remindersRoot.prefHeightProperty().bind(leftBox.heightProperty());
+        remindersRoot.maxHeightProperty().bind(leftBox.heightProperty());
         AnchorPane.setTopAnchor(reminderListPanel.getRoot(), 0.0);
         AnchorPane.setLeftAnchor(reminderListPanel.getRoot(), 0.0);
         AnchorPane.setRightAnchor(reminderListPanel.getRoot(), 0.0);
+        AnchorPane.setBottomAnchor(reminderListPanel.getRoot(), 0.0);
 
+        ObservableList<String> meetingNoteTexts = deriveMeetingNoteTexts(person);
+        MeetingNoteListPanel meetingNoteListPanel = new MeetingNoteListPanel(meetingNoteTexts);
+        meetingNotesPlaceholder.getChildren().add(meetingNoteListPanel.getRoot());
+        Region notesRoot = meetingNoteListPanel.getRoot();
+        meetingNotesPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
+        meetingNotesPlaceholder.maxHeightProperty().bind(leftBox.heightProperty());
+        notesRoot.prefHeightProperty().bind(leftBox.heightProperty());
+        notesRoot.maxHeightProperty().bind(leftBox.heightProperty());
+        AnchorPane.setTopAnchor(notesRoot, 0.0);
+        AnchorPane.setLeftAnchor(notesRoot, 0.0);
+        AnchorPane.setRightAnchor(notesRoot, 0.0);
+        AnchorPane.setBottomAnchor(notesRoot, 0.0);
+
+        reminderListPanel.getRoot().minWidthProperty().set(150);
+        meetingNoteListPanel.getRoot().minWidthProperty().set(150);
+
+        // Ensure equal default width for reminders and meeting notes
+        cardPane.setDividerPositions(0.33, 0.66);
+        //prevents resizing of boxes
+        // cardPane.getDividers().forEach(divider -> divider.positionProperty().addListener((obs, oldVal, newVal) -> {
+        //     Platform.runLater(() -> cardPane.setDividerPositions(0.33, 0.66))
+        // }));
+
+
+    }
+
+    /**
+     * Returns observable display strings for this person's reminders with minimal coupling.
+     * Works with any of the following model shapes:
+     *   {@code person.getReminderStrings() -> Collection<String>} (or {@code String[]} )
+     *   {@code person.getReminders() -> Collection<?>} (or {@code Object[]} ), using {@code toString()}
+     *   Falls back to empty if neither exists.
+     */
+    private ObservableList<String> deriveReminderTexts(Person p) {
+        Collection<Reminder> src = p.getReminders();
+        List<Reminder> list = new ArrayList<>(src);
+
+        List<String> out = new ArrayList<>(list.size());
+        for (Reminder r : list) {
+            out.add(String.valueOf(r));
+        }
+        return javafx.collections.FXCollections.observableArrayList(out);
+    }
+
+    private ObservableList<String> deriveMeetingNoteTexts(Person p) {
+        Collection<MeetingNote> src = p.getMeetingNotes();
+        List<MeetingNote> list = new ArrayList<>(src);
+
+        List<String> out = new ArrayList<>(list.size());
+        for (MeetingNote n : list) {
+            out.add(String.valueOf(n));
+        }
+        return javafx.collections.FXCollections.observableArrayList(out);
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PersonCard)) {
+            return false;
+        }
+
+        // state check
+        PersonCard card = (PersonCard) other;
+        return displayedIndex == card.displayedIndex
+                && Objects.equals(person, card.person);
     }
 }
