@@ -17,7 +17,9 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
-Class Person
+Class Person {
+    +isStarred : Boolean
+}
 Class Address
 Class Email
 Class Name
