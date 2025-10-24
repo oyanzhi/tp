@@ -52,6 +52,29 @@ public class PersonTest {
     }
 
     @Test
+    public void compareTo() {
+        // Test when two persons have the same name
+        Person personWithSameName = new PersonBuilder(ALICE).build();
+        assertEquals(0, ALICE.compareTo(personWithSameName));
+
+        // Test when two persons have different names
+        Person personWithDifferentName = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertTrue(ALICE.compareTo(personWithDifferentName) < 0);
+
+        // Test when name of person is greater
+        Person personWithLargerName = new PersonBuilder(ALICE).withName("Zoe").build();
+        assertTrue(ALICE.compareTo(personWithLargerName) < 0);
+
+        // Test when name of person is smaller
+        Person personWithSmallerName = new PersonBuilder(ALICE).withName("Abel").build();
+        assertTrue(ALICE.compareTo(personWithSmallerName) > 0);
+
+        // Test comparing to null, should throw a NullPointerException
+        assertThrows(NullPointerException.class, () -> ALICE.compareTo(null));
+    }
+
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
@@ -94,7 +117,8 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags()
-                + ", reminders=" + ALICE.getReminders() + "}";
+                + ", reminders=" + ALICE.getReminders() + ", meeting notes=" + ALICE.getMeetingNotes()
+                + ", starred=" + ALICE.isStarred() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

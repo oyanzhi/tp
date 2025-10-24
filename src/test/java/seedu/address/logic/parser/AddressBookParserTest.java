@@ -7,25 +7,34 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMeetingNoteCommand;
 import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMeetingNoteCommand;
 import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditReminderCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.StarCommand;
+import seedu.address.logic.commands.UnstarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -45,9 +54,44 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addMeetingNote() throws Exception {
+        String note = "Client wants to know more about abc policy";
+        String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
+        MeetingNote meetingNote = new MeetingNote(note, date);
+
+        AddMeetingNoteCommand command = (AddMeetingNoteCommand) parser.parseCommand(
+                AddMeetingNoteCommand.COMMAND_WORD + " 1 " + note);
+        assertEquals(new AddMeetingNoteCommand(INDEX_FIRST_PERSON, meetingNote), command);
+    }
+
+    @Test
+    public void parseCommand_addReminder() throws Exception {
+        Reminder reminder = new Reminder("meeting soon", "2026-10-10 09:00");
+
+        String commandString = AddReminderCommand.COMMAND_WORD
+                + " 1 "
+                + "h/meeting soon "
+                + "d/2026-10-10 09:00";
+
+        // Parse the command
+        AddReminderCommand command = (AddReminderCommand) parser.parseCommand(commandString);
+
+        // Assert that the parser returns the expected AddReminderCommand
+        assertEquals(new AddReminderCommand(INDEX_FIRST_PERSON, reminder), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteMeetingNote() throws Exception {
+        DeleteMeetingNoteCommand command = (DeleteMeetingNoteCommand) parser.parseCommand(
+                DeleteMeetingNoteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteMeetingNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -117,6 +161,24 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_editReminder() throws Exception {
+        String reminderHeader = "Test Parser";
+        String reminderDeadline = "2030-10-10 10:00";
+        Reminder reminder = new Reminder(reminderHeader, reminderDeadline);
+
+        String commandString = EditReminderCommand.COMMAND_WORD
+                + " 1 1 "
+                + "h/" + reminderHeader + " "
+                + "d/" + reminderDeadline;
+
+        EditReminderCommand command = (EditReminderCommand) parser.parseCommand(commandString);
+
+        Index reminderIndex = Index.fromOneBased(1);
+
+        assertEquals(new EditReminderCommand(INDEX_FIRST_PERSON, reminderIndex, reminder), command);
+    }
+
+    @Test
     public void parseCommand_archive() throws Exception {
         // Archive the first person
         ArchiveCommand command = (ArchiveCommand) parser.parseCommand(
@@ -127,6 +189,20 @@ public class AddressBookParserTest {
         ArchiveCommand commandWithSpaces = (ArchiveCommand) parser.parseCommand(
                 ArchiveCommand.COMMAND_WORD + "   " + INDEX_FIRST_PERSON.getOneBased() + "   ");
         assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), commandWithSpaces);
+    }
+
+    @Test
+    public void parseCommand_star() throws Exception {
+        StarCommand command = (StarCommand) parser.parseCommand(
+                StarCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new StarCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_unstar() throws Exception {
+        UnstarCommand command = (UnstarCommand) parser.parseCommand(
+                UnstarCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new UnstarCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
