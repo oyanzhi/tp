@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -41,6 +42,8 @@ public class CommandTestUtil {
     public static final String VALID_REMINDER_HEADER_AMY = "Meeting Client";
     public static final String VALID_REMINDER_HEADER_BOB = "Birthday";
     public static final String VALID_REMINDER_DEADLINE = "2025-12-25 09:00";
+    public static final String VALID_POLICY_AMY = "AIB Secure Plan";
+    public static final String VALID_POLICY_BOB = "AIB AShield Plus";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -55,12 +58,15 @@ public class CommandTestUtil {
     public static final String REMINDER_HEADER_DESC_AMY = " " + PREFIX_HEADER + VALID_REMINDER_HEADER_AMY;
     public static final String REMINDER_HEADER_DESC_BOB = " " + PREFIX_HEADER + VALID_REMINDER_HEADER_BOB;
     public static final String REMINDER_DEADLINE_DESC = " " + PREFIX_DEADLINE + VALID_REMINDER_DEADLINE;
+    public static final String POLICY_DESC_AMY = " " + PREFIX_POLICY + VALID_POLICY_AMY;
+    public static final String POLICY_DESC_BOB = " " + PREFIX_POLICY + VALID_POLICY_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_POLICY_DESC = " " + PREFIX_POLICY.getPrefix() + " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
