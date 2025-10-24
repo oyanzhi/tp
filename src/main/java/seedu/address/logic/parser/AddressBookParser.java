@@ -108,6 +108,7 @@ public class AddressBookParser {
 
         case UnarchiveCommand.COMMAND_WORD:
             return new UnarchiveCommandParser().parse(arguments);
+
         case AddMeetingNoteCommand.COMMAND_WORD:
             return new AddMeetingNoteCommandParser().parse(arguments);
 
