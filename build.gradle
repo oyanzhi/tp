@@ -73,7 +73,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'FinHub.jar'
 }
 
 defaultTasks 'clean', 'test'

@@ -150,7 +150,8 @@ class JsonAdaptedPerson {
         final ArrayList<Reminder> modelReminder = new ArrayList<>(personReminders);
 
         if (policy == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "InsurancePolicy"));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePolicy.class.getSimpleName()));
         }
         if (!InsurancePolicy.isValidPolicy(policy)) {
             throw new IllegalValueException(InsurancePolicy.MESSAGE_CONSTRAINTS);

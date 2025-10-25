@@ -12,8 +12,6 @@ public class InsurancePolicy {
     public static final String MESSAGE_CONSTRAINTS = "Insurance policy must have a name";
 
     private final String value;
-
-
     /**
      * Constructs an {@code InsurancePolicy}.
      * Trims leading/trailing whitespace and validates constraints.
