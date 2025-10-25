@@ -79,9 +79,8 @@ public class DeleteReminderCommandTest {
     @Test
     public void execute_invalidClientIndex_fail() {
         List<Person> personList = model.getFilteredPersonList();
-        Person personToDeleteFrom = personList.get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Index invalidClientIndex = Index.fromOneBased(personToDeleteFrom.getReminders().size() + 1);
+        Index invalidClientIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
 
         DeleteReminderCommand deleteReminderCommand = new DeleteReminderCommand(invalidClientIndex,
                 INDEX_FIRST_REMINDER);

@@ -30,6 +30,7 @@ public class Person implements Comparable<Person> {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
+    private final InsurancePolicy policy;
     private final boolean isArchived;
     private final ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
     private final boolean starred;
@@ -38,15 +39,16 @@ public class Person implements Comparable<Person> {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ArrayList<Reminder> reminders, ArrayList<MeetingNote> meetingNotes,
+                  ArrayList<Reminder> reminders, InsurancePolicy policy, ArrayList<MeetingNote> meetingNotes,
                   boolean starred) {
-        requireAllNonNull(name, phone, email, address, tags, reminders, meetingNotes, starred);
+        requireAllNonNull(name, phone, email, address, tags, reminders, policy, meetingNotes, starred);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.reminders.addAll(reminders);
+        this.policy = policy;
         this.meetingNotes.addAll(meetingNotes);
         this.starred = starred;
         this.isArchived = false;
@@ -56,14 +58,15 @@ public class Person implements Comparable<Person> {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ArrayList<Reminder> reminders, ArrayList<MeetingNote> meetingNotes,
+                  ArrayList<Reminder> reminders, InsurancePolicy policy, ArrayList<MeetingNote> meetingNotes,
                   boolean starred, boolean isArchived) {
-        requireAllNonNull(name, phone, email, address, tags, reminders, meetingNotes, starred, isArchived);
+        requireAllNonNull(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, isArchived);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.policy = policy;
         this.meetingNotes.addAll(meetingNotes);
         this.starred = starred;
         this.isArchived = isArchived;
@@ -83,6 +86,10 @@ public class Person implements Comparable<Person> {
 
     public Address getAddress() {
         return address;
+    }
+
+    public InsurancePolicy getPolicy() {
+        return policy;
     }
 
     /**
@@ -120,7 +127,7 @@ public class Person implements Comparable<Person> {
         ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(meetingNotes);
         updatedMeetingNotes.add(meetingNote);
 
-        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes, starred);
+        return new Person(name, phone, email, address, tags, reminders, policy, updatedMeetingNotes, starred);
     }
 
     /**
@@ -133,7 +140,7 @@ public class Person implements Comparable<Person> {
         ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(this.meetingNotes);
         updatedMeetingNotes.remove(meetingNote);
 
-        return new Person(name, phone, email, address, tags, reminders, updatedMeetingNotes, starred);
+        return new Person(name, phone, email, address, tags, reminders, policy, updatedMeetingNotes, starred);
     }
 
 
@@ -157,7 +164,7 @@ public class Person implements Comparable<Person> {
      */
     public Person rebuildWithStarredStatus(boolean starred) {
         requireNonNull(starred);
-        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred);
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred);
     }
 
     /**
@@ -181,7 +188,7 @@ public class Person implements Comparable<Person> {
         updatedReminders.add(reminder);
         updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes, starred);
+        return new Person(name, phone, email, address, tags, updatedReminders, policy, meetingNotes, starred);
     }
 
     /**
@@ -195,7 +202,7 @@ public class Person implements Comparable<Person> {
         updatedReminders.remove(reminder);
         updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders, meetingNotes, starred);
+        return new Person(name, phone, email, address, tags, updatedReminders, policy, meetingNotes, starred);
     }
 
     public boolean isArchived() {
@@ -203,11 +210,11 @@ public class Person implements Comparable<Person> {
     }
 
     public Person archive() {
-        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred, true);
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, true);
     }
 
     public Person unarchive() {
-        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred, false);
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, false);
     }
 
     /**
@@ -244,6 +251,7 @@ public class Person implements Comparable<Person> {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
+                && policy.equals(otherPerson.policy)
                 && isArchived == otherPerson.isArchived;
         //TODO - Update to include reminders
         //may not need to implement as reminders is not core identity of person
@@ -269,6 +277,7 @@ public class Person implements Comparable<Person> {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("insurance policy", policy)
                 .add("tags", tags)
                 .add("reminders", reminders)
                 .add("meeting notes", meetingNotes)

@@ -52,6 +52,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label starred;
     @FXML
+    private Label policy;
+    @FXML
     private FlowPane tags;
     @FXML
     private VBox leftBox;
@@ -73,6 +75,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        policy.setText(person.getPolicy().toString());
         if (person.isStarred()) {
             starred.setText("★");
             starred.setStyle("-fx-text-fill: gold; -fx-font-size: 16px;");
