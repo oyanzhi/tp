@@ -23,7 +23,7 @@ tasks done faster than traditional GUI apps.
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your FinHub.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FinHub.jar`
    command to run the application.<br>
@@ -365,22 +365,22 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
+FinHub data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 <br>
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/finhub.json`. Advanced users are
+FinHub data are saved automatically as a JSON file `[JAR file location]/data/finhub.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty
+If your changes to the data file makes its format invalid, FinHub will discard all data and start with an empty
 data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside
+Furthermore, certain edits can cause the FinHub to behave in unexpected ways (e.g., if a value entered is outside
 the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
@@ -396,7 +396,7 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
