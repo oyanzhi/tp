@@ -1,8 +1,20 @@
 @startuml
 !include style.puml
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor #FFFFFF
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+show members
+hide empty members
+
+Class Person {
+    +isStarred : Boolean
+}
+
+Class Person {
+    -isArchived : Boolean
+    }
 
 AddressBook *-right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
@@ -18,4 +30,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> "*" MeetingNote
+Person *--> InsurancePolicy
+Person -right> "*" Reminder
 @enduml

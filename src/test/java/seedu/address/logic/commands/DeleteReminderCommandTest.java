@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.DeleteReminderCommand.MESSAGE_DELETE_REMINDER_SUCCESS;
+import static seedu.address.logic.commands.DeleteReminderCommand.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -64,7 +65,7 @@ public class DeleteReminderCommandTest {
                 INDEX_FIRST_REMINDER);
 
         String expectedMessage = String.format(MESSAGE_DELETE_REMINDER_SUCCESS,
-                Messages.format(personToDeleteFrom),
+                personToDeleteFrom.getName(),
                 INDEX_FIRST_REMINDER.getOneBased(),
                 reminderToDelete);
 
@@ -72,6 +73,46 @@ public class DeleteReminderCommandTest {
             assertEquals(deleteReminderCommand.execute(model).getFeedbackToUser(), expectedMessage);
         } catch (CommandException e) {
             fail();
+        }
+    }
+
+    @Test
+    public void execute_invalidClientIndex_fail() {
+        List<Person> personList = model.getFilteredPersonList();
+
+        Index invalidClientIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+
+        DeleteReminderCommand deleteReminderCommand = new DeleteReminderCommand(invalidClientIndex,
+                INDEX_FIRST_REMINDER);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+
+        try {
+            deleteReminderCommand.execute(model);
+        } catch (CommandException e) {
+            System.out.println(e.getMessage());
+            assertEquals(e.getMessage(), expectedMessage);
+        }
+    }
+
+    @Test
+    public void execute_invalidReminderIndex_fail() {
+        List<Person> personList = model.getFilteredPersonList();
+        Person personToDeleteFrom = personList.get(INDEX_FIRST_PERSON.getZeroBased());
+
+        ArrayList<Reminder> reminderList = personToDeleteFrom.getReminders();
+
+        Index invalidReminderIndex = Index.fromOneBased(reminderList.size() + 1);
+
+        String expectedMessage = MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX;
+
+        DeleteReminderCommand deleteReminderCommand = new DeleteReminderCommand(INDEX_FIRST_PERSON,
+                invalidReminderIndex);
+
+        try {
+            deleteReminderCommand.execute(model);
+        } catch (CommandException e) {
+            assertEquals(e.getMessage(), expectedMessage);
         }
     }
 

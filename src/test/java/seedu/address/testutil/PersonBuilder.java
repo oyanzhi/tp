@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InsurancePolicy;
@@ -32,6 +33,8 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private ArrayList<Reminder> reminders;
     private InsurancePolicy policy;
+    private ArrayList<MeetingNote> meetingNotes;
+    private boolean starred;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -43,6 +46,8 @@ public class PersonBuilder {
         tags = new HashSet<>();
         reminders = new ArrayList<>();
         policy = new InsurancePolicy(DEFAULT_POLICY);
+        meetingNotes = new ArrayList<>();
+        starred = false;
     }
 
     /**
@@ -56,6 +61,8 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         reminders = new ArrayList<>(personToCopy.getReminders());
         policy = personToCopy.getPolicy();
+        meetingNotes = new ArrayList<>(personToCopy.getMeetingNotes());
+        starred = personToCopy.isStarred();
     }
 
     /**
@@ -116,8 +123,20 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Starred} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStarred(String starred) {
+        this.starred = Boolean.parseBoolean(starred);;
+        return this;
+    }
+
+    /**
+     * Builds a {@code Person} with the default details.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags, reminders, policy);
+        return new Person(name, phone, email, address, tags,
+                reminders, policy, meetingNotes, starred);
     }
 
 }

@@ -26,33 +26,61 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
+            .withEmail("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111")
             .withTags("friends")
+            .withReminders("Meeting with Bob", "2025-12-15 10:00")
             .withPolicy("AIB Lifetime Cover")
+            .withStarred("false")
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+            .withPhone("98765432")
+            .withEmail("johnd@example.com")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withReminders("Meet Carl", "2026-10-12 09:00")
+            .withReminders("Payback Money", "2025-12-12 14:30")
             .withPolicy("AIB HealthShield Gold Max")
+            .withStarred("true")
             .build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street")
-            .withPolicy("AIB HealthShield Gold Max").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
-            .withPolicy("AIB HealthShield Gold").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave")
-            .withPolicy("AIB HealthShield Gold").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withPolicy("AIB HealthShield Gold").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street")
-            .withPolicy("AIB HealthShield Gold").build();
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
+            .withPhone("95352563")
+            .withEmail("heinz@example.com")
+            .withAddress("wall street")
+            .withPolicy("AIB HealthShield Gold Max")
+            .withStarred("false")
+            .build();
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
+            .withPhone("87652533")
+            .withEmail("cornelia@example.com")
+            .withAddress("10th street")
+            .withTags("friends")
+            .withPolicy("AIB HealthShield Gold")
+            .withStarred("false")
+            .build();
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
+            .withPhone("9482224")
+            .withEmail("werner@example.com")
+            .withAddress("michegan ave")
+            .withPolicy("AIB HealthShield Gold")
+            .withStarred("false")
+            .build();
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
+            .withPhone("9482427")
+            .withEmail("lydia@example.com")
+            .withAddress("little tokyo")
+            .withReminders("Doctor's Appointment", "2025-11-16 09:00")
+            .withReminders("Police's Appointment", "2025-12-16 09:00")
+            .withPolicy("AIB HealthShield Gold")
+            .withStarred("true")
+            .build();
+    public static final Person GEORGE = new PersonBuilder().withName("George Best")
+            .withPhone("9482442")
+            .withEmail("anna@example.com")
+            .withAddress("4th street")
+            .withPolicy("AIB HealthShield Gold")
+            .withStarred("false")
+            .build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

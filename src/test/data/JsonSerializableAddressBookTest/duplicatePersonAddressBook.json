@@ -11,12 +11,21 @@
         "deadline": "2025-12-15 10:00"
       }
     ],
-    "policy": "AIA HealthShield Gold"
+    "policy": "AIA HealthShield Gold",
+    "starred": "false"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "policy": "AIA HealthShield Gold"
+    "tags": [ "friends" ],
+    "reminders": [
+      {
+        "header": "Meeting with Bob",
+        "deadline": "2025-12-15 10:00"
+      }
+    ],
+    "policy": "AIA HealthShield Gold",
+    "starred": "false"
   } ]
 }

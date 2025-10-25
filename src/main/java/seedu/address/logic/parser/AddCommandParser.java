@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InsurancePolicy;
@@ -43,8 +44,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL
-                , PREFIX_ADDRESS, PREFIX_POLICY);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS, PREFIX_POLICY);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -53,8 +54,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         // add command does not allow adding reminders straight away
         ArrayList<Reminder> reminderList = new ArrayList<>();
         InsurancePolicy policy = ParserUtil.parsePolicy(argMultimap.getValue(PREFIX_POLICY).get());
-
-        Person person = new Person(name, phone, email, address, tagList, reminderList, policy);
+        // add command does not allow adding meeting notes straight away
+        ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
+        // add command does not allow adding starred straight away
+        boolean starred = false;
+        Person person = new Person(name, phone, email, address, tagList, reminderList, policy, meetingNotes, starred);
 
         return new AddCommand(person);
     }

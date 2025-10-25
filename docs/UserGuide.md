@@ -1,13 +1,13 @@
- ---
+---
   layout: default.md
-    title: "User Guide"
-    pageNav: 3
+  title: "User Guide"
+  pageNav: 3
 ---
 
 # FinHub User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Line Interface** (CLI) while
-still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management
+FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimized for use via a Line Interface** (CLI) while
+still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
 tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
@@ -21,11 +21,11 @@ tasks done faster than traditional GUI apps.
    **Mac users:** Ensure you have the precise JDK version
    prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F09-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar`
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FinHub.jar`
    command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -78,6 +78,8 @@ tasks done faster than traditional GUI apps.
   as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
+<br>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -86,11 +88,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+<br>
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
 <box type="tip" seamless>
 
@@ -100,7 +104,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal ip/AIB LifePlan`
+
+<br>
 
 ### Listing all persons : `list`
 
@@ -108,14 +114,16 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+<br>
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
-* Edits the person at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed person list. 
+* Edits the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -128,6 +136,8 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+<br>
 
 ### Locating persons by name: `find`
 
@@ -148,6 +158,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+<br>
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -162,6 +174,8 @@ Examples:
 
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+<br>
 
 ### Adding a reminder : `reminder`
 
@@ -181,9 +195,11 @@ Examples:
 * `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`
 * `reminder 2 h/Meeting on Saturday d/2026-06-24 18:00`
 
+<br>
+
 ### Deleting a reminder : `rDelete`
 
-Deletes the specified person from the address book.
+Deletes a reminder from a specified person from the address book.
 
 Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
@@ -199,11 +215,145 @@ Examples:
 * `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st person in the results of the `find`
   command.
 
+<br>
+
+### Editing a reminder : `rEdit`
+
+Edits a specified reminder from a specified person from the address book with a new reminder.
+
+* Edits the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
+* The indices refer to the index number shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Both the client index and reminder index must be provided.
+* Only one reminder will be replaced by the new reminder at a time.
+
+Examples:
+* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd person in the
+address book to the given reminder 
+* `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st person
+in the results of the `find` command to the given reminder
+
+<br>
+
+### Archiving a person : `archive`
+
+Archives the specified person from the address book.
+
+Format: `archive INDEX`
+
+* Archives the peron at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Only one person can be archived at a time.
+
+Examples:
+
+* `list` followed by `archive 1` archives the 1st person in the list
+* `list` followed by `archive 2` archives the 2nd person in the list
+
+<br>
+
+### Unarchiving a person : `unarchive`
+
+Unarchive the specified person from the address book.
+
+Format: `unarchive INDEX`
+
+* Unarchives the person at the specified `INDEX`
+* The index refers to the index number shown in the archived person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Only one person can be unarchived at a time.
+
+Examples:
+
+* `archivelist` followed by `unarchive 1` unarchives the 1st person in the list
+* `archivelist` followed by `unarchive 2` unarchives the 2nd person in the list
+
+<br>
+
+### Adding a meeting note : `note`
+
+Adds a meeting note to the specified person from the address book.
+
+Format: `note INDEX NOTE`
+
+* Adds a meeting note to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The note cannot be empty. 
+* Only one meeting note can be added at a time.
+* More than one meeting note can be added to each person.
+
+Examples:
+
+* `note 1 Client is interested in policy abc`
+* `note 2 Client wants to renew policy`
+
+<br>
+
+### Deleting a meeting note : `nDelete`
+
+Deletes a meeting note from a specified person from the address book.
+
+Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
+
+* Deletes the meeting note at the specified `MEETING_NOTE_INDEX` of the specified person at `CLIENT_INDEX`.
+* The indices refer to the index number shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Both the client index and meeting note index must be provided.
+* Only one meeting note can be deleted at a time.
+
+Examples:
+
+* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd person in the address book.
+* `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st person in the results of the `find`
+  command.
+
+<br>
+
+### Starring a person : `star`
+
+Stars the specified person from the address book.
+
+Format: `star INDEX`
+
+* Stars the peron at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Only one person can be archived at a time.
+
+Examples:
+
+* `list` followed by `star 1` archives the 1st person in the list
+* `list` followed by `star 2` archives the 2nd person in the list
+
+<br>
+
+### Removing Star of a person : `unstar`
+
+Remove the starred status of a specified person from the address book.
+
+Format: `unstar INDEX`
+
+* Removes the starred status of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The indices **must be positive integers** 1, 2, 3, …​
+* Only one person can be unarchived at a time.
+
+Examples:
+
+* `list` followed by `unstar 1` unarchives the 1st person in the list
+* `list` followed by `unstar 2` unarchives the 2nd person in the list
+
+<br>
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+<br>
 
 ### Exiting the program : `exit`
 
@@ -211,10 +361,14 @@ Exits the program.
 
 Format: `exit`
 
+<br>
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
+
+<br>
 
 ### Editing the data file
 
@@ -229,6 +383,8 @@ data file at the next run. Hence, it is recommended to take a backup of the file
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside
 the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
+<br>
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -257,14 +413,21 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
- Action       | Format, Examples                                                                                                                                                      
---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Clear**    | `clear`                                                                                                                                                               
- **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
- **Reminder** | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    
- **rDelete**  | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         
- **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
- **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
- **List**     | `list`                                                                                                                                                                
- **Help**     | `help`                                                                                                                                                                
+| Action        | Format, Examples                                                                                                                                                        |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`|
+| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                     |
+| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |  
+| **Clear**     | `clear`                                                                                                                                                                 |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                              |
+| **List**      | `list`                                                                                                                                                                  |
+| **Reminder**  | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                      |
+| **rDelete**   | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                           |
+| **rEdit**     | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                    |
+| **Archive**   | `archive INDEX`<br> e.g., `archive 1`                                                                                                                                   |
+| **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                               |  
+| **Note**      | `note INDEX NOTE`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                              |
+| **nDelete**   | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                       |
+| **Star**      | `star INDEX`<br> e.g., `star 1`                                                                                                                                         |
+| **Unstar**    | `unstar INDEX`<br> e.g., `unstar 1`                                                                                                                                     |  
+| **Help**      | `help`                                                                                                                                                                  |

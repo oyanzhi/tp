@@ -7,7 +7,7 @@ import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteReminderCommand object
+ * Parses input arguments and creates a new DeleteReminderCommandParser object
  */
 public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand> {
 

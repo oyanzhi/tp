@@ -23,6 +23,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InsurancePolicy;
@@ -109,9 +110,12 @@ public class EditCommand extends Command {
         ArrayList<Reminder> updatedReminders = personToEdit.getReminders();
         InsurancePolicy updatedPolicy =
               editPersonDescriptor.getPolicy().orElse(personToEdit.getPolicy());
-
+        // edit command does not allow editing of meeting notes
+        ArrayList<MeetingNote> updatedMeetingNotes = personToEdit.getMeetingNotes();
+        // edit command does not allow editing of starred
+        boolean isStarred = personToEdit.isStarred();
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedReminders, updatedPolicy);
+                updatedTags, updatedReminders, updatedPolicy, updatedMeetingNotes, isStarred);
     }
 
     @Override

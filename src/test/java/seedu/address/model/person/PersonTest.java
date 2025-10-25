@@ -12,13 +12,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
-import java.util.ArrayList;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -55,6 +50,29 @@ public class PersonTest {
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
+
+    @Test
+    public void compareTo() {
+        // Test when two persons have the same name
+        Person personWithSameName = new PersonBuilder(ALICE).build();
+        assertEquals(0, ALICE.compareTo(personWithSameName));
+
+        // Test when two persons have different names
+        Person personWithDifferentName = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertTrue(ALICE.compareTo(personWithDifferentName) < 0);
+
+        // Test when name of person is greater
+        Person personWithLargerName = new PersonBuilder(ALICE).withName("Zoe").build();
+        assertTrue(ALICE.compareTo(personWithLargerName) < 0);
+
+        // Test when name of person is smaller
+        Person personWithSmallerName = new PersonBuilder(ALICE).withName("Abel").build();
+        assertTrue(ALICE.compareTo(personWithSmallerName) > 0);
+
+        // Test comparing to null, should throw a NullPointerException
+        assertThrows(NullPointerException.class, () -> ALICE.compareTo(null));
+    }
+
 
     @Test
     public void equals() {
@@ -97,37 +115,12 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        String expected = EditPersonDescriptor.class.getCanonicalName()
-                + "{name=null, phone=null, email=null, address=null, tags=null, insurance policy=null}";
-        assertEquals(expected, editPersonDescriptor.toString());
-    }
-
-
-    @Test
-    public void testPersonWithPolicy() {
-        Name name = new Name("John Doe");
-        Phone phone = new Phone("98765432");
-        Email email = new Email("johndoe@example.com");
-        Address address = new Address("311, Clementi Ave 2, #02-25");
-        Set<Tag> tags = Set.of(new Tag("friends"));
-        InsurancePolicy policy = new InsurancePolicy("AIB Secure Plan");
-        Person person = new Person(name, phone, email, address, tags, new ArrayList<>(), policy);
-        assertEquals("AIB Secure Plan", person.getPolicy().toString());
-    }
-
-    @Test
-    public void testPersonEqualityWithPolicy() {
-        Name name = new Name("John Doe");
-        Phone phone = new Phone("98765432");
-        Email email = new Email("johndoe@example.com");
-        Address address = new Address("311, Clementi Ave 2, #02-25");
-        Set<Tag> tags = Set.of(new Tag("friends"));
-        InsurancePolicy policy = new InsurancePolicy("AIB Secure Plan");
-
-        Person person1 = new Person(name, phone, email, address, tags, new ArrayList<>(), policy);
-        Person person2 = new Person(name, phone, email, address, tags, new ArrayList<>(), policy);
-
-        assertTrue(person1.equals(person2));
+        String expected =
+                Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
+                + ", insurance policy=" + ALICE.getPolicy() + ", tags=" + ALICE.getTags()
+                + ", reminders=" + ALICE.getReminders() + ", meeting notes=" + ALICE.getMeetingNotes()
+                + ", starred=" + ALICE.isStarred() + "}";
+        assertEquals(expected, ALICE.toString());
     }
 }
