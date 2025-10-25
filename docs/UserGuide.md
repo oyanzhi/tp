@@ -96,15 +96,15 @@ Format: `help`
 
 <br>
 
-### Adding a person: `add`
+### Adding a client: `add`
 
-Adds a person to FinHub.
+Adds a client to FinHub.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A client can have any number of tags (including 0)
 </box>
 
 Examples:
@@ -114,40 +114,40 @@ Examples:
 
 <br>
 
-### Listing all persons : `list`
+### Listing all clients : `list`
 
-Shows a list of all persons in FinHub.
+Shows a list of all clients in FinHub.
 
 Format: `list`
 
 <br>
 
-### Editing a person : `edit`
+### Editing a client : `edit`
 
-Edits an existing person in FinHub.
+Edits an existing client in FinHub.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
-* Edits the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Edits the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
   specifying any tags after it.
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
   and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
 <br>
 
-### Locating persons by name: `find`
+### Locating clients by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -155,7 +155,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -166,37 +166,37 @@ Examples:
 
 <br>
 
-### Deleting a person : `delete`
+### Deleting a client : `delete`
 
-Deletes a specified person from FinHub.
+Deletes a specified client from FinHub.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd person in FinHub.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in FinHub.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 <br>
 
 ### Adding a reminder : `reminder`
 
-Adds a reminder to the specified person in FinHub.
+Adds a reminder to the specified client in FinHub.
 
 Format: `reminder CLIENT_INDEX h/HEADER d/DEADLINE`
 
-* Adds a reminder to the person at the specified `CLIENT_INDEX`.
+* Adds a reminder to the client at the specified `CLIENT_INDEX`.
 * A reminder consists of a `HEADER` which describes the task or event, and a `DEADLINE` which indicates when it's due.
 * `DEADLINE` should be in the format: `yyyy-MM-dd HH:mm`
-* `CLIENT_INDEX` refers to the index number of the person shown in the displayed person list.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * Both the header and deadline must be provided.
 * Only one reminder can be added at a time.
-* More than one reminder can be added to each person.
+* More than one reminder can be added to each client.
 
 Examples:
 
@@ -207,109 +207,109 @@ Examples:
 
 ### Deleting a reminder : `rDelete`
 
-Deletes a reminder from a specified person in FinHub.
+Deletes a reminder from a specified client in FinHub.
 
 Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
-* Deletes the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed person list.
+* Deletes the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
+* The indices refer to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * Only one reminder can be deleted at a time.
 
 Examples:
 
-* `list` followed by `rDelete 2 1` deletes the 1st reminder of the 2nd person in FinHub.
-* `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st person in the results of the `find`
+* `list` followed by `rDelete 2 1` deletes the 1st reminder of the 2nd client in FinHub.
+* `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st client in the results of the `find`
   command.
 
 <br>
 
 ### Editing a reminder : `rEdit`
 
-Edits a specified reminder from a specified person in FinHub.
+Edits a specified reminder from a specified client in FinHub.
 
-* Edits the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed person list.
+* Edits the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
+* The indices refer to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
-* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd person in 
+* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd client in 
 FinHub to the given reminder 
-* `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st person
+* `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st client
 in the results of the `find` command to the given reminder
 
 <br>
 
-### Archiving a person : `archive`
+### Archiving a client : `archive`
 
-Archives the specified person in FinHub.
+Archives the specified client in FinHub.
 
 Format: `archive INDEX`
 
-* Archives the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Archives the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be archived at a time.
+* Only one client can be archived at a time.
 
 Examples:
 
-* `list` followed by `archive 1` archives the 1st person in the list
-* `list` followed by `archive 2` archives the 2nd person in the list
+* `list` followed by `archive 1` archives the 1st client in the list
+* `list` followed by `archive 2` archives the 2nd client in the list
 
 <br>
 
-### Unarchiving a person : `unarchive`
+### Unarchiving a client : `unarchive`
 
-Unarchives the specified person in FinHub.
+Unarchives the specified client in FinHub.
 
 Format: `unarchive INDEX`
 
-* Unarchives the person at the specified `INDEX`
-* The index refers to the index number shown in the archived person list.
+* Unarchives the client at the specified `INDEX`
+* The index refers to the index number shown in the archived client list.
 * The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be unarchived at a time.
+* Only one client can be unarchived at a time.
 
 Examples:
 
-* `archivelist` followed by `unarchive 1` unarchives the 1st person in the list
-* `archivelist` followed by `unarchive 2` unarchives the 2nd person in the list
+* `archivelist` followed by `unarchive 1` unarchives the 1st client in the list
+* `archivelist` followed by `unarchive 2` unarchives the 2nd client in the list
 
 <br>
 
 ### Adding a meeting note : `note`
 
-Adds a meeting note to the specified person in FinHub.
+Adds a meeting note to the specified client in FinHub.
 
 Format: `note CLIENT_INDEX NOTE`
 
-* Adds a meeting note to the person at the specified `CLIENT_INDEX`
-* `CLIENT_INDEX` refers to the index number of the person shown in the displayed person list.
+* Adds a meeting note to the client at the specified `CLIENT_INDEX`
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `CLient_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The note cannot be empty. 
 * Only one meeting note can be added at a time.
-* More than one meeting note can be added to each person.
+* More than one meeting note can be added to each client.
 
 Examples:
 
 * `note 1 Client is interested in policy abc`
 * `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the 
-2nd person in FinHub. 
+2nd client in FinHub. 
 * `find Betsy` followed by `note 1 Client wants to know about about policy 2` adds the meeting note "Client wants to 
-know more about policy 2" to the 1st person in the result of the `find` command
+know more about policy 2" to the 1st client in the result of the `find` command
 <br>
 
 ### Deleting a meeting note : `nDelete`
 
-Deletes a meeting note from a specified person in FinHub.
+Deletes a meeting note from a specified client in FinHub.
 
 Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
 
-* Deletes the meeting note at the given `MEETING_NOTE_INDEX` for the person listed at `CLIENT_INDEX`.
-* `CLIENT_INDEX` refers to the index number of the person shown in the displayed person list.
-* `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified person's 
+* Deletes the meeting note at the given `MEETING_NOTE_INDEX` for the client listed at `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified client's 
 displayed meeting note list.
 * Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` **must be positive integers** 1, 2, 3, …​
 * Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` must be provided.
@@ -317,45 +317,45 @@ displayed meeting note list.
 
 Examples:
 
-* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd person in FinHub.
-* `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st person in the results of the `find`
+* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd client in FinHub.
+* `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st client in the results of the `find`
   command.
 
 <br>
 
-### Starring a person : `star`
+### Starring a client : `star`
 
-Stars the specified person in FinHub.
+Stars the specified client in FinHub.
 
 Format: `star CLIENT_INDEX`
 
-* Stars the person at the specified `CLIENT_INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Stars the client at the specified `CLIENT_INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be archived at a time.
+* Only one client can be archived at a time.
 
 Examples:
 
-* `list` followed by `star 1` archives the 1st person in the list
-* `list` followed by `star 2` archives the 2nd person in the list
+* `list` followed by `star 1` archives the 1st client in the list
+* `list` followed by `star 2` archives the 2nd client in the list
 
 <br>
 
-### Removing Star of a person : `unstar`
+### Removing Star of a client : `unstar`
 
-Remove the starred status of a specified person in FinHub.
+Remove the starred status of a specified client in FinHub.
 
 Format: `unstar CLIENT_INDEX`
 
-* Removes the starred status of the person at the specified `CLIENT_INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Removes the starred status of the client at the specified `CLIENT_INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be unarchived at a time.
+* Only one client can be unarchived at a time.
 
 Examples:
 
-* `list` followed by `unstar 1` unarchives the 1st person in the list
-* `list` followed by `unstar 2` unarchives the 2nd person in the list
+* `list` followed by `unstar 1` unarchives the 1st client in the list
+* `list` followed by `unstar 2` unarchives the 2nd client in the list
 
 <br>
 
