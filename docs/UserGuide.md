@@ -10,6 +10,12 @@ FinHub is a **desktop app for insurance agents to manage clients. It helps them 
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
 tasks done faster than traditional GUI apps.
 
+<box type="tip" seamless>
+
+**Tip:** In addition to managing standard contact fields, FinHub also allows you to add reminders and meeting notes to 
+each client. You also have the option to star or archive clients for better client organisation.
+</box>
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -181,11 +187,13 @@ Examples:
 
 Adds a reminder to the specified person in FinHub.
 
-Format: `reminder INDEX h/HEADER d/DEADLINE`
+Format: `reminder CLIENT_INDEX h/HEADER d/DEADLINE`
 
-* Adds a reminder to the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Adds a reminder to the person at the specified `CLIENT_INDEX`.
+* A reminder consists of a `HEADER` which describes the task or event, and a `DEADLINE` which indicates when it's due.
+* `DEADLINE` should be in the format: `yyyy-MM-dd HH:mm`
+* `CLIENT_INDEX` refers to the index number of the person shown in the displayed person list.
+* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * Both the header and deadline must be provided.
 * Only one reminder can be added at a time.
 * More than one reminder can be added to each person.
