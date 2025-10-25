@@ -23,7 +23,7 @@ tasks done faster than traditional GUI apps.
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for FinHub.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FinHub.jar`
    command to run the application.<br>
@@ -37,7 +37,7 @@ tasks done faster than traditional GUI apps.
     * `list` : Lists all contacts.
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
-      to the Address Book.
+      to FinHub.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -58,7 +58,7 @@ tasks done faster than traditional GUI apps.
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -92,7 +92,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to FinHub.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
@@ -110,7 +110,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in FinHub.
 
 Format: `list`
 
@@ -118,7 +118,7 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in FinHub.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
@@ -162,7 +162,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes a specified person from FinHub.
 
 Format: `delete INDEX`
 
@@ -172,14 +172,14 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in FinHub.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 <br>
 
 ### Adding a reminder : `reminder`
 
-Adds a reminder to the specified person from the address book.
+Adds a reminder to the specified person in FinHub.
 
 Format: `reminder INDEX h/HEADER d/DEADLINE`
 
@@ -199,7 +199,7 @@ Examples:
 
 ### Deleting a reminder : `rDelete`
 
-Deletes a reminder from a specified person from the address book.
+Deletes a reminder from a specified person in FinHub.
 
 Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
@@ -211,7 +211,7 @@ Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
 Examples:
 
-* `list` followed by `rDelete 2 1` deletes the 1st reminder of the 2nd person in the address book.
+* `list` followed by `rDelete 2 1` deletes the 1st reminder of the 2nd person in FinHub.
 * `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st person in the results of the `find`
   command.
 
@@ -219,7 +219,7 @@ Examples:
 
 ### Editing a reminder : `rEdit`
 
-Edits a specified reminder from a specified person from the address book with a new reminder.
+Edits a specified reminder from a specified person in FinHub.
 
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
 * The indices refer to the index number shown in the displayed person list.
@@ -228,8 +228,8 @@ Edits a specified reminder from a specified person from the address book with a 
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
-* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd person in the
-address book to the given reminder 
+* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd person in 
+FinHub to the given reminder 
 * `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st person
 in the results of the `find` command to the given reminder
 
@@ -237,11 +237,11 @@ in the results of the `find` command to the given reminder
 
 ### Archiving a person : `archive`
 
-Archives the specified person from the address book.
+Archives the specified person in FinHub.
 
 Format: `archive INDEX`
 
-* Archives the peron at the specified `INDEX`.
+* Archives the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Only one person can be archived at a time.
@@ -255,7 +255,7 @@ Examples:
 
 ### Unarchiving a person : `unarchive`
 
-Unarchive the specified person from the address book.
+Unarchives the specified person in FinHub.
 
 Format: `unarchive INDEX`
 
@@ -273,12 +273,12 @@ Examples:
 
 ### Adding a meeting note : `note`
 
-Adds a meeting note to the specified person from the address book.
+Adds a meeting note to the specified person in FinHub.
 
-Format: `note INDEX NOTE`
+Format: `note CLIENT_INDEX NOTE`
 
-* Adds a meeting note to the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Adds a meeting note to the person at the specified `CLIENT_INDEX`
+* `CLIENT_INDEX` refers to the index number of the person shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The note cannot be empty. 
 * Only one meeting note can be added at a time.
@@ -287,25 +287,29 @@ Format: `note INDEX NOTE`
 Examples:
 
 * `note 1 Client is interested in policy abc`
-* `note 2 Client wants to renew policy`
-
+* `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the 
+2nd person in FinHub. 
+* `find Betsy` followed by `note 1 Client wants to know about about policy 2` adds the meeting note "Client wants to 
+know more about policy 2" to the 1st person in the result of the `find` command
 <br>
 
 ### Deleting a meeting note : `nDelete`
 
-Deletes a meeting note from a specified person from the address book.
+Deletes a meeting note from a specified person in FinHub.
 
 Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
 
-* Deletes the meeting note at the specified `MEETING_NOTE_INDEX` of the specified person at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed person list.
+* Deletes the meeting note at the given `MEETING_NOTE_INDEX` for the person listed at `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the person shown in the displayed person list.
+* `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified person's 
+displayed meeting note list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and meeting note index must be provided.
 * Only one meeting note can be deleted at a time.
 
 Examples:
 
-* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd person in the address book.
+* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd person in FinHub.
 * `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st person in the results of the `find`
   command.
 
@@ -313,11 +317,11 @@ Examples:
 
 ### Starring a person : `star`
 
-Stars the specified person from the address book.
+Stars the specified person in FinHub.
 
 Format: `star INDEX`
 
-* Stars the peron at the specified `INDEX`.
+* Stars the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Only one person can be archived at a time.
@@ -331,7 +335,7 @@ Examples:
 
 ### Removing Star of a person : `unstar`
 
-Remove the starred status of a specified person from the address book.
+Remove the starred status of a specified person in FinHub.
 
 Format: `unstar INDEX`
 
@@ -349,7 +353,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries in FinHub.
 
 Format: `clear`
 
@@ -365,30 +369,26 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
+FinHub data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 <br>
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
+FinHub data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty
+If your changes to the data file makes its format invalid, FinHub will discard all data and start with an empty
 data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside
+Furthermore, certain edits can cause FinHub to behave in unexpected ways (e.g., if a value entered is outside
 the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 <br>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -396,7 +396,7 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
