@@ -31,6 +31,7 @@ public class Person implements Comparable<Person> {
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Reminder> reminders = new ArrayList<>();
     private final InsurancePolicy policy;
+    private final boolean isArchived;
     private final ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
     private final boolean starred;
 
@@ -50,6 +51,25 @@ public class Person implements Comparable<Person> {
         this.policy = policy;
         this.meetingNotes.addAll(meetingNotes);
         this.starred = starred;
+        this.isArchived = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  ArrayList<Reminder> reminders, InsurancePolicy policy, ArrayList<MeetingNote> meetingNotes,
+                  boolean starred, boolean isArchived) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, isArchived);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.policy = policy;
+        this.meetingNotes.addAll(meetingNotes);
+        this.starred = starred;
+        this.isArchived = isArchived;
     }
 
     public Name getName() {
@@ -170,6 +190,7 @@ public class Person implements Comparable<Person> {
 
         return new Person(name, phone, email, address, tags, updatedReminders, policy, meetingNotes, starred);
     }
+
     /**
      * @param reminder to be removed
      * @return Person with the reminder removed
@@ -183,6 +204,19 @@ public class Person implements Comparable<Person> {
 
         return new Person(name, phone, email, address, tags, updatedReminders, policy, meetingNotes, starred);
     }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public Person archive() {
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, true);
+    }
+
+    public Person unarchive() {
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, false);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -217,7 +251,8 @@ public class Person implements Comparable<Person> {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && policy.equals(otherPerson.policy);
+                && policy.equals(otherPerson.policy)
+                && isArchived == otherPerson.isArchived;
         //TODO - Update to include reminders
         //may not need to implement as reminders is not core identity of person
     }
@@ -225,7 +260,7 @@ public class Person implements Comparable<Person> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, policy);
+        return Objects.hash(name, phone, email, address, tags);
         //TODO - Update to include reminders
     }
 

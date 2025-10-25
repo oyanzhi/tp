@@ -30,8 +30,11 @@ import seedu.address.logic.commands.EditReminderCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListActiveCommand;
+import seedu.address.logic.commands.ListArchiveCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.StarCommand;
+import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.UnstarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meetingnote.MeetingNote;
@@ -180,15 +183,30 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_archive() throws Exception {
-        // Archive the first person
         ArchiveCommand command = (ArchiveCommand) parser.parseCommand(
                 ArchiveCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), command);
 
-        // Should work with trailing spaces
         ArchiveCommand commandWithSpaces = (ArchiveCommand) parser.parseCommand(
                 ArchiveCommand.COMMAND_WORD + "   " + INDEX_FIRST_PERSON.getOneBased() + "   ");
         assertEquals(new ArchiveCommand(INDEX_FIRST_PERSON), commandWithSpaces);
+    }
+
+    @Test
+    public void parseCommand_unarchive() throws Exception {
+        UnarchiveCommand command = (UnarchiveCommand) parser.parseCommand(
+                UnarchiveCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new UnarchiveCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_listActive() throws Exception {
+        assertTrue(parser.parseCommand(ListActiveCommand.COMMAND_WORD) instanceof ListActiveCommand);
+    }
+
+    @Test
+    public void parseCommand_listArchive() throws Exception {
+        assertTrue(parser.parseCommand(ListArchiveCommand.COMMAND_WORD) instanceof ListArchiveCommand);
     }
 
     @Test

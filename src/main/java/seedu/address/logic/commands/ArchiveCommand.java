@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Archives a person identified using it's displayed index from the address book.
+ * Archives a person identified using it's displayed index from the active address book.
  */
 public class ArchiveCommand extends Command {
 
@@ -24,6 +24,7 @@ public class ArchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Person archived: %1$s";
+    public static final String MESSAGE_ALREADY_ARCHIVED = "This person is already archived.";
 
     private final Index targetIndex;
 
@@ -45,8 +46,13 @@ public class ArchiveCommand extends Command {
         }
 
         Person personToArchive = lastShownList.get(targetIndex.getZeroBased());
-        // TODO: Implement archivePerson command for addressbook
-        // model.archivePerson(personToArchive);
+        if (personToArchive.isArchived()) {
+            throw new CommandException(MESSAGE_ALREADY_ARCHIVED);
+        }
+
+        Person archivedPerson = personToArchive.archive();
+        model.setPerson(personToArchive, archivedPerson);
+        model.updateFilteredPersonList(person -> !person.isArchived());
         return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, Messages.format(personToArchive)));
     }
 

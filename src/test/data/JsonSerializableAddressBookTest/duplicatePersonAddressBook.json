@@ -12,7 +12,9 @@
       }
     ],
     "policy": "AIA HealthShield Gold",
-    "starred": "false"
+    "starred": "false",
+    "starred": "false",
+    "isArchived": "false"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -26,6 +28,8 @@
       }
     ],
     "policy": "AIA HealthShield Gold",
-    "starred": "false"
+    "starred": "false",
+    "starred": "false",
+    "isArchived": "false"
   } ]
 }

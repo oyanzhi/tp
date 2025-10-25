@@ -28,6 +28,8 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     public static final String INVALID_STARRED_MESSAGE = "Starred status should be either 'true' or 'false'.";
     public static final String STARRED_SIMPLE_NAME = "Starred status";
+    public static final String INVALID_ARCHIVED_MESSAGE = "Archive status should be either 'true' or 'false'.";
+    public static final String ARCHIVED_SIMPLE_NAME = "Archived";
     private final String name;
     private final String phone;
     private final String email;
@@ -35,6 +37,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
     private final String policy;
+    private final String isArchived;
     private final List<JsonAdaptedMeetingNote> meetingNotes = new ArrayList<>();
     private final String starred;
 
@@ -48,7 +51,8 @@ class JsonAdaptedPerson {
             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
             @JsonProperty("insurancePolicy") String policy,
             @JsonProperty("meeting notes")List<JsonAdaptedMeetingNote> meetingNotes,
-            @JsonProperty("starred") String starred) {
+            @JsonProperty("starred") String starred,
+            @JsonProperty("isArchived") String isArchived) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -64,6 +68,7 @@ class JsonAdaptedPerson {
             this.meetingNotes.addAll(meetingNotes);
         }
         this.starred = starred;
+        this.isArchived = isArchived;
     }
 
     /**
@@ -85,6 +90,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedMeetingNote::new)
                 .collect(Collectors.toList()));
         starred = String.valueOf(source.isStarred());
+        isArchived = String.valueOf(source.isArchived());
     }
 
     /**
@@ -151,6 +157,7 @@ class JsonAdaptedPerson {
         }
         final InsurancePolicy modelPolicy = new InsurancePolicy(policy);
         final ArrayList<MeetingNote> modelMeetingNotes = new ArrayList<>(personMeetingNotes);
+
         if (starred == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, STARRED_SIMPLE_NAME));
         }
@@ -159,8 +166,17 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(INVALID_STARRED_MESSAGE);
         }
         final boolean modelStarred = Boolean.parseBoolean(starred);
+
+        if (isArchived == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ARCHIVED_SIMPLE_NAME));
+        }
+
+        if (!isArchived.equals("true") && !isArchived.equals("false")) {
+            throw new IllegalValueException(INVALID_ARCHIVED_MESSAGE);
+        }
+        boolean modelArchived = Boolean.parseBoolean(isArchived);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder,
-                modelPolicy, modelMeetingNotes, modelStarred);
+                modelPolicy, modelMeetingNotes, modelStarred, modelArchived);
     }
 
 }
