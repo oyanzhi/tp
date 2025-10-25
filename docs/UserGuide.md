@@ -279,7 +279,7 @@ Format: `note CLIENT_INDEX NOTE`
 
 * Adds a meeting note to the person at the specified `CLIENT_INDEX`
 * `CLIENT_INDEX` refers to the index number of the person shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `CLient_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The note cannot be empty. 
 * Only one meeting note can be added at a time.
 * More than one meeting note can be added to each person.
@@ -303,8 +303,8 @@ Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
 * `CLIENT_INDEX` refers to the index number of the person shown in the displayed person list.
 * `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified person's 
 displayed meeting note list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Both the client index and meeting note index must be provided.
+* Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` **must be positive integers** 1, 2, 3, …​
+* Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` must be provided.
 * Only one meeting note can be deleted at a time.
 
 Examples:
@@ -319,9 +319,9 @@ Examples:
 
 Stars the specified person in FinHub.
 
-Format: `star INDEX`
+Format: `star CLIENT_INDEX`
 
-* Stars the person at the specified `INDEX`.
+* Stars the person at the specified `CLIENT_INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Only one person can be archived at a time.
@@ -337,9 +337,9 @@ Examples:
 
 Remove the starred status of a specified person in FinHub.
 
-Format: `unstar INDEX`
+Format: `unstar CLIENT_INDEX`
 
-* Removes the starred status of the person at the specified `INDEX`.
+* Removes the starred status of the person at the specified `CLIENT_INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Only one person can be unarchived at a time.
