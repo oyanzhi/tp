@@ -413,21 +413,21 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                                        |
-|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`|
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                     |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |  
-| **Clear**     | `clear`                                                                                                                                                                 |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                              |
-| **List**      | `list`                                                                                                                                                                  |
-| **Reminder**  | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                      |
-| **rDelete**   | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                           |
-| **rEdit**     | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                    |
-| **Archive**   | `archive INDEX`<br> e.g., `archive 1`                                                                                                                                   |
-| **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                               |  
-| **Note**      | `note INDEX NOTE`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                              |
-| **nDelete**   | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                       |
-| **Star**      | `star INDEX`<br> e.g., `star 1`                                                                                                                                         |
-| **Unstar**    | `unstar INDEX`<br> e.g., `unstar 1`                                                                                                                                     |  
-| **Help**      | `help`                                                                                                                                                                  |
+| Action                                           | Format, Examples                                                                                                                                                      |
+|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add**](#adding-a-person-add)                  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| [**Delete**](#deleting-a-person-delete)          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| [**Edit**](#editing-a-person-edit)               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
+| [**Clear**](#clearing-all-entries-clear)         | `clear`                                                                                                                                                               |
+| [**Find**](#locating-persons-by-name-find)       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| [**List**](#listing-all-persons-list)            | `list`                                                                                                                                                                |
+| [**Reminder**](#adding-a-reminder-reminder)      | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    |
+| [**rDelete**](#deleting-a-reminder-rdelete)      | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         |
+| [**rEdit**](#editing-a-reminder-redit)           | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                  |
+| [**Archive**](#archiving-a-person-archive)       | `archive INDEX`<br> e.g., `archive 1`                                                                                                                                 |
+| [**Unarchive**](#unarchiving-a-person-unarchive) | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                             |  
+| [**Note**](#adding-a-meeting-note-note)          | `note INDEX NOTE`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                            |
+| [**nDelete**](#deleting-a-meeting-note-ndelete)  | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                     |
+| [**Star**](#starring-a-person-star)              | `star INDEX`<br> e.g., `star 1`                                                                                                                                       |
+| [**Unstar**](#removing-star-of-a-person-unstar)  | `unstar INDEX`<br> e.g., `unstar 1`                                                                                                                                   |  
+| [**Help**](#viewing-help-help)                   | `help`                                                                                                                                                                |
