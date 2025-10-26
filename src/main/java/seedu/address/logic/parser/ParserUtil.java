@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InsurancePolicy;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.reminder.Reminder;
@@ -179,6 +180,24 @@ public class ParserUtil {
             throw new ParseException(DEADLINE_MESSAGE_CONSTRAINTS);
         }
         return trimmedDeadline;
+    }
+
+    /**
+     * Parses a {@code String insurance policy} into an {@code Insurance Policy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code insurance policy} is invalid.
+     */
+    public static InsurancePolicy parsePolicy(String policy) throws ParseException {
+        requireNonNull(policy);
+        String trimmedPolicy = policy.trim();
+        if (trimmedPolicy.isEmpty()) {
+            throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+        }
+        if (!InsurancePolicy.isValidPolicy(trimmedPolicy)) {
+            throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+        }
+        return new InsurancePolicy(trimmedPolicy);
     }
 
     /**

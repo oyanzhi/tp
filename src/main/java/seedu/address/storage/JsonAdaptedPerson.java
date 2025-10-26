@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InsurancePolicy;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -27,12 +28,16 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     public static final String INVALID_STARRED_MESSAGE = "Starred status should be either 'true' or 'false'.";
     public static final String STARRED_SIMPLE_NAME = "Starred status";
+    public static final String INVALID_ARCHIVED_MESSAGE = "Archive status should be either 'true' or 'false'.";
+    public static final String ARCHIVED_SIMPLE_NAME = "Archived";
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
+    private final String policy;
+    private final String isArchived;
     private final List<JsonAdaptedMeetingNote> meetingNotes = new ArrayList<>();
     private final String starred;
 
@@ -41,11 +46,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
-                             @JsonProperty("meeting notes")List<JsonAdaptedMeetingNote> meetingNotes,
-                             @JsonProperty("starred") String starred) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
+            @JsonProperty("insurancePolicy") String policy,
+            @JsonProperty("meeting notes")List<JsonAdaptedMeetingNote> meetingNotes,
+            @JsonProperty("starred") String starred,
+            @JsonProperty("isArchived") String isArchived) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,10 +63,12 @@ class JsonAdaptedPerson {
         if (reminders != null) {
             this.reminders.addAll(reminders);
         }
+        this.policy = policy;
         if (meetingNotes != null) {
             this.meetingNotes.addAll(meetingNotes);
         }
         this.starred = starred;
+        this.isArchived = isArchived;
     }
 
     /**
@@ -76,10 +85,12 @@ class JsonAdaptedPerson {
         reminders.addAll(source.getReminders().stream()
                 .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
+        policy = source.getPolicy().toString();
         meetingNotes.addAll(source.getMeetingNotes().stream()
                 .map(JsonAdaptedMeetingNote::new)
                 .collect(Collectors.toList()));
         starred = String.valueOf(source.isStarred());
+        isArchived = String.valueOf(source.isArchived());
     }
 
     /**
@@ -137,6 +148,15 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<Reminder> modelReminder = new ArrayList<>(personReminders);
+
+        if (policy == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePolicy.class.getSimpleName()));
+        }
+        if (!InsurancePolicy.isValidPolicy(policy)) {
+            throw new IllegalValueException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+        }
+        final InsurancePolicy modelPolicy = new InsurancePolicy(policy);
         final ArrayList<MeetingNote> modelMeetingNotes = new ArrayList<>(personMeetingNotes);
 
         if (starred == null) {
@@ -147,8 +167,17 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(INVALID_STARRED_MESSAGE);
         }
         final boolean modelStarred = Boolean.parseBoolean(starred);
+
+        if (isArchived == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ARCHIVED_SIMPLE_NAME));
+        }
+
+        if (!isArchived.equals("true") && !isArchived.equals("false")) {
+            throw new IllegalValueException(INVALID_ARCHIVED_MESSAGE);
+        }
+        boolean modelArchived = Boolean.parseBoolean(isArchived);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelReminder,
-                modelMeetingNotes, modelStarred);
+                modelPolicy, modelMeetingNotes, modelStarred, modelArchived);
     }
 
 }

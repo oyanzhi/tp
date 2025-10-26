@@ -35,11 +35,12 @@
 
                     <FlowPane fx:id="tags"/>
 
-                    <Label fx:id="phone" styleClass="cell_small_label"/>
-                    <Label fx:id="address" styleClass="cell_small_label"/>
-                    <Label fx:id="email" styleClass="cell_small_label"/>
-                </VBox>
-            </children>
+          <Label fx:id="phone"   styleClass="cell_small_label"/>
+          <Label fx:id="address" styleClass="cell_small_label"/>
+          <Label fx:id="email"   styleClass="cell_small_label"/>
+          <Label fx:id="policy"   styleClass="cell_small_label"/>
+        </VBox>
+      </children>
 
             <padding>
                 <Insets top="8" right="8" bottom="8" left="8"/>

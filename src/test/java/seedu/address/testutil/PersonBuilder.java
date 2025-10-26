@@ -7,6 +7,7 @@ import java.util.Set;
 import seedu.address.model.meetingnote.MeetingNote;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InsurancePolicy;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -23,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_POLICY = "AIB Lifetime Cover";
 
     private Name name;
     private Phone phone;
@@ -30,6 +32,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private ArrayList<Reminder> reminders;
+    private InsurancePolicy policy;
     private ArrayList<MeetingNote> meetingNotes;
     private boolean starred;
     /**
@@ -42,6 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         reminders = new ArrayList<>();
+        policy = new InsurancePolicy(DEFAULT_POLICY);
         meetingNotes = new ArrayList<>();
         starred = false;
     }
@@ -56,6 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         reminders = new ArrayList<>(personToCopy.getReminders());
+        policy = personToCopy.getPolicy();
         meetingNotes = new ArrayList<>(personToCopy.getMeetingNotes());
         starred = personToCopy.isStarred();
     }
@@ -109,6 +114,15 @@ public class PersonBuilder {
         return this;
     }
 
+
+    /**
+     * Sets the {@code Insurance Policy} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPolicy(String policy) {
+        this.policy = new InsurancePolicy(policy);
+        return this;
+    }
+
     /**
      * Sets the {@code Starred} of the {@code Person} that we are building.
      */
@@ -117,8 +131,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a {@code Person} with the default details.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags, reminders, meetingNotes, starred);
+        return new Person(name, phone, email, address, tags,
+                reminders, policy, meetingNotes, starred);
     }
 
 }
