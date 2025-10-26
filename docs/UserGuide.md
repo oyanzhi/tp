@@ -313,19 +313,20 @@ Examples:
 
 ### Starring a person : `star`
 
-Stars the specified person from the address book.
+Stars a client in FinHub to mark them as a priority and move them to the top of the list.
 
 Format: `star INDEX`
 
 * Stars the peron at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be archived at a time.
+* The index **must be positive integers** 1, 2, 3, …​
+* Only one person can be starred at a time.
 
 Examples:
 
-* `list` followed by `star 1` archives the 1st person in the list
-* `list` followed by `star 2` archives the 2nd person in the list
+* `list` followed by `star 1` stars the 1st person in the list
+* `list` followed by `star 2` stars the 2nd person in the list
+* `find Betsy` followed by `star 1` stars the 1st person in the results of the `find` command.
 
 <br>
 
@@ -337,14 +338,15 @@ Format: `unstar INDEX`
 
 * Removes the starred status of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be unarchived at a time.
+* The index **must be positive integers** 1, 2, 3, …​
+* You can only remove the star status from one client at a time.
 
 Examples:
 
-* `list` followed by `unstar 1` unarchives the 1st person in the list
-* `list` followed by `unstar 2` unarchives the 2nd person in the list
-
+* `list` followed by `unstar 1` removes star status from the 1st person in the list
+* `list` followed by `unstar 2` removes star status from the 2nd person in the list
+* `find Betsy` followed by `unstar 1` removes star status from the 1st person in the results of the `find` command.
+* 
 <br>
 
 ### Clearing all entries : `clear`
