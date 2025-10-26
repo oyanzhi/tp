@@ -288,7 +288,7 @@ Format: `note CLIENT_INDEX NOTE`
 * Adds a meeting note to the client at the specified `CLIENT_INDEX`
 * When adding a meeting note, FinHub automatically records the date and time the note was added. 
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `CLient_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The note cannot be empty. 
 * Only one meeting note can be added at a time.
 * More than one meeting note can be added to each client.
