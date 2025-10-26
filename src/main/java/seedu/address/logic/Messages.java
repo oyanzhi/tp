@@ -14,10 +14,10 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The client index provided is invalid " +
-            "— it exceeds the number of clients currently displayed";
-    public static final String MESSAGE_INVALID_MEETING_NOTE_INDEX = "The meeting note index provided is invalid " +
-            "— it exceeds the number of meeting notes currently displayed";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The client index provided is invalid "
+            + "— it exceeds the number of clients currently displayed";
+    public static final String MESSAGE_INVALID_MEETING_NOTE_INDEX = "The meeting note index provided is invalid "
+            + "— it exceeds the number of meeting notes currently displayed";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d clients listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
