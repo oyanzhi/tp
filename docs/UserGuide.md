@@ -116,6 +116,22 @@ Format: `list`
 
 <br>
 
+### <font color=#f88379>Listing all archived clients</font> : `archivelist`
+
+Shows a list of all archived clients in the address book.
+
+Format: `archivelist`
+
+<br>
+
+### <font color=#f88379>Listing all active clients</font> : `activelist`
+
+Shows a list of all clients in the address book.
+
+Format: `activelist`
+
+<br>
+
 ### <font color=#f88379>Editing a person</font> : `edit`
 
 Edits an existing person in the address book.
@@ -220,6 +236,8 @@ Examples:
 ### <font color=#f88379>Editing a reminder</font> : `rEdit`
 
 Edits a specified reminder from a specified person from the address book with a new reminder.
+
+Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/YYYY-MM-DD HH:mm`
 
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
 * The indices refer to the index number shown in the displayed person list.
