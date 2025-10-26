@@ -326,7 +326,8 @@ Examples:
 
 ### Starring a client : `star`
 
-Stars the specified client in FinHub.
+Stars the specified client in FinHub. Starred clients will have a star displayed next to their name, and will be bumped
+to the top of the displayed client lists along with other starred clients. 
 
 Format: `star CLIENT_INDEX`
 
