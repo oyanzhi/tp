@@ -8,7 +8,7 @@
 
 FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimized for use via a Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
-tasks done faster than traditional GUI apps.
+tasks done faster than traditional GUI a pps.
 
 <box type="tip" seamless>
 
@@ -203,6 +203,12 @@ Examples:
 * `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`
 * `reminder 2 h/Meeting on Saturday d/2026-06-24 18:00`
 
+<box type="tip" seamless>
+
+Tip: You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key 
+date again!
+</box>
+
 <br>
 
 ### Deleting a reminder : `rDelete`
@@ -259,6 +265,11 @@ Examples:
 * `list` followed by `archive 1` archives the 1st client in the list
 * `list` followed by `archive 2` archives the 2nd client in the list
 
+<box type="tip" seamless>
+
+**Tip:** Temporarily archive inactive clients to de-clutter your active client list!
+</box>
+
 <br>
 
 ### Unarchiving a client : `unarchive`
@@ -300,6 +311,12 @@ Examples:
 2nd client in FinHub. 
 * `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to 
 know more about policy 2" to the 1st client in the result of the `find` command
+
+<box type="tip" seamless>
+
+**Tip:** Regularly add meeting notes to keep track of discussions, decisions and follow-ups!
+</box>
+
 <br>
 
 ### Deleting a meeting note : `nDelete`
@@ -340,6 +357,11 @@ Examples:
 
 * `list` followed by `star 1` archives the 1st client in the list
 * `list` followed by `star 2` archives the 2nd client in the list
+
+<box type="tip" seamless>
+
+**Tip:** You can use this feature to mark important clients as favourites! 
+</box>
 
 <br>
 
