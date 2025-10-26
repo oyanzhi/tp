@@ -25,15 +25,15 @@ public class SampleDataUtil {
     public static final ArrayList<MeetingNote> EMPTY_MEETING_NOTES = new ArrayList<>();
 
     public static final ArrayList<Reminder> SAMPLE_REMINDERS_ONE = new ArrayList<>() {{
-            add(new Reminder("Follow up with client on insurance quote", "2025-11-10 09:00"));
-            add(new Reminder("Submit updated policy document", "2025-11-15 17:30"));
-            add(new Reminder("Check premium renewal details", "2025-12-01 10:00"));
+            add(new Reminder("Follow up with client on insurance quote", "2026-11-10 09:00"));
+            add(new Reminder("Submit updated policy document", "2026-11-15 17:30"));
+            add(new Reminder("Check premium renewal details", "2026-12-01 10:00"));
         }};
 
     public static final ArrayList<Reminder> SAMPLE_REMINDERS_TWO = new ArrayList<>() {{
-            add(new Reminder("Call to confirm appointment", "2025-11-03 14:00"));
-            add(new Reminder("Prepare meeting agenda for investment review", "2025-11-05 08:30"));
-            add(new Reminder("Send birthday greeting to client", "2025-11-18 09:30"));
+            add(new Reminder("Call to confirm appointment", "2027-11-03 14:00"));
+            add(new Reminder("Prepare meeting agenda for investment review", "2028-11-05 08:30"));
+            add(new Reminder("Send birthday greeting to client", "2029-11-18 09:30"));
         }};
 
     public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_ONE = new ArrayList<>() {{
