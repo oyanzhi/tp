@@ -29,7 +29,8 @@ public class DeleteReminderCommand extends Command {
 
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted Client %1$s's Reminder %2$d: %3$s";
 
-    public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
+    public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid " +
+            "— it exceeds the number of reminders currently displayed";
 
     private final Index clientIndex;
     private final Index reminderIndex;
