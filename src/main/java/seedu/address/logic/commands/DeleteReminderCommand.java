@@ -23,7 +23,7 @@ public class DeleteReminderCommand extends Command {
     public static final String COMMAND_WORD = "rDelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the reminder identified by the index number used in the targeted person's reminder list.\n"
+            + ": Deletes the reminder identified by the index number used in the targeted client's reminder list.\n"
             + "Parameters: CLIENT_INDEX (must be a positive integer) REMINDER_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 1";
 

@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 public class ListActiveCommand extends Command {
 
     public static final String COMMAND_WORD = "activelist";
-    public static final String MESSAGE_SUCCESS = "Listed all active persons";
+    public static final String MESSAGE_SUCCESS = "Listed all active clients";
 
     @Override
     public CommandResult execute(Model model) {

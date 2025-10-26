@@ -23,7 +23,7 @@ public class DeleteMeetingNoteCommand extends Command {
     public static final String COMMAND_WORD = "nDelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the meeting note identified by the index number used in the targeted person's "
+            + ": Deletes the meeting note identified by the index number used in the targeted client's "
             + "meeting notes list.\n"
             + "Parameters: CLIENT_INDEX (must be a positive integer), MEETING_NOTE_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 1";
@@ -46,14 +46,14 @@ public class DeleteMeetingNoteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        assert lastShownList != null : "Filtered person list should not be null";
+        assert lastShownList != null : "Filtered client list should not be null";
 
         if (lastShownList.size() < clientIndex.getOneBased()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToDeleteFrom = lastShownList.get(clientIndex.getZeroBased());
-        assert personToDeleteFrom != null : "Person to delete from must not be null";
+        assert personToDeleteFrom != null : "Client to delete from must not be null";
         ArrayList<MeetingNote> meetingNotes = personToDeleteFrom.getMeetingNotes();
         assert meetingNotes != null : "Meeting notes list must not be null";
 
@@ -63,7 +63,7 @@ public class DeleteMeetingNoteCommand extends Command {
 
         MeetingNote meetingNoteToDelete = meetingNotes.get(meetingNoteIndex.getZeroBased());
         Person editedPerson = personToDeleteFrom.removeMeetingNote(meetingNoteToDelete);
-        assert editedPerson != null : "Edited person should not be null after adding meeting note";
+        assert editedPerson != null : "Edited client should not be null after adding meeting note";
 
         model.setPerson(personToDeleteFrom, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
