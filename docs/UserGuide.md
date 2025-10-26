@@ -6,9 +6,7 @@
 
 # <font color=#e46c0a>FinHub User Guide</font>
 
-FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimized for use via a Line Interface** (CLI) while
-still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
-tasks done faster than traditional GUI apps.
+FinHub is a **desktop app that helps insurance agents manage client information efficiently. It is optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,9 +15,9 @@ tasks done faster than traditional GUI apps.
 
 ## <font color=#ff990f>Quick start</font>
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version
-   prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+1. Make sure you have Java `17` or above installed in your computer.<br>
+   **Mac users:** Make sure you have the precise JDK version
+   listed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F09-1/tp/releases).
 
@@ -27,7 +25,7 @@ tasks done faster than traditional GUI apps.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FinHub.jar`
    command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A window like the one below will appear after a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
@@ -58,7 +56,7 @@ tasks done faster than traditional GUI apps.
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` show parameters you need to fill in.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -70,7 +68,7 @@ tasks done faster than traditional GUI apps.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+* Extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -149,9 +147,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/I
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
-  and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/91234567 e/johndoe@example.com` Changes the first person’s phone number to `91234567`
+  and email to `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Changes the second person’s name to `Betsy Crower` and clears all existing tags.
 
 <br>
 
@@ -412,7 +410,7 @@ _Details coming soon ..._
 
 ## <font color=#ff990f>FAQ</font>
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
 
@@ -421,11 +419,10 @@ the data of your previous AddressBook home folder.
 ## <font color=#ff990f>Known issues</font>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
-   the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
-   application before running the application again.
+   the primary screen, the GUI will open off-screen. To fix this, delete the `preferences.json` file created by the
+   application, then restart the app.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut
-   `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to
-   manually restore the minimized Help Window.
+   `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. To fix this, manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
