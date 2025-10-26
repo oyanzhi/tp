@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# FinHub User Guide
+# <font color=#e46c0a>FinHub User Guide</font>
 
 FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimized for use via a Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
@@ -15,7 +15,7 @@ tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## <font color=#ff990f>Quick start</font>
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version
@@ -52,7 +52,7 @@ tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## <font color=#ff990f>Features</font>
 
 <box type="info" seamless>
 
@@ -80,7 +80,7 @@ tasks done faster than traditional GUI apps.
 
 <br>
 
-### Viewing help : `help`
+### <font color=#f88379>Viewing help</font> : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -90,7 +90,7 @@ Format: `help`
 
 <br>
 
-### Adding a person: `add`
+### <font color=#f88379>Adding a person</font> : `add`
 
 Adds a person to the address book.
 
@@ -108,7 +108,7 @@ Examples:
 
 <br>
 
-### Listing all persons : `list`
+### <font color=#f88379>Listing all persons</font> : `list`
 
 Shows a list of all persons in the address book.
 
@@ -116,7 +116,7 @@ Format: `list`
 
 <br>
 
-### Editing a person : `edit`
+### <font color=#f88379>Editing a person</font> : `edit`
 
 Edits an existing person in the address book.
 
@@ -139,7 +139,7 @@ Examples:
 
 <br>
 
-### Locating persons by name: `find`
+### <font color=#f88379>Locating persons by name</font>: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -160,7 +160,7 @@ Examples:
 
 <br>
 
-### Deleting a person : `delete`
+### <font color=#f88379>Deleting a person</font> : `delete`
 
 Deletes the specified person from the address book.
 
@@ -177,7 +177,7 @@ Examples:
 
 <br>
 
-### Adding a reminder : `reminder`
+### <font color=#f88379>Adding a reminder</font> : `reminder`
 
 Adds a reminder to the specified person from the address book.
 
@@ -197,7 +197,7 @@ Examples:
 
 <br>
 
-### Deleting a reminder : `rDelete`
+### <font color=#f88379>Deleting a reminder</font> : `rDelete`
 
 Deletes a reminder from a specified person from the address book.
 
@@ -217,7 +217,7 @@ Examples:
 
 <br>
 
-### Editing a reminder : `rEdit`
+### <font color=#f88379>Editing a reminder</font> : `rEdit`
 
 Edits a specified reminder from a specified person from the address book with a new reminder.
 
@@ -235,7 +235,7 @@ in the results of the `find` command to the given reminder
 
 <br>
 
-### Archiving a person : `archive`
+### <font color=#f88379>Archiving a person</font> : `archive`
 
 Archives the specified person from the address book.
 
@@ -253,7 +253,7 @@ Examples:
 
 <br>
 
-### Unarchiving a person : `unarchive`
+### <font color=#f88379>Unarchiving a person</font> : `unarchive`
 
 Unarchive the specified person from the address book.
 
@@ -271,7 +271,7 @@ Examples:
 
 <br>
 
-### Adding a meeting note : `note`
+### <font color=#f88379>Adding a meeting note</font> : `note`
 
 Adds a meeting note to the specified person from the address book.
 
@@ -291,7 +291,7 @@ Examples:
 
 <br>
 
-### Deleting a meeting note : `nDelete`
+### <font color=#f88379>Deleting a meeting note</font> : `nDelete`
 
 Deletes a meeting note from a specified person from the address book.
 
@@ -311,7 +311,7 @@ Examples:
 
 <br>
 
-### Starring a person : `star`
+### <font color=#f88379>Starring a person</font> : `star`
 
 Stars the specified person from the address book.
 
@@ -329,7 +329,7 @@ Examples:
 
 <br>
 
-### Removing Star of a person : `unstar`
+### <font color=#f88379>Removing Star of a person</font> : `unstar`
 
 Remove the starred status of a specified person from the address book.
 
@@ -347,7 +347,7 @@ Examples:
 
 <br>
 
-### Clearing all entries : `clear`
+### <font color=#f88379>Clearing all entries</font> : `clear`
 
 Clears all entries from the address book.
 
@@ -355,7 +355,7 @@ Format: `clear`
 
 <br>
 
-### Exiting the program : `exit`
+### <font color=#f88379>Exiting the program </font>: `exit`
 
 Exits the program.
 
@@ -363,14 +363,14 @@ Format: `exit`
 
 <br>
 
-### Saving the data
+### <font color=#f88379>Saving the data</font>
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 <br>
 
-### Editing the data file
+### <font color=#f88379>Editing the data file</font>
 
 AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
 welcome to update data directly by editing that data file.
@@ -386,13 +386,13 @@ the acceptable range). Therefore, edit the data file only if you are confident t
 
 <br>
 
-### Archiving data files `[coming in v2.0]`
+### <font color=#f88379>Archiving data files</font> `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## <font color=#ff990f>FAQ</font>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -400,7 +400,7 @@ the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## <font color=#ff990f>Known issues</font>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
@@ -411,7 +411,7 @@ the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## <font color=#ff990f>Command summary</font>
 
 | Action                                           | Format, Examples                                                                                                                                                      |
 |--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
