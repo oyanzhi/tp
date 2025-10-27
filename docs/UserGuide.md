@@ -334,7 +334,8 @@ Deletes a reminder from a specified client in FinHub.
 Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
 * Deletes the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed client list.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `REMINDER_INDEX` refers to the index number of the reminder to be edited in the list of the specified client.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * Only one reminder can be deleted at a time.
