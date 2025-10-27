@@ -58,7 +58,7 @@ public class DeleteMeetingNoteCommand extends Command {
         assert meetingNotes != null : "Meeting notes list must not be null";
 
         if (meetingNotes.size() < meetingNoteIndex.getOneBased()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_NOTE_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_NOTE_DISPLAYED_INDEX);
         }
 
         MeetingNote meetingNoteToDelete = meetingNotes.get(meetingNoteIndex.getZeroBased());
