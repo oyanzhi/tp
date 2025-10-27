@@ -16,6 +16,13 @@ tasks done faster than traditional GUI apps.
 each client. You also have the option to star or archive clients for better client organisation.
 </box>
 
+<box type="tip" seamless>
+
+**Tip:** Want to skip straight to the available commands?
+<br>
+[Click Here for the Command Summary!](#command-summary)
+</box>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <!-- * Table of Contents -->
