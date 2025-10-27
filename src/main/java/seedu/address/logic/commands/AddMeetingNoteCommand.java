@@ -22,7 +22,7 @@ public class AddMeetingNoteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a meeting note to the person identified by the index number in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "NOTE \n"
+            + "NOTE (cannot be empty) \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "Client wants to know more about xx policy";
 

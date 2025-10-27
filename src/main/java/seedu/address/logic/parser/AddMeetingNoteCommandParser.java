@@ -38,17 +38,20 @@ public class AddMeetingNoteCommandParser implements Parser<AddMeetingNoteCommand
                     MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingNoteCommand.MESSAGE_USAGE));
         }
 
+        Index index;
+
         try {
-            Index index = ParserUtil.parseIndex(splitArgs[0]);
+            index = ParserUtil.parseIndex(splitArgs[0]);
             logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + index.getOneBased());
-            String note = ParserUtil.parseNote(splitArgs[1]);
-            String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
-            MeetingNote meetingNote = new MeetingNote(note, date);
-            return new AddMeetingNoteCommand(index, meetingNote);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingNoteCommand.MESSAGE_USAGE), pe);
         }
+
+        String note = ParserUtil.parseNote(splitArgs[1]);
+        String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
+        MeetingNote meetingNote = new MeetingNote(note, date);
+        return new AddMeetingNoteCommand(index, meetingNote);
 
     }
 
