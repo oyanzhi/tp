@@ -47,7 +47,7 @@ public class UnstarCommand extends Command {
         // Assert person is not null
         assert personToUnstar != null : "Client to unstar is null. Index: " + targetIndex.getZeroBased();
 
-        // Check if person starred status has been removed
+        // Check if starred status has been removed
         if (!personToUnstar.isStarred()) {
             throw new CommandException(MESSAGE_PERSON_IS_UNSTARRED);
         }
