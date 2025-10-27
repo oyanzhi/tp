@@ -16,12 +16,123 @@ tasks done faster than traditional GUI apps.
 each client. You also have the option to star or archive clients for better client organisation.
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
 <!-- * Table of Contents -->
-<page-nav-print />
+<h2 style="text-align:center"> Table of Contents </h2>
+
+
+<!-- * Quick Start -->
+<h3 style="text-align:center">
+
+[**Quick Start**](#Quick-Start)
+
+</h3>
+
+<!-- * Features -->
+<h3 style="text-align:center">
+
+[**Features**](#Features)
+
+<details>
+<summary></summary>
+
+<h5 style="text-align:center; font-size:0.95rem">
+
+<!-- General Commands -->
+<details>
+<summary>General</summary>
+
+\- [**View Help**](#viewing-help--help) \-
+
+\- [**Listing all Clients**](#listing-all-clients--list) \-
+
+\- [**Clear all Entries**](#clearing-all-entries--clear) \-
+
+\- [**Exiting the Program**](#exiting-the-program--exit) \-
+
+</details>
+
+<!-- Client Management -->
+<details>
+<summary>Managing Clients</summary>
+
+\- [**Adding a Client**](#adding-a-client-add) \-
+
+\- [**Editing a Client**](#editing-a-client--edit) \-
+
+\- [**Locating a Client**](#locating-clients-by-name-find) \-
+
+\- [**Deleting a Client**](#deleting-a-client--delete) \-
+
+</details>
+
+<!-- Reminder Management Commands -->
+<details>
+<summary>Reminders</summary>
+
+\- [**Adding a Reminder**](#adding-a-reminder--reminder) \-
+
+\- [**Deleting a Reminder**](#deleting-a-reminder--rdelete) \-
+
+\- [**Editing a Reminder**](#editing-a-reminder--redit) \-
+
+</details>
+
+<!-- Archiving Commands -->
+<details>
+<summary>Archiving</summary>
+
+\- [**Archiving a Client**](#archiving-a-client--archive) \-
+
+\- [**Unarchiving a Client**](#unarchiving-a-client--unarchive) \-
+
+</details>
+
+<!-- Meeting Notes Management -->
+<details>
+<summary>Meeting Notes</summary>
+
+\- [**Adding a Meeting Note**](#adding-a-meeting-note--note) \-
+
+\- [**Deleting a Meeting Note**](#deleting-a-meeting-note--ndelete) \-
+
+</details>
+
+<!-- Priority Management -->
+<details>
+<summary>Managing Priority</summary>
+
+\- [**Starring a Client**](#starring-a-client--star) \-
+
+\- [**Remove Star of a Client**](#removing-star-of-a-client--unstar) \-
+
+</details>
+
+</h5>
+
+</details>
+
+</h3>
+
+<h3 style="text-align:center">
+
+<!-- * FAQ -->
+[**FAQ**](#FAQ)
+
+
+<!-- * Known Issues -->
+[**Known Issues**](#Known-Issues)
+
+
+<!-- * Command Summary -->
+[**Command Summary**](#command-summary)
+
+</h3>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version
@@ -432,7 +543,7 @@ the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
@@ -443,7 +554,7 @@ the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action        | Format, Examples                                                                                                                                                        |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
