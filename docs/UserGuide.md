@@ -8,7 +8,7 @@
 
 FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimized for use via a Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
-tasks done faster than traditional GUI a pps.
+tasks done faster than traditional GUI apps.
 
 <box type="tip" seamless>
 
@@ -205,7 +205,7 @@ Examples:
 
 <box type="tip" seamless>
 
-Tip: You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key 
+**Tip:** You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key 
 date again!
 </box>
 
