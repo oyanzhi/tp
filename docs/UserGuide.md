@@ -225,11 +225,11 @@ Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
 
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `REMINDER_INDEX` refers to the index number of the reminder to be edited in the list of the specified client
+* `REMINDER_INDEX` refers to the index number of the reminder to be edited in the list of the specified client.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
-* `h/HEADER` refers to the header of the edited reminder
-* `d/DEADLINE` refers to the deadline of the edited reminder
+* `h/HEADER` refers to the header of the edited reminder.
+* `d/DEADLINE` refers to the deadline of the edited reminder.
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
