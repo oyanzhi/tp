@@ -224,7 +224,7 @@ Edits a specified reminder from a specified person from the address book with a 
 Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
 
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
-* `CLIENT_INDEX` refer to the index number of the client shown in the displayed person list.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `REMINDER_INDEX` refers to the index number of the reminder to be edited in the list of the specified client
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
