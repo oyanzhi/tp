@@ -19,116 +19,124 @@ each client. You also have the option to star or archive clients for better clie
 --------------------------------------------------------------------------------------------------------------------
 
 <!-- * Table of Contents -->
-<h2 style="text-align:center"> Table of Contents </h2>
+<h2 style="font color=#ff990f"> Table of Contents </h2>
 
+<ul>
 
 <!-- * Quick Start -->
-<h3 style="text-align:center">
+<li><a href="#Quick-Start">Quick Start</a></li>
 
-[**Quick Start**](#Quick-Start)
-
-</h3>
+<!-- Main Separator for TOC Indentation -->
 
 <!-- * Features -->
-<h3 style="text-align:center">
-
-[**Features**](#Features)
+<li style="list-style: none; margin-left: -15px;">
 
 <details>
-<summary></summary>
+<summary><a href="#Features">Features</a></summary>
 
-<h5 style="text-align:center; font-size:0.95rem">
+<ul>
+
+<li style="list-style: none; margin-left: -15px">
 
 <!-- General Commands -->
 <details>
 <summary>General</summary>
 
-\- [**View Help**](#viewing-help--help) \-
+<ul>
+<li><a href="#viewing-help--help">View Help</a></li>
 
-\- [**Listing all Clients**](#listing-all-clients--list) \-
+<li><a href="#listing-all-clients--list">Listing all Clients</a></li>
 
-\- [**Clear all Entries**](#clearing-all-entries--clear) \-
+<li><a href="#clearing-all-entries--clear">Clear all Entries</a></li>
 
-\- [**Exiting the Program**](#exiting-the-program--exit) \-
+<li><a href="#exiting-the-program--exit">Exiting the Program</a></li>
+</ul>
 
 </details>
+
+<!-- Separator for Feature List Indentation -->
 
 <!-- Client Management -->
 <details>
 <summary>Managing Clients</summary>
 
-\- [**Adding a Client**](#adding-a-client-add) \-
+<ul>
+<li><a href="#adding-a-client-add">Adding a Client</a></li>
 
-\- [**Editing a Client**](#editing-a-client--edit) \-
+<li><a href="#editing-a-client--edit">Editing a Client</a></li>
 
-\- [**Locating a Client**](#locating-clients-by-name-find) \-
+<li><a href="#locating-clients-by-name-find">Locating a Client</a></li>
 
-\- [**Deleting a Client**](#deleting-a-client--delete) \-
+<li><a href="#deleting-a-client--delete">Deleting a Client</a></li>
+
+<li><a href="#starring-a-client--star">Starring a Client</a></li>
+
+<li><a href="#removing-star-of-a-client--unstar">Remove Star of a Client</a></li>
+</ul>
 
 </details>
+
+<!-- Separator for Feature List Indentation -->
 
 <!-- Reminder Management Commands -->
 <details>
 <summary>Reminders</summary>
 
-\- [**Adding a Reminder**](#adding-a-reminder--reminder) \-
+<ul>
+<li><a href="#adding-a-reminder--reminder">Adding a Reminder</a></li>
 
-\- [**Deleting a Reminder**](#deleting-a-reminder--rdelete) \-
+<li><a href="#deleting-a-reminder--rdelete">Deleting a Reminder</a></li>
 
-\- [**Editing a Reminder**](#editing-a-reminder--redit) \-
+<li><a href="#editing-a-reminder--redit">Editing a Reminder</a></li>
+</ul>
 
 </details>
+
+<!-- Separator for Feature List Indentation -->
 
 <!-- Archiving Commands -->
 <details>
 <summary>Archiving</summary>
 
-\- [**Archiving a Client**](#archiving-a-client--archive) \-
+<ul>
+<li><a href="#archiving-a-client--archive">Archiving a Client</a></li>
 
-\- [**Unarchiving a Client**](#unarchiving-a-client--unarchive) \-
+<li><a href="#unarchiving-a-client--unarchive">Unarchiving a Client</a></li>
+</ul>
 
 </details>
+
+<!-- Separator for Feature List Indentation -->
 
 <!-- Meeting Notes Management -->
 <details>
 <summary>Meeting Notes</summary>
 
-\- [**Adding a Meeting Note**](#adding-a-meeting-note--note) \-
+<ul>
+<li><a href="#adding-a-meeting-note--note">Adding a Meeting Note</a></li>
 
-\- [**Deleting a Meeting Note**](#deleting-a-meeting-note--ndelete) \-
+<li><a href="#deleting-a-meeting-note--ndelete">Deleting a Meeting Note</a></li>
+</ul>
 
-</details>
+</ul>
+</li>
 
-<!-- Priority Management -->
-<details>
-<summary>Managing Priority</summary>
-
-\- [**Starring a Client**](#starring-a-client--star) \-
-
-\- [**Remove Star of a Client**](#removing-star-of-a-client--unstar) \-
-
-</details>
-
-</h5>
-
-</details>
-
-</h3>
-
-<h3 style="text-align:center">
+<!-- Main Separator for TOC Indentation -->
 
 <!-- * FAQ -->
-[**FAQ**](#FAQ)
+<li><a href="FAQ">FAQ</a></li>
 
+<!-- Main Separator for TOC Indentation -->
 
 <!-- * Known Issues -->
-[**Known Issues**](#Known-Issues)
+<li><a href="#Known-Issues">Known Issues</a></li>
 
+<!-- Main Separator for TOC Indentation -->
 
 <!-- * Command Summary -->
-[**Command Summary**](#command-summary)
+<li><a href="Command-Summary">Command Summary</a></li>
 
-</h3>
+</ul>
 
 --------------------------------------------------------------------------------------------------------------------
 
