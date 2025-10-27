@@ -72,6 +72,10 @@ each client. You also have the option to star or archive clients for better clie
 <li><a href="#starring-a-client--star">Starring a Client</a></li>
 
 <li><a href="#removing-star-of-a-client--unstar">Remove Star of a Client</a></li>
+
+<li><a href="#archiving-a-client--archive">Archiving a Client</a></li>
+
+<li><a href="#unarchiving-a-client--unarchive">Unarchiving a Client</a></li>
 </ul>
 
 </details>
@@ -94,20 +98,6 @@ each client. You also have the option to star or archive clients for better clie
 
 <!-- Separator for Feature List Indentation -->
 
-<!-- Archiving Commands -->
-<details>
-<summary>Archiving</summary>
-
-<ul>
-<li><a href="#archiving-a-client--archive">Archiving a Client</a></li>
-
-<li><a href="#unarchiving-a-client--unarchive">Unarchiving a Client</a></li>
-</ul>
-
-</details>
-
-<!-- Separator for Feature List Indentation -->
-
 <!-- Meeting Notes Management -->
 <details>
 <summary>Meeting Notes</summary>
@@ -118,7 +108,14 @@ each client. You also have the option to star or archive clients for better clie
 <li><a href="#deleting-a-meeting-note--ndelete">Deleting a Meeting Note</a></li>
 </ul>
 
+</details>
+
+<!-- Separator for Feature List Indentation -->
+
 </ul>
+
+</details>
+
 </li>
 
 <!-- Main Separator for TOC Indentation -->
