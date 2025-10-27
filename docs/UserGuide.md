@@ -10,6 +10,12 @@ FinHub is a **desktop app for insurance agents to manage clients. It helps them 
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
 tasks done faster than traditional GUI apps.
 
+<box type="tip" seamless>
+
+**Tip:** In addition to managing standard contact fields, FinHub also allows you to add reminders and meeting notes to 
+each client. You also have the option to star or archive clients for better client organisation.
+</box>
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -23,7 +29,7 @@ tasks done faster than traditional GUI apps.
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-F09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for FinHub.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FinHub.jar`
    command to run the application.<br>
@@ -37,7 +43,7 @@ tasks done faster than traditional GUI apps.
     * `list` : Lists all contacts.
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
-      to the Address Book.
+      to FinHub.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -58,7 +64,7 @@ tasks done faster than traditional GUI apps.
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -90,15 +96,15 @@ Format: `help`
 
 <br>
 
-### Adding a person: `add`
+### Adding a client: `add`
 
-Adds a person to the address book.
+Adds a client to FinHub.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A client can have any number of tags (including 0)
 </box>
 
 Examples:
@@ -108,40 +114,40 @@ Examples:
 
 <br>
 
-### Listing all persons : `list`
+### Listing all clients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all clients in FinHub.
 
 Format: `list`
 
 <br>
 
-### Editing a person : `edit`
+### Editing a client : `edit`
 
-Edits an existing person in the address book.
+Edits an existing client in FinHub.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
-* Edits the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Edits the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
   specifying any tags after it.
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
   and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
 <br>
 
-### Locating persons by name: `find`
+### Locating clients by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -149,7 +155,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -160,66 +166,74 @@ Examples:
 
 <br>
 
-### Deleting a person : `delete`
+### Deleting a client : `delete`
 
-Deletes the specified person from the address book.
+Deletes a specified client from FinHub.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in FinHub.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 <br>
 
 ### Adding a reminder : `reminder`
 
-Adds a reminder to the specified person from the address book.
+Adds a reminder to the specified client in FinHub.
 
-Format: `reminder INDEX h/HEADER d/DEADLINE`
+Format: `reminder CLIENT_INDEX h/HEADER d/DEADLINE`
 
-* Adds a reminder to the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Adds a reminder to the client at the specified `CLIENT_INDEX`.
+* A reminder consists of a `HEADER` which describes the task or event, and a `DEADLINE` which indicates when it's due.
+* `DEADLINE` should be in the format: `yyyy-MM-dd HH:mm`
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * Both the header and deadline must be provided.
 * Only one reminder can be added at a time.
-* More than one reminder can be added to each person.
+* More than one reminder can be added to each client.
 
 Examples:
 
 * `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`
 * `reminder 2 h/Meeting on Saturday d/2026-06-24 18:00`
 
+<box type="tip" seamless>
+
+**Tip:** You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key 
+date again!
+</box>
+
 <br>
 
 ### Deleting a reminder : `rDelete`
 
-Deletes a reminder from a specified person from the address book.
+Deletes a reminder from a specified client in FinHub.
 
 Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
-* Deletes the reminder at the specified `REMINDER_INDEX` of the specified person at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed person list.
+* Deletes the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
+* The indices refer to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * Only one reminder can be deleted at a time.
 
 Examples:
 
-* `list` followed by `rDelete 2 1` deletes the 1st reminder of the 2nd person in the address book.
-* `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st person in the results of the `find`
+* `list` followed by `rDelete 2 1` deletes the 1st reminder of the 2nd client in FinHub.
+* `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st client in the results of the `find`
   command.
 
 <br>
 
 ### Editing a reminder : `rEdit`
 
-Edits a specified reminder from a specified person from the address book with a new reminder.
+Edits a specified reminder from a specified client in FinHub.
 
 Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
 
@@ -233,128 +247,150 @@ Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
-* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd person in the
-address book to the given reminder 
-* `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st person
+* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd client in 
+FinHub to the given reminder 
+* `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st client
 in the results of the `find` command to the given reminder
 
 <br>
 
-### Archiving a person : `archive`
+### Archiving a client : `archive`
 
-Archives the specified person from the address book.
+Archives the specified client in FinHub.
 
 Format: `archive INDEX`
 
-* Archives the peron at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Archives the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be archived at a time.
+* Only one client can be archived at a time.
 
 Examples:
 
-* `list` followed by `archive 1` archives the 1st person in the list
-* `list` followed by `archive 2` archives the 2nd person in the list
+* `list` followed by `archive 1` archives the 1st client in the list
+* `list` followed by `archive 2` archives the 2nd client in the list
+
+<box type="tip" seamless>
+
+**Tip:** Temporarily archive inactive clients to de-clutter your active client list!
+</box>
 
 <br>
 
-### Unarchiving a person : `unarchive`
+### Unarchiving a client : `unarchive`
 
-Unarchive the specified person from the address book.
+Unarchives the specified client in FinHub.
 
 Format: `unarchive INDEX`
 
-* Unarchives the person at the specified `INDEX`
-* The index refers to the index number shown in the archived person list.
+* Unarchives the client at the specified `INDEX`
+* The index refers to the index number shown in the archived client list.
 * The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be unarchived at a time.
+* Only one client can be unarchived at a time.
 
 Examples:
 
-* `archivelist` followed by `unarchive 1` unarchives the 1st person in the list
-* `archivelist` followed by `unarchive 2` unarchives the 2nd person in the list
+* `archivelist` followed by `unarchive 1` unarchives the 1st client in the list
+* `archivelist` followed by `unarchive 2` unarchives the 2nd client in the list
 
 <br>
 
 ### Adding a meeting note : `note`
 
-Adds a meeting note to the specified person from the address book.
+Adds a meeting note to the specified client in FinHub.
 
-Format: `note INDEX NOTE`
+Format: `note CLIENT_INDEX NOTE`
 
-* Adds a meeting note to the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Adds a meeting note to the client at the specified `CLIENT_INDEX`
+* When adding a meeting note, FinHub automatically records the date and time the note was added. 
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The note cannot be empty. 
 * Only one meeting note can be added at a time.
-* More than one meeting note can be added to each person.
+* More than one meeting note can be added to each client.
 
 Examples:
 
 * `note 1 Client is interested in policy abc`
-* `note 2 Client wants to renew policy`
+* `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the 
+2nd client in FinHub. 
+* `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to 
+know more about policy 2" to the 1st client in the result of the `find` command
+
+<box type="tip" seamless>
+
+**Tip:** Regularly add meeting notes to keep track of discussions, decisions and follow-ups!
+</box>
 
 <br>
 
 ### Deleting a meeting note : `nDelete`
 
-Deletes a meeting note from a specified person from the address book.
+Deletes a meeting note from a specified client in FinHub.
 
 Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
 
-* Deletes the meeting note at the specified `MEETING_NOTE_INDEX` of the specified person at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed person list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Both the client index and meeting note index must be provided.
+* Deletes the meeting note at the given `MEETING_NOTE_INDEX` for the client listed at `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified client's 
+displayed meeting note list.
+* Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` **must be positive integers** 1, 2, 3, …​
+* Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` must be provided.
 * Only one meeting note can be deleted at a time.
 
 Examples:
 
-* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd person in the address book.
-* `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st person in the results of the `find`
+* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd client in FinHub.
+* `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st client in the results of the `find`
   command.
 
 <br>
 
-### Starring a person : `star`
+### Starring a client : `star`
 
-Stars the specified person from the address book.
+Stars the specified client in FinHub. Starred clients will have a star displayed next to their name, and will be bumped
+to the top of the displayed client lists along with other starred clients. 
 
-Format: `star INDEX`
+Format: `star CLIENT_INDEX`
 
-* Stars the peron at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Stars the client at the specified `CLIENT_INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be archived at a time.
+* Only one client can be archived at a time.
 
 Examples:
 
-* `list` followed by `star 1` archives the 1st person in the list
-* `list` followed by `star 2` archives the 2nd person in the list
+* `list` followed by `star 1` archives the 1st client in the list
+* `list` followed by `star 2` archives the 2nd client in the list
+
+<box type="tip" seamless>
+
+**Tip:** You can use this feature to mark important clients as favourites! 
+</box>
 
 <br>
 
-### Removing Star of a person : `unstar`
+### Removing Star of a client : `unstar`
 
-Remove the starred status of a specified person from the address book.
+Remove the starred status of a specified client in FinHub.
 
-Format: `unstar INDEX`
+Format: `unstar CLIENT_INDEX`
 
-* Removes the starred status of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Removes the starred status of the client at the specified `CLIENT_INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The indices **must be positive integers** 1, 2, 3, …​
-* Only one person can be unarchived at a time.
+* Only one client can be unarchived at a time.
 
 Examples:
 
-* `list` followed by `unstar 1` unarchives the 1st person in the list
-* `list` followed by `unstar 2` unarchives the 2nd person in the list
+* `list` followed by `unstar 1` unarchives the 1st client in the list
+* `list` followed by `unstar 2` unarchives the 2nd client in the list
 
 <br>
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries in FinHub.
 
 Format: `clear`
 
@@ -370,30 +406,26 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
+FinHub data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 <br>
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
+FinHub data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty
+If your changes to the data file makes its format invalid, FinHub will discard all data and start with an empty
 data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside
+Furthermore, certain edits can cause FinHub to behave in unexpected ways (e.g., if a value entered is outside
 the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 <br>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -401,7 +433,7 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

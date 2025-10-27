@@ -23,32 +23,71 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static final ArrayList<Reminder> EMPTY_REMINDERS = new ArrayList<>();
     public static final ArrayList<MeetingNote> EMPTY_MEETING_NOTES = new ArrayList<>();
+
+    public static final ArrayList<Reminder> SAMPLE_REMINDERS_ONE = new ArrayList<>() {{
+            add(new Reminder("Follow up with client on insurance quote", "2026-11-10 09:00"));
+            add(new Reminder("Submit updated policy document", "2026-11-15 17:30"));
+            add(new Reminder("Check premium renewal details", "2026-12-01 10:00"));
+        }};
+
+    public static final ArrayList<Reminder> SAMPLE_REMINDERS_TWO = new ArrayList<>() {{
+            add(new Reminder("Call to confirm appointment", "2027-11-03 14:00"));
+            add(new Reminder("Prepare meeting agenda for investment review", "2028-11-05 08:30"));
+            add(new Reminder("Send birthday greeting to client", "2029-11-18 09:30"));
+        }};
+
+    public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_ONE = new ArrayList<>() {{
+            add(new MeetingNote("Discussed client's insurance needs and recommended FamilyCare plan.",
+                "2025-10-01 10:30"));
+            add(new MeetingNote("Client requested quotation for additional coverage.",
+                "2025-10-05 11:00"));
+            add(new MeetingNote("Scheduled next review session for December.", "2025-10-10 16:45"));
+        }};
+
+    public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_TWO = new ArrayList<>() {{
+            add(new MeetingNote("Explained investment risk profile and portfolio diversification.",
+                "2025-09-20 14:15"));
+            add(new MeetingNote("Client requested to adjust monthly savings plan.", "2025-09-25 10:00"));
+            add(new MeetingNote("Planned to introduce new product line next quarter.", "2025-09-30 09:30"));
+        }};
+
+
     public static Person[] getSamplePersons() {
-        return new Person[] {
+        return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), EMPTY_REMINDERS,
-                    new InsurancePolicy("AIB HealthShield Gold Max"), EMPTY_MEETING_NOTES, true, false),
+                        new Address("Blk 30 Geylang Street 29, #06-40"),
+                        getTagSet("friends"), SAMPLE_REMINDERS_ONE,
+                        new InsurancePolicy("AIB HealthShield Gold Max"), SAMPLE_MEETING_NOTES_ONE, true,
+                        false),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), EMPTY_REMINDERS,
-                    new InsurancePolicy("AIB Secure Flexi Term"), EMPTY_MEETING_NOTES, true, false),
+                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        getTagSet("colleagues", "friends"), SAMPLE_REMINDERS_TWO,
+                        new InsurancePolicy("AIB Secure Flexi Term"), SAMPLE_MEETING_NOTES_TWO, true,
+                        false),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), EMPTY_REMINDERS,
-                    new InsurancePolicy("Default Policy"), EMPTY_MEETING_NOTES, false, false),
+                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        getTagSet("neighbours"), EMPTY_REMINDERS,
+                        new InsurancePolicy("Default Policy"), EMPTY_MEETING_NOTES, false, false),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), EMPTY_REMINDERS,
-                    new InsurancePolicy("AIB Absolute Critical Cover"), EMPTY_MEETING_NOTES, false, false),
+                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                        getTagSet("family"), EMPTY_REMINDERS,
+                        new InsurancePolicy("AIB Absolute Critical Cover"), SAMPLE_MEETING_NOTES_ONE, false,
+                        false),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"), EMPTY_REMINDERS,
-                    new InsurancePolicy("AIB Accident Cashback Plan"), EMPTY_MEETING_NOTES, false, false),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"), EMPTY_REMINDERS,
-                    new InsurancePolicy("AIB Lifetime Cover"), EMPTY_MEETING_NOTES, false, false)
+                        new Address("Blk 47 Tampines Street 20, #17-35"),
+                        getTagSet("classmates"), SAMPLE_REMINDERS_TWO,
+                        new InsurancePolicy("AIB Accident Cashback Plan"), EMPTY_MEETING_NOTES, false,
+                        false),
+            new Person(new Name("Roy Balakrishnan"),
+                        new Phone("92624417"),
+                        new Email("royb@example.com"),
+                        new Address("Blk 45 Aljunied Street 85, #11-31"),
+                        getTagSet("colleagues"),
+                        SAMPLE_REMINDERS_ONE,
+                        new InsurancePolicy("AIB Lifetime Cover"),
+                        SAMPLE_MEETING_NOTES_TWO,
+                        false,
+                        false)
         };
     }
 
