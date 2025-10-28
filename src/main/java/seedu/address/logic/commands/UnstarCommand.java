@@ -56,7 +56,7 @@ public class UnstarCommand extends Command {
 
         model.setPerson(personToUnstar, unstarredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.refreshFilteredPersonList();
         return new CommandResult(String.format(MESSAGE_UNSTARRED_PERSON_SUCCESS, Messages.format(personToUnstar)));
     }
 

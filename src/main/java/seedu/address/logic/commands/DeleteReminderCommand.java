@@ -65,7 +65,7 @@ public class DeleteReminderCommand extends Command {
         model.setPerson(personToDeleteFrom, editedPerson);
         model.deleteGeneralReminder(reminderToDelete);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.refreshFilteredPersonList();
 
         return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS,
                 personToDeleteFrom.getName(),

@@ -185,6 +185,14 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    @Override
+    public void refreshFilteredPersonList() {
+        if (viewingArchivedList) {
+            updateFilteredPersonList(Person::isArchived);
+        } else {
+            updateFilteredPersonList(person -> !person.isArchived());
+        }
+    }
 
     @Override
     public boolean equals(Object other) {

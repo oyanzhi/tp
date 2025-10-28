@@ -67,7 +67,7 @@ public class AddReminderCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.addGeneralReminder(reminder);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.refreshFilteredPersonList();
         return new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS, editedPerson.getName(), reminder));
     }
 
