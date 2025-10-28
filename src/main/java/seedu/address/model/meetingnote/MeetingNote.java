@@ -72,12 +72,13 @@ public class MeetingNote {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof MeetingNote)) {
             return false;
         }
 
         MeetingNote otherMeetingNote = (MeetingNote) other;
-        return note.equals(otherMeetingNote.note);
+        return this.note != null
+                && otherMeetingNote.note != null
+                && this.note.equalsIgnoreCase(otherMeetingNote.note);
     }
 }
