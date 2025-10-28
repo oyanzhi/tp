@@ -25,12 +25,15 @@ public class UnstarCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        // EP: String user input
         assertParseFailure(parser, "invalid", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UnstarCommand.MESSAGE_USAGE));
 
+        // EP: single character user input
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UnstarCommand.MESSAGE_USAGE));
 
+        // EP: negative index user input
         assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UnstarCommand.MESSAGE_USAGE));
     }

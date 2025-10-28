@@ -107,20 +107,20 @@ public class UnstarCommandTest {
         UnstarCommand unstarFirstCommand = new UnstarCommand(INDEX_FIRST_PERSON);
         UnstarCommand unstarSecondCommand = new UnstarCommand(INDEX_SECOND_PERSON);
 
-        // same object -> returns true
+        // EP: same unstar command object -> returns true
         assertTrue(unstarFirstCommand.equals(unstarFirstCommand));
 
-        // same values -> returns true
+        // EP: same unstar command index -> returns true
         UnstarCommand unstarFirstCommandCopy = new UnstarCommand(INDEX_FIRST_PERSON);
         assertTrue(unstarFirstCommand.equals(unstarFirstCommandCopy));
 
-        // different types -> returns false
+        // EP: different types -> returns false
         assertFalse(unstarFirstCommand.equals(1));
 
-        // null -> returns false
+        // EP: null -> returns false
         assertFalse(unstarFirstCommand.equals(null));
 
-        // different person -> returns false
+        // EP: different unstar command object -> returns false
         assertFalse(unstarFirstCommand.equals(unstarSecondCommand));
     }
 

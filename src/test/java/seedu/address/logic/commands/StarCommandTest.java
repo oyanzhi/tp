@@ -100,20 +100,20 @@ public class StarCommandTest {
         StarCommand starFirstCommand = new StarCommand(INDEX_FIRST_PERSON);
         StarCommand starSecondCommand = new StarCommand(INDEX_SECOND_PERSON);
 
-        // same object -> returns true
+        // EP: same star command object -> returns true
         assertTrue(starFirstCommand.equals(starFirstCommand));
 
-        // same values -> returns true
+        // EP: same star command index -> returns true
         StarCommand starFirstCommandCopy = new StarCommand(INDEX_FIRST_PERSON);
         assertTrue(starFirstCommand.equals(starFirstCommandCopy));
 
-        // different types -> returns false
+        // EP: different types -> returns false
         assertFalse(starFirstCommand.equals(1));
 
-        // null -> returns false
+        // EP: null -> returns false
         assertFalse(starFirstCommand.equals(null));
 
-        // different person -> returns false
+        // EP: different star command object -> returns false
         assertFalse(starFirstCommand.equals(starSecondCommand));
     }
 
