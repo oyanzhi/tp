@@ -101,6 +101,8 @@ public class MeetingNoteTest {
         MeetingNote sameNote = new MeetingNote(VALID_MEETING_NOTE_AMY, VALID_MEETING_NOTE_CREATED_BY_AMY);
         MeetingNote differentNote = new MeetingNote("Different content", VALID_MEETING_NOTE_CREATED_BY_AMY);
         MeetingNote differentDate = new MeetingNote(VALID_MEETING_NOTE_AMY, "2025-12-31 10:00");
+        MeetingNote noteAllCaps = new MeetingNote(VALID_MEETING_NOTE_AMY.toUpperCase(),
+                VALID_MEETING_NOTE_CREATED_BY_AMY);
 
         // same values -> true
         assertTrue(note.equals(sameNote));
@@ -119,5 +121,8 @@ public class MeetingNoteTest {
 
         // different date -> true
         assertTrue(note.equals(differentDate));
+
+        // case-insensitive
+        assertTrue(note.equals(noteAllCaps));
     }
 }
