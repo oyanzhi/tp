@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -27,6 +28,15 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        // Automatically scroll to top when new list is displayed
+        personList.addListener((javafx.collections.ListChangeListener.Change<? extends Person> change) -> {
+            Platform.runLater(() -> {
+                if (!personListView.getItems().isEmpty()) {
+                    personListView.scrollTo(0);
+                }
+            });
+        });
     }
 
     /**

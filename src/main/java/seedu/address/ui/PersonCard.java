@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -91,8 +92,6 @@ public class PersonCard extends UiPart<Region> {
         ReminderListPanel reminderListPanel = new ReminderListPanel(reminderTexts);
         remindersPlaceholder.getChildren().add(reminderListPanel.getRoot());
         Region remindersRoot = reminderListPanel.getRoot();
-        remindersPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
-        remindersPlaceholder.maxHeightProperty().bind(leftBox.heightProperty());
         remindersRoot.prefHeightProperty().bind(leftBox.heightProperty());
         remindersRoot.maxHeightProperty().bind(leftBox.heightProperty());
         AnchorPane.setTopAnchor(reminderListPanel.getRoot(), 0.0);
@@ -104,8 +103,6 @@ public class PersonCard extends UiPart<Region> {
         MeetingNoteListPanel meetingNoteListPanel = new MeetingNoteListPanel(meetingNoteTexts);
         meetingNotesPlaceholder.getChildren().add(meetingNoteListPanel.getRoot());
         Region notesRoot = meetingNoteListPanel.getRoot();
-        meetingNotesPlaceholder.prefHeightProperty().bind(leftBox.heightProperty());
-        meetingNotesPlaceholder.maxHeightProperty().bind(leftBox.heightProperty());
         notesRoot.prefHeightProperty().bind(leftBox.heightProperty());
         notesRoot.maxHeightProperty().bind(leftBox.heightProperty());
         AnchorPane.setTopAnchor(notesRoot, 0.0);
@@ -113,11 +110,16 @@ public class PersonCard extends UiPart<Region> {
         AnchorPane.setRightAnchor(notesRoot, 0.0);
         AnchorPane.setBottomAnchor(notesRoot, 0.0);
 
-        reminderListPanel.getRoot().minWidthProperty().set(150);
-        meetingNoteListPanel.getRoot().minWidthProperty().set(150);
+        //reminderListPanel.getRoot().minWidthProperty().set(150);
+        //meetingNoteListPanel.getRoot().minWidthProperty().set(150);
 
         // Ensure equal default width for reminders and meeting notes
         cardPane.setDividerPositions(0.33, 0.66);
+
+        cardPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+            Platform.runLater(() -> cardPane.setDividerPositions(0.33, 0.66));
+        });
+
         //prevents resizing of boxes
         // cardPane.getDividers().forEach(divider -> divider.positionProperty().addListener((obs, oldVal, newVal) -> {
         //     Platform.runLater(() -> cardPane.setDividerPositions(0.33, 0.66))
