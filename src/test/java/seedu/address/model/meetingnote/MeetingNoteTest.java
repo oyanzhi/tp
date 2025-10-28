@@ -100,7 +100,8 @@ public class MeetingNoteTest {
         MeetingNote note = new MeetingNote(VALID_MEETING_NOTE_AMY, VALID_MEETING_NOTE_CREATED_BY_AMY);
         MeetingNote sameNote = new MeetingNote(VALID_MEETING_NOTE_AMY, VALID_MEETING_NOTE_CREATED_BY_AMY);
         MeetingNote differentNote = new MeetingNote("Different content", VALID_MEETING_NOTE_CREATED_BY_AMY);
-        MeetingNote differentDate = new MeetingNote(VALID_MEETING_NOTE_AMY, "2025-12-31 10:00");
+        MeetingNote differentDate1 = new MeetingNote(VALID_MEETING_NOTE_AMY, "2025-12-31 10:00");
+        MeetingNote differentDate2 = new MeetingNote(VALID_MEETING_NOTE_AMY, "2025-12-31 10:30");
         MeetingNote noteAllCaps = new MeetingNote(VALID_MEETING_NOTE_AMY.toUpperCase(),
                 VALID_MEETING_NOTE_CREATED_BY_AMY);
 
@@ -119,8 +120,11 @@ public class MeetingNoteTest {
         // different note -> false
         assertFalse(note.equals(differentNote));
 
-        // different date -> true
-        assertTrue(note.equals(differentDate));
+        // same note less than one hour apart -> true
+        assertTrue(differentDate1.equals(differentDate2));
+
+        // same note more than one hour apart -> false
+        assertFalse(note.equals(differentDate1));
 
         // case-insensitive
         assertTrue(note.equals(noteAllCaps));

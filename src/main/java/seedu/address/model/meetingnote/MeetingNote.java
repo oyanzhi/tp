@@ -3,6 +3,7 @@ package seedu.address.model.meetingnote;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -77,6 +78,7 @@ public class MeetingNote {
         }
 
         MeetingNote otherMeetingNote = (MeetingNote) other;
-        return this.note.equalsIgnoreCase(otherMeetingNote.note);
+        return this.note.equalsIgnoreCase(otherMeetingNote.note)
+                && Duration.between(this.createdAt, otherMeetingNote.createdAt).toHours() < 2;
     }
 }

@@ -28,7 +28,7 @@ public class AddMeetingNoteCommand extends Command {
 
     public static final String MESSAGE_ADD_MEETING_NOTE_SUCCESS = "Meeting note added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_MEETING_NOTE =
-            "A similar meeting note has already been added for this person";
+            "A similar meeting note has already been added to this client less than 2 hours ago";
 
     private final Index index;
     private final MeetingNote meetingNote;
@@ -55,7 +55,7 @@ public class AddMeetingNoteCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        // Check if duplicate meeting note exists
+        // Check if duplicate meeting note was added less than 2 hours before
         if (personToEdit.hasMeetingNote(meetingNote)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING_NOTE);
         }
