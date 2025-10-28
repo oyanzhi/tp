@@ -28,7 +28,8 @@ public class MeetingNoteListPanel extends UiPart<Region> {
     public MeetingNoteListPanel(ObservableList<String> notes) {
         super(FXML);
 
-        meetingNoteListView.setItems(notes != null ? notes : FXCollections.observableArrayList());
+        ObservableList<String> noteList = notes != null ? notes : FXCollections.observableArrayList();
+        meetingNoteListView.setItems(noteList);
         meetingNoteListView.setCellFactory(list -> new MeetingNoteListViewCell());
 
         meetingNoteListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -36,15 +37,25 @@ public class MeetingNoteListPanel extends UiPart<Region> {
         meetingNoteListView.setFocusTraversable(false);
         meetingNoteListView.setFixedCellSize(-1);
 
-
         Platform.runLater(() -> {
             meetingNoteListView.scrollTo(0);
             meetingNoteListView.getSelectionModel().clearSelection();
         });
+
+        // Disable parent scrolling when mouse is hovering over meeting notes list
+        meetingNoteListView.setOnScroll(event -> event.consume());
+
+
     }
 
     public void setItems(ObservableList<String> items) {
         meetingNoteListView.setItems(items != null ? items : FXCollections.observableArrayList());
+        Platform.runLater(() -> {
+            if (!meetingNoteListView.getItems().isEmpty()) {
+                meetingNoteListView.scrollTo(meetingNoteListView.getItems().size() - 1);
+            }
+        });
+
     }
 
     private class MeetingNoteListViewCell extends ListCell<String> {
