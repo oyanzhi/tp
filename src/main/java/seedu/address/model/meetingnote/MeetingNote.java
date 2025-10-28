@@ -77,8 +77,6 @@ public class MeetingNote {
         }
 
         MeetingNote otherMeetingNote = (MeetingNote) other;
-        return this.note != null
-                && otherMeetingNote.note != null
-                && this.note.equalsIgnoreCase(otherMeetingNote.note);
+        return this.note.equalsIgnoreCase(otherMeetingNote.note);
     }
 }

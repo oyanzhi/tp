@@ -37,11 +37,6 @@ public class MeetingNoteListPanel extends UiPart<Region> {
         meetingNoteListView.setFocusTraversable(false);
         meetingNoteListView.setFixedCellSize(-1);
 
-        Platform.runLater(() -> {
-            meetingNoteListView.scrollTo(0);
-            meetingNoteListView.getSelectionModel().clearSelection();
-        });
-
         // Disable parent scrolling when mouse is hovering over meeting notes list
         meetingNoteListView.setOnScroll(event -> event.consume());
 
