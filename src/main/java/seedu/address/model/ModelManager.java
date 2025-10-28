@@ -29,6 +29,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> archivedPersons;
     private final ObservableList<Reminder> generalReminderList;
     private boolean viewingArchivedList = false;
+    private Predicate<Person> currentFilter;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -157,6 +158,18 @@ public class ModelManager implements Model {
     @Override
     public void setViewingArchivedList(boolean viewing) {
         this.viewingArchivedList = viewing;
+    }
+
+    @Override
+    public Predicate<Person> getCurrentFilter() {
+        return currentFilter;
+    }
+
+    @Override
+    public void setCurrentFilter(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        this.currentFilter = predicate;
+        updateFilteredPersonList(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================

@@ -103,6 +103,10 @@ public interface Model {
 
     void setViewingArchivedList(boolean viewing);
 
+    Predicate<Person> getCurrentFilter();
+
+    void setCurrentFilter(Predicate<Person> predicate);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
