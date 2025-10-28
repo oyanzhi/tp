@@ -16,6 +16,7 @@ import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.GeneralReminderSorter;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -49,6 +50,7 @@ public class ModelManager implements Model {
             this.generalReminderList.addAll(pReminderList.stream()
                     .map(reminder -> new Pair<>(p, reminder)).toList());
         }
+        this.generalReminderList.sort(new GeneralReminderSorter());
     }
 
     public ModelManager() {
@@ -141,14 +143,16 @@ public class ModelManager implements Model {
     public void addGeneralReminder(Person person, Reminder target) {
         requireAllNonNull(person, target);
         this.generalReminderList.add(new Pair<Person, Reminder>(person, target));
-        logger.info(String.format("Result: Reminder {%s} also added to General Reminders", target));
+        this.generalReminderList.sort(new GeneralReminderSorter());
+        logger.info(String.format("Result: Reminder {%s} for {%s} also added to General Reminders", target, person));
     }
 
     @Override
     public void deleteGeneralReminder(Person person, Reminder target) {
         requireAllNonNull(person, target);
         this.generalReminderList.remove(new Pair<>(person, target));
-        logger.info(String.format("Result: Reminder {%s} also deleted from General Reminders", target));
+        logger.info(
+                String.format("Result: Reminder {%s} for {%s}  also deleted from General Reminders", target, person));
     }
 
     //=========== Filtered Person List Accessors =============================================================
