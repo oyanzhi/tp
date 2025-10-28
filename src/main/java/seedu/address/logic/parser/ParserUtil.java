@@ -153,7 +153,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String header} into a {@code Header}.
+     * Parses and validates the given {@code String header}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code header} is invalid.
@@ -168,10 +168,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code Date}.
+     * Parses and validates the given {@code String deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if the given {@code deadline} is invalid.
      */
     public static String parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
@@ -201,7 +201,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String note} into a {@code Note}.
+     * Parses and validates the given {@code String note}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code note} is invalid.
