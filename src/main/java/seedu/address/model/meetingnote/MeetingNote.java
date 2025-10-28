@@ -78,7 +78,6 @@ public class MeetingNote {
         }
 
         MeetingNote otherMeetingNote = (MeetingNote) other;
-        return note.equals(otherMeetingNote.note)
-                && createdAt.equals(otherMeetingNote.createdAt);
+        return note.equals(otherMeetingNote.note);
     }
 }

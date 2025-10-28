@@ -117,7 +117,7 @@ public class MeetingNoteTest {
         // different note -> false
         assertFalse(note.equals(differentNote));
 
-        // different date -> false
-        assertFalse(note.equals(differentDate));
+        // different date -> true
+        assertTrue(note.equals(differentDate));
     }
 }
