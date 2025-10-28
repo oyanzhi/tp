@@ -1,10 +1,13 @@
 package seedu.address.model.reminder;
 
-import javafx.util.Pair;
 import java.util.Comparator;
 
+import javafx.util.Pair;
 import seedu.address.model.person.Person;
 
+/**
+ * A sorter class that works to sort {@code Reminder} that have been tagged to {@code Person}
+ */
 public class GeneralReminderSorter implements Comparator<Pair<Person, Reminder>> {
     @Override
     public int compare(Pair<Person, Reminder> o1, Pair<Person, Reminder> o2) {
