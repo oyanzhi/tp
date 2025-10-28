@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> archivedPersons;
     private final ObservableList<Reminder> generalReminderList;
+    private boolean viewingArchivedList = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -146,6 +147,16 @@ public class ModelManager implements Model {
         requireNonNull(target);
         this.generalReminderList.remove(target);
         logger.info(String.format("Result: Reminder {%s} also deleted from General Reminders", target));
+    }
+
+    @Override
+    public boolean isViewingArchivedList() {
+        return viewingArchivedList;
+    }
+
+    @Override
+    public void setViewingArchivedList(boolean viewing) {
+        this.viewingArchivedList = viewing;
     }
 
     //=========== Filtered Person List Accessors =============================================================

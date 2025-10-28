@@ -38,6 +38,11 @@ public class UnarchiveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.isViewingArchivedList()) {
+            throw new CommandException("You must be viewing the archive lsit to unarchive a person.");
+        }
+
         List<Person> archivedList = model.getArchivedPersonList();
 
         if (targetIndex.getZeroBased() >= archivedList.size()) {

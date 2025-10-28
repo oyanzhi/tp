@@ -16,6 +16,7 @@ public class ListActiveCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(person -> !person.isArchived());
+        model.setViewingArchivedList(false);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -99,6 +99,10 @@ public interface Model {
      */
     void deleteGeneralReminder(Reminder target);
 
+    boolean isViewingArchivedList();
+
+    void setViewingArchivedList(boolean viewing);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
