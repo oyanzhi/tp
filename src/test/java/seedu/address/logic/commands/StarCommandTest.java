@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.person.Person.STARRED_STATUS_COMPARATOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -35,7 +36,7 @@ public class StarCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         expectedModel.setPerson(personToStar, starredPerson);
-        expectedModel.sortPersons(StarCommand.STARRED_STATUS_COMPARATOR);
+        expectedModel.sortPersons(STARRED_STATUS_COMPARATOR);
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(starCommand, model, expectedMessage, expectedModel);
@@ -75,7 +76,7 @@ public class StarCommandTest {
         Person starredPerson = personToStar.rebuildWithStarredStatus(true);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToStar, starredPerson);
-        expectedModel.sortPersons(StarCommand.STARRED_STATUS_COMPARATOR);
+        expectedModel.sortPersons(STARRED_STATUS_COMPARATOR);
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(starCommand, model, expectedMessage, expectedModel);

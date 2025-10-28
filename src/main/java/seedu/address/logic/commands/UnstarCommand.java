@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.StarCommand.STARRED_STATUS_COMPARATOR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.Person.STARRED_STATUS_COMPARATOR;
 
 import java.util.List;
 
@@ -38,14 +38,16 @@ public class UnstarCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        assert lastShownList != null : "Filtered person list should not be null";
+        int zeroBasedTargetIndex = targetIndex.getZeroBased();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (zeroBasedTargetIndex >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person personToUnstar = lastShownList.get(targetIndex.getZeroBased());
+        Person personToUnstar = lastShownList.get(zeroBasedTargetIndex);
 
         // Assert person is not null
-        assert personToUnstar != null : "Person to unstar is null. Index: " + targetIndex.getZeroBased();
+        assert personToUnstar != null : "Person to unstar is null. Index: " + zeroBasedTargetIndex;
 
         // Check if person starred status has been removed
         if (!personToUnstar.isStarred()) {
@@ -54,6 +56,8 @@ public class UnstarCommand extends Command {
 
         Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
 
+        assert unstarredPerson != null : "Unstarred person should not be null after unstarring them";
+        
         model.setPerson(personToUnstar, unstarredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

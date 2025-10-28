@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.Person.STARRED_STATUS_COMPARATOR;
 
-import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -27,12 +27,6 @@ public class StarCommand extends Command {
     public static final String MESSAGE_STARRED_PERSON_SUCCESS = "Starred Person: %1$s";
     public static final String MESSAGE_PERSON_IS_STARRED = "Chosen person is already starred";
 
-    // Static comparator for sorting
-    public static final Comparator<Person> STARRED_STATUS_COMPARATOR = Comparator
-            .comparing(Person::isStarred, Comparator.reverseOrder())
-            .thenComparing(Person::getName);
-
-
     private final Index targetIndex;
 
     public StarCommand(Index targetIndex) {
@@ -43,14 +37,16 @@ public class StarCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        assert lastShownList != null : "Filtered person list should not be null";
+        int zeroBasedTargetIndex = targetIndex.getZeroBased();
+        
+        if (zeroBasedTargetIndex >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person personToStar = lastShownList.get(targetIndex.getZeroBased());
+        Person personToStar = lastShownList.get(zeroBasedTargetIndex);
 
         // Assert person is not null
-        assert personToStar != null : "Person to star is null. Index: " + targetIndex.getZeroBased();
+        assert personToStar != null : "Person to star is null. Index: " + zeroBasedTargetIndex;
 
         // Check if person has already been starred
         if (personToStar.isStarred()) {
@@ -58,6 +54,8 @@ public class StarCommand extends Command {
         }
 
         Person starredPerson = personToStar.rebuildWithStarredStatus(true);
+
+        assert starredPerson != null : "Starred person should not be null after starring them";
 
         model.setPerson(personToStar, starredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);

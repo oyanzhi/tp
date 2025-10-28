@@ -29,8 +29,7 @@ public class StarCommandParser implements Parser<StarCommand> {
             logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + index.getOneBased());
             return new StarCommand(index);
         } catch (ParseException pe) {
-            logger.log(Level.FINER, LOGGING_MESSAGE_PARSE_FAILURE
-                    + String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE));
+            logger.log(Level.FINER, LOGGING_MESSAGE_PARSE_FAILURE + pe.getMessage());
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE), pe);
         }

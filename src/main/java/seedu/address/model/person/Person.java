@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -34,7 +35,12 @@ public class Person implements Comparable<Person> {
     private final boolean isArchived;
     private final ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
     private final boolean starred;
-
+    
+    // Static comparator for sorting
+    public static final Comparator<Person> STARRED_STATUS_COMPARATOR = Comparator
+            .comparing(Person::isStarred, Comparator.reverseOrder())
+            .thenComparing(Person::getName);
+    
     /**
      * Every field must be present and not null.
      */
