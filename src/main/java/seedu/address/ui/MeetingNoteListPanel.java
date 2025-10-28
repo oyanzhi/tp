@@ -50,12 +50,6 @@ public class MeetingNoteListPanel extends UiPart<Region> {
 
     public void setItems(ObservableList<String> items) {
         meetingNoteListView.setItems(items != null ? items : FXCollections.observableArrayList());
-        Platform.runLater(() -> {
-            if (!meetingNoteListView.getItems().isEmpty()) {
-                meetingNoteListView.scrollTo(meetingNoteListView.getItems().size() - 1);
-            }
-        });
-
     }
 
     private class MeetingNoteListViewCell extends ListCell<String> {
