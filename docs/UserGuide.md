@@ -229,6 +229,13 @@ Examples:
 * `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st client in the results of the `find`
   command.
 
+<box type="tip" seamless>
+
+**Tip:** Regularly delete overdue reminders to maintain a clean and organised workspace!
+</box>
+
+<br>
+
 <br>
 
 ### Editing a reminder : `rEdit`
