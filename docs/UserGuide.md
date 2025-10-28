@@ -467,7 +467,7 @@ the data of your previous FinHub home folder.
 | **rEdit**     | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                  |
 | **Archive**   | `archive INDEX`<br> e.g., `archive 1`                                                                                                                                 |
 | **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                             |  
-| **Note**      | `note CLIENT_INDEX MEETING_NOTE`<br> e.g., `note 1 Client wants to know about policy abc`                                                                             |
+| **Note**      | `note CLIENT_INDEX TEXT`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                     |
 | **nDelete**   | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                     |
 | **Star**      | `star INDEX`<br> e.g., `star 1`                                                                                                                                       |
 | **Unstar**    | `unstar INDEX`<br> e.g., `unstar 1`                                                                                                                                   |  
