@@ -24,7 +24,8 @@ public class GeneralReminderListPanel extends UiPart<Region> {
      */
     public GeneralReminderListPanel(ObservableList<Pair<Person, Reminder>> generalReminderList) {
         super(FXML);
-        generalReminderListView.setItems(generalReminderList != null ? generalReminderList : FXCollections.observableArrayList());
+        generalReminderListView.setItems(
+                generalReminderList != null ? generalReminderList : FXCollections.observableArrayList());
         generalReminderListView.setCellFactory(listView -> new GeneralReminderListViewCell());
     }
 
