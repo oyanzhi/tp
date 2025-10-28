@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
+import javafx.util.Pair;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -161,12 +162,12 @@ public class AddCommandTest {
         };
 
         @Override
-        public void addGeneralReminder(Reminder target) {
+        public void addGeneralReminder(Person person, Reminder target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteGeneralReminder(Reminder target) {
+        public void deleteGeneralReminder(Person person, Reminder target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -181,7 +182,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Reminder> getGeneralReminderList() {
+        public ObservableList<Pair<Person, Reminder>> getGeneralReminderList() {
             throw new AssertionError("This method should not be called.");
         }
 
