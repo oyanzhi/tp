@@ -229,6 +229,13 @@ Examples:
 * `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st client in the results of the `find`
   command.
 
+<box type="tip" seamless>
+
+**Tip:** Regularly delete overdue reminders to maintain a clean and organised workspace!
+</box>
+
+<br>
+
 <br>
 
 ### Editing a reminder : `rEdit`
@@ -300,7 +307,8 @@ Format: `note CLIENT_INDEX NOTE`
 * When adding a meeting note, FinHub automatically records the date and time the note was added. 
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
-* The note cannot be empty. 
+* `NOTE` cannot be empty, must be less than 200 characters, and must contain only letters, numbers, punctuations, 
+ symbols, or spaces.
 * Only one meeting note can be added at a time.
 * More than one meeting note can be added to each client.
 
