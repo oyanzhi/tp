@@ -128,17 +128,17 @@ each client. You also have the option to star or archive clients for better clie
 <!-- Main Separator for TOC Indentation -->
 
 <!-- * FAQ -->
-<li><a href="#FAQ">FAQ</a></li>
+<li><a href="#faq">FAQ</a></li>
 
 <!-- Main Separator for TOC Indentation -->
 
 <!-- * Known Issues -->
-<li><a href="#Known-Issues">Known Issues</a></li>
+<li><a href="#known-issues">Known Issues</a></li>
 
 <!-- Main Separator for TOC Indentation -->
 
 <!-- * Command Summary -->
-<li><a href="#Command-Summary">Command Summary</a></li>
+<li><a href="#command-summary">Command Summary</a></li>
 
 </ul>
 
