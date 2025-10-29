@@ -488,7 +488,7 @@ Format: `star CLIENT_INDEX`
 * Stars the client at the specified `CLIENT_INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be positive integers** 1, 2, 3, …​
-* Only one client can be archived at a time.
+* Only one client can be starred at a time.
 
 Examples:
 
@@ -503,16 +503,16 @@ Examples:
 
 <br>
 
-### Removing Star of a client : `unstar`
+### Removing star status of a client : `unstar`
 
-Remove the starred status of a specified client in FinHub.
+Removes the starred status of a specified client in FinHub.
 
 Format: `unstar CLIENT_INDEX`
 
 * Removes the starred status of the client at the specified `CLIENT_INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be positive integers** 1, 2, 3, …​
-* Only one client can be unarchived at a time.
+* You can only remove the star status from one client at a time.
 
 Examples:
 
