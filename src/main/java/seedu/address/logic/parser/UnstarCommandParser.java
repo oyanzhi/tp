@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.UnstarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -24,6 +25,9 @@ public class UnstarCommandParser implements Parser<UnstarCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnstarCommand parse(String args) throws ParseException {
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnstarCommand.MESSAGE_USAGE));
+        }
         try {
             Index index = ParserUtil.parseIndex(args);
             logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + index.getOneBased());
