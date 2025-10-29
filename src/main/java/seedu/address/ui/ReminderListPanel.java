@@ -4,9 +4,13 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Region;
 
 /**
@@ -36,28 +40,15 @@ public class ReminderListPanel extends UiPart<Region> {
 
         ObservableList<String> reminderList = reminders != null ? reminders : FXCollections.observableArrayList();
         reminderListView.setItems(reminderList);
-        reminderListView.setCellFactory(list -> new ReminderListViewCell() {
-            @Override
-            protected void updateItem(String text, boolean empty) {
-                super.updateItem(text, empty);
-                setText(null);
-                setGraphic(null);
-                if (!empty && text != null) {
-                    // correct order: (index, text)
-                    setGraphic(new ReminderCard(getIndex() + 1, text).getRoot());
-                }
-            }
-        });
+        reminderListView.setCellFactory(lv -> new ReminderListCell());
         reminderListView.setOnScroll(event -> event.consume());
 
-
-        // Make the list visually read-only & avoid dim selected state
         reminderListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         reminderListView.getSelectionModel().clearSelection();
         reminderListView.setFocusTraversable(false);
         reminderListView.setFixedCellSize(-1);
+        reminderListView.getStyleClass().add("reminder-list");
 
-        // Ensure we start at the top on first layout pass
         Platform.runLater(() -> {
             reminderListView.scrollTo(0);
             reminderListView.getSelectionModel().clearSelection();
@@ -69,34 +60,30 @@ public class ReminderListPanel extends UiPart<Region> {
         reminderListView.setItems(items != null ? items : FXCollections.observableArrayList());
     }
 
-    /**
-     * ListCell that renders each reminder.
-     *
-     * <p>Primary path: render an FXML {@link ReminderCard} and set it as the graphic.</p>
-     * <p>Fallback path (for CI): render a plain string so tests do not need a JavaFX runtime.</p>
-     */
-    private static class ReminderListViewCell extends ListCell<String> {
+    class ReminderListCell extends ListCell<String> {
+        private final Label label = new Label();
+
+        ReminderListCell() {
+            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            label.getStyleClass().add("reminder-row");
+            label.setWrapText(false);
+            label.setTextOverrun(OverrunStyle.CLIP);
+            setGraphic(label);
+        }
+
         @Override
         protected void updateItem(String item, boolean empty) {
             super.updateItem(item, empty);
-
             if (empty || item == null) {
                 setGraphic(null);
-                setText(null);
+                setTooltip(null);
                 return;
             }
-
-            // Try to render the proper FXML card.
-            try {
-                int idx = getIndex() + 1; // ListCell is 0-based; UI is 1-based.
-                setText(null); // prefer graphic when available
-                setGraphic(new ReminderCard(idx, item).getRoot());
-            } catch (Exception e) {
-                // Fallback for headless/unit-test environments: show plain text.
-                int idx = getIndex() + 1;
-                setGraphic(null);
-                setText(ReminderTextUtil.formatItem(idx, item));
-            }
+            int oneBased = getIndex() + 1;
+            String text = oneBased + ". " + item;
+            label.setText(text);
+            setGraphic(label);
+            setTooltip(new Tooltip(item));
         }
     }
 }
