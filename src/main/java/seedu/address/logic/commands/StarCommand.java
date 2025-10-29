@@ -20,12 +20,12 @@ public class StarCommand extends Command {
     public static final String COMMAND_WORD = "star";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": stars the person identified by the index number used in the displayed person list.\n"
+            + ": stars the client identified by the index number used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_STARRED_PERSON_SUCCESS = "Starred Person: %1$s";
-    public static final String MESSAGE_PERSON_IS_STARRED = "Chosen person is already starred";
+    public static final String MESSAGE_STARRED_PERSON_SUCCESS = "Starred Client: %1$s";
+    public static final String MESSAGE_PERSON_IS_STARRED = "Chosen client is already starred";
 
     // Static comparator for sorting
     public static final Comparator<Person> STARRED_STATUS_COMPARATOR = Comparator
@@ -50,7 +50,7 @@ public class StarCommand extends Command {
         Person personToStar = lastShownList.get(targetIndex.getZeroBased());
 
         // Assert person is not null
-        assert personToStar != null : "Person to star is null. Index: " + targetIndex.getZeroBased();
+        assert personToStar != null : "Client to star is null. Index: " + targetIndex.getZeroBased();
 
         // Check if person has already been starred
         if (personToStar.isStarred()) {
