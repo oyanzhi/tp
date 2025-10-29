@@ -5,7 +5,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.person.Person.STARRED_STATUS_COMPARATOR;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -28,9 +31,16 @@ public class UnstarCommand extends Command {
     public static final String MESSAGE_UNSTARRED_PERSON_SUCCESS = "Starred status removed from Person: %1$s";
     public static final String MESSAGE_PERSON_IS_UNSTARRED = "Chosen person is not starred";
 
+    private static final Logger logger = LogsCenter.getLogger(UnstarCommand.class);
     private final Index targetIndex;
 
+    /**
+     * Constructs a {@code UnstarCommand} that removes star status
+     * from the {@code Person} at the specified {@code Index}.
+     */
+
     public UnstarCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -54,13 +64,16 @@ public class UnstarCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_IS_UNSTARRED);
         }
 
+        logger.log(Level.FINE, "Removing star status of person at index: " + targetIndex.getOneBased());
+        logger.log(Level.FINE, "Person before removing star status: " + personToUnstar);
         Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
 
-        assert unstarredPerson != null : "Unstarred person should not be null after unstarring them";
+        assert unstarredPerson != null : "Unstarred person should not be null after removing star status";
+        assert !unstarredPerson.isStarred() : "Newly unstarred person must have isStarred = false";
         model.setPerson(personToUnstar, unstarredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_UNSTARRED_PERSON_SUCCESS, Messages.format(personToUnstar)));
+        return new CommandResult(String.format(MESSAGE_UNSTARRED_PERSON_SUCCESS, Messages.format(unstarredPerson)));
     }
 
     @Override

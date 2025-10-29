@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -48,11 +50,15 @@ class JsonAdaptedReminder {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Reminder.
      */
     public Reminder toModelType() throws IllegalValueException {
-        System.out.println("Parsing deadline: " + deadline);
+        if (header == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Header"));
+        }
         if (!Reminder.isValidHeader(header)) {
             throw new IllegalValueException(Reminder.HEADER_MESSAGE_CONSTRAINTS);
         }
-
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Deadline"));
+        }
         if (!Reminder.isValidDeadline(deadline)) {
             throw new IllegalValueException(Reminder.DEADLINE_MESSAGE_CONSTRAINTS);
         }

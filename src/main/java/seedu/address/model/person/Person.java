@@ -156,19 +156,19 @@ public class Person implements Comparable<Person> {
     }
 
     /**
-     * Returns the boolean starred state of person
+     * Returns the boolean isStarred state of person
      */
     public boolean isStarred() {
         return this.isStarred;
     }
 
     /**
-     * @param starred boolean that starred will be set to
-     * @return Person that has starred set to the parameter
+     * @param isStarred boolean that isStarred will be set to
+     * @return Person that has isStarred set to the parameter
      */
-    public Person rebuildWithStarredStatus(boolean starred) {
-        requireNonNull(starred);
-        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred);
+    public Person rebuildWithStarredStatus(boolean isStarred) {
+        requireNonNull(isStarred);
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, isStarred);
     }
 
     /**

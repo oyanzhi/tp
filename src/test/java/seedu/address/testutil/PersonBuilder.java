@@ -34,7 +34,7 @@ public class PersonBuilder {
     private ArrayList<Reminder> reminders;
     private InsurancePolicy policy;
     private ArrayList<MeetingNote> meetingNotes;
-    private boolean starred;
+    private boolean isStarred;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -47,7 +47,7 @@ public class PersonBuilder {
         reminders = new ArrayList<>();
         policy = new InsurancePolicy(DEFAULT_POLICY);
         meetingNotes = new ArrayList<>();
-        starred = false;
+        isStarred = false;
     }
 
     /**
@@ -62,7 +62,7 @@ public class PersonBuilder {
         reminders = new ArrayList<>(personToCopy.getReminders());
         policy = personToCopy.getPolicy();
         meetingNotes = new ArrayList<>(personToCopy.getMeetingNotes());
-        starred = personToCopy.isStarred();
+        isStarred = personToCopy.isStarred();
     }
 
     /**
@@ -126,8 +126,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Starred} of the {@code Person} that we are building.
      */
-    public PersonBuilder withStarred(String starred) {
-        this.starred = Boolean.parseBoolean(starred);;
+    public PersonBuilder withStarred(String isStarred) {
+        this.isStarred = Boolean.parseBoolean(isStarred);;
         return this;
     }
 
@@ -136,7 +136,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email, address, tags,
-                reminders, policy, meetingNotes, starred);
+                reminders, policy, meetingNotes, isStarred);
     }
 
 }

@@ -5,7 +5,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.person.Person.STARRED_STATUS_COMPARATOR;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -27,9 +30,14 @@ public class StarCommand extends Command {
     public static final String MESSAGE_STARRED_PERSON_SUCCESS = "Starred Person: %1$s";
     public static final String MESSAGE_PERSON_IS_STARRED = "Chosen person is already starred";
 
+    private static final Logger logger = LogsCenter.getLogger(StarCommand.class);
     private final Index targetIndex;
 
+    /**
+     * Constructs a {@code StarCommand} that stars the {@code Person} at the specified {@code Index}.
+     */
     public StarCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -52,14 +60,17 @@ public class StarCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_IS_STARRED);
         }
 
+        logger.log(Level.FINE, "Starring person at index: " + targetIndex.getOneBased());
+        logger.log(Level.FINE, "Person before starring: " + personToStar);
         Person starredPerson = personToStar.rebuildWithStarredStatus(true);
 
         assert starredPerson != null : "Starred person should not be null after starring them";
+        assert starredPerson.isStarred() : "Newly starred person must have isStarred = true";
 
         model.setPerson(personToStar, starredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_STARRED_PERSON_SUCCESS, Messages.format(personToStar)));
+        return new CommandResult(String.format(MESSAGE_STARRED_PERSON_SUCCESS, Messages.format(starredPerson)));
     }
 
     @Override
