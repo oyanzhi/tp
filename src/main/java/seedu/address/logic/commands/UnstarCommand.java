@@ -64,7 +64,7 @@ public class UnstarCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_IS_UNSTARRED);
         }
 
-        logger.log(Level.FINE, "Removing star status of person at index: " + targetIndex.getOneBased());
+        logger.log(Level.INFO, "Removing star status of person at index: " + targetIndex.getOneBased());
         logger.log(Level.FINE, "Person before removing star status: " + personToUnstar);
         Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
 

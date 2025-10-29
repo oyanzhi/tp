@@ -60,7 +60,7 @@ public class StarCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_IS_STARRED);
         }
 
-        logger.log(Level.FINE, "Starring person at index: " + targetIndex.getOneBased());
+        logger.log(Level.INFO, "Starring person at index: " + targetIndex.getOneBased());
         logger.log(Level.FINE, "Person before starring: " + personToStar);
         Person starredPerson = personToStar.rebuildWithStarredStatus(true);
 
