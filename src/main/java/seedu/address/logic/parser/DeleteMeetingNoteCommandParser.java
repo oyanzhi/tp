@@ -32,7 +32,7 @@ public class DeleteMeetingNoteCommandParser implements Parser<DeleteMeetingNoteC
             return new DeleteMeetingNoteCommand(indices[0], indices[1]);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingNoteCommand.MESSAGE_USAGE), pe);
+                    pe.getMessage(), pe);
         }
     }
 }

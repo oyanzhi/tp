@@ -21,8 +21,7 @@ public class ArchiveCommandParser implements Parser<ArchiveCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new ArchiveCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 }

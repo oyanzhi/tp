@@ -31,8 +31,7 @@ public class UnstarCommandParser implements Parser<UnstarCommand> {
         } catch (ParseException pe) {
             logger.log(Level.FINER, LOGGING_MESSAGE_PARSE_FAILURE
                     + String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnstarCommand.MESSAGE_USAGE));
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnstarCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 

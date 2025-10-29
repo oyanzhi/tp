@@ -17,8 +17,7 @@ public class UnarchiveCommandParser implements Parser<UnarchiveCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new UnarchiveCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 }
