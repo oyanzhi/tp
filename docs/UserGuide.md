@@ -492,9 +492,9 @@ Format: `star CLIENT_INDEX`
 
 Examples:
 
-* `list` followed by `star 1` stars the 1st person in the list
-* `list` followed by `star 2` stars the 2nd person in the list
-* `find Betsy` followed by `star 1` stars the 1st person in the results of the `find` command.
+* `list` followed by `star 1` stars the 1st client in the list
+* `list` followed by `star 2` stars the 2nd client in the list
+* `find Betsy` followed by `star 1` stars the 1st client in the results of the `find` command.
 
 <box type="tip" seamless>
 
@@ -516,9 +516,9 @@ Format: `unstar CLIENT_INDEX`
 
 Examples:
 
-* `list` followed by `unstar 1` removes star status from the 1st person in the list
-* `list` followed by `unstar 2` removes star status from the 2nd person in the list
-* `find Betsy` followed by `unstar 1` removes star status from the 1st person in the results of the `find` command.
+* `list` followed by `unstar 1` removes star status from the 1st client in the list
+* `list` followed by `unstar 2` removes star status from the 2nd client in the list
+* `find Betsy` followed by `unstar 1` removes star status from the 1st client in the results of the `find` command.
 
 <br>
 
