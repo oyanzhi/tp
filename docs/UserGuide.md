@@ -70,19 +70,19 @@ each client. You also have the option to star or archive clients for better clie
 <ul>
 <li><a href="#adding-a-client-add">Adding a Client</a></li>
 
-<li><a href="#editing-a-client--edit">Editing a Client</a></li>
+<li><a href="#editing-a-client-edit">Editing a Client</a></li>
 
 <li><a href="#locating-clients-by-name-find">Locating a Client</a></li>
 
-<li><a href="#deleting-a-client--delete">Deleting a Client</a></li>
+<li><a href="#deleting-a-client-delete">Deleting a Client</a></li>
 
-<li><a href="#starring-a-client--star">Starring a Client</a></li>
+<li><a href="#starring-a-client-star">Starring a Client</a></li>
 
-<li><a href="#removing-star-of-a-client--unstar">Remove Star of a Client</a></li>
+<li><a href="#removing-star-of-a-client-unstar">Remove Star of a Client</a></li>
 
-<li><a href="#archiving-a-client--archive">Archiving a Client</a></li>
+<li><a href="#archiving-a-client-archive">Archiving a Client</a></li>
 
-<li><a href="#unarchiving-a-client--unarchive">Unarchiving a Client</a></li>
+<li><a href="#unarchiving-a-client-unarchive">Unarchiving a Client</a></li>
 </ul>
 
 </details>
@@ -94,11 +94,11 @@ each client. You also have the option to star or archive clients for better clie
 <summary>Reminders</summary>
 
 <ul>
-<li><a href="#adding-a-reminder--reminder">Adding a Reminder</a></li>
+<li><a href="#adding-a-reminder-reminder">Adding a Reminder</a></li>
 
-<li><a href="#deleting-a-reminder--rdelete">Deleting a Reminder</a></li>
+<li><a href="#deleting-a-reminder-rdelete">Deleting a Reminder</a></li>
 
-<li><a href="#editing-a-reminder--redit">Editing a Reminder</a></li>
+<li><a href="#editing-a-reminder-redit">Editing a Reminder</a></li>
 </ul>
 
 </details>
@@ -110,9 +110,9 @@ each client. You also have the option to star or archive clients for better clie
 <summary>Meeting Notes</summary>
 
 <ul>
-<li><a href="#adding-a-meeting-note--note">Adding a Meeting Note</a></li>
+<li><a href="#adding-a-meeting-note-note">Adding a Meeting Note</a></li>
 
-<li><a href="#deleting-a-meeting-note--ndelete">Deleting a Meeting Note</a></li>
+<li><a href="#deleting-a-meeting-note-ndelete">Deleting a Meeting Note</a></li>
 </ul>
 
 </details>
