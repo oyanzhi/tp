@@ -93,7 +93,7 @@ public class DeleteMeetingNoteCommandTest {
         Index invalidMeetingNoteIndex = Index.fromZeroBased(invalidMeetingNoteInt);
         DeleteMeetingNoteCommand deleteMeetingNoteCommand = new DeleteMeetingNoteCommand(INDEX_FIRST_PERSON,
                 invalidMeetingNoteIndex);
-        assertCommandFailure(deleteMeetingNoteCommand, model, Messages.MESSAGE_INVALID_MEETING_NOTE_INDEX);
+        assertCommandFailure(deleteMeetingNoteCommand, model, Messages.MESSAGE_INVALID_MEETING_NOTE_DISPLAYED_INDEX);
     }
 
     @Test
