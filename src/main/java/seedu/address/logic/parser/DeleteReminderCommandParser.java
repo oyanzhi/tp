@@ -26,7 +26,7 @@ public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand
     public DeleteReminderCommand parse(String args) throws ParseException {
         try {
             Index[] indices = ParserUtil.parseDualIndex(args);
-            logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDICES + indices[0].getOneBased() + ", " 
+            logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDICES + indices[0].getOneBased() + ", "
                     + indices[1].getOneBased());
             return new DeleteReminderCommand(indices[0], indices[1]);
         } catch (ParseException pe) {

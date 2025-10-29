@@ -50,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label starred;
+    private Label isStarred;
     @FXML
     private Label policy;
     @FXML
@@ -77,10 +77,10 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         policy.setText(person.getPolicy().toString());
         if (person.isStarred()) {
-            starred.setText("★");
-            starred.setStyle("-fx-text-fill: gold; -fx-font-size: 16px;");
+            isStarred.setText("★");
+            isStarred.setStyle("-fx-text-fill: gold; -fx-font-size: 16px;");
         } else {
-            starred.setText("");
+            isStarred.setText("");
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

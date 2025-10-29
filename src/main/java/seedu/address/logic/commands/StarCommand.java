@@ -39,7 +39,6 @@ public class StarCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
         assert lastShownList != null : "Filtered person list should not be null";
         int zeroBasedTargetIndex = targetIndex.getZeroBased();
-        
         if (zeroBasedTargetIndex >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

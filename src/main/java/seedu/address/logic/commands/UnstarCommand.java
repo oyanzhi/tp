@@ -57,7 +57,6 @@ public class UnstarCommand extends Command {
         Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
 
         assert unstarredPerson != null : "Unstarred person should not be null after unstarring them";
-        
         model.setPerson(personToUnstar, unstarredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

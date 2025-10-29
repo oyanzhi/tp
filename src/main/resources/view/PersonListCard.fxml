@@ -30,7 +30,7 @@
                     <HBox spacing="8">
                         <Label fx:id="id" styleClass="cell_small_label"/>
                         <Label fx:id="name" styleClass="cell_big_label"/>
-                        <Label fx:id="starred" styleClass="cell_big_label"/>
+                        <Label fx:id="isStarred" styleClass="cell_big_label"/>
                     </HBox>
 
                     <FlowPane fx:id="tags"/>

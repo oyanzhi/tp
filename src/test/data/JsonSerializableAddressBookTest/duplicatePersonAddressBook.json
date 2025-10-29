@@ -12,7 +12,7 @@
       }
     ],
     "policy": "AIA HealthShield Gold",
-    "starred": "false",
+    "isStarred": "false",
     "isArchived": "false"
   }, {
     "name": "Alice Pauline",
@@ -27,7 +27,7 @@
       }
     ],
     "policy": "AIA HealthShield Gold",
-    "starred": "false",
+    "isStarred": "false",
     "isArchived": "false"
   } ]
 }
