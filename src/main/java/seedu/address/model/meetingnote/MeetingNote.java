@@ -14,8 +14,7 @@ import java.util.Objects;
  */
 public class MeetingNote {
 
-    public static final String NOTE_MESSAGE_CONSTRAINTS = "Note cannot be empty, must be less than 200 characters, "
-            + "and must contain only printable ASCII characters.";
+    public static final String NOTE_MESSAGE_CONSTRAINTS = "Note cannot be empty";
 
     public static final String DATE_PATTERN = "yyyy-MM-dd HH:mm";
 
@@ -38,12 +37,10 @@ public class MeetingNote {
     }
 
     /**
-     * Returns true if string is non-empty, less than 200 characters, and contains only printable ASCII characters
+     * Returns true if string is non-empty
      */
     public static boolean isValidNote(String note) {
-        return !note.isBlank()
-                && note.length() < 200 // less than 200 characters
-                && note.chars().allMatch(c -> c >= 32 && c <= 126); // basic printable ASCII
+        return !note.isBlank();
     }
 
     public String getNote() {

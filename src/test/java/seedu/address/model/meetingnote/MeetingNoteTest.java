@@ -43,19 +43,6 @@ public class MeetingNoteTest {
         // invalid empty note
         assertFalse(MeetingNote.isValidNote(""));
 
-        // invalid note more than 200 characters
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 201; i++) {
-            sb.append('A');
-        }
-        assertFalse(MeetingNote.isValidNote(sb.toString()));
-
-        // invalid note containing nonbasic printable ASCII character
-        assertFalse(MeetingNote.isValidNote("ć"));
-        assertFalse(MeetingNote.isValidNote("\nNewline not allowed"));
-        assertFalse(MeetingNote.isValidNote("Emoji 😃 not allowed"));
-
-
         // valid note
         assertTrue(MeetingNote.isValidNote("Discussed policy renewal and add-on coverage."));
     }
