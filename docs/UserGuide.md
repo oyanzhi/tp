@@ -170,11 +170,11 @@ Examples:
 
 Deletes a specified client from FinHub.
 
-Format: `delete INDEX`
+Format: `delete CLIENT_INDEX`
 
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the client at the specified `CLIENT_INDEX`.
+* The client index refers to the index number shown in the displayed client list.
+* The client index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -253,11 +253,11 @@ in the results of the `find` command to the given reminder
 
 Archives the specified client in FinHub.
 
-Format: `archive INDEX`
+Format: `archive CLIENT_INDEX`
 
-* Archives the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The indices **must be positive integers** 1, 2, 3, …​
+* Archives the client at the specified `CLIENT_INDEX`.
+* The client index refers to the index number shown in the displayed client list.
+* The client index **must be positive integers** 1, 2, 3, …​
 * Only one client can be archived at a time.
 
 Examples:
@@ -276,11 +276,11 @@ Examples:
 
 Unarchives the specified client in FinHub.
 
-Format: `unarchive INDEX`
+Format: `unarchive CLIENT_INDEX`
 
-* Unarchives the client at the specified `INDEX`
-* The index refers to the index number shown in the archived client list.
-* The indices **must be positive integers** 1, 2, 3, …​
+* Unarchives the client at the specified `CLIENT_INDEX`
+* The client index refers to the index number shown in the archived client list.
+* The client index **must be positive integers** 1, 2, 3, …​
 * Only one client can be unarchived at a time.
 
 Examples:
@@ -349,14 +349,14 @@ to the top of the displayed client lists along with other starred clients.
 Format: `star CLIENT_INDEX`
 
 * Stars the client at the specified `CLIENT_INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Only one client can be archived at a time.
+* The client index refers to the index number shown in the displayed client list.
+* The client index **must be positive integers** 1, 2, 3, …​
+* Only one client can be starred at a time.
 
 Examples:
 
-* `list` followed by `star 1` archives the 1st client in the list
-* `list` followed by `star 2` archives the 2nd client in the list
+* `list` followed by `star 1` stars the 1st client in the list
+* `list` followed by `star 2` stars the 2nd client in the list
 
 <box type="tip" seamless>
 
@@ -372,14 +372,14 @@ Remove the starred status of a specified client in FinHub.
 Format: `unstar CLIENT_INDEX`
 
 * Removes the starred status of the client at the specified `CLIENT_INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Only one client can be unarchived at a time.
+* The client index refers to the index number shown in the displayed client list.
+* The client index **must be positive integers** 1, 2, 3, …​
+* Only one client can be unstarred at a time.
 
 Examples:
 
-* `list` followed by `unstar 1` unarchives the 1st client in the list
-* `list` followed by `unstar 2` unarchives the 2nd client in the list
+* `list` followed by `unstar 1` unstars the 1st client in the list
+* `list` followed by `unstar 2` unstars the 2nd client in the list
 
 <br>
 
