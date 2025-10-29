@@ -366,10 +366,15 @@ Examples:
 
 Edits a specified reminder from a specified client in FinHub.
 
+Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
+
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed client list.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `REMINDER_INDEX` refers to the index number of the reminder shown in the specified client's displayed reminder list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
+* `h/HEADER` refers to the header of the edited reminder.
+* `d/DEADLINE` refers to the deadline of the edited reminder.
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
