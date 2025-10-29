@@ -487,7 +487,7 @@ Format: `star CLIENT_INDEX`
 
 * Stars the client at the specified `CLIENT_INDEX`.
 * The `CLIENT_INDEX` refers to the index number shown in the displayed client list.
-* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
+* The `CLIENT_INDEX` **must be positive integer** 1, 2, 3, …​
 * Only one client can be starred at a time.
 
 Examples:
@@ -511,7 +511,7 @@ Format: `unstar CLIENT_INDEX`
 
 * Removes the starred status of the client at the specified `CLIENT_INDEX`.
 * The `CLIENT_INDEX` refers to the index number shown in the displayed client list.
-* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
+* The `CLIENT_INDEX` **must be positive integer** 1, 2, 3, …​
 * You can only remove the star status from one client at a time.
 
 Examples:
