@@ -122,6 +122,22 @@ Format: `list`
 
 <br>
 
+### Listing active clients : `activelist`
+
+Shows a list of all active clients in FinHub
+
+Format: `activelist`
+
+<br>
+
+### Listing archived clients : `archivelist`
+
+Shows a list of all archived clients in FinHub
+
+Format: `archivelist`
+
+<br>
+
 ### Editing a client : `edit`
 
 Edits an existing client in FinHub.
