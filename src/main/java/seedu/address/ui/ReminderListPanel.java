@@ -34,7 +34,8 @@ public class ReminderListPanel extends UiPart<Region> {
     public ReminderListPanel(ObservableList<String> reminders) {
         super(FXML);
 
-        reminderListView.setItems(reminders != null ? reminders : FXCollections.observableArrayList());
+        ObservableList<String> reminderList = reminders != null ? reminders : FXCollections.observableArrayList();
+        reminderListView.setItems(reminderList);
         reminderListView.setCellFactory(list -> new ReminderListViewCell() {
             @Override
             protected void updateItem(String text, boolean empty) {
@@ -47,6 +48,7 @@ public class ReminderListPanel extends UiPart<Region> {
                 }
             }
         });
+        reminderListView.setOnScroll(event -> event.consume());
 
 
         // Make the list visually read-only & avoid dim selected state
