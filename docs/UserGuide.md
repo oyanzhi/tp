@@ -126,11 +126,11 @@ Format: `list`
 
 Edits an existing client in FinHub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
+Format: `edit CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
-* Edits the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `CLIENT_INDEX`.
+* The client index refers to the index number shown in the displayed client list.
+* The client index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
