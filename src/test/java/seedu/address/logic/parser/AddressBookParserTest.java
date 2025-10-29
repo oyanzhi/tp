@@ -50,6 +50,84 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
+    public void parseCommand_allCommands_caseInsensitive() throws Exception {
+        //initial set up of arguments for commands
+        Person person = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Reminder reminder = new Reminder("meeting soon", "2026-10-10 09:00");
+        String reminderHeader = "Test Parser";
+        String reminderDeadline = "2030-10-10 10:00";
+        Reminder updatedReminder = new Reminder(reminderHeader, reminderDeadline);
+        String note = "Client wants to know more about abc policy";
+        String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern(MeetingNote.DATE_PATTERN));
+        MeetingNote meetingNote = new MeetingNote(note, date);
+
+        // EP: Case insensitivity of Add command
+        assertTrue(parser.parseCommand("AdD " + PersonUtil.getPersonDetails(person)) instanceof AddCommand);
+
+        // EP: Case insensitivity of Edit command
+        assertTrue(parser.parseCommand("EdIt " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor)) instanceof EditCommand);
+
+        // EP: Case insensitivity of Delete command
+        assertTrue(parser.parseCommand("DeLeTe " + INDEX_FIRST_PERSON.getOneBased())
+                instanceof DeleteCommand);
+
+        // EP: Case insensitivity of Clear command
+        assertTrue(parser.parseCommand("ClEaR") instanceof ClearCommand);
+
+        // EP: Case insensitivity of Find command
+        assertTrue(parser.parseCommand("FiNd John Doe") instanceof FindCommand);
+
+        // EP: Case insensitivity of Add Reminder command
+        assertTrue(parser.parseCommand("rEMinDEr 1 h/meeting soon d/2026-10-10 09:00")
+                instanceof AddReminderCommand);
+
+        // EP: Case insensitivity of All List command
+        assertTrue(parser.parseCommand("LiSt") instanceof ListCommand);
+
+        // EP: Case insensitivity of Active List command
+        assertTrue(parser.parseCommand("AcTiVELiSt") instanceof ListActiveCommand);
+
+        // EP: Case insensitivity of Archive List command
+        assertTrue(parser.parseCommand("aRCHiVeLisT") instanceof ListArchiveCommand);
+
+        // EP: Case insensitivity of Exit command
+        assertTrue(parser.parseCommand("ExIt") instanceof ExitCommand);
+
+        // EP: Case insensitivity of Help command
+        assertTrue(parser.parseCommand("HeLp") instanceof HelpCommand);
+
+        // EP: Case insensitivity of Delete Reminder command
+        assertTrue(parser.parseCommand("rdElEtE 1 1") instanceof DeleteReminderCommand);
+
+        // EP: Case insensitivity of Edit Reminder command
+        assertTrue(parser.parseCommand("rEdiT 1 1 h/" + reminderHeader + " d/" + reminderDeadline)
+                instanceof EditReminderCommand);
+
+        // EP: Case insensitivity of Archive command
+        assertTrue(parser.parseCommand("ArChIvE " + INDEX_FIRST_PERSON.getOneBased())
+                instanceof ArchiveCommand);
+
+        // EP: Case insensitivity of Unarchive command
+        assertTrue(parser.parseCommand("UnArChIvE " + INDEX_FIRST_PERSON.getOneBased())
+                instanceof UnarchiveCommand);
+
+        // EP: Case insensitivity of Add Note command
+        assertTrue(parser.parseCommand("nOtE 1 " + note) instanceof AddMeetingNoteCommand);
+
+        // EP: Case insensitivity of Delete Note command
+        assertTrue(parser.parseCommand("nDeLEtE 1 1") instanceof DeleteMeetingNoteCommand);
+
+        // EP: Case insensitivity of Star command
+        assertTrue(parser.parseCommand("StAr " + INDEX_FIRST_PERSON.getOneBased()) instanceof StarCommand);
+
+        // EP: Case insensitivity of Unstar command
+        assertTrue(parser.parseCommand("UnStAr " + INDEX_FIRST_PERSON.getOneBased()) instanceof UnstarCommand);
+    }
+
+
+    @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
