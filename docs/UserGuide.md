@@ -479,3 +479,37 @@ the data of your previous FinHub home folder.
 | **Star**      | `star INDEX`<br> e.g., `star 1`                                                                                                                                         |
 | **Unstar**    | `unstar INDEX`<br> e.g., `unstar 1`                                                                                                                                     |  
 | **Help**      | `help`                                                                                                                                                                  |
+
+
+## Glossary
+
+| Term / Command                               | Meaning                                                                                                                               |
+|----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| **Active List (`activelist`)**               | The list of all clients who are currently active (not archived).                                                                      |
+| **Address**                                  | The residential or business location of a client, provided during `add` or `edit` commands.                                           |
+| **Archive (`archive`)**                      | Command to move a client into the archived client list, removing them from the active list. Useful for decluttering inactive clients. |
+| **Archived List (`archivelist`)**            | The list of clients who have been archived.                                                                                           |
+| **Clear (`clear`)**                          | Command that deletes all clients and related data from FinHub.                                                                        |
+| **Client Index**                             | The number representing a client’s position in the currently displayed list. Must be a positive integer (1, 2, 3…).                   |
+| **Delete (`delete`)**                        | Command to remove a client from FinHub permanently.                                                                                   |
+| **Edit (`edit`)**                            | Command to update client details such as name, phone, email, address, tags, or insurance policies.                                    |
+| **Email**                                    | The email address stored for a client.                                                                                                |
+| **Find (`find`)**                            | Command to search for clients by name using case-insensitive keywords.                                                                |
+| **GUI (Graphical User Interface)**           | The visual component of FinHub that displays client lists, reminders, and other information alongside the CLI.                        |
+| **Help (`help`)**                            | Command to show the help window with guidance on how to use FinHub.                                                                   |
+| **Home Folder**                              | The folder where the `.jar` file and saved data files for FinHub are stored.                                                          |
+| **Insurance Policy (`ip/INSURANCE_POLICY`)** | Optional client field to record insurance policies they hold.                                                                         |
+| **Jar File (`.jar`)**                        | The Java Archive file that runs the FinHub application.                                                                               |
+| **List (`list`)**                            | Command to show all clients (both active and archived).                                                                               |
+| **Meeting Note (`note`)**                    | A short record of discussions with a client, stored along with the date and time it was added.                                        |
+| **nDelete (`nDelete`)**                      | Command to delete a specific meeting note from a client.                                                                              |
+| **Phone Number**                             | The client’s contact number, added or updated with the `add` or `edit` commands.                                                      |
+| **Reminder (`reminder`)**                    | A task or deadline linked to a client with a header and a due date.                                                                   |
+| **rDelete (`rDelete`)**                      | Command to delete a specific reminder from a client.                                                                                  |
+| **rEdit (`rEdit`)**                          | Command to edit or update a specific reminder for a client.                                                                           |
+| **Star (`star`)**                            | Command to mark a client as important. Starred clients are shown at the top of lists.                                                 |
+| **Unarchive (`unarchive`)**                  | Command to restore an archived client back into the active list.                                                                      |
+| **Unstar (`unstar`)**                        | Command to remove the starred status from a client.                                                                                   |
+| **Tags (`t/TAG`)**                           | Labels added to clients for easier categorization (e.g., `friend`, `colleague`).                                                      |
+| **JSON File**                                | The file format used by FinHub to store client data on disk (`addressbook.json`).                                                     |
+| **CLI (Command Line Interface)**             | The text-based interface where you type commands to control FinHub.                                                                   |
