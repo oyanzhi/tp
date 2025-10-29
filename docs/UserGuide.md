@@ -486,14 +486,14 @@ to the top of the displayed client lists along with other starred clients.
 Format: `star CLIENT_INDEX`
 
 * Stars the client at the specified `CLIENT_INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be positive integers** 1, 2, 3, …​
+* The `CLIENT_INDEX` refers to the index number shown in the displayed client list.
+* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
 * Only one client can be starred at a time.
 
 Examples:
 
-* `list` followed by `star 1` stars the 1st client in the list
-* `list` followed by `star 2` stars the 2nd client in the list
+* `list` followed by `star 1` stars the 1st client in the displayed client list
+* `list` followed by `star 2` stars the 2nd client in the displayed client list
 * `find Betsy` followed by `star 1` stars the 1st client in the results of the `find` command.
 
 <box type="tip" seamless>
@@ -510,14 +510,14 @@ Removes the starred status of a specified client in FinHub.
 Format: `unstar CLIENT_INDEX`
 
 * Removes the starred status of the client at the specified `CLIENT_INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be positive integers** 1, 2, 3, …​
+* The `CLIENT_INDEX` refers to the index number shown in the displayed client list.
+* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
 * You can only remove the star status from one client at a time.
 
 Examples:
 
-* `list` followed by `unstar 1` removes star status from the 1st client in the list
-* `list` followed by `unstar 2` removes star status from the 2nd client in the list
+* `list` followed by `unstar 1` removes star status from the 1st client in the displayed client list
+* `list` followed by `unstar 2` removes star status from the 2nd client in the displayed client list
 * `find Betsy` followed by `unstar 1` removes star status from the 1st client in the results of the `find` command.
 
 <br>
