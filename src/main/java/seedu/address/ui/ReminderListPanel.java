@@ -72,7 +72,7 @@ public class ReminderListPanel extends UiPart<Region> {
             } catch (Exception e) {
                 int idx = getIndex() + 1;
                 setGraphic(null);
-                setText(MeetingNoteTextUtil.formatItem(idx, item));
+                setText(ReminderTextUtil.formatItem(idx, item));
             }
         }
     }
