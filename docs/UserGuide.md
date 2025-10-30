@@ -541,6 +541,13 @@ Clears all entries in FinHub.
 
 Format: `clear`
 
+<box type="warning">
+
+**Warning:** This action will permanently delete all data.
+</box>
+
+
+
 <br>
 
 ### Exiting the program : `exit`
