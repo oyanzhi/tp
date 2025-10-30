@@ -47,7 +47,7 @@
             </padding>
         </GridPane>
 
-    <AnchorPane fx:id="remindersPlaceholder"/>
-    <AnchorPane fx:id="meetingNotesPlaceholder"/>
+    <AnchorPane fx:id="remindersPlaceholder" prefWidth="250.0"/>
+    <AnchorPane fx:id="meetingNotesPlaceholder" prefWidth="250.0"/>
   </items>
 </SplitPane>

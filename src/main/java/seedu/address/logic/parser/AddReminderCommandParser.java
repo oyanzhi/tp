@@ -29,21 +29,15 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
 
-        Index index;
-
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            String header = ParserUtil.parseHeader(argMultimap.getValue(PREFIX_HEADER).get());
+            String date = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+            Reminder reminder = new Reminder(header, date);
+            return new AddReminderCommand(index, reminder);
         } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE),
-                    e);
+            throw new ParseException(e.getMessage(), e);
         }
-
-        String header = ParserUtil.parseHeader(argMultimap.getValue(PREFIX_HEADER).get());
-        String date = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-
-        Reminder reminder = new Reminder(header, date);
-
-        return new AddReminderCommand(index, reminder);
     }
 
     /**

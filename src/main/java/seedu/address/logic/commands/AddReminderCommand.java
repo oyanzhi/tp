@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -31,6 +32,9 @@ public class AddReminderCommand extends Command {
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Reminder added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_REMINDER = "A similar reminder has already been added for this client";
+
+    public static final String MESSAGE_ADD_REMINDER_SUCCESS_WITH_OLD_DEADLINE = MESSAGE_ADD_REMINDER_SUCCESS
+            + ".\nPlease take note that deadline given is before the current date and time.";
 
     private final Index index;
     private final Reminder reminder;
@@ -65,10 +69,13 @@ public class AddReminderCommand extends Command {
         Person editedPerson = personToEdit.addReminder(reminder);
 
         model.setPerson(personToEdit, editedPerson);
-        model.addGeneralReminder(reminder);
+        model.addGeneralReminder(editedPerson, reminder);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS, editedPerson.getName(), reminder));
+        return this.reminder.getDeadline().isBefore(LocalDateTime.now())
+            ? new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS_WITH_OLD_DEADLINE,
+                editedPerson.getName(), reminder))
+            : new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS, editedPerson.getName(), reminder));
     }
 
     @Override

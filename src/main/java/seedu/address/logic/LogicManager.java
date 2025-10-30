@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -73,7 +74,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Reminder> getGeneralReminderList() {
+    public ObservableList<Pair<Person, Reminder>> getGeneralReminderList() {
         return model.getGeneralReminderList();
     }
 

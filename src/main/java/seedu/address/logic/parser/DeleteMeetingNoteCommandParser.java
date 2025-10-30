@@ -23,6 +23,10 @@ public class DeleteMeetingNoteCommandParser implements Parser<DeleteMeetingNoteC
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteMeetingNoteCommand parse(String args) throws ParseException {
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteMeetingNoteCommand.MESSAGE_USAGE));
+        }
         try {
             Index[] indices = ParserUtil.parseDualIndex(args);
             Index clientIndex = indices[0];
@@ -32,7 +36,7 @@ public class DeleteMeetingNoteCommandParser implements Parser<DeleteMeetingNoteC
             return new DeleteMeetingNoteCommand(indices[0], indices[1]);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingNoteCommand.MESSAGE_USAGE), pe);
+                    pe.getMessage(), pe);
         }
     }
 }
