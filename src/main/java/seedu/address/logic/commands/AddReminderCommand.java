@@ -69,7 +69,7 @@ public class AddReminderCommand extends Command {
         Person editedPerson = personToEdit.addReminder(reminder);
 
         model.setPerson(personToEdit, editedPerson);
-        model.addGeneralReminder(reminder);
+        model.addGeneralReminder(editedPerson, reminder);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return this.reminder.getDeadline().isBefore(LocalDateTime.now())
