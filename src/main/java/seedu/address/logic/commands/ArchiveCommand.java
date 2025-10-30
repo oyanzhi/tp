@@ -50,6 +50,10 @@ public class ArchiveCommand extends Command {
             throw new CommandException(MESSAGE_ALREADY_ARCHIVED);
         }
 
+        personToArchive.getReminders().forEach(reminder -> {
+            model.deleteGeneralReminder(personToArchive, reminder);
+        });
+
         Person archivedPerson = personToArchive.archive();
         model.setPerson(personToArchive, archivedPerson);
         model.refreshFilteredPersonList();

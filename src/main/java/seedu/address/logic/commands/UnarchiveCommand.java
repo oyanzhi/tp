@@ -54,6 +54,10 @@ public class UnarchiveCommand extends Command {
             throw new CommandException(MESSAGE_NOT_ARCHIVED);
         }
 
+        personToUnarchive.getReminders().forEach(reminder -> {
+            model.addGeneralReminder(personToUnarchive, reminder);
+        });
+
         Person unarchivedPerson = personToUnarchive.unarchive();
         model.setPerson(personToUnarchive, unarchivedPerson);
         model.refreshFilteredPersonList();

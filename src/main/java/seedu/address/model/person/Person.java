@@ -255,8 +255,7 @@ public class Person implements Comparable<Person> {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && policy.equals(otherPerson.policy)
-                && isArchived == otherPerson.isArchived;
+                && policy.equals(otherPerson.policy);
         //TODO - Update to include reminders
         //may not need to implement as reminders is not core identity of person
     }
