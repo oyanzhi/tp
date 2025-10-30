@@ -23,40 +23,44 @@ each client. You also have the option to star or archive clients for better clie
 [Click Here for the Command Summary!](#command-summary)
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <!-- * Table of Contents -->
 ## <font color=#3a5a40>Table of Contents</font>
 * [1. Quick Start](#1-quick-start)
 * [2. Features](#2-features)
-  * [2.1 General Commands](#21-general-commands)
-    * [2.1.1 Viewing Help : `help`](#211-viewing-help--help)
-    * [2.1.2 Listing all Clients : `list`](#212-listing-all-clients--list)
-    * [2.1.3 Clear all Entries : `clear`](#213-clearing-all-entries--clear)
-    * [2.1.4 Exiting the Program : `exit`](#214-exiting-the-program--exit)
-  * [2.2 Managing Clients](#22-managing-clients)
-    * [2.2.1 Adding a Client : `add`](#221-adding-a-client--add)
-    * [2.2.2 Deleting a Client : `delete`](#222-deleting-a-client--delete)
-    * [2.2.3 Editing a Client : `edit`](#223-editing-a-client--edit)
-    * [2.2.4 Locating a Client : `find`](#224-locating-clients-by-name--find)
-    * [2.2.5 Staring a Client : `star`](#225-starring-a-client--star)
-    * [2.2.6 Removing Star of a Client : `unstar`](#226-removing-star-status-of-a-client--unstar)
-    * [2.2.7 Archiving a Client : `archive`](#227-archiving-a-client--archive)
-    * [2.2.8 Unarchiving a Client : `unarchive`](#228-unarchiving-a-client--unarchive)
-  * [2.3 Reminders](#23-reminders)
-    * [2.3.1 Adding a Reminder : `reminder`](#231-adding-a-reminder--reminder)
-    * [2.3.2 Deleting a Reminder : `rDelete`](#232-deleting-a-reminder--rdelete)
-    * [2.3.3 Editing a Reminder : `rEdit`](#233-editing-a-reminder--redit)
-  * [2.4 Meeting Notes](#24-meeting-notes)
-    * [2.4.1 Adding a Meeting Note : `note`](#241-adding-a-meeting-note--note)
-    * [2.4.2 Deleting a Meeting Note : `nDelete`](#242-deleting-a-meeting-note--ndelete)
-* [3. Data and Storage]()
-  * [3.1 Saving the Data]()
-  * [3.2 Editing the Data File]()
-  * [3.3 Transferring Data to another Computer]()
+  * [2.1 General Commands](#2-1-general-commands)
+    * [2.1.1 Viewing Help : `help`](#2-1-1-viewing-help-help)
+    * [2.1.2 Listing all Clients : `list`](#2-1-2-listing-all-clients-list)
+    * [2.1.3 Clear all Entries : `clear`](#2-1-3-clearing-all-entries-clear)
+    * [2.1.4 Exiting the Program : `exit`](#2-1-4-exiting-the-program-exit)
+  * [2.2 Managing Clients](#2-2-managing-clients)
+    * [2.2.1 Adding a Client : `add`](#2-2-1-adding-a-client-add)
+    * [2.2.2 Deleting a Client : `delete`](#2-2-2-deleting-a-client-delete)
+    * [2.2.3 Editing a Client : `edit`](#2-2-3-editing-a-client-edit)
+    * [2.2.4 Locating a Client : `find`](#2-2-4-locating-clients-by-name-find)
+    * [2.2.5 Staring a Client : `star`](#2-2-5-starring-a-client-star)
+    * [2.2.6 Removing Star of a Client : `unstar`](#2-2-6-removing-star-status-of-a-client-unstar)
+    * [2.2.7 Archiving a Client : `archive`](#2-2-7-archiving-a-client-archive)
+    * [2.2.8 Unarchiving a Client : `unarchive`](#2-2-8-unarchiving-a-client-unarchive)
+  * [2.3 Reminders](#2-2-3-reminders)
+    * [2.3.1 Adding a Reminder : `reminder`](#2-3-1-adding-a-reminder-reminder)
+    * [2.3.2 Deleting a Reminder : `rDelete`](#2-3-2-deleting-a-reminder-rdelete)
+    * [2.3.3 Editing a Reminder : `rEdit`](#2-3-3-editing-a-reminder-redit)
+  * [2.4 Meeting Notes](#2-4-meeting-notes)
+    * [2.4.1 Adding a Meeting Note : `note`](#2-4-1-adding-a-meeting-note-note)
+    * [2.4.2 Deleting a Meeting Note : `nDelete`](#2-4-2-deleting-a-meeting-note-ndelete)
+* [3. Data and Storage](#3-data-and-storage)
+  * [3.1 Saving the Data](#3-1-saving-the-data)
+  * [3.2 Editing the Data File](#3-2-editing-the-data-file)
+  * [3.3 Transferring Data to another Computer](#3-3-transferring-data-to-another-computer)
 * [4. FAQ](#4-faq)
 * [5. Known Issues](#5-known-issues)
 * [6. Command Summary](#6-command-summary)
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,6 +98,8 @@ each client. You also have the option to star or archive clients for better clie
       index 2.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -134,13 +140,17 @@ Displays a message explaining how to access the help page.
 
 Format: `help`
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.1.2 Listing all clients : `list`</font>
 
-Shows a list of all clients in FinHub.
+Displays a list of all clients in FinHub.
 
 Format: `list`
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -150,6 +160,8 @@ Clears all entries in FinHub.
 
 Format: `clear`
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.1.4 Exiting the program : `exit`</font>
@@ -157,6 +169,8 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -178,6 +192,8 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal ip/AIB LifePlan`
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.2.2 Deleting a client : `delete`</font>
@@ -194,6 +210,8 @@ Examples:
 
 * `list` followed by `delete 2` deletes the 2nd client in FinHub.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -217,6 +235,8 @@ Examples:
   and email to `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Changes the second client’s name to `Betsy Crower` and clears all existing tags.
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.2.4 Locating clients by name : `find`</font>
@@ -237,6 +257,8 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -263,6 +285,8 @@ Examples:
 **Tip:** You can use this feature to mark important clients as favourites!
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.2.6 Removing star status of a client : `unstar`</font>
@@ -281,6 +305,8 @@ Examples:
 * `list` followed by `unstar 1` removes star status from the 1st client in the displayed client list
 * `list` followed by `unstar 2` removes star status from the 2nd client in the displayed client list
 * `find Betsy` followed by `unstar 1` removes star status from the 1st client in the results of the `find` command.
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -305,6 +331,8 @@ Examples:
 **Tip:** Temporarily archive inactive clients to de-clutter your active client list!
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.2.8 Unarchiving a client : `unarchive`</font>
@@ -322,6 +350,8 @@ Examples:
 
 * `archivelist` followed by `unarchive 1` unarchives the 1st client in the list
 * `archivelist` followed by `unarchive 2` unarchives the 2nd client in the list
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -353,6 +383,8 @@ Examples:
 date again!
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.3.2 Deleting a reminder : `rDelete`</font>
@@ -379,6 +411,8 @@ Examples:
 **Tip:** Regularly delete overdue reminders to maintain a clean and organised workspace!
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.3.3 Editing a reminder : `rEdit`</font>
@@ -401,6 +435,8 @@ Examples:
   FinHub to the given reminder
 * `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st client
   in the results of the `find` command to the given reminder
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -434,6 +470,8 @@ Examples:
 **Tip:** Regularly add meeting notes to keep track of discussions, decisions and follow-ups!
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### <font color=#5a9f68>2.4.2 Deleting a meeting note : `nDelete`</font>
@@ -456,14 +494,20 @@ Examples:
 * `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st client in the results of the `find`
   command.
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <font color=#ff990f>3. Data and Storage</font>
+## <font color=#3a5a40>3. Data and Storage</font>
 
 ### <font color=#588157>3.1 Saving the data</font>
 
 FinHub data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### <font color=#588157>3.2 Editing the data file</font>
 
@@ -479,17 +523,27 @@ Furthermore, certain edits can cause FinHub to behave in unexpected ways (e.g., 
 the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <font color=#ff990f>4. FAQ</font>
+### <font color=#588157>3.3 Transferring Data to another Computer</font>
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous FinHub home folder.
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <font color=#ff990f>5. Known Issues</font>
+## <font color=##3a5a40>4. FAQ</font>
+
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## <font color=##3a5a40>5. Known Issues</font>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. To fix this, delete the `preferences.json` file created by the
@@ -497,27 +551,29 @@ the data of your previous FinHub home folder.
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut
    `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. To fix this, manually restore the minimised Help Window.
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <font color=#ff990f>6. Command Summary</font>
+## <font color=##3a5a40>6. Command Summary</font>
 
-| Action                                                       | Format, Examples                                                                                                                                                      |
-|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add**](#adding-a-client-add)                              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| [**Delete**](#deleting-a-client-delete)                      | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                            |
-| [**Edit**](#editing-a-client-edit)                           | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |  
-| [**Clear**](#clearing-all-entries-clear)                     | `clear`                                                                                                                                                               |
-| [**Find**](#locating-clients-by-name-find)                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| [**List**](#listing-all-clients-list)                        | `list`                                                                                                                                                                |
-| [**archivelist**](#listing-all-archived-clients-archivelist) | `archivelist`                                                                                                                                                         |
-| [**activelist**](#listing-all-active-clients-activelist)     | `activelist`                                                                                                                                                          |
-| [**Reminder**](#adding-a-reminder-reminder)                  | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                             |
-| [**rDelete**](#deleting-a-reminder-rdelete)                  | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         |
-| [**rEdit**](#editing-a-reminder-redit)                       | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                  |
-| [**Archive**](#archiving-a-client-archive)                   | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                          |
-| [**Unarchive**](#unarchiving-a-client-unarchive)             | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                      |  
-| [**Note**](#adding-a-meeting-note-note)                      | `note CLIENT_INDEX TEXT`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                     |
-| [**nDelete**](#deleting-a-meeting-note-ndelete)              | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                     |
-| [**Star**](#starring-a-client-star)                          | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                |
-| [**Unstar**](#removing-star-status-of-a-client-unstar)       | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                            |  
-| [**Help**](#viewing-help-help)                               | `help`                                                                                                                                                                |
+| Action                                                       | Format, Examples                                                                                                                                                         |
+|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add**](#2-2-1-adding-a-client-add)                        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| [**Delete**](#2-2-2-deleting-a-client-delete)                | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                               |
+| [**Edit**](#2-2-3-editing-a-client-edit)                     | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
+| [**Clear**](#2-1-3-clearing-all-entires-clear)               | `clear`                                                                                                                                                                  |
+| [**Find**](#2-2-4-locating-clients-by-name-find)             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                               |
+| [**List**](##2-1-2-listing-all-clients-list)                 | `list`                                                                                                                                                                   |
+| [**archivelist**](#temp)                                     | `archivelist`                                                                                                                                                            |
+| [**activelist**](#temp)                                      | `activelist`                                                                                                                                                             |
+| [**Reminder**](#2-3-1-adding-a-reminder-reminder)            | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                |
+| [**rDelete**](#2-3-2-deleting-a-reminder-rdelete)            | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                            |
+| [**rEdit**](#2-3-3-editing-a-reminder-redit)                 | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                     |
+| [**Archive**](#2-2-7-archiving-a-client-archive)             | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                             |
+| [**Unarchive**](#2-2-8-unarchiving-a-client-unarchive)       | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                         |  
+| [**Note**](#2-4-1-adding-a-meeting-note-note)                | `note CLIENT_INDEX TEXT`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                        |
+| [**nDelete**](#2-4-2-deleting-a-meeting-note-ndelete)        | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                        |
+| [**Star**](#2-2-5-starring-a-client-star)                    | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                   |
+| [**Unstar**](#2-2-6-removing-star-status-of-a-client-unstar) | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                               |  
+| [**Help**](#2-1-1-viewing-help-help)                         | `help`                                                                                                                                                                   |
