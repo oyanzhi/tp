@@ -149,7 +149,6 @@ public class PersonCard extends UiPart<Region> {
     private ObservableList<String> deriveMeetingNoteTexts(Person p) {
         Collection<MeetingNote> src = p.getMeetingNotes();
         List<MeetingNote> list = new ArrayList<>(src);
-        Collections.reverse(list);
 
         List<String> out = new ArrayList<>(list.size());
         for (MeetingNote n : list) {

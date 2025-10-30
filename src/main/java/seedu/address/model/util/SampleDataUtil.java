@@ -37,18 +37,18 @@ public class SampleDataUtil {
         }};
 
     public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_ONE = new ArrayList<>() {{
-            add(new MeetingNote("Discussed client's insurance needs and recommended FamilyCare plan.",
-                "2025-10-01 10:30"));
+            add(new MeetingNote("Scheduled next review session for December.", "2025-10-10 16:45"));
             add(new MeetingNote("Client requested quotation for additional coverage.",
                 "2025-10-05 11:00"));
-            add(new MeetingNote("Scheduled next review session for December.", "2025-10-10 16:45"));
+            add(new MeetingNote("Discussed client's insurance needs and recommended FamilyCare plan.",
+                "2025-10-01 10:30"));
         }};
 
     public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_TWO = new ArrayList<>() {{
+            add(new MeetingNote("Planned to introduce new product line next quarter.", "2025-09-30 09:30"));
+            add(new MeetingNote("Client requested to adjust monthly savings plan.", "2025-09-25 10:00"));
             add(new MeetingNote("Explained investment risk profile and portfolio diversification.",
                 "2025-09-20 14:15"));
-            add(new MeetingNote("Client requested to adjust monthly savings plan.", "2025-09-25 10:00"));
-            add(new MeetingNote("Planned to introduce new product line next quarter.", "2025-09-30 09:30"));
         }};
 
 

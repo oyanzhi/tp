@@ -760,20 +760,41 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a meeting note
 
-1. Deleting a person while all persons are being shown
+* Adding a meeting note to a client while all clients are displayed
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  * Prerequisites: List all clients using the `list` command. Multiple clients in the displayed clients list.
+  * Test case: `note 1 Client requested quotation for additional coverage`<br>
+  * Expected: A meeting note is added to the meeting note box of the first client in the displayed client list.
+  Details of the meeting note content and time when it was added is also shown in the status message.
+  * Test case: `note -1 Client requested quotation for additional coverage`<br>
+  Expected: No meeting note is added to any client. Error details shown in the status message.
+  * Other incorrect delete commands to try: `note`, `note x` (where x is larger than the list size)<br>
+  Expected: Similar to previous.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+* Adding a meeting note to a client while some clients are displayed
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  * Prerequisites: Use the `find Alex` command to view a displayed list of clients whose names contain the substring 
+  "Alex". One or more clients in the displayed clients list.
+  * Test case: `nDelete 1 1`<br>
+    * Expected: The first meeting note in the displayed meeting notes list of the first client in the displayed client 
+    list is deleted. Details of the meeting note content and time when it was added is also shown in the status message.
+    * Test case: `note -1 Client requested quotation for additional coverage`<br>
+      Expected: No meeting note is added to any client. Error details shown in the status message.
+    * Other incorrect delete commands to try: `note`, `note x` (where x is larger than the list size)<br>
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Deleting a meeting note
+
+* Deleltes a meeting note to a client while all clients are displayed
+
+    * Prerequisites: List all clients using the `list` command. Multiple clients in the displayed clients list.
+    * Test case: `note 1 Client requested quotation for additional coverage`<br>
+    * Expected: A meeting note is added to the meeting note box of the first client in the displayed client list.
+      Details of the meeting note content and time when it was added is also shown in the status message.
+    * Test case: `note -1 Client requested quotation for additional coverage`<br>
+      Expected: No meeting note is added to any client. Error details shown in the status message.
+    * Other incorrect delete commands to try: `note`, `note x` (where x is larger than the list size)<br>
 
 1. _{ more test cases …​ }_
 
