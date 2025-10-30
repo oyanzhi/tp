@@ -18,12 +18,12 @@ public class UnarchiveCommand extends Command {
     public static final String COMMAND_WORD = "unarchive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unarchives the person identified by the index number in the archived list.\n"
+            + ": Unarchives the client identified by the index number in the archived list.\n"
             + "Parameters: INDEX (must be positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNARCHIVE_PERSON_SUCCESS = "Unarchived Person: %1$s";
-    public static final String MESSAGE_NOT_ARCHIVED = "This person is not archived";
+    public static final String MESSAGE_UNARCHIVE_PERSON_SUCCESS = "Unarchived Client: %1$s";
+    public static final String MESSAGE_NOT_ARCHIVED = "This client is not archived";
 
     private final Index targetIndex;
 

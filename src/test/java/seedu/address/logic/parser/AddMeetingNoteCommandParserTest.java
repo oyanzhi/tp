@@ -49,10 +49,10 @@ public class AddMeetingNoteCommandParserTest {
     @Test
     public void parse_invalidIndex_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + MEETING_NOTE_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + MEETING_NOTE_DESC_AMY, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + MEETING_NOTE_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + MEETING_NOTE_DESC_AMY, ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
     @Test

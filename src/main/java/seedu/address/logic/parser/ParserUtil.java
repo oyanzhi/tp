@@ -26,7 +26,12 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Any indices provided should be positive integers.\n"
+            + "Enter the command word again without any arguments to view the correct command format.";
+    public static final String MESSAGE_MORE_THAN_ONE_INDEX = "Please only enter one positive integer for the index.\n"
+            + "Enter the command word again without any arguments to view the correct command format.";;
+    public static final String MESSAGE_NOT_TWO_INDICES = "Please enter only two positive integers for the indices.\n"
+            + "Enter the command word again without any arguments to view the correct command format.";;
     public static final String MULTIPLE_SPACES_REGEX = "\\s+";
     public static final String LOGGING_MESSAGE_PARSE_INDEX = "Successfully parsed index: ";
     public static final String LOGGING_MESSAGE_PARSE_FAILURE = "Failed to parse arguments";
@@ -38,6 +43,10 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        String[] parts = trimmedIndex.split(MULTIPLE_SPACES_REGEX);
+        if (parts.length != 1) {
+            throw new ParseException(MESSAGE_MORE_THAN_ONE_INDEX);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -54,7 +63,7 @@ public class ParserUtil {
         String trimmed = oneBasedDualIndex.trim();
         String[] parts = trimmed.split(MULTIPLE_SPACES_REGEX); // split the indices by one or more spaces
         if (parts.length != 2) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_NOT_TWO_INDICES);
         }
         //check 1st and 2nd index
         if (!StringUtil.isNonZeroUnsignedInteger(parts[0]) || !StringUtil.isNonZeroUnsignedInteger(parts[1])) {
@@ -153,7 +162,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String header} into a {@code Header}.
+     * Parses and validates the given {@code String header}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code header} is invalid.
@@ -168,10 +177,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code Date}.
+     * Parses and validates the given {@code String deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if the given {@code deadline} is invalid.
      */
     public static String parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
@@ -201,7 +210,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String note} into a {@code Note}.
+     * Parses and validates the given {@code String note}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code note} is invalid.

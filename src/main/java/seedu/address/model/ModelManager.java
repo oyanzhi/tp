@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -11,11 +12,12 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.GeneralReminderSorter;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderSorter;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> archivedPersons;
-    private final ObservableList<Reminder> generalReminderList;
+    private final ObservableList<Pair<Person, Reminder>> generalReminderList;
     private boolean viewingArchivedList = false;
     private Predicate<Person> currentFilter;
 
@@ -45,8 +47,12 @@ public class ModelManager implements Model {
         archivedPersons = new FilteredList<>(this.addressBook.getPersonList(), Person::isArchived);
         updateFilteredPersonList(person -> !person.isArchived());
         this.generalReminderList = FXCollections.observableArrayList();
-        filteredPersons.forEach(person -> this.generalReminderList.addAll(person.getReminders()));
-        this.generalReminderList.sort(new ReminderSorter());
+        for (Person p : filteredPersons) {
+            ArrayList<Reminder> pReminderList = p.getReminders();
+            this.generalReminderList.addAll(pReminderList.stream()
+                    .map(reminder -> new Pair<>(p, reminder)).toList());
+        }
+        this.generalReminderList.sort(new GeneralReminderSorter());
     }
 
     public ModelManager() {
@@ -136,18 +142,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addGeneralReminder(Reminder target) {
-        requireNonNull(target);
-        this.generalReminderList.add(target);
-        this.generalReminderList.sort(new ReminderSorter());
-        logger.info(String.format("Result: Reminder {%s} also added to General Reminders", target));
+    public void addGeneralReminder(Person person, Reminder target) {
+        requireAllNonNull(person, target);
+        this.generalReminderList.add(new Pair<Person, Reminder>(person, target));
+        this.generalReminderList.sort(new GeneralReminderSorter());
+        logger.info(String.format("Result: Reminder {%s} for {%s} also added to General Reminders", target, person));
     }
 
     @Override
-    public void deleteGeneralReminder(Reminder target) {
-        requireNonNull(target);
-        this.generalReminderList.remove(target);
-        logger.info(String.format("Result: Reminder {%s} also deleted from General Reminders", target));
+    public void deleteGeneralReminder(Person person, Reminder target) {
+        requireAllNonNull(person, target);
+        this.generalReminderList.remove(new Pair<>(person, target));
+        logger.info(
+                String.format("Result: Reminder {%s} for {%s}  also deleted from General Reminders", target, person));
     }
 
     @Override
@@ -189,7 +196,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Reminder> getGeneralReminderList() {
+    public ObservableList<Pair<Person, Reminder>> getGeneralReminderList() {
         return this.generalReminderList;
     }
 

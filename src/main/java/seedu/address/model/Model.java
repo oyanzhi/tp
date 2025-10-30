@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -87,17 +88,19 @@ public interface Model {
      */
     void sortPersons(Comparator<Person> comparator);
 
+
     /**
-     * Adds a reminder to the general list of reminders
+     * Adds a general reminder to the general reminder list
+     * @param person the person that is linked to the reminder
      * @param target the reminder to be added
      */
-    void addGeneralReminder(Reminder target);
+    public void addGeneralReminder(Person person, Reminder target);
 
     /**
      * Deletes a reminder to the general list of reminders
      * @param target the reminder to be deleted
      */
-    void deleteGeneralReminder(Reminder target);
+    void deleteGeneralReminder(Person person, Reminder target);
 
     boolean isViewingArchivedList();
 
@@ -115,7 +118,7 @@ public interface Model {
     /**
      * Returns the list of general reminders
      */
-    ObservableList<Reminder> getGeneralReminderList();
+    ObservableList<Pair<Person, Reminder>> getGeneralReminderList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
