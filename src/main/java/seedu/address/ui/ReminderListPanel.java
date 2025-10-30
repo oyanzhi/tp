@@ -34,7 +34,7 @@ public class ReminderListPanel extends UiPart<Region> {
 
         ObservableList<String> noteList = reminders != null ? reminders : FXCollections.observableArrayList();
         reminderListView.setItems(noteList);
-        reminderListView.setCellFactory(list -> new MeetingNoteListViewCell());
+        reminderListView.setCellFactory(list -> new ReminderListViewCell());
 
         reminderListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         reminderListView.getSelectionModel().clearSelection();
@@ -51,7 +51,7 @@ public class ReminderListPanel extends UiPart<Region> {
         reminderListView.setItems(items != null ? items : FXCollections.observableArrayList());
     }
 
-    private class MeetingNoteListViewCell extends ListCell<String> {
+    private class ReminderListViewCell extends ListCell<String> {
         @Override
         protected void updateItem(String item, boolean empty) {
             super.updateItem(item, empty);
@@ -65,7 +65,7 @@ public class ReminderListPanel extends UiPart<Region> {
             try {
                 int idx = getIndex() + 1;
                 setText(null);
-                Region cardRoot = new MeetingNoteCard(idx, item).getRoot();
+                Region cardRoot = new ReminderCard(idx, item).getRoot();
                 cardRoot.prefWidthProperty().bind(reminderListView.widthProperty().subtract(20));
                 cardRoot.maxWidthProperty().bind(reminderListView.widthProperty().subtract(20));
                 setGraphic(cardRoot);
