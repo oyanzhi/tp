@@ -228,6 +228,9 @@ Insurance Agent who manage multiple clients:
   as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
+* Any indices i.e. `CLIENT_INDEX`, `REMINDER_INDEX` and `MEETING_NOTE_INDEX` 
+  **must be positive integers** 1, 2, 3, …​
+
 <br>
 
 ### Viewing help : `help`
@@ -274,7 +277,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/I
 
 * Edits the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -318,7 +320,6 @@ Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -337,7 +338,6 @@ Format: `reminder CLIENT_INDEX h/HEADER d/DEADLINE`
 * A reminder consists of a `HEADER` which describes the task or event, and a `DEADLINE` which indicates when it's due.
 * `DEADLINE` should be in the format: `yyyy-MM-dd HH:mm`
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * Both the header and deadline must be provided.
 * Only one reminder can be added at a time.
 * More than one reminder can be added to each client.
@@ -364,7 +364,6 @@ Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 * Deletes the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `REMINDER_INDEX` refers to the index number of the reminder to be deleted in the list of the specified client.
-* The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * Only one reminder can be deleted at a time.
 
@@ -392,7 +391,6 @@ Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `REMINDER_INDEX` refers to the index number of the reminder shown in the specified client's displayed reminder list.
-* The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * `h/HEADER` refers to the header of the edited reminder.
 * `d/DEADLINE` refers to the deadline of the edited reminder.
@@ -414,7 +412,6 @@ Format: `archive INDEX`
 
 * Archives the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
-* The indices **must be positive integers** 1, 2, 3, …​
 * Only one client can be archived at a time.
 
 Examples:
@@ -437,7 +434,6 @@ Format: `unarchive INDEX`
 
 * Unarchives the client at the specified `INDEX`
 * The index refers to the index number shown in the archived client list.
-* The indices **must be positive integers** 1, 2, 3, …​
 * Only one client can be unarchived at a time.
 
 Examples:
@@ -456,7 +452,6 @@ Format: `note CLIENT_INDEX NOTE`
 * Adds a meeting note to the client at the specified `CLIENT_INDEX`
 * When adding a meeting note, FinHub automatically records the date and time the note was added. 
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * `NOTE` cannot be empty, must be less than 200 characters, and must contain only letters, numbers, punctuations, 
  symbols, or spaces.
 * Only one meeting note can be added at a time.
@@ -487,7 +482,6 @@ Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified client's 
 displayed meeting note list.
-* Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` **must be positive integers** 1, 2, 3, …​
 * Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` must be provided.
 * Only one meeting note can be deleted at a time.
 
@@ -508,7 +502,6 @@ Format: `star CLIENT_INDEX`
 
 * Stars the client at the specified `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * Only one client can be starred at a time.
 
 Examples:
@@ -532,7 +525,6 @@ Format: `unstar CLIENT_INDEX`
 
 * Removes the starred status of the client at the specified `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * You can only remove the star status from one client at a time.
 
 Examples:
