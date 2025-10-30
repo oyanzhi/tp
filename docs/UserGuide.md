@@ -230,7 +230,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ip/INSURANCE_POLICY [t/TAG]
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ip/AIB Premium Plan`
-* `add n/Betsy Crowe t/friend e/alexcrowe@example.com a/Palace street, block 456, #03-03 p/1234567 t/classmate ip/AIB LifePlan`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Palace street, block 456, #03-03 p/1234567 t/classmate ip/AIB LifePlan`
 
 <br>
 
@@ -272,7 +272,7 @@ Format: `edit CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 Examples:
 * `edit 1 p/91234567 ip/Health policy` Changes the 1st client’s `PHONE` to `91234567`
   and `INSURANCE_POLICY` to `Health policy` respectively.
-* `edit 2 n/Betsy Crower t/` Changes the 2nd client’s name to `Betsy Crower` and clears all their existing tags.
+* `edit 2 n/Alex Tan t/` Changes the 2nd client’s name to `Alex Tan` and clears all their existing tags.
 
 <br>
 
