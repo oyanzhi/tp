@@ -214,8 +214,7 @@ public class Person implements Comparable<Person> {
      * @return Person to be archived with their reminders cleared
      */
     public Person archive() {
-        ArrayList<Reminder> clearReminder = new ArrayList<>();
-        return new Person(name, phone, email, address, tags, clearReminder, policy, meetingNotes, starred, true);
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, true);
     }
 
     public Person unarchive() {
