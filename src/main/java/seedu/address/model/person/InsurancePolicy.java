@@ -9,7 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable;
  */
 public class InsurancePolicy {
-    public static final String MESSAGE_CONSTRAINTS = "Insurance policy must have a name";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Policy name may only contain letters, digits, spaces, and + / & ( ) ' . , "
+            + "and must include at least one letter or digit.";
+    public static final String VALIDATION_REGEX =
+            "^(?=.*[\\p{L}\\p{Nd}])[\\p{L}\\p{Nd} +/&()'.,]+$";
 
     private final String value;
     /**
@@ -34,7 +38,7 @@ public class InsurancePolicy {
         if (trimmed.isEmpty()) {
             return false;
         }
-        return true;
+        return trimmed.matches(VALIDATION_REGEX);
     }
 
     @Override
