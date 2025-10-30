@@ -12,7 +12,7 @@ tasks done faster than traditional GUI apps.
 
 <box type="tip" seamless>
 
-**Tip:** In addition to managing standard contact fields, FinHub also allows you to add reminders and meeting notes to 
+**Tip:** In addition to managing standard contact fields, FinHub also allows you to add reminders and meeting notes to
 each client. You also have the option to star or archive clients for better client organisation.
 </box>
 
@@ -221,7 +221,7 @@ Examples:
 
 <box type="tip" seamless>
 
-**Tip:** You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key 
+**Tip:** You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key
 date again!
 </box>
 
@@ -323,7 +323,7 @@ Format: `note CLIENT_INDEX NOTE`
 Examples:
 
 * `note 1 Client is interested in policy abc`
-* `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the 
+* `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the
 2nd client in FinHub. 
 * `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to 
 know more about policy 2" to the 1st client in the result of the `find` command
@@ -465,7 +465,7 @@ the data of your previous FinHub home folder.
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`|
 | **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                     |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |  
+| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
 | **Clear**     | `clear`                                                                                                                                                                 |
 | **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                              |
 | **List**      | `list`                                                                                                                                                                  |
@@ -473,11 +473,11 @@ the data of your previous FinHub home folder.
 | **rDelete**   | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                           |
 | **rEdit**     | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                    |
 | **Archive**   | `archive INDEX`<br> e.g., `archive 1`                                                                                                                                   |
-| **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                               |  
+| **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                               |
 | **Note**      | `note INDEX NOTE`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                              |
 | **nDelete**   | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                       |
 | **Star**      | `star INDEX`<br> e.g., `star 1`                                                                                                                                         |
-| **Unstar**    | `unstar INDEX`<br> e.g., `unstar 1`                                                                                                                                     |  
+| **Unstar**    | `unstar INDEX`<br> e.g., `unstar 1`                                                                                                                                     |
 | **Help**      | `help`                                                                                                                                                                  |
 
 
