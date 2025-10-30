@@ -6,7 +6,7 @@
 
 # <font color=#e46c0a>FinHub User Guide</font>
 
-FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimized for use via a Command Line Interface** (CLI) while
+FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimised for use via a Command Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
 tasks done faster than traditional GUI apps.
 
@@ -208,7 +208,7 @@ each client. You also have the option to star or archive clients for better clie
 
 ### <font color=#f88379>Viewing help</font> : `help`
 
-Shows a message explaining how to access the help page.
+Displays a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -234,7 +234,7 @@ Examples:
 <br>
 
 ### <font color=#f88379>Listing all clients</font> : `list`
-Shows a list of all clients in FinHub.
+Displays a list of all clients in FinHub.
 
 Format: `list`
 
@@ -242,7 +242,7 @@ Format: `list`
 
 ### <font color=#f88379>Listing all archived clients</font> : `archivelist`
 
-Shows a list of all archived clients in FinHub.
+Displays a list of all archived clients in FinHub.
 
 Format: `archivelist`
 
@@ -250,7 +250,7 @@ Format: `archivelist`
 
 ### <font color=#f88379>Listing all active clients</font> : `activelist`
 
-Shows a list of all active clients in FinHub.
+Displays a list of all active clients in FinHub.
 
 Format: `activelist`
 
@@ -584,8 +584,8 @@ the data of your previous FinHub home folder.
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. To fix this, delete the `preferences.json` file created by the
    application, then restart the app.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut
-   `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. To fix this, manually restore the minimized Help Window.
+2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut
+   `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. To fix this, manually restore the minimised Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -594,20 +594,20 @@ the data of your previous FinHub home folder.
 | Action                                                       | Format, Examples                                                                                                                                                      |
 |--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Add**](#adding-a-client-add)                              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| [**Delete**](#deleting-a-client-delete)                      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| [**Edit**](#editing-a-client-edit)                           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
+| [**Delete**](#deleting-a-client-delete)                      | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| [**Edit**](#editing-a-client-edit)                           | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |  
 | [**Clear**](#clearing-all-entries-clear)                     | `clear`                                                                                                                                                               |
 | [**Find**](#locating-clients-by-name-find)                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | [**List**](#listing-all-clients-list)                        | `list`                                                                                                                                                                |
 | [**archivelist**](#listing-all-archived-clients-archivelist) | `archivelist`                                                                                                                                                         |
 | [**activelist**](#listing-all-active-clients-activelist)     | `activelist`                                                                                                                                                          |
-| [**Reminder**](#adding-a-reminder-reminder)                  | `reminder INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    |
+| [**Reminder**](#adding-a-reminder-reminder)                  | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    |
 | [**rDelete**](#deleting-a-reminder-rdelete)                  | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         |
 | [**rEdit**](#editing-a-reminder-redit)                       | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                  |
-| [**Archive**](#archiving-a-client-archive)                   | `archive INDEX`<br> e.g., `archive 1`                                                                                                                                 |
-| [**Unarchive**](#unarchiving-a-client-unarchive)             | `unarchive INDEX`<br> e.g., `unarchive 1`                                                                                                                             |  
+| [**Archive**](#archiving-a-client-archive)                   | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                                 |
+| [**Unarchive**](#unarchiving-a-client-unarchive)             | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                             |  
 | [**Note**](#adding-a-meeting-note-note)                      | `note INDEX NOTE`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                            |
 | [**nDelete**](#deleting-a-meeting-note-ndelete)              | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                     |
-| [**Star**](#starring-a-client-star)                          | `star INDEX`<br> e.g., `star 1`                                                                                                                                       |
-| [**Unstar**](#removing-star-status-of-a-client-unstar)       | `unstar INDEX`<br> e.g., `unstar 1`                                                                                                                                   |  
+| [**Star**](#starring-a-client-star)                          | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                       |
+| [**Unstar**](#removing-star-status-of-a-client-unstar)       | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                                   |  
 | [**Help**](#viewing-help-help)                               | `help`                                                                                                                                                                |
