@@ -579,8 +579,36 @@ the acceptable range). Therefore, edit the data file only if you are confident t
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous FinHub home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates by 
+copying the entire previous `data/finhub.json` file to the same location
+
+**Q**: What happens if I make a mistake when entering client information?<br>
+**A**: No worries! You can use `edit` or `rEdit` to update the wrong field.
+
+**Q**: Why are there already random people in my FinHub when I launch the application?<br>
+**A**: These pre-existing clients are sample data. You may simply use `clear` to remove them.
+
+**Q**: I mistyped a client’s details. How do I update just one or two fields?<br>
+**A**: Use `edit` with only the fields you want to change, e.g. 
+`edit 2 p/91234567 e/new@example.com`.
+Existing values you don’t mention will be kept.
+
+**Q**: How do I remove all tags from a client?<br>
+**A**: Type t/ with nothing after it in the edit command, e.g. `edit 3 t/`. This clears all tags.
+
+**Q**: Can I search by more than just name?<br>
+**A**: Right now, find searches names only. It’s case-insensitive and matches full words.
+
+**Q**: FinHub won’t load; did I break the data file?<br>
+**A**: If the `data/finhub.json` file is edited manually and becomes invalid, FinHub starts empty. 
+Restore a backup of that file or delete it to regenerate sample data. Try to avoid hand-editing it.
+
+**Q**: Do commands accept parameters in any order?<br>
+**A**: Yes. For example, both of these are valid:
+
+`add n/Amy p/9123 e/amy@x.com a/Bishan ip/AIB Premium Plan`
+
+`add p/9123 a/Bishan ip/AIB Premium Plan e/amy@x.com n/Amy`
 
 --------------------------------------------------------------------------------------------------------------------
 
