@@ -707,6 +707,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use Case: UC17 - Star a client**
+
+**MSS**
+
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. The user selects the client they wish to "star" from the displayed list.
+3. FinHub marks the client as starred.
+4. FinHub displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The client has already been starred. 
+    * 2a1. FinHub will display an error message and does not make any changes.
+
+    Use case ends.
+
+* 2b. The selected client index is invalid (e.g., out of bounds).
+    * 2b1. FinHub displays an error message: "Invalid client index".
+
+  Use case ends.
+
+---
+
+## Use Case: UC18 - Unstar a client
+
+### MSS (Main Success Scenario)
+
+1. The user searches for a client by their name (UC01).
+2. The user selects the client they wish to "unstar" from the displayed list.
+3. FinHub removes the starred status of the selected client.
+4. FinHub displays a success message: "Starred status removed from Client: [name]".
+
+   **Use case ends.**
+
+### Extensions
+
+- **2a.** The client is not currently starred.
+    - **2a1.** FinHub displays a message indicating that the selected client is not starred and does not make any changes: "Chosen client is not starred".
+
+  **Use case ends.**
+
+- **2b.** The selected client index is invalid (e.g., out of bounds).
+    - **2b1.** FinHub displays an error message: "Invalid client index".
+
+  **Use case ends.**
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
