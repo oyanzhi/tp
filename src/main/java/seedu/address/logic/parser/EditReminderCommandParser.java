@@ -36,9 +36,8 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
             Index[] indices = ParserUtil.parseDualIndex(argMultimap.getPreamble());
             clientIndex = indices[0];
             reminderIndex = indices[1];
-        } catch (ParseException e) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditReminderCommand.MESSAGE_USAGE), e);
+        } catch (ParseException pe) {
+            throw new ParseException(pe.getMessage(), pe);
         }
 
         String header = ParserUtil.parseHeader(argMultimap.getValue(PREFIX_HEADER).get());

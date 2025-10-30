@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -93,7 +94,7 @@ public class LogicManagerTest {
 
     @Test
     public void getGeneralReminderList_success() {
-        assertTrue(logic.getGeneralReminderList() instanceof ObservableList<Reminder>);
+        assertTrue(logic.getGeneralReminderList() instanceof ObservableList<Pair<Person, Reminder>>);
     }
 
     /**

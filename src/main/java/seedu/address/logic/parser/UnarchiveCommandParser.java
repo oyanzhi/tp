@@ -13,12 +13,14 @@ public class UnarchiveCommandParser implements Parser<UnarchiveCommand> {
 
     @Override
     public UnarchiveCommand parse(String args) throws ParseException {
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE));
+        }
         try {
             Index index = ParserUtil.parseIndex(args);
             return new UnarchiveCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnarchiveCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 }

@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -26,19 +25,14 @@ public class ArchiveCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", ParserUtil.MESSAGE_INVALID_INDEX);
 
-        assertParseFailure(parser, "-1", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1", ParserUtil.MESSAGE_INVALID_INDEX);
 
-        assertParseFailure(parser, "0", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "0", ParserUtil.MESSAGE_INVALID_INDEX);
 
-        assertParseFailure(parser, "1 2", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1 2", ParserUtil.MESSAGE_MORE_THAN_ONE_INDEX);
 
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + "1", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + "1", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }

@@ -12,7 +12,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the address book and their respective reminders
+ * from general reminders
  */
 public class DeleteCommand extends Command {
 
@@ -41,6 +42,9 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        personToDelete.getReminders().forEach(reminder -> {
+            model.deleteGeneralReminder(personToDelete, reminder);
+        });
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
