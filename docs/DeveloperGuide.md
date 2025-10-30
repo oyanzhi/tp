@@ -852,7 +852,7 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ### Adding a reminder
-* Prerequisites: Make sure the list of clients is displayed using the activelist command.
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command.
 * Test Case: Adds a reminder to a client with a valid index
     * Assumption: Valid Inputs
     * User Input: reminder 1 h/Follow up with client on insurance quote d/2026-11-10 09:00
@@ -866,11 +866,25 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ### Deleting a reminder
-* Prerequisites: Make sure the list of clients is displayed using the activelist command and chosen client has reminders to be removed
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command and chosen client has reminders to be removed
 * Test Case: Removes a reminder with a valid index from a client with a valid index
     * Assumption: Valid Inputs
     * User Input: rDelete 1 1
     * Expected Outcome:
+      * The first reminder will be deleted from the first client
+      * A success message is displayed: Deleted Client [Person's Name]'s Reminder 1: [Deleted Reminder]
+      * The reminder list for the client at index 1 will not contain the [Deleted Reminder]
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing a reminder
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command and chosen client has reminders to be edited
+* Test Case: Edits the reminder at a valid index of the reminder list of a client at a valid index
+  * Assumption: Valid Inputs & Edited Reminder is **different** from Previous Reminder
+  * User Input: rEdit 1 1 h/Submit updated policy document d/2026-11-15 17:30
+  * 
 
 
 
