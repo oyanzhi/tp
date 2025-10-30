@@ -344,8 +344,8 @@ Format: `reminder CLIENT_INDEX h/HEADER d/DEADLINE`
 
 Examples:
 
-* `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`
-* `reminder 2 h/Meeting on Saturday d/2026-06-24 18:00`
+* `list` followed by `reminder 2 h/Meeting on Friday d/2026-04-24 16:00`
+* `find Betsy` followed by `reminder 1 h/Meeting on Saturday d/2026-06-24 18:00`
 
 <box type="tip" seamless>
 
@@ -363,7 +363,7 @@ Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
 * Deletes the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `REMINDER_INDEX` refers to the index number of the reminder to be edited in the list of the specified client.
+* `REMINDER_INDEX` refers to the index number of the reminder to be deleted in the list of the specified client.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * Only one reminder can be deleted at a time.

@@ -18,7 +18,8 @@ import seedu.address.model.reminder.Reminder;
 /**
  * Adds a reminder to a person
  */
-public class AddReminderCommand extends Command {
+public class
+AddReminderCommand extends Command {
     public static final String COMMAND_WORD = "reminder";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a reminder to the client identified by the index number in the displayed client list.\n"
