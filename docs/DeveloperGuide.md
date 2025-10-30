@@ -360,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
     * 1a2. The user re-enters the command to search the client by email.
-  
+
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
 
       Use case resumes at step 2.
@@ -728,7 +728,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Reminder**: A note linked to a specific client, with a message and due date
-* **User**: Insurance agent using the address book 
+* **User**: Insurance agent using the address book
 
 --------------------------------------------------------------------------------------------------------------------
 
