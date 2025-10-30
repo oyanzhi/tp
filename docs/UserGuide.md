@@ -184,11 +184,11 @@ Examples:
 
 Deletes a specified client from FinHub.
 
-Format: `delete INDEX`
+Format: `delete CLIENT_INDEX`
 
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the client at the specified `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* The `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -201,11 +201,11 @@ Examples:
 
 Edits an existing client in FinHub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
+Format: `edit CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
-* Edits the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* The `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -288,11 +288,11 @@ Examples:
 
 Archives the specified client in FinHub.
 
-Format: `archive INDEX`
+Format: `archive CLIENT_INDEX`
 
-* Archives the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The indices **must be positive integers** 1, 2, 3, …​
+* Archives the client at the specified `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
 * Only one client can be archived at a time.
 
 Examples:
@@ -311,11 +311,11 @@ Examples:
 
 Unarchives the specified client in FinHub.
 
-Format: `unarchive INDEX`
+Format: `unarchive CLIENT_INDEX`
 
-* Unarchives the client at the specified `INDEX`
-* The index refers to the index number shown in the archived client list.
-* The indices **must be positive integers** 1, 2, 3, …​
+* Unarchives the client at the specified `CLIENT_INDEX`
+* `CLIENT_INDEX` refers to the index number of the client shown in the archived client list.
+* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
 * Only one client can be unarchived at a time.
 
 Examples:
@@ -364,7 +364,7 @@ Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 * Deletes the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `REMINDER_INDEX` refers to the index number of the reminder to be edited in the list of the specified client.
-* The indices **must be positive integers** 1, 2, 3, …​
+* The `CLIENT_INDEX` and `REMINDER_INDEX` **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * Only one reminder can be deleted at a time.
 
@@ -390,8 +390,8 @@ Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `REMINDER_INDEX` refers to the index number of the reminder shown in the specified client's displayed reminder list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Both the client index and reminder index must be provided.
+* The `CLIENT_INDEX` and `REMINDER_INDEX` **must be positive integers** 1, 2, 3, …​
+* Both the `CLIENT_INDEX` and `REMINDER_INDEX` must be provided.
 * `h/HEADER` refers to the header of the edited reminder.
 * `d/DEADLINE` refers to the deadline of the edited reminder.
 * Only one reminder will be replaced by the new reminder at a time.
