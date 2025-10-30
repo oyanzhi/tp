@@ -46,10 +46,8 @@ public class AddMeetingNoteCommandParser implements Parser<AddMeetingNoteCommand
             MeetingNote meetingNote = new MeetingNote(note, date);
             return new AddMeetingNoteCommand(index, meetingNote);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingNoteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
-
     }
 
 }

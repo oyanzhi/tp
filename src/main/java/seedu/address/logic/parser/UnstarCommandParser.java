@@ -24,14 +24,16 @@ public class UnstarCommandParser implements Parser<UnstarCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnstarCommand parse(String args) throws ParseException {
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnstarCommand.MESSAGE_USAGE));
+        }
         try {
             Index index = ParserUtil.parseIndex(args);
             logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + index.getOneBased());
             return new UnstarCommand(index);
         } catch (ParseException pe) {
             logger.log(Level.FINER, LOGGING_MESSAGE_PARSE_FAILURE + pe.getMessage());
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnstarCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 

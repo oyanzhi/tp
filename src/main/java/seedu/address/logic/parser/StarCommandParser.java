@@ -24,14 +24,16 @@ public class StarCommandParser implements Parser<StarCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public StarCommand parse(String args) throws ParseException {
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE));
+        }
         try {
             Index index = ParserUtil.parseIndex(args);
             logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + index.getOneBased());
             return new StarCommand(index);
         } catch (ParseException pe) {
             logger.log(Level.FINER, LOGGING_MESSAGE_PARSE_FAILURE + pe.getMessage());
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, StarCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 

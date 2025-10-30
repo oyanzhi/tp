@@ -20,15 +20,15 @@ import seedu.address.model.person.Person;
 public class AddMeetingNoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a meeting note to the person identified by the index number in the displayed person list.\n"
+            + ": Adds a meeting note to the client identified by the index number in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "NOTE \n"
+            + "TEXT (cannot be empty) \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "Client wants to know more about xx policy";
 
     public static final String MESSAGE_ADD_MEETING_NOTE_SUCCESS = "Meeting note added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_MEETING_NOTE =
-            "A similar meeting note has already been added for this person";
+            "A similar meeting note has already been added to this client less than 2 hours ago";
 
     private final Index index;
     private final MeetingNote meetingNote;
@@ -47,7 +47,7 @@ public class AddMeetingNoteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        assert lastShownList != null : "Filtered person list should not be null";
+        assert lastShownList != null : "Filtered client list should not be null";
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -55,13 +55,13 @@ public class AddMeetingNoteCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        // Check if duplicate meeting note exists
+        // Check if duplicate meeting note was added less than 2 hours before
         if (personToEdit.hasMeetingNote(meetingNote)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING_NOTE);
         }
 
         Person editedPerson = personToEdit.addMeetingNote(meetingNote);
-        assert editedPerson != null : "Edited person should not be null after adding meeting note";
+        assert editedPerson != null : "Edited client should not be null after adding meeting note";
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

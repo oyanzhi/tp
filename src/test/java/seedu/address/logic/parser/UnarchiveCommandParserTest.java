@@ -23,8 +23,7 @@ public class UnarchiveCommandParserTest {
     @Test
     public void parse_invalidArgsNonInteger_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        UnarchiveCommand.MESSAGE_USAGE), () -> parser.parse("abc"));
+                ParserUtil.MESSAGE_INVALID_INDEX, () -> parser.parse("abc"));
     }
 
     @Test
@@ -37,14 +36,12 @@ public class UnarchiveCommandParserTest {
     @Test
     public void parse_zeroIndex_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        UnarchiveCommand.MESSAGE_USAGE), () -> parser.parse("0"));
+                ParserUtil.MESSAGE_INVALID_INDEX, () -> parser.parse("0"));
     }
 
     @Test
     public void parse_negativeIndex_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        UnarchiveCommand.MESSAGE_USAGE), () -> parser.parse("-5"));
+                ParserUtil.MESSAGE_INVALID_INDEX, () -> parser.parse("-5"));
     }
 }

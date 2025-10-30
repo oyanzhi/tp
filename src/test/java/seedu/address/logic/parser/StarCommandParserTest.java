@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -27,15 +27,14 @@ public class StarCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // EP: String user input
-        assertParseFailure(parser, "invalid", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                StarCommand.MESSAGE_USAGE));
-
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + "1", ParserUtil.MESSAGE_INVALID_INDEX);
         // EP: single character user input
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                StarCommand.MESSAGE_USAGE));
-
+        assertParseFailure(parser, "a", ParserUtil.MESSAGE_INVALID_INDEX);
         // EP: negative index user input
-        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                StarCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1", ParserUtil.MESSAGE_INVALID_INDEX);
+        // EP: zero index user input
+        assertParseFailure(parser, "0", ParserUtil.MESSAGE_INVALID_INDEX);
+        // EP: multiple index user input
+        assertParseFailure(parser, "1 2", ParserUtil.MESSAGE_MORE_THAN_ONE_INDEX);
     }
 }

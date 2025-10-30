@@ -24,6 +24,10 @@ public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteReminderCommand parse(String args) throws ParseException {
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteReminderCommand.MESSAGE_USAGE));
+        }
         try {
             Index[] indices = ParserUtil.parseDualIndex(args);
             logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDICES + indices[0].getOneBased() + ", "
@@ -31,8 +35,7 @@ public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand
             return new DeleteReminderCommand(indices[0], indices[1]);
         } catch (ParseException pe) {
             logger.log(Level.FINER, LOGGING_MESSAGE_PARSE_FAILURE + pe.getMessage());
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteReminderCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 }
