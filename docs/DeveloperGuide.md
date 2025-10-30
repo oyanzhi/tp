@@ -947,6 +947,7 @@ testers are expected to do more *exploratory* testing.
   * User Input: reminder 1 h/Follow up with client on insurance quote d/2029-10-10 1000
   * Expected Outcome:
     * A failure message is displayed: `Deadline should be in the following format: yyyy-MM-dd HH:mm`
+
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -995,7 +996,22 @@ testers are expected to do more *exploratory* testing.
   * Expected Outcome:
     * The first reminder of the client at index 1 will be replaced with a new reminder with the header [Submit updated policy document] and deadline [2026-11-15 17:30].
     * A success message is displayed: `Edited Client [Person's Name]'s Reminder 1: from [Previous Reminder] to [Edited Reminder]`
-    
+
+&nbsp;
+
+* Test Case: Edits a reminder with a valid index from a client with a invalid index
+  * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
+  * User Input: rEdit 100000 1 h/Submit updated policy document d/2026-11-15 17:30
+  * Expected Outcome:
+    * A failure message is displayed: `The client index provided is invalid — it exceeds the number of clients currently displayed`
+
+&nbsp;
+
+* Test Case: Edits a reminder with a invalid index from a client with a valid index
+  * Assumption: Invalid Reminder Index (index exceeds number of reminders of the client's reminder list)
+  * User Input: rEdit 1 10000000 h/Submit updated policy document d/2026-11-15 17:30
+  * Expected Outcome:
+    * A failure message is displayed: `The reminder index provided is invalid — it exceeds the number of reminders this client currently has`
 
 <br>
 
