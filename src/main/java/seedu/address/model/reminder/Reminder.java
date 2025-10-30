@@ -14,11 +14,12 @@ import java.util.Objects;
  */
 public class Reminder {
 
-    public static final String DEADLINE_MESSAGE_CONSTRAINTS = "Deadline should be minimally from today.";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String HEADER_MESSAGE_CONSTRAINTS = "Reminder can take any value but cannot be blank.";
 
-    public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String DATE_INPUT_PATTERN = "yyyy-MM-dd HH:mm";
+    public static final String DEADLINE_MESSAGE_CONSTRAINTS = "Deadline should be in the following format: "
+            + DATE_INPUT_PATTERN;
 
     public final LocalDateTime deadline;
     public final String header;
@@ -49,11 +50,7 @@ public class Reminder {
      */
     public static boolean isValidDeadline(String test) {
         try {
-            LocalDateTime testTime = LocalDateTime.parse(test, DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN));
-
-            if (testTime.isBefore(LocalDateTime.now())) {
-                return false;
-            }
+            LocalDateTime.parse(test, DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN));
         } catch (DateTimeException e) {
             return false;
         }
@@ -78,6 +75,9 @@ public class Reminder {
         return this.deadline.compareTo(otherReminder.deadline);
     }
 
+    /**
+     * Case-sensitive comparison of {@code headers} to ensure sorting has a proper order
+     */
     public int compareHeader(Reminder otherReminder) {
         return this.header.compareTo(otherReminder.header);
     }
@@ -105,7 +105,8 @@ public class Reminder {
             return false;
         }
 
+        // equality of headers is case-insensitive to prevent similar reminders to be added to the same client
         Reminder r = (Reminder) other;
-        return r.deadline.equals(this.deadline) && r.header.equals(this.header);
+        return r.deadline.equals(this.deadline) && r.header.equalsIgnoreCase(this.header);
     }
 }

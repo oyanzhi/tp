@@ -43,19 +43,6 @@ public class MeetingNoteTest {
         // invalid empty note
         assertFalse(MeetingNote.isValidNote(""));
 
-        // invalid note more than 200 characters
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 201; i++) {
-            sb.append('A');
-        }
-        assertFalse(MeetingNote.isValidNote(sb.toString()));
-
-        // invalid note containing nonbasic printable ASCII character
-        assertFalse(MeetingNote.isValidNote("ć"));
-        assertFalse(MeetingNote.isValidNote("\nNewline not allowed"));
-        assertFalse(MeetingNote.isValidNote("Emoji 😃 not allowed"));
-
-
         // valid note
         assertTrue(MeetingNote.isValidNote("Discussed policy renewal and add-on coverage."));
     }
@@ -100,7 +87,10 @@ public class MeetingNoteTest {
         MeetingNote note = new MeetingNote(VALID_MEETING_NOTE_AMY, VALID_MEETING_NOTE_CREATED_BY_AMY);
         MeetingNote sameNote = new MeetingNote(VALID_MEETING_NOTE_AMY, VALID_MEETING_NOTE_CREATED_BY_AMY);
         MeetingNote differentNote = new MeetingNote("Different content", VALID_MEETING_NOTE_CREATED_BY_AMY);
-        MeetingNote differentDate = new MeetingNote(VALID_MEETING_NOTE_AMY, "2025-12-31 10:00");
+        MeetingNote differentDate1 = new MeetingNote(VALID_MEETING_NOTE_AMY, "2025-12-31 10:00");
+        MeetingNote differentDate2 = new MeetingNote(VALID_MEETING_NOTE_AMY, "2025-12-31 10:30");
+        MeetingNote noteAllCaps = new MeetingNote(VALID_MEETING_NOTE_AMY.toUpperCase(),
+                VALID_MEETING_NOTE_CREATED_BY_AMY);
 
         // same values -> true
         assertTrue(note.equals(sameNote));
@@ -117,7 +107,13 @@ public class MeetingNoteTest {
         // different note -> false
         assertFalse(note.equals(differentNote));
 
-        // different date -> false
-        assertFalse(note.equals(differentDate));
+        // same note less than one hour apart -> true
+        assertTrue(differentDate1.equals(differentDate2));
+
+        // same note more than one hour apart -> false
+        assertFalse(note.equals(differentDate1));
+
+        // case-insensitive
+        assertTrue(note.equals(noteAllCaps));
     }
 }

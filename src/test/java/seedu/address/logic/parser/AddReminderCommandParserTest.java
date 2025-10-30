@@ -48,10 +48,12 @@ public class AddReminderCommandParserTest {
     @Test
     public void parse_invalidIndex_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC,
+                ParserUtil.MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC,
+                ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
     @Test

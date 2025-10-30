@@ -72,20 +72,20 @@ public class EditReminderCommandParserTest {
         String zeroIndex = "0";
 
         // negative client index
-        assertParseFailure(parser, negativeIndex + INDEX_FIRST_REMINDER
-                + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, negativeIndex + " " + INDEX_FIRST_REMINDER
+                + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // zero client index
-        assertParseFailure(parser, zeroIndex + INDEX_FIRST_REMINDER
-                + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, zeroIndex + " " + INDEX_FIRST_REMINDER
+                + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // negative reminder index
-        assertParseFailure(parser, INDEX_FIRST_PERSON + negativeIndex
-                + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, INDEX_FIRST_PERSON + " " + negativeIndex
+                + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // zero reminder index
-        assertParseFailure(parser, INDEX_FIRST_PERSON + zeroIndex
-                + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, INDEX_FIRST_PERSON + " " + zeroIndex
+                + REMINDER_HEADER_DESC_AMY + REMINDER_DEADLINE_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
     // Missing prefixes
