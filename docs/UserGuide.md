@@ -324,7 +324,7 @@ Examples:
 
 * `note 1 Client is interested in policy abc`
 * `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the
-2nd client in FinHub. 
+2nd client in FinHub.
 * `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to
 know more about policy 2" to the 1st client in the result of the `find` command
 
