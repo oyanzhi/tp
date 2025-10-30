@@ -9,8 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,15 +37,22 @@ public class UnarchiveCommandTest {
         Person archivedPerson = personToArchive.archive();
         model.setPerson(personToArchive, archivedPerson);
 
+        model.setCurrentFilter(Person::isArchived);
+        model.setViewingArchivedList(true);
+
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(INDEX_FIRST_PERSON);
         Person unarchivedPerson = archivedPerson.unarchive();
 
-        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS,
-                Messages.format(unarchivedPerson));
+        String expectedMessage = String.format(
+                UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS,
+                Messages.format(unarchivedPerson)
+        );
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setCurrentFilter(Person::isArchived);
+        expectedModel.setViewingArchivedList(true);
+
         expectedModel.setPerson(archivedPerson, unarchivedPerson);
-        expectedModel.updateFilteredPersonList(person -> true);
 
         assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
     }
@@ -71,20 +76,25 @@ public class UnarchiveCommandTest {
     public void execute_lastPerson_success() throws Exception {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        ArchiveCommand archiveCommand = new ArchiveCommand(Index.fromOneBased(model.getFilteredPersonList().size()));
-        archiveCommand.execute(model);
+        int lastIndex = model.getFilteredPersonList().size();
+        Person personToArchive = model.getFilteredPersonList().get(lastIndex - 1);
+        Person archivedPerson = personToArchive.archive();
+        model.setPerson(personToArchive, archivedPerson);
 
-        List<Person> archivedList = model.getArchivedPersonList();
-        Person archivedLastPerson = archivedList.get(archivedList.size() - 1);
+        model.setCurrentFilter(Person::isArchived);
+        model.setViewingArchivedList(true);
 
-        UnarchiveCommand unarchiveCommand = new UnarchiveCommand(Index.fromOneBased(archivedList.size()));
+        UnarchiveCommand unarchiveCommand = new UnarchiveCommand(Index.fromOneBased(1));
 
         String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS,
-                Messages.format(archivedLastPerson));
+                Messages.format(personToArchive));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        Person unarchivedPerson = archivedLastPerson.unarchive();
-        expectedModel.setPerson(archivedLastPerson, unarchivedPerson);
+        expectedModel.setCurrentFilter(Person::isArchived);
+        expectedModel.setViewingArchivedList(true);
+
+        Person unarchivedPerson = archivedPerson.unarchive();
+        expectedModel.setPerson(archivedPerson, unarchivedPerson);
 
         assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
     }
@@ -96,8 +106,14 @@ public class UnarchiveCommandTest {
         Person archivedPerson = personToArchive.archive();
         model.setPerson(personToArchive, archivedPerson);
 
+        model.setCurrentFilter(Person::isArchived);
+        model.setViewingArchivedList(true);
+
         // Unarchive
         new UnarchiveCommand(INDEX_FIRST_PERSON).execute(model);
+
+        model.setCurrentFilter(p -> !p.isArchived());
+        model.setViewingArchivedList(false);
 
         // The person should now be in the filtered active list
         assertTrue(model.getFilteredPersonList().stream().anyMatch(p -> p.getName().equals(personToArchive.getName())));
@@ -110,8 +126,9 @@ public class UnarchiveCommandTest {
         Person archivedPerson = personToArchive.archive();
         model.setPerson(personToArchive, archivedPerson);
 
-        // Filter active list so only one person is visible
-        model.updateFilteredPersonList(p -> !p.getName().fullName.equals(personToArchive.getName()));
+        // Set model view to archived person only
+        model.setCurrentFilter(Person::isArchived);
+        model.setViewingArchivedList(true);
 
         // Out-of-bound index in filtered list should fail
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(Index.fromOneBased(2));

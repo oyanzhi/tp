@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+FinHub was adapted from AddressBook-Level3 (AB3) reated by the [SE-EDU initiative](https://se-education.org)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -430,7 +430,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. FinHub detects an error in the command entered.
     * 1a1. FinHub displays an error message and prompts the user to input again.
     * 1a2. The user re-enters the command to search the client by email.
-  
+
       Steps 1a1-1a2 are repeated until the command and data entered are correct.
 
       Use case resumes at step 2.
@@ -777,6 +777,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use Case: UC17 - Star a client**
+
+**MSS**
+
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they wish to star.
+4. FinHub successfully stars the client and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to star the client.
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
+
+* 3b The client has already been starred. 
+    * 3b1 FinHub will display an error message and does not make any changes.
+
+      Use case ends.
+
+**Use Case: UC18 - Unstar a client**
+
+**MSS**
+
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they wish to unstar.
+4. FinHub successfully remove star status from the client and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to unstar the client.
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
+
+* 3b The client has already been unstarred.
+    * 3b1 FinHub will display an error message and does not make any changes.
+
+      Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
@@ -798,7 +858,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Reminder**: A note linked to a specific client, with a message and due date
-* **User**: Insurance agent using the address book 
+* **User**: Insurance agent using the address book
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -948,3 +1008,229 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<br>
+
+### Starring a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command. The list should include at least one client who is not starred.
+
+&nbsp;
+
+* Test Case: Star a client with a valid index
+    * Assumption: client 1 is not starred
+    * Input: `star 1`
+    * Expected Outcome:
+        * The client at index 1 is starred.
+        * A success message is displayed: `Starred Client: [Client]`.
+        * The list is re-sorted such that the starred client appears first.
+
+&nbsp;
+
+* Test Case: Star a client with a invalid index
+    * Input: `star 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try starring a client who is already starred
+    * Assumption: client 1 is starred
+    * Input: `star 1`
+    * Expected Outcome:
+        * A failure message is displayed: `Chosen client is already starred.`.
+
+&nbsp;
+
+* Test Case: Try starring with an invalid command (no index)
+    * Input: `star`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+star: stars the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+### Unstarring a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command. The list should include at least one client who is starred.
+
+&nbsp;
+
+* Test Case: Unstar a client with a valid index
+    * Assumption: client 1 is starred
+    * Input: `unstar 1`
+    * Expected Outcome:
+        * The client at index 1 is unstarred.
+        * A success message is displayed: `Starred status removed from Client:[Client]`.
+        * The list is re-sorted such that the starred client appears first.
+
+&nbsp;
+
+* Test Case: Unstar a client with a invalid index
+    * Input: `unstar 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try unstar a client who is already has no starred status
+    * Assumption: client 1 has no starred status
+    * Input: `unstar 1`
+    * Expected Outcome:
+        * A failure message is displayed: `Chosen client is already unstarred.`.
+
+&nbsp;
+
+* Test Case: Try unstarring with an invalid command (no index)
+    * Input: `unstar`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+unstar: Removes starred status of the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Effort
+
+**Scope vs AB3**
+- AB3 manages one entity type; FinHub extends the model with **per-client Reminders** and **Meeting Notes**, adds **archiving/star** flows, and an **InsurancePolicy** field. This required new parsers, commands, JSON adapters, UI panels, and tests.
+
+**Difficulty**
+
+1. **Per-client list management (two indexes)**
+    - **Why hard:** Commands like `rEdit PERSON_INDEX r/REMINDER_INDEX` touch **two lists**: the filtered people list and a person’s reminder list. Either can be re-indexed after filtering or edits.
+    - **What we did:**
+        - Resolve indices **late** (inside `Command#execute`) using the **current** filtered lists.
+        - Distinguish errors: “invalid **person** index” vs “invalid **reminder** index”.
+        - Tests cover off-by-one, empty lists, and filtered views.
+
+2. **Filtered views for Active vs Archived (no duplicated state)**
+    - **Why hard:** We want `activelist` / `archivelist` without cloning data or drifting out of sync.
+    - **What we did:**
+        - Single source of truth (`AddressBook`) with a `isArchived` flag.
+        - Switch filters with `updateFilteredPersonList(predicate)`; reapply sorts (e.g., starred first) after mutations.
+
+3. **JSON adapters for nested lists & backward compatibility**
+    - **Why hard:** We must serialise/deserialise nested `reminders[]` and `notes[]`, and **not break older JSON files** that don’t have these fields.
+    - **What we did:**
+        - `JsonAdaptedReminder` / `JsonAdaptedMeetingNote` with **tolerant readers** (missing arrays → `[]`; unknown fields → ignored).
+        - Fail clearly on corrupted sub-entries; don’t crash the whole file.
+        - Migration tests: “old to new” round-trip.
+
+4. **Multiple GUI panels (scrolling/height bugs)**
+    - **Why hard:** We now render **three vertical areas**: Client list, Reminder list, Meeting note list. With wrapped text and dynamic content, JavaFX showed:
+        - Double/vanishing scrollbars
+        - Clipped multi-line text
+        - Lists refusing to grow beyond ~3 lines
+        - Scroll focus jumping when lists update
+    - **What we did (practical fixes):**
+        - Avoid `ScrollPane` **inside** `ListView` where possible (one scroll owner).
+        - For wrapped labels: `label.setWrapText(true)` and `label.setMinHeight(Region.USE_PREF_SIZE)`.
+        - Let cell heights grow: `listView.setFixedCellSize(Region.USE_COMPUTED_SIZE)`.
+        - Manage growth in the parent layout: use `VBox.setVgrow(child, Priority.ALWAYS)` only on the container you want to grow; remove conflicting FXML `prefHeight`/`vgrow`.
+        - Reapply comparator/filter after mutations to prevent layout thrashing.
+
+**Challenges**
+
+1. **Unclear error messages**
+    - **Problem:** “Invalid index” was ambiguous—was it the person or the reminder index?
+    - **Fix:** Separate messages (“Invalid **person** index”; “Invalid **reminder** index”) and add tests that assert exact wording.
+
+2. **Filter + command order causing index drift**
+    - **Problem:** After `archivelist`, running `star` could reference the old (unfiltered) indices.
+    - **Fix:** Resolve indices **after** predicates are applied; standardise a **post-mutation refresh** (reapply predicate + optional sort).
+
+3. **Older JSON files breaking on new fields**
+    - **Problem:** Early saves lacked `reminders`/`notes`, causing deserialisation errors.
+    - **Fix:** Default missing arrays to `[]`, ignore unknown fields, and report only the corrupted entry (don’t crash everything).
+
+4. **Scrolling regressions after long result messages**
+    - **Problem:** `ResultDisplay` grew horizontally and triggered unwanted scrollbars.
+    - **Fix:** Wrap long text, avoid nested scrolling, let widths/height be `USE_COMPUTED_SIZE`, and cap max widths where necessary.
+
+
+**Reused work**
+- AB3 infrastructure (UI shell, storage scaffold, test harness, model entities and logic flow).  
+  _Net effect_: reduced boilerplate; effort focused on domain/features.
+
+**Effort Required**
+
+**Design & Architecture (≈ 1–2 person-days)
+- Identified where **new responsibilities** live (model vs parser vs UI), keeping AB3 layering intact.
+- Defined **error messaging strategy** (model-centric constraints; consistent messages).
+- Decided on **single-source-of-truth** for people + **view predicates** for Active/Archived/Starred.
+- Chose **tolerant JSON readers** (forward/backward compatibility) + strict writers.
+
+**Model & Validation (≈ 1–3 person-days)
+- Implemented value objects/entities:
+    - `Reminder` (header + future-only datetime, canonical formatter).
+    - `MeetingNote` (immutable text).
+    - `InsurancePolicy` (trim + regex; explicit constraints).
+- Added invariants + unit tests (null/empty, whitespace, format, “close to now” edges).
+- Ensured **immutability** or safe copying for nested lists.
+
+**Logic & Parsing (≈ 2–4 person-days)
+- New commands & parsers: `addrem`, `editrem`, `delrem`, `addnote`, `delnote`, `archive`, `unarchive`, `activelist`, `archivelist`, `star`, `unstar`.
+- **Late index resolution** in `Command#execute` to avoid stale indices under filters.
+- Distinct error surfaces for **person index** vs **inner list index**.
+- Tests for parsing ambiguity, missing prefixes, and filtered-list behaviors.
+
+**UI Engineering (multi-panel, scrolling) (≈ 3–5 person-days)
+- Panels: `ReminderListPanel`, `GeneralReminderListPanel`, `MeetingNoteListPanel`; cards for both.
+- Fixed **nested scroll bugs** (double scrollbars, clipped text, scroll focus jumps):
+    - Avoid `ScrollPane` inside `ListView`.
+    - `setWrapText(true)` + `setMinHeight(Region.USE_PREF_SIZE)` on labels; `setFixedCellSize(Region.USE_COMPUTED_SIZE)` on lists.
+    - Single **growth owner** in layouts (no conflicting `vgrow`/`prefHeight`).
+- Reapplied comparator/filter **once** after mutations to reduce layout thrashing.
+- Visual markers for **starred/archived** without breaking virtualization.
+
+**Storage & Migration (≈ 2–3 person-days)
+- Adapters: `JsonAdaptedReminder`, `JsonAdaptedMeetingNote`, updated `JsonAdaptedPerson`.
+- **Backward compatibility**: default missing arrays to `[]`, ignore unknown fields; fail only on truly corrupted sub-entries.
+- Round-trip tests: new → JSON → new; **old JSON → new model**; mixed lists with corrupted entries.
+
+**Testing (≈ 3–5 person-days)
+- **Model**: value object constraints, equals/hashCode, string forms.
+- **Logic**: success/failure paths, filtered/archived/starred interactions, two-index commands.
+- **Storage**: deserialisation with missing/extra fields, corrupted sub-entries, non-ASCII.
+- **UI** (selective): render of multi-line reminder/note cards; no horizontal overflow; no crash on long texts.
+- Regression tests for **scrolling bugs** (where feasible) and **message wording**.
+
+**Tooling, CI, Docs (≈ 1–2 person-days)
+- Gradle tasks wired for tests and checks; CI green on model/logic/storage suites.
+- Updated DG & UG, manual testing appendix, and acknowledgements; PlantUML stubs added.
+
+
+**Achievements**
+
+**Reliability & Data Safety
+- **Future-only reminders** with canonical parsing prevent silent “past reminder” entries.
+- **Tolerant JSON readers** mean older saves still load; corrupted sub-items no longer crash the app—users keep the rest of their data.
+- **Late index resolution** eliminates a class of “deleted wrong row” bugs in filtered views.
+
+**Usability & UX
+- **Clear, targeted errors** (format + future-time; person vs reminder index) reduce user confusion.
+- **Multi-panel UI** now handles long, wrapped content without clipping or random scrollbars.
+- **Star/Archive indicators** are visible and consistent with list filters.
+
+**Code Quality & Maintainability
+- Constraints enforced at the **model boundary** (single source of truth).
+- **No duplicated lists** for filters—predicates maintain a coherent view over one dataset.
+- Cohesive adapters (`JsonAdapted*`) isolate serialization concerns, easing future schema changes.
+
+**Performance & Responsiveness
+- **Virtualized lists** remain snappy even with many reminders/notes.
+- Post-mutation **one-shot refresh** prevents relayout storms.
+
+**Developer Experience
+- **Deterministic tests**: reduced flakiness from “close to now” cases.
+- DG/UG now **point to the right classes and flows**, making onboarding easier.
+
+**Why this effort was necessary**
+
+- Agents can **trust** reminders (they won’t silently schedule in the past) and **keep** their old data through releases.
+- The UI supports **realistic, verbose notes** without breaking layout—a must for actual client work.
+- The codebase stays **evolvable**: one dataset, clear boundaries, adapters ready for schema growth.

@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -71,7 +70,7 @@ public class AddReminderCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.addGeneralReminder(editedPerson, reminder);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.refreshFilteredPersonList();
         return this.reminder.getDeadline().isBefore(LocalDateTime.now())
             ? new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS_WITH_OLD_DEADLINE,
                 editedPerson.getName(), reminder))
