@@ -6,7 +6,7 @@
 
 # FinHub User Guide
 
-FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimized for use via a Line Interface** (CLI) while
+FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimized for use via a Command Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
 tasks done faster than traditional GUI apps.
 
@@ -16,8 +16,131 @@ tasks done faster than traditional GUI apps.
 each client. You also have the option to star or archive clients for better client organisation.
 </box>
 
+<box type="tip" seamless>
+
+**Tip:** Want to skip straight to the available commands?
+<br>
+[Click Here for the Command Summary!](#command-summary)
+</box>
+
+--------------------------------------------------------------------------------------------------------------------
+
 <!-- * Table of Contents -->
-<page-nav-print />
+<h2 style="font color=#ff990f"> Table of Contents </h2>
+
+<ul>
+
+<!-- * Quick Start -->
+<li><a href="#Quick-Start">Quick Start</a></li>
+
+<!-- Main Separator for TOC Indentation -->
+
+<!-- * Features -->
+<li style="list-style: none; margin-left: -15px;">
+
+<details>
+<summary><a href="#Features">Features</a></summary>
+
+<ul>
+
+<li style="list-style: none; margin-left: -15px">
+
+<!-- General Commands -->
+<details>
+<summary>General</summary>
+
+<ul>
+<li><a href="#viewing-help--help">View Help</a></li>
+
+<li><a href="#listing-all-clients--list">Listing all Clients</a></li>
+
+<li><a href="#clearing-all-entries--clear">Clear all Entries</a></li>
+
+<li><a href="#exiting-the-program--exit">Exiting the Program</a></li>
+</ul>
+
+</details>
+
+<!-- Separator for Feature List Indentation -->
+
+<!-- Client Management -->
+<details>
+<summary>Managing Clients</summary>
+
+<ul>
+<li><a href="#adding-a-client-add">Adding a Client</a></li>
+
+<li><a href="#editing-a-client--edit">Editing a Client</a></li>
+
+<li><a href="#locating-clients-by-name-find">Locating a Client</a></li>
+
+<li><a href="#deleting-a-client--delete">Deleting a Client</a></li>
+
+<li><a href="#starring-a-client--star">Starring a Client</a></li>
+
+<li><a href="#removing-star-of-a-client--unstar">Remove Star of a Client</a></li>
+
+<li><a href="#archiving-a-client--archive">Archiving a Client</a></li>
+
+<li><a href="#unarchiving-a-client--unarchive">Unarchiving a Client</a></li>
+</ul>
+
+</details>
+
+<!-- Separator for Feature List Indentation -->
+
+<!-- Reminder Management Commands -->
+<details>
+<summary>Reminders</summary>
+
+<ul>
+<li><a href="#adding-a-reminder--reminder">Adding a Reminder</a></li>
+
+<li><a href="#deleting-a-reminder--rdelete">Deleting a Reminder</a></li>
+
+<li><a href="#editing-a-reminder--redit">Editing a Reminder</a></li>
+</ul>
+
+</details>
+
+<!-- Separator for Feature List Indentation -->
+
+<!-- Meeting Notes Management -->
+<details>
+<summary>Meeting Notes</summary>
+
+<ul>
+<li><a href="#adding-a-meeting-note--note">Adding a Meeting Note</a></li>
+
+<li><a href="#deleting-a-meeting-note--ndelete">Deleting a Meeting Note</a></li>
+</ul>
+
+</details>
+
+<!-- Separator for Feature List Indentation -->
+
+</ul>
+
+</details>
+
+</li>
+
+<!-- Main Separator for TOC Indentation -->
+
+<!-- * FAQ -->
+<li><a href="#FAQ">FAQ</a></li>
+
+<!-- Main Separator for TOC Indentation -->
+
+<!-- * Known Issues -->
+<li><a href="#Known-Issues">Known Issues</a></li>
+
+<!-- Main Separator for TOC Indentation -->
+
+<!-- * Command Summary -->
+<li><a href="#Command-Summary">Command Summary</a></li>
+
+</ul>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,7 +165,7 @@ Insurance Agent who manage multiple clients:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version
@@ -239,7 +362,8 @@ Deletes a reminder from a specified client in FinHub.
 Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
 * Deletes the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed client list.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `REMINDER_INDEX` refers to the index number of the reminder to be edited in the list of the specified client.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
 * Only one reminder can be deleted at a time.
@@ -263,10 +387,15 @@ Examples:
 
 Edits a specified reminder from a specified client in FinHub.
 
+Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
+
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
-* The indices refer to the index number shown in the displayed client list.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `REMINDER_INDEX` refers to the index number of the reminder shown in the specified client's displayed reminder list.
 * The indices **must be positive integers** 1, 2, 3, …​
 * Both the client index and reminder index must be provided.
+* `h/HEADER` refers to the header of the edited reminder.
+* `d/DEADLINE` refers to the deadline of the edited reminder.
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
@@ -378,14 +507,15 @@ to the top of the displayed client lists along with other starred clients.
 Format: `star CLIENT_INDEX`
 
 * Stars the client at the specified `CLIENT_INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Only one client can be archived at a time.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* Only one client can be starred at a time.
 
 Examples:
 
-* `list` followed by `star 1` archives the 1st client in the list
-* `list` followed by `star 2` archives the 2nd client in the list
+* `list` followed by `star 1` stars the 1st client in the displayed client list
+* `list` followed by `star 2` stars the 2nd client in the displayed client list
+* `find Betsy` followed by `star 1` stars the 1st client in the results of the `find` command.
 
 <box type="tip" seamless>
 
@@ -394,21 +524,22 @@ Examples:
 
 <br>
 
-### Removing Star of a client : `unstar`
+### Removing star status of a client : `unstar`
 
-Remove the starred status of a specified client in FinHub.
+Removes the starred status of a specified client in FinHub.
 
 Format: `unstar CLIENT_INDEX`
 
 * Removes the starred status of the client at the specified `CLIENT_INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The indices **must be positive integers** 1, 2, 3, …​
-* Only one client can be unarchived at a time.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* You can only remove the star status from one client at a time.
 
 Examples:
 
-* `list` followed by `unstar 1` unarchives the 1st client in the list
-* `list` followed by `unstar 2` unarchives the 2nd client in the list
+* `list` followed by `unstar 1` removes star status from the 1st client in the displayed client list
+* `list` followed by `unstar 2` removes star status from the 2nd client in the displayed client list
+* `find Betsy` followed by `unstar 1` removes star status from the 1st client in the results of the `find` command.
 
 <br>
 
@@ -437,7 +568,7 @@ save manually.
 
 ### Editing the data file
 
-FinHub data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
+FinHub data are saved automatically as a JSON file `[JAR file location]/data/finhub.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
@@ -461,7 +592,7 @@ the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
@@ -472,7 +603,7 @@ the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action        | Format, Examples                                                                                                                                                        |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -21,7 +21,7 @@ import seedu.address.model.reminder.Reminder;
 public class AddReminderCommand extends Command {
     public static final String COMMAND_WORD = "reminder";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a reminder to the person identified by the index number in the displayed person list.\n"
+            + ": Adds a reminder to the client identified by the index number in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_HEADER + "HEADER "
             + PREFIX_DEADLINE + "DEADLINE (must be in yyyy-MM-dd HH:mm format) \n"
@@ -30,7 +30,7 @@ public class AddReminderCommand extends Command {
             + PREFIX_DEADLINE + "2025-12-25 09:00";
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Reminder added to %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_REMINDER = "A similar reminder has already been added for this person";
+    public static final String MESSAGE_DUPLICATE_REMINDER = "A similar reminder has already been added for this client";
 
     private final Index index;
     private final Reminder reminder;

@@ -23,13 +23,11 @@ public class DeleteReminderCommand extends Command {
     public static final String COMMAND_WORD = "rDelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the reminder identified by the index number used in the targeted person's reminder list.\n"
+            + ": Deletes the reminder identified by the index number used in the targeted client's reminder list.\n"
             + "Parameters: CLIENT_INDEX (must be a positive integer) REMINDER_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 1";
 
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted Client %1$s's Reminder %2$d: %3$s";
-
-    public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
 
     private final Index clientIndex;
     private final Index reminderIndex;
@@ -56,7 +54,7 @@ public class DeleteReminderCommand extends Command {
         ArrayList<Reminder> reminderList = personToDeleteFrom.getReminders();
 
         if (reminderIndex.getZeroBased() >= reminderList.size()) {
-            throw new CommandException(MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
 
         Reminder reminderToDelete = reminderList.get(reminderIndex.getZeroBased());
