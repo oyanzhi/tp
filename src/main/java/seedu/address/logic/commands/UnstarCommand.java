@@ -1,11 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.StarCommand.STARRED_STATUS_COMPARATOR;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.Person.STARRED_STATUS_COMPARATOR;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -28,9 +30,16 @@ public class UnstarCommand extends Command {
     public static final String MESSAGE_UNSTARRED_PERSON_SUCCESS = "Starred status removed from Client: %1$s";
     public static final String MESSAGE_PERSON_IS_UNSTARRED = "Chosen client is not starred";
 
+    private static final Logger logger = LogsCenter.getLogger(UnstarCommand.class);
     private final Index targetIndex;
 
+    /**
+     * Constructs a {@code UnstarCommand} that removes star status
+     * from the {@code Person} at the specified {@code Index}.
+     */
+
     public UnstarCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -38,26 +47,32 @@ public class UnstarCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        assert lastShownList != null : "Filtered person list should not be null";
+        int zeroBasedTargetIndex = targetIndex.getZeroBased();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (zeroBasedTargetIndex >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person personToUnstar = lastShownList.get(targetIndex.getZeroBased());
+        Person personToUnstar = lastShownList.get(zeroBasedTargetIndex);
 
         // Assert person is not null
-        assert personToUnstar != null : "Client to unstar is null. Index: " + targetIndex.getZeroBased();
+        assert personToUnstar != null : "Client to unstar is null. Index: " + zeroBasedTargetIndex;
 
         // Check if person starred status has been removed
         if (!personToUnstar.isStarred()) {
             throw new CommandException(MESSAGE_PERSON_IS_UNSTARRED);
         }
 
+        logger.log(Level.INFO, "Removing star status of person at index: " + targetIndex.getOneBased());
+        logger.log(Level.FINE, "Person before removing star status: " + personToUnstar);
         Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
 
+        assert unstarredPerson != null : "Unstarred person should not be null after removing star status";
+        assert !unstarredPerson.isStarred() : "Newly unstarred person must have isStarred = false";
         model.setPerson(personToUnstar, unstarredPerson);
         model.sortPersons(STARRED_STATUS_COMPARATOR);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_UNSTARRED_PERSON_SUCCESS, Messages.format(personToUnstar)));
+        model.refreshFilteredPersonList();
+        return new CommandResult(String.format(MESSAGE_UNSTARRED_PERSON_SUCCESS, Messages.format(unstarredPerson)));
     }
 
     @Override

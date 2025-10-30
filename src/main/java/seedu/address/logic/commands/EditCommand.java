@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,7 +90,7 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.refreshFilteredPersonList();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
@@ -113,10 +112,12 @@ public class EditCommand extends Command {
               editPersonDescriptor.getPolicy().orElse(personToEdit.getPolicy());
         // edit command does not allow editing of meeting notes
         ArrayList<MeetingNote> updatedMeetingNotes = personToEdit.getMeetingNotes();
-        // edit command does not allow editing of starred
+        // edit command does not allow editing of isStarred
         boolean isStarred = personToEdit.isStarred();
+        // edit command does not allow editing of archive
+        boolean isArchived = personToEdit.isArchived();
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedReminders, updatedPolicy, updatedMeetingNotes, isStarred);
+                updatedTags, updatedReminders, updatedPolicy, updatedMeetingNotes, isStarred, isArchived);
     }
 
     @Override

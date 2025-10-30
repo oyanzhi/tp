@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.person.Person.STARRED_STATUS_COMPARATOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -38,7 +39,7 @@ public class UnstarCommandTest {
         Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToUnstar, unstarredPerson);
-        expectedModel.sortPersons(StarCommand.STARRED_STATUS_COMPARATOR);
+        expectedModel.sortPersons(STARRED_STATUS_COMPARATOR);
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(unstarCommand, model, expectedMessage, expectedModel);
@@ -82,7 +83,7 @@ public class UnstarCommandTest {
         Person unstarredPerson = personToUnstar.rebuildWithStarredStatus(false);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToUnstar, unstarredPerson);
-        expectedModel.sortPersons(StarCommand.STARRED_STATUS_COMPARATOR);
+        expectedModel.sortPersons(STARRED_STATUS_COMPARATOR);
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(unstarCommand, model, expectedMessage, expectedModel);
@@ -106,20 +107,20 @@ public class UnstarCommandTest {
         UnstarCommand unstarFirstCommand = new UnstarCommand(INDEX_FIRST_PERSON);
         UnstarCommand unstarSecondCommand = new UnstarCommand(INDEX_SECOND_PERSON);
 
-        // same object -> returns true
+        // EP: same unstar command object -> returns true
         assertTrue(unstarFirstCommand.equals(unstarFirstCommand));
 
-        // same values -> returns true
+        // EP: same unstar command index -> returns true
         UnstarCommand unstarFirstCommandCopy = new UnstarCommand(INDEX_FIRST_PERSON);
         assertTrue(unstarFirstCommand.equals(unstarFirstCommandCopy));
 
-        // different types -> returns false
+        // EP: different types -> returns false
         assertFalse(unstarFirstCommand.equals(1));
 
-        // null -> returns false
+        // EP: null -> returns false
         assertFalse(unstarFirstCommand.equals(null));
 
-        // different person -> returns false
+        // EP: different unstar command object -> returns false
         assertFalse(unstarFirstCommand.equals(unstarSecondCommand));
     }
 

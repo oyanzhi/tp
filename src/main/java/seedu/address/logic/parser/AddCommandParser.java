@@ -56,9 +56,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         InsurancePolicy policy = ParserUtil.parsePolicy(argMultimap.getValue(PREFIX_POLICY).get());
         // add command does not allow adding meeting notes straight away
         ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
-        // add command does not allow adding starred straight away
-        boolean starred = false;
-        Person person = new Person(name, phone, email, address, tagList, reminderList, policy, meetingNotes, starred);
+        // add command does not allow adding isStarred straight away
+        boolean isStarred = false;
+        Person person = new Person(name, phone, email, address, tagList, reminderList, policy, meetingNotes, isStarred);
 
         return new AddCommand(person);
     }

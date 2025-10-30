@@ -12,6 +12,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
   * Set reminders for important dates regarding each client
   * View a list of all clients
   * Add Tags to each client
+  * Star a client to mark them as favourite
 * The project is an ongoing software project for a desktop application (called _FinHub_) used for managing clients' contact details.
   * It is **written in OOP fashion**.
   * It comes with a **reasonable level of user and developer documentation**.

@@ -62,7 +62,7 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -97,10 +97,10 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case DeleteReminderCommand.COMMAND_WORD:
+        case DeleteReminderCommand.COMMAND_WORD_LOWERCASE:
             return new DeleteReminderCommandParser().parse(arguments);
 
-        case EditReminderCommand.COMMAND_WORD:
+        case EditReminderCommand.COMMAND_WORD_LOWERCASE:
             return new EditReminderCommandParser().parse(arguments);
 
         case ArchiveCommand.COMMAND_WORD:
@@ -112,7 +112,7 @@ public class AddressBookParser {
         case AddMeetingNoteCommand.COMMAND_WORD:
             return new AddMeetingNoteCommandParser().parse(arguments);
 
-        case DeleteMeetingNoteCommand.COMMAND_WORD:
+        case DeleteMeetingNoteCommand.COMMAND_WORD_LOWERCASE:
             return new DeleteMeetingNoteCommandParser().parse(arguments);
 
         case StarCommand.COMMAND_WORD:
