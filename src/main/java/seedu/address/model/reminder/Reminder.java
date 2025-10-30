@@ -78,6 +78,9 @@ public class Reminder {
         return this.deadline.compareTo(otherReminder.deadline);
     }
 
+    /**
+     * Case-sensitive comparison of {@code headers} to ensure sorting has a proper order
+     */
     public int compareHeader(Reminder otherReminder) {
         return this.header.compareTo(otherReminder.header);
     }
@@ -105,7 +108,8 @@ public class Reminder {
             return false;
         }
 
+        // equality of headers is case-insensitive to prevent similar reminders to be added to the same client
         Reminder r = (Reminder) other;
-        return r.deadline.equals(this.deadline) && r.header.equals(this.header);
+        return r.deadline.equals(this.deadline) && r.header.equalsIgnoreCase(this.header);
     }
 }
