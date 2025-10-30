@@ -13,7 +13,7 @@
       }
     ],
     "policy": "AIB Lifetime Cover",
-    "starred" : "false",
+    "isStarred" : "false",
     "isArchived": "false"
   }, {
     "name" : "Benson Meier",
@@ -28,7 +28,7 @@
       }
     ],
     "policy": "AIB HealthShield Gold Max",
-    "starred" : "true",
+    "isStarred" : "true",
     "isArchived": "false"
   }, {
     "name" : "Carl Kurz",
@@ -38,7 +38,7 @@
     "tags" : [ ],
     "reminders": [ ],
     "policy": "AIB HealthShield Gold Max",
-    "starred" : "false",
+    "isStarred" : "false",
     "isArchived": "false"
   }, {
     "name" : "Daniel Meier",
@@ -48,7 +48,7 @@
     "tags" : [ "friends" ],
     "reminders": [ ],
     "policy": "AIB HealthShield Gold",
-    "starred" : "false",
+    "isStarred" : "false",
     "isArchived": "false"
   }, {
     "name" : "Elle Meyer",
@@ -58,7 +58,7 @@
     "tags" : [ ],
     "reminders": [ ],
     "policy": "AIB HealthShield Gold",
-    "starred" : "false",
+    "isStarred" : "false",
     "isArchived": "false"
   }, {
     "name" : "Fiona Kunz",
@@ -77,7 +77,7 @@
       }
     ],
     "policy": "AIB HealthShield Gold",
-    "starred" : "true",
+    "isStarred" : "true",
     "isArchived": "false"
   }, {
     "name" : "George Best",
@@ -87,7 +87,7 @@
     "tags" : [ ],
     "reminders": [ ],
     "policy": "AIB HealthShield Gold",
-    "starred" : "false",
+    "isStarred" : "false",
     "isArchived": "false"
   } ]
 }

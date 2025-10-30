@@ -2,11 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -21,6 +23,7 @@ import seedu.address.model.reminder.Reminder;
 public class DeleteReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "rDelete";
+    public static final String COMMAND_WORD_LOWERCASE = "rdelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the reminder identified by the index number used in the targeted client's reminder list.\n"
@@ -28,6 +31,8 @@ public class DeleteReminderCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 1";
 
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted Client %1$s's Reminder %2$d: %3$s";
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteReminderCommand.class);
 
     private final Index clientIndex;
     private final Index reminderIndex;
@@ -45,25 +50,38 @@ public class DeleteReminderCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        assert lastShownList != null : "Filtered person list should not be null";
 
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToDeleteFrom = lastShownList.get(clientIndex.getZeroBased());
+        assert personToDeleteFrom != null : "Person to delete reminder from should not be null. Index: "
+                + clientIndex.getZeroBased();
+
         ArrayList<Reminder> reminderList = personToDeleteFrom.getReminders();
+        assert reminderList != null : "Person's reminder list should not be null";
 
         if (reminderIndex.getZeroBased() >= reminderList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
 
         Reminder reminderToDelete = reminderList.get(reminderIndex.getZeroBased());
+        assert reminderToDelete != null : "Reminder to be deleted should not be null. Index: "
+                + reminderIndex.getZeroBased();
+
+        logger.log(Level.INFO, "Deleting reminder " + reminderToDelete + " from " + personToDeleteFrom.getName());
+
         Person editedPerson = personToDeleteFrom.removeReminder(reminderToDelete);
+        assert editedPerson != null : "Edited person should not be null";
+
+
 
         model.setPerson(personToDeleteFrom, editedPerson);
         model.deleteGeneralReminder(personToDeleteFrom, reminderToDelete);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.refreshFilteredPersonList();
 
         return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS,
                 personToDeleteFrom.getName(),

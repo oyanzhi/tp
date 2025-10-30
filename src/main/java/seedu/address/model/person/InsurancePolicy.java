@@ -10,10 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class InsurancePolicy {
     public static final String MESSAGE_CONSTRAINTS =
-            "Policy name may only contain letters, digits, spaces, and + / & ( ) ' . , "
+            "Policy name may only contain letters, digits, spaces, and + / & ( ) ' . , - "
             + "and must include at least one letter or digit.";
     public static final String VALIDATION_REGEX =
-            "^(?=.*[\\p{L}\\p{Nd}])[\\p{L}\\p{Nd} +/&()'.,]+$";
+            "^(?=.*[\\p{L}\\p{Nd}])[\\p{L}\\p{Nd} +/&()'.,-]+$";
 
     private final String value;
     /**
@@ -31,9 +31,7 @@ public class InsurancePolicy {
      * Returns if a given string is a valid policy.
      */
     public static boolean isValidPolicy(String test) {
-        if (test == null) {
-            return false;
-        }
+        requireNonNull(test);
         final String trimmed = test.trim();
         if (trimmed.isEmpty()) {
             return false;

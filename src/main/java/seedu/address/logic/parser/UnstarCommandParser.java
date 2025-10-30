@@ -19,8 +19,8 @@ public class UnstarCommandParser implements Parser<UnstarCommand> {
     private static final Logger logger = LogsCenter.getLogger(UnstarCommandParser.class);
 
     /**
-     * Parses the given {@code String} of arguments in the context of the StarCommand
-     * and returns a StarCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UnstarCommand
+     * and returns a UnstarCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnstarCommand parse(String args) throws ParseException {
@@ -32,8 +32,7 @@ public class UnstarCommandParser implements Parser<UnstarCommand> {
             logger.log(Level.INFO, LOGGING_MESSAGE_PARSE_INDEX + index.getOneBased());
             return new UnstarCommand(index);
         } catch (ParseException pe) {
-            logger.log(Level.FINER, LOGGING_MESSAGE_PARSE_FAILURE
-                    + String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnstarCommand.MESSAGE_USAGE));
+            logger.log(Level.FINER, LOGGING_MESSAGE_PARSE_FAILURE + pe.getMessage());
             throw new ParseException(pe.getMessage(), pe);
         }
     }

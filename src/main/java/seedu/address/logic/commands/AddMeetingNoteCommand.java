@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -64,7 +63,7 @@ public class AddMeetingNoteCommand extends Command {
         assert editedPerson != null : "Edited client should not be null after adding meeting note";
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.refreshFilteredPersonList();
         return new CommandResult(String.format(MESSAGE_ADD_MEETING_NOTE_SUCCESS, editedPerson.getName(), meetingNote));
     }
 

@@ -102,6 +102,14 @@ public interface Model {
      */
     void deleteGeneralReminder(Person person, Reminder target);
 
+    boolean isViewingArchivedList();
+
+    void setViewingArchivedList(boolean viewing);
+
+    Predicate<Person> getCurrentFilter();
+
+    void setCurrentFilter(Predicate<Person> predicate);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -117,4 +125,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void refreshFilteredPersonList();
 }
