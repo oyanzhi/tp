@@ -712,49 +712,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. The user <u>searches for the client by their name (UC01)</u>.
-2. The user selects the client they wish to "star" from the displayed list.
-3. FinHub marks the client as starred.
-4. FinHub displays a success message.
+2. FinHub displays a list of clients.
+3. The user selects the client they wish to star.
+4. FinHub successfully stars the client and displays a success message.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The client has already been starred. 
-    * 2a1. FinHub will display an error message and does not make any changes.
-
-    Use case ends.
-
-* 2b. The selected client index is invalid (e.g., out of bounds).
-    * 2b1. FinHub displays an error message: "Invalid client index".
+* 2a. The list is empty.
 
   Use case ends.
 
----
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to star the client.
 
-## Use Case: UC18 - Unstar a client
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
 
-### MSS (Main Success Scenario)
+      Use case resumes at step 4.
 
-1. The user searches for a client by their name (UC01).
-2. The user selects the client they wish to "unstar" from the displayed list.
-3. FinHub removes the starred status of the selected client.
-4. FinHub displays a success message: "Starred status removed from Client: [name]".
+* 3b The client has already been starred. 
+    * 3b1 FinHub will display an error message and does not make any changes.
 
-   **Use case ends.**
+      Use case ends.
 
-### Extensions
+**Use Case: UC18 - Unstar a client**
 
-- **2a.** The client is not currently starred.
-    - **2a1.** FinHub displays a message indicating that the selected client is not starred and does not make any changes: "Chosen client is not starred".
+**MSS**
 
-  **Use case ends.**
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they wish to unstar.
+4. FinHub successfully remove star status from the client and displays a success message.
 
-- **2b.** The selected client index is invalid (e.g., out of bounds).
-    - **2b1.** FinHub displays an error message: "Invalid client index".
+   Use case ends.
 
-  **Use case ends.**
+**Extensions**
 
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to unstar the client.
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
+
+* 3b The client has already been unstarred.
+    * 3b1 FinHub will display an error message and does not make any changes.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -833,3 +844,85 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<br>
+
+### Starring a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command. The list should include at least one client who is not starred.
+
+&nbsp;
+
+* Test Case: Star a client with a valid index
+    * Assumption: client 1 is not starred
+    * Input: `star 1`
+    * Expected Outcome:
+        * The client at index 1 is starred.
+        * A success message is displayed: `Starred Client: [Client]`.
+        * The list is re-sorted such that the starred client appears first.
+
+&nbsp;
+
+* Test Case: Star a client with a invalid index
+    * Input: `star 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try starring a client who is already starred
+    * Assumption: client 1 is starred
+    * Input: `star 1`
+    * Expected Outcome:
+        * A failure message is displayed: `Chosen client is already starred.`.
+
+&nbsp;
+
+* Test Case: Try starring with an invalid command (no index)
+    * Input: `star`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+star: stars the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+### Unstarring a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command. The list should include at least one client who is starred.
+
+&nbsp;
+
+* Test Case: Unstar a client with a valid index
+    * Assumption: client 1 is starred
+    * Input: `unstar 1`
+    * Expected Outcome:
+        * The client at index 1 is unstarred.
+        * A success message is displayed: `Starred status removed from Client:[Client]`.
+        * The list is re-sorted such that the starred client appears first.
+
+&nbsp;
+
+* Test Case: Unstar a client with a invalid index
+    * Input: `unstar 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try unstar a client who is already has no starred status
+    * Assumption: client 1 has no starred status
+    * Input: `unstar 1`
+    * Expected Outcome:
+        * A failure message is displayed: `Chosen client is already unstarred.`.
+
+&nbsp;
+
+* Test Case: Try unstarring with an invalid command (no index)
+    * Input: `unstar`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+unstar: Removes starred status of the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+&nbsp;
