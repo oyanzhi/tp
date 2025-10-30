@@ -23,6 +23,8 @@ import seedu.address.model.reminder.Reminder;
 public class EditReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "rEdit";
+    public static final String COMMAND_WORD_LOWERCASE = "redit";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the reminder identified by the index number used in the targeted client's reminder list.\n"

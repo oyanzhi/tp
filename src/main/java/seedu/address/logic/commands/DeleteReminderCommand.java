@@ -21,6 +21,7 @@ import seedu.address.model.reminder.Reminder;
 public class DeleteReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "rDelete";
+    public static final String COMMAND_WORD_LOWERCASE = "rdelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the reminder identified by the index number used in the targeted client's reminder list.\n"
