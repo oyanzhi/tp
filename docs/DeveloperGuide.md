@@ -441,7 +441,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-
 **Use case: UC06 - Delete a client's contact**
 
 **Precondition**: Client list must not be empty.
@@ -450,9 +449,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  The user <u>searches for the client to delete by their name (UC01)</u>.
 2.  The user selects the client to be deleted.
-3.  FinHub asks for confirmation of the deletion.
-4.  FinHub removes the client from the address book.
-5.  FinHub displays a success message.
+3.  FinHub removes the client from the address book.
+4.  FinHub displays a success message.
 
     Use case ends.
 
@@ -464,11 +462,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Step 2a1 is repeated until a valid client has been selected.
 
       Use case resumes at step 3.
-
-
-* 3a. The user cancels the deletion.
-  Use case ends.
-
 
 **Use case: UC07 - Edit a client's information**
 
@@ -706,6 +699,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 6b1. FinHub will display an error message.
 
       Use case ends.
+
+**Use Case: UC17 - Archiving a client**
+
+**MSS**
+
+**Precondition**: User is viewing active list.
+
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they want to archive.
+4. FinHub successfully archives the client and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to archive the client
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
+
+**Use Case: UC18 - Unarchiving a client**
+
+**MSS**
+
+**Precondition**: User is viewing archive list.
+
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they wish to unarchive.
+4. FinHub successfully unarchives the client and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to unarchive the client.
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
 
 ### Non-Functional Requirements
 
