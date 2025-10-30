@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.DeleteReminderCommand.MESSAGE_DELETE_REMINDER_SUCCESS;
-import static seedu.address.logic.commands.DeleteReminderCommand.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -104,7 +103,7 @@ public class DeleteReminderCommandTest {
 
         Index invalidReminderIndex = Index.fromOneBased(reminderList.size() + 1);
 
-        String expectedMessage = MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX;
+        String expectedMessage = Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX;
 
         DeleteReminderCommand deleteReminderCommand = new DeleteReminderCommand(INDEX_FIRST_PERSON,
                 invalidReminderIndex);

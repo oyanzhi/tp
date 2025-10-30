@@ -20,13 +20,13 @@ public class UnstarCommand extends Command {
     public static final String COMMAND_WORD = "unstar";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes starred status of the person identified by the index number "
-            + "used in the displayed person list.\n"
+            + ": Removes starred status of the client identified by the index number "
+            + "used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNSTARRED_PERSON_SUCCESS = "Starred status removed from Person: %1$s";
-    public static final String MESSAGE_PERSON_IS_UNSTARRED = "Chosen person is not starred";
+    public static final String MESSAGE_UNSTARRED_PERSON_SUCCESS = "Starred status removed from Client: %1$s";
+    public static final String MESSAGE_PERSON_IS_UNSTARRED = "Chosen client is not starred";
 
     private final Index targetIndex;
 
@@ -45,7 +45,7 @@ public class UnstarCommand extends Command {
         Person personToUnstar = lastShownList.get(targetIndex.getZeroBased());
 
         // Assert person is not null
-        assert personToUnstar != null : "Person to unstar is null. Index: " + targetIndex.getZeroBased();
+        assert personToUnstar != null : "Client to unstar is null. Index: " + targetIndex.getZeroBased();
 
         // Check if person starred status has been removed
         if (!personToUnstar.isStarred()) {

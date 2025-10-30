@@ -226,7 +226,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_policySpecified_success() throws ParseException {
-        String input = INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_POLICY.getPrefix() + "valid_policy";
+        String input = INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_POLICY.getPrefix() + "valid policy";
         EditCommandParser parser = new EditCommandParser();
         Command command = parser.parse(input);
         assertTrue(command instanceof EditCommand);
