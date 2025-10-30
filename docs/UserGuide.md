@@ -541,7 +541,7 @@ Clears all entries in FinHub.
 
 Format: `clear`
 
-<box type="warning">
+<box type="warning" seamless>
 
 **Warning:** This action will permanently delete all data.
 </box>
@@ -567,12 +567,12 @@ save manually.
 
 ### Editing the data file
 
-FinHub data are saved automatically as a JSON file `[JAR file location]/data/finhub.json`. Advanced users are
+FinHub data are saved automatically as a `JSON` file `[JAR file location]/data/finhub.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
-**Caution:**
+**Warning:**
 If your changes to the data file makes its format invalid, FinHub will discard all data and start with an empty
 data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause FinHub to behave in unexpected ways (e.g., if a value entered is outside
