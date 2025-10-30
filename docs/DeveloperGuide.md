@@ -853,40 +853,93 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a reminder
 * Prerequisites: Make sure the list of clients is displayed using the `activelist` command.
-* Test Case: Adds a reminder to a client with a valid index
-    * Assumption: Valid Inputs
-    * User Input: reminder 1 h/Follow up with client on insurance quote d/2026-11-10 09:00
-    * Expected Outcome:
-        * A reminder with the header [Follow up with client on insurance quote] and deadline [2026-11-10 09:00] is added to the client at index 1.
-        * A success message is displayed: Reminder added to [Person's Name]: Follow up with client on insurance quote, due by 2026-11-10 09:00
-        * The reminder list for the client at index 1 is re-sorted by the closest deadlines first, followed by the header name.
 
+&nbsp;
+
+* Test Case: Adds a reminder to a client with a valid index
+  * Assumption: Valid Inputs
+  * User Input: reminder 1 h/Follow up with client on insurance quote d/2026-11-10 09:00
+  * Expected Outcome:
+    * A reminder with the header [Follow up with client on insurance quote] and deadline [2026-11-10 09:00] is added to the client at index 1.
+    * A success message is displayed: `Reminder added to [Person's Name]: [Follow up with client on insurance quote], due by [2026-11-10 09:00]`
+    * The reminder list for the client at index 1 is re-sorted by the closest deadlines first, followed by the header name.
+
+&nbsp;
+
+* Test Case: Adds a reminder to a client with a invalid index
+  * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
+  * User Input: reminder 100000 h/Follow up with client on insurance quote d/2026-11-10 09:00
+  * Expected Outcome:
+    * A failure message is displayed: `The client index provided is invalid — it exceeds the number of clients currently displayed`
+
+&nbsp;
+
+* Test Case: Adds a reminder to a client with a valid index and deadline but invalid header
+  * Assumption: Valid Client Index but Invalid Header (empty)
+  * User Input: reminder 1 h/ d/2026-11-10 09:00
+  * Expected Outcome:
+    * A failure message is displayed: `Reminder can take any value but cannot be blank.`
+
+&nbsp;
+
+* Test Case: Adds a reminder to a client with a valid index and header but invalid deadline format
+  * Assumption: Valid Client Index but invalid deadline format (not formatted to "yyyy-MM-dd HH:mm")
+  * User Input: reminder 1 h/Follow up with client on insurance quote d/2029-10-10 1000
+  * Expected Outcome:
+    * A failure message is displayed: `Deadline should be in the following format: yyyy-MM-dd HH:mm`
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Deleting a reminder
-* Prerequisites: Make sure the list of clients is displayed using the `activelist` command and chosen client has reminders to be removed
-* Test Case: Removes a reminder with a valid index from a client with a valid index
-    * Assumption: Valid Inputs
-    * User Input: rDelete 1 1
-    * Expected Outcome:
-      * The first reminder will be deleted from the first client
-      * A success message is displayed: Deleted Client [Person's Name]'s Reminder 1: [Deleted Reminder]
-      * The reminder list for the client at index 1 will not contain the [Deleted Reminder]
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command 
+
+&nbsp;
+
+* Test Case: Deletes a reminder with a valid index from a client with a valid index
+  * Assumptions: Valid Inputs & Chosen Client has reminders to be removed
+  * User Input: rDelete 1 1
+  * Expected Outcome:
+    * The first reminder of the first client will be deleted.
+    * A success message is displayed: `Deleted Client [Person's Name]'s Reminder 1: [Deleted Reminder]`
+    * The reminder list for the client at index 1 will not contain the [Deleted Reminder].
+
+&nbsp;
+
+* Test Case: Deletes a reminder with a valid index from a client with a invalid index
+  * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
+  * User Input: rDelete 100000 1
+  * Expected Outcome:
+    * A failure message is displayed: `The client index provided is invalid — it exceeds the number of clients currently displayed`
+
+&nbsp;
+
+* Test Case: Deletes a reminder with a invalid index from a client with a valid index
+  * Assumption: Invalid Reminder Index (index exceeds number of reminders of the client's reminder list)
+  * User Input: rDelete 1 10000000
+  * Expected Outcome:
+    * A failure message is displayed: `The reminder index provided is invalid — it exceeds the number of reminders this client currently has`
 
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Editing a reminder
-* Prerequisites: Make sure the list of clients is displayed using the `activelist` command and chosen client has reminders to be edited
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command
+
+&nbsp;
+
 * Test Case: Edits the reminder at a valid index of the reminder list of a client at a valid index
   * Assumption: Valid Inputs & Edited Reminder is **different** from Previous Reminder
   * User Input: rEdit 1 1 h/Submit updated policy document d/2026-11-15 17:30
-  * 
+  * Expected Outcome:
+    * The first reminder of the client at index 1 will be replaced with a new reminder with the header [Submit updated policy document] and deadline [2026-11-15 17:30].
+    * A success message is displayed: `Edited Client [Person's Name]'s Reminder 1: from [Previous Reminder] to [Edited Reminder]`
+    
 
+<br>
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Saving data
 
