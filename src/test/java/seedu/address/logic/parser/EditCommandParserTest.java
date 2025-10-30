@@ -66,7 +66,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no prefix specified
-        //assertParseFailure(parser, VALID_NAME_AMY, ParserUtil.MESSAGE_MORE_THAN_ONE_INDEX);
+        assertParseFailure(parser, VALID_NAME_AMY, EditCommand.MESSAGE_NOT_EDITED);
 
         // no index specified
         assertParseFailure(parser, NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
