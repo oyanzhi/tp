@@ -172,6 +172,25 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isViewingArchivedList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setViewingArchivedList(boolean viewing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Predicate<Person> getCurrentFilter() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void setCurrentFilter(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -190,6 +209,11 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void refreshFilteredPersonList() {
+            // do nothing
+        }
     }
 
     /**
@@ -207,6 +231,11 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public void refreshFilteredPersonList() {
+            // do nothing
         }
     }
 

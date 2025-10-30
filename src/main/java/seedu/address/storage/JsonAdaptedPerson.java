@@ -39,7 +39,7 @@ class JsonAdaptedPerson {
     private final String policy;
     private final String isArchived;
     private final List<JsonAdaptedMeetingNote> meetingNotes = new ArrayList<>();
-    private final String starred;
+    private final String isStarred;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -51,7 +51,7 @@ class JsonAdaptedPerson {
             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
             @JsonProperty("insurancePolicy") String policy,
             @JsonProperty("meeting notes")List<JsonAdaptedMeetingNote> meetingNotes,
-            @JsonProperty("starred") String starred,
+            @JsonProperty("isStarred") String isStarred,
             @JsonProperty("isArchived") String isArchived) {
         this.name = name;
         this.phone = phone;
@@ -67,7 +67,7 @@ class JsonAdaptedPerson {
         if (meetingNotes != null) {
             this.meetingNotes.addAll(meetingNotes);
         }
-        this.starred = starred;
+        this.isStarred = isStarred;
         this.isArchived = isArchived;
     }
 
@@ -89,7 +89,7 @@ class JsonAdaptedPerson {
         meetingNotes.addAll(source.getMeetingNotes().stream()
                 .map(JsonAdaptedMeetingNote::new)
                 .collect(Collectors.toList()));
-        starred = String.valueOf(source.isStarred());
+        isStarred = String.valueOf(source.isStarred());
         isArchived = String.valueOf(source.isArchived());
     }
 
@@ -159,14 +159,14 @@ class JsonAdaptedPerson {
         final InsurancePolicy modelPolicy = new InsurancePolicy(policy);
         final ArrayList<MeetingNote> modelMeetingNotes = new ArrayList<>(personMeetingNotes);
 
-        if (starred == null) {
+        if (isStarred == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, STARRED_SIMPLE_NAME));
         }
 
-        if (!starred.equalsIgnoreCase("true") && !starred.equalsIgnoreCase("false")) {
+        if (!isStarred.equalsIgnoreCase("true") && !isStarred.equalsIgnoreCase("false")) {
             throw new IllegalValueException(INVALID_STARRED_MESSAGE);
         }
-        final boolean modelStarred = Boolean.parseBoolean(starred);
+        final boolean modelStarred = Boolean.parseBoolean(isStarred);
 
         if (isArchived == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ARCHIVED_SIMPLE_NAME));
