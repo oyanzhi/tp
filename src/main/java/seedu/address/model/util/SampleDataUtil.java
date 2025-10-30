@@ -24,34 +24,42 @@ public class SampleDataUtil {
     public static final ArrayList<Reminder> EMPTY_REMINDERS = new ArrayList<>();
     public static final ArrayList<MeetingNote> EMPTY_MEETING_NOTES = new ArrayList<>();
 
-    public static final ArrayList<Reminder> SAMPLE_REMINDERS_ONE = new ArrayList<>() {{
-            add(new Reminder("Follow up with client on insurance quote", "2026-11-10 09:00"));
-            add(new Reminder("Submit updated policy document", "2026-11-15 17:30"));
-            add(new Reminder("Check premium renewal details", "2026-12-01 10:00"));
-        }};
+    public static final ArrayList<Reminder> SAMPLE_REMINDERS_ONE = createReminders(
+            "Follow up with client on insurance quote", "2026-11-10 09:00",
+            "Submit updated policy document", "2026-11-15 17:30",
+            "Check premium renewal details", "2026-12-01 10:00");
+    public static final ArrayList<Reminder> SAMPLE_REMINDERS_TWO = createReminders(
+            "Call to confirm appointment", "2027-11-03 14:00",
+            "Prepare meeting agenda for investment review", "2028-11-05 08:30",
+            "Send birthday greeting to client", "2029-11-18 09:30");
+    public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_ONE = createMeetingNotes(
+            "Discussed client's insurance needs and recommended FamilyCare plan.", "2025-10-01 10:30",
+            "Client requested quotation for additional coverage.", "2025-10-05 11:00",
+            "Scheduled next review session for December.", "2025-10-10 16:45");
+    public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_TWO = createMeetingNotes(
+            "Explained investment risk profile and portfolio diversification.", "2025-09-20 14:15",
+            "Client requested to adjust monthly savings plan.", "2025-09-25 10:00",
+            "Planned to introduce new product line next quarter.", "2025-09-30 09:30");
+    private static ArrayList<Reminder> createReminders(String... data) {
+        ArrayList<Reminder> list = new ArrayList<>();
+        for (int i = 0; i < data.length; i += 2) {
+            list.add(new Reminder(data[i], data[i + 1]));
+        }
+        return list;
+    }
 
-    public static final ArrayList<Reminder> SAMPLE_REMINDERS_TWO = new ArrayList<>() {{
-            add(new Reminder("Call to confirm appointment", "2027-11-03 14:00"));
-            add(new Reminder("Prepare meeting agenda for investment review", "2028-11-05 08:30"));
-            add(new Reminder("Send birthday greeting to client", "2029-11-18 09:30"));
-        }};
+    private static ArrayList<MeetingNote> createMeetingNotes(String... data) {
+        ArrayList<MeetingNote> list = new ArrayList<>();
+        for (int i = 0; i < data.length; i += 2) {
+            list.add(new MeetingNote(data[i], data[i + 1]));
+        }
+        return list;
+    }
 
-    public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_ONE = new ArrayList<>() {{
-            add(new MeetingNote("Discussed client's insurance needs and recommended FamilyCare plan.",
-                "2025-10-01 10:30"));
-            add(new MeetingNote("Client requested quotation for additional coverage.",
-                "2025-10-05 11:00"));
-            add(new MeetingNote("Scheduled next review session for December.", "2025-10-10 16:45"));
-        }};
-
-    public static final ArrayList<MeetingNote> SAMPLE_MEETING_NOTES_TWO = new ArrayList<>() {{
-            add(new MeetingNote("Explained investment risk profile and portfolio diversification.",
-                "2025-09-20 14:15"));
-            add(new MeetingNote("Client requested to adjust monthly savings plan.", "2025-09-25 10:00"));
-            add(new MeetingNote("Planned to introduce new product line next quarter.", "2025-09-30 09:30"));
-        }};
-
-
+    /**
+     * Returns an array of sample {@code Person} objects for populating the sample address book.
+     * Each person includes example reminders, meeting notes, insurance policies, and tags.
+     */
     public static Person[] getSamplePersons() {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -91,6 +99,9 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Returns a sample {@code AddressBook} populated with sample {@code Person} data.
+     */
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {

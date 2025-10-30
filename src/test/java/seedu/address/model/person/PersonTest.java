@@ -120,7 +120,7 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
                 + ", insurance policy=" + ALICE.getPolicy() + ", tags=" + ALICE.getTags()
                 + ", reminders=" + ALICE.getReminders() + ", meeting notes=" + ALICE.getMeetingNotes()
-                + ", starred=" + ALICE.isStarred() + "}";
+                + ", isStarred=" + ALICE.isStarred() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

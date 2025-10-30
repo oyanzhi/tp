@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -20,7 +21,10 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person implements Comparable<Person> {
-
+    // Static comparator for sorting
+    public static final Comparator<Person> STARRED_STATUS_COMPARATOR = Comparator
+            .comparing(Person::isStarred, Comparator.reverseOrder())
+            .thenComparing(Person::getName);
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -33,15 +37,14 @@ public class Person implements Comparable<Person> {
     private final InsurancePolicy policy;
     private final boolean isArchived;
     private final ArrayList<MeetingNote> meetingNotes = new ArrayList<>();
-    private final boolean starred;
-
+    private final boolean isStarred;
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                   ArrayList<Reminder> reminders, InsurancePolicy policy, ArrayList<MeetingNote> meetingNotes,
-                  boolean starred) {
-        requireAllNonNull(name, phone, email, address, tags, reminders, policy, meetingNotes, starred);
+                  boolean isStarred) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, policy, meetingNotes, isStarred);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,7 +53,7 @@ public class Person implements Comparable<Person> {
         this.reminders.addAll(reminders);
         this.policy = policy;
         this.meetingNotes.addAll(meetingNotes);
-        this.starred = starred;
+        this.isStarred = isStarred;
         this.isArchived = false;
     }
 
@@ -59,8 +62,8 @@ public class Person implements Comparable<Person> {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                   ArrayList<Reminder> reminders, InsurancePolicy policy, ArrayList<MeetingNote> meetingNotes,
-                  boolean starred, boolean isArchived) {
-        requireAllNonNull(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, isArchived);
+                  boolean isStarred, boolean isArchived) {
+        requireAllNonNull(name, phone, email, address, tags, reminders, policy, meetingNotes, isStarred, isArchived);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -69,7 +72,7 @@ public class Person implements Comparable<Person> {
         this.reminders.addAll(reminders);
         this.policy = policy;
         this.meetingNotes.addAll(meetingNotes);
-        this.starred = starred;
+        this.isStarred = isStarred;
         this.isArchived = isArchived;
     }
 
@@ -128,7 +131,7 @@ public class Person implements Comparable<Person> {
         ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(meetingNotes);
         updatedMeetingNotes.add(meetingNote);
 
-        return new Person(name, phone, email, address, tags, reminders, policy, updatedMeetingNotes, starred);
+        return new Person(name, phone, email, address, tags, reminders, policy, updatedMeetingNotes, isStarred);
     }
 
     /**
@@ -141,7 +144,7 @@ public class Person implements Comparable<Person> {
         ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(this.meetingNotes);
         updatedMeetingNotes.remove(meetingNote);
 
-        return new Person(name, phone, email, address, tags, reminders, policy, updatedMeetingNotes, starred);
+        return new Person(name, phone, email, address, tags, reminders, policy, updatedMeetingNotes, isStarred);
     }
 
 
@@ -153,19 +156,19 @@ public class Person implements Comparable<Person> {
     }
 
     /**
-     * Returns the boolean favourite state of person
+     * Returns the boolean isStarred state of person
      */
     public boolean isStarred() {
-        return this.starred;
+        return this.isStarred;
     }
 
     /**
-     * @param starred boolean that starred will be set to
-     * @return Person that has starred set to the parameter
+     * @param isStarred boolean that isStarred will be set to
+     * @return Person that has isStarred set to the parameter
      */
-    public Person rebuildWithStarredStatus(boolean starred) {
-        requireNonNull(starred);
-        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred);
+    public Person rebuildWithStarredStatus(boolean isStarred) {
+        requireNonNull(isStarred);
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, isStarred);
     }
 
     /**
@@ -189,7 +192,7 @@ public class Person implements Comparable<Person> {
         updatedReminders.add(reminder);
         updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders, policy, meetingNotes, starred);
+        return new Person(name, phone, email, address, tags, updatedReminders, policy, meetingNotes, isStarred);
     }
 
     /**
@@ -203,7 +206,7 @@ public class Person implements Comparable<Person> {
         updatedReminders.remove(reminder);
         updatedReminders.sort(new ReminderSorter());
 
-        return new Person(name, phone, email, address, tags, updatedReminders, policy, meetingNotes, starred);
+        return new Person(name, phone, email, address, tags, updatedReminders, policy, meetingNotes, isStarred);
     }
 
     public boolean isArchived() {
@@ -211,11 +214,11 @@ public class Person implements Comparable<Person> {
     }
 
     public Person archive() {
-        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, true);
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, isStarred, true);
     }
 
     public Person unarchive() {
-        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, starred, false);
+        return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, isStarred, false);
     }
 
     /**
@@ -282,7 +285,7 @@ public class Person implements Comparable<Person> {
                 .add("tags", tags)
                 .add("reminders", reminders)
                 .add("meeting notes", meetingNotes)
-                .add("starred", starred)
+                .add("isStarred", isStarred)
                 .toString();
     }
 
