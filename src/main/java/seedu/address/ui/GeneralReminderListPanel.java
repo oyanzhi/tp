@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
+import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -15,27 +17,29 @@ public class GeneralReminderListPanel extends UiPart<Region> {
     private static final String FXML = "GeneralReminderListPanel.fxml";
 
     @FXML
-    private ListView<Reminder> generalReminderListView;
+    private ListView<Pair<Person, Reminder>> generalReminderListView;
 
     /**
      * Creates a {@code GeneralReminderListPanel} with the given {@code ObservableList}.
      */
-    public GeneralReminderListPanel(ObservableList<Reminder> reminderList) {
+    public GeneralReminderListPanel(ObservableList<Pair<Person, Reminder>> generalReminderList) {
         super(FXML);
-        generalReminderListView.setItems(reminderList != null ? reminderList : FXCollections.observableArrayList());
+        generalReminderListView.setItems(
+                generalReminderList != null ? generalReminderList : FXCollections.observableArrayList());
         generalReminderListView.setCellFactory(listView -> new GeneralReminderListViewCell());
     }
 
-    static class GeneralReminderListViewCell extends ListCell<Reminder> {
+    static class GeneralReminderListViewCell extends ListCell<Pair<Person, Reminder>> {
         @Override
-        protected void updateItem(Reminder reminder, boolean empty) {
-            super.updateItem(reminder, empty);
+        protected void updateItem(Pair<Person, Reminder> pair, boolean empty) {
+            super.updateItem(pair, empty);
 
-            if (empty || reminder == null) {
+            if (empty || pair == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ReminderCard(getIndex() + 1, reminder.toString()).getRoot());
+                String toDisplay = String.format("%s for %s", pair.getValue(), pair.getKey().getName());
+                setGraphic(new ReminderCard(getIndex() + 1, toDisplay).getRoot());
             }
         }
     }

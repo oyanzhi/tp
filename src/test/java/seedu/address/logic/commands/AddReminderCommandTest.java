@@ -33,6 +33,7 @@ public class AddReminderCommandTest {
 
     @Test
     public void execute_addReminder_success() {
+        // Future Deadline
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Reminder reminder = new Reminder(VALID_REMINDER_HEADER_AMY, VALID_REMINDER_DEADLINE);
         AddReminderCommand command = new AddReminderCommand(INDEX_FIRST_PERSON, reminder);
@@ -45,6 +46,19 @@ public class AddReminderCommandTest {
         expectedModel.setPerson(personToEdit, editedPerson);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        // Past Deadline
+        String pastDeadline = "2020-10-10 10:00";
+        Reminder reminderPastDeadline = new Reminder(VALID_REMINDER_HEADER_AMY, pastDeadline);
+        AddReminderCommand addReminderPastDeadlineCommand = new AddReminderCommand(INDEX_FIRST_PERSON,
+                reminderPastDeadline);
+        editedPerson = personToEdit.addReminder(reminderPastDeadline);
+        String expectedPastMessage = String.format(AddReminderCommand.MESSAGE_ADD_REMINDER_SUCCESS_WITH_OLD_DEADLINE,
+                editedPerson.getName(), reminderPastDeadline);
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(personToEdit, editedPerson);
+
+        assertCommandSuccess(addReminderPastDeadlineCommand, model, expectedPastMessage, expectedModel);
     }
 
     @Test

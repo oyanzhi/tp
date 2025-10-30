@@ -66,6 +66,7 @@ public class Person implements Comparable<Person> {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.reminders.addAll(reminders);
         this.policy = policy;
         this.meetingNotes.addAll(meetingNotes);
         this.starred = starred;

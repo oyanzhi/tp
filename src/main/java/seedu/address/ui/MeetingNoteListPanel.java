@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,7 +27,8 @@ public class MeetingNoteListPanel extends UiPart<Region> {
     public MeetingNoteListPanel(ObservableList<String> notes) {
         super(FXML);
 
-        meetingNoteListView.setItems(notes != null ? notes : FXCollections.observableArrayList());
+        ObservableList<String> noteList = notes != null ? notes : FXCollections.observableArrayList();
+        meetingNoteListView.setItems(noteList);
         meetingNoteListView.setCellFactory(list -> new MeetingNoteListViewCell());
 
         meetingNoteListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -36,11 +36,10 @@ public class MeetingNoteListPanel extends UiPart<Region> {
         meetingNoteListView.setFocusTraversable(false);
         meetingNoteListView.setFixedCellSize(-1);
 
+        // Disable parent scrolling when mouse is hovering over meeting notes list
+        meetingNoteListView.setOnScroll(event -> event.consume());
 
-        Platform.runLater(() -> {
-            meetingNoteListView.scrollTo(0);
-            meetingNoteListView.getSelectionModel().clearSelection();
-        });
+
     }
 
     public void setItems(ObservableList<String> items) {

@@ -32,7 +32,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_HEADER = "";
-    private static final String INVALID_DEADLINE = "2022-10-12 14:30";
+    private static final String INVALID_DEADLINE = "2022-10-12 1430";
     private static final String INVALID_POLICY = "";
     private static final String INVALID_NOTE = "";
     private static final String INVALID_STARRED = "May be true";
