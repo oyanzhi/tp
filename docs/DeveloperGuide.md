@@ -255,6 +255,76 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Reminders Feature
+
+#### Challenge
+* Reminders was the first feature that we deemed as important for MVP - as we decided that reminders will be stored as an `ArrayList<Reminder>` for each `Person`, we needed to expand the current model/ logic and storage to include this new field.
+
+#### Implementation Details
+
+Reminders are set up as a `Reminder.java` class with two key internal fields.
+* `String` header
+* `LocalDateTime` deadline
+
+<br>
+
+The `add`, `delete` and `edit` reminders commands are then designed as separate commands based on a new field in the `Person.java` class where reminders are internally stored as an `ArrayList<Reminder>` for every `Person` object initialised.
+
+<br>
+
+##### Command Implementation
+* ###### Add Reminder
+  * The user will execute `reminder CLIENT_INDEX h/HEADER d/yyyy-MM-dd HH:mm` which initialises a new `Reminder.java` with the given header and deadline after parsing of the user input is done by `AddReminderCommandParser.java` and validation of header and deadline by `Reminder.java`.
+  
+  <br>
+  
+  * A newly initialised `AddReminderCommand.java` will then have the fields before `AddReminderCommand#exceute` is called.
+    * `CLIENT_INDEX` 
+    * and the previously initialised `Reminder.java`
+
+  <br>
+  
+  * Upon execution of the `AddReminderCommand`, the method `Person#addReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the new `Reminder.java` as parameter and initialises a new `ArrayList<Reminder>` with the `Reminder.java` added to the previous `ArrayList<Reminder>` of the Person and returns a new `Person` object with the newly updated `ArrayList<Reminder>`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+* ###### Delete Reminder
+  * The user will execute `rDelete CLIENT_INDEX REMINDER_INDEX` which are based on the indexes on the displayed GUI after parsing of the user input is done by `DeleteReminderCommandParser.java`.
+  
+  <br>
+  
+  * This initialises a new `DeleteReminderCommand.java` with two fields before `DeleteReminderCommand#exceute` is called.
+    * `CLIENT_INDEX`
+    * `REMINDER_INDEX`
+
+  <br>
+
+  * Upon execution of the `DeleteReminderCommand`, the method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the `Reminder.java` as parameter and initialises a new `ArrayList<Reminder>` with the `Reminder.java` removed from the previous `ArrayList<Reminder>` of the Person and returns a new `Person` object with the newly updated `ArrayList<Reminder>`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+* ###### Edit Reminder
+  * The user will execute `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/yyyy-MM-dd HH:mm` which initialises a new `Reminder.java` with the given header and deadline after parsing of the user input is done by `EditReminderCommandParser.java` and validation of header and deadline by `Reminder.java`.
+
+  <br>
+
+  * This initialises a new `EditReminderCommand.java` with three fields before `EditReminderCommand#execute` is called.
+    * `CLIENT_INDEX`
+    * `REMINDER_INDEX` which is the index of the reminder of the reminder 
+    * `EDITED_REMINDER` which is the new `Reminder.java` as parsed and initialised before.
+    
+  <br>
+
+  * Upon execution of the `EditReminderCommand`
+    1. The method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which utilises `REMINDER_INDEX` to locate the `Reminder.java` in the `Person` and removes the reminder similar to how `DeleteReminderCommand` is implemented. 
+    
+    <br>
+    
+    2. The method `Person#addReminder` is then called on the `Person` with the given `ClIENT_INDEX` in the model which takes in `EDITED_REMINDER` as parameter and adds it to the `Person` similar to how `AddReminderCommand` is implemented. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -776,6 +846,33 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Adding a reminder
+* Prerequisites: Make sure the list of clients is displayed using the activelist command.
+* Test Case: Adds a reminder to a client with a valid index
+    * Assumption: Valid Inputs
+    * User Input: reminder 1 h/Follow up with client on insurance quote d/2026-11-10 09:00
+    * Expected Outcome:
+        * A reminder with the header [Follow up with client on insurance quote] and deadline [2026-11-10 09:00] is added to the client at index 1.
+        * A success message is displayed: Reminder added to [Person's Name]: Follow up with client on insurance quote, due by 2026-11-10 09:00
+        * The reminder list for the client at index 1 is re-sorted by the closest deadlines first, followed by the header name.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Deleting a reminder
+* Prerequisites: Make sure the list of clients is displayed using the activelist command and chosen client has reminders to be removed
+* Test Case: Removes a reminder with a valid index from a client with a valid index
+    * Assumption: Valid Inputs
+    * User Input: rDelete 1 1
+    * Expected Outcome:
+
+
 
 ### Saving data
 
