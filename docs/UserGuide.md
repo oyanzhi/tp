@@ -25,6 +25,25 @@ each client. You also have the option to star or archive clients for better clie
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Target User and Assumptions Made
+
+Our target users are insurance agents who:
+- manage many existing and potential clients.
+- may need to find contacts of particular clients.
+- have to keep track of many meetings with clients.
+- need to keep track of a huge amount of client information.
+- have client of different priorities.
+- can type fast and prefer typing commands to interacting with UI.
+- have gone through a course to be proficient with CLI.
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## Assumptions of Users
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 <!-- * Table of Contents -->
 <h2 style="font color=#ff990f"> Table of Contents </h2>
 
@@ -141,27 +160,6 @@ each client. You also have the option to star or archive clients for better clie
 <li><a href="#Command-Summary">Command Summary</a></li>
 
 </ul>
-
---------------------------------------------------------------------------------------------------------------------
-
-## Target User
-
-Insurance Agent who manage multiple clients:
-- Who may need to find contacts of particular clients.
-- Who has to keep track of many meetings with clients.
-
-
---------------------------------------------------------------------------------------------------------------------
-
-
-## Assumptions of Users
-
-- Users are insurance agents that have many existing and potential clients.
-- Users need to keep track of a huge amount of client information.
-- Users have client of different priorities.
-- Users have many meetings with clients to keep track of.
-- Users can type fast and prefer typing commands to interacting with UI.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
