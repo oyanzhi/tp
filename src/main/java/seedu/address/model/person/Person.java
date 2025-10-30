@@ -142,7 +142,6 @@ public class Person implements Comparable<Person> {
 
         ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(this.meetingNotes);
         updatedMeetingNotes.remove(meetingNote);
-        updatedMeetingNotes.sort(new MeetingNoteSorter());
 
         return new Person(name, phone, email, address, tags, reminders, policy, updatedMeetingNotes, starred);
     }
