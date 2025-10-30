@@ -21,6 +21,15 @@ each client. You also have the option to star or archive clients for better clie
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Target User
+g
+Insurance Agent who manage multiple clients:
+- Who may need to find contacts of particular clients.
+- Who has to keep track of many meetings with clients.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
