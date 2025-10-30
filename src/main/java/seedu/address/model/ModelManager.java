@@ -30,6 +30,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> archivedPersons;
     private final ObservableList<Pair<Person, Reminder>> generalReminderList;
+    private boolean viewingArchivedList = false;
+    private Predicate<Person> currentFilter;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -155,6 +157,28 @@ public class ModelManager implements Model {
                 String.format("Result: Reminder {%s} for {%s}  also deleted from General Reminders", target, person));
     }
 
+    @Override
+    public boolean isViewingArchivedList() {
+        return viewingArchivedList;
+    }
+
+    @Override
+    public void setViewingArchivedList(boolean viewing) {
+        this.viewingArchivedList = viewing;
+    }
+
+    @Override
+    public Predicate<Person> getCurrentFilter() {
+        return currentFilter;
+    }
+
+    @Override
+    public void setCurrentFilter(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        this.currentFilter = predicate;
+        updateFilteredPersonList(predicate);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -180,6 +204,14 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+    @Override
+    public void refreshFilteredPersonList() {
+        if (viewingArchivedList) {
+            updateFilteredPersonList(Person::isArchived);
+        } else {
+            updateFilteredPersonList(person -> !person.isArchived());
+        }
     }
 
     @Override
