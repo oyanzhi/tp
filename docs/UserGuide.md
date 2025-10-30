@@ -22,10 +22,22 @@ each client. You also have the option to star or archive clients for better clie
 --------------------------------------------------------------------------------------------------------------------
 
 ## Target User
-g
+
 Insurance Agent who manage multiple clients:
 - Who may need to find contacts of particular clients.
 - Who has to keep track of many meetings with clients.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## Assumptions of Users
+
+- Users are insurance agents that have many existing and potential clients.
+- Users need to keep track of a huge amount of client information.
+- Users have client of different priorities.
+- Users have many meetings with clients to keep track of.
+- Users can type fast and prefer typing commands to interacting with UI.
 
 
 --------------------------------------------------------------------------------------------------------------------
