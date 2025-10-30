@@ -34,7 +34,7 @@ public class AddReminderCommand extends Command {
     public static final String MESSAGE_DUPLICATE_REMINDER = "A similar reminder has already been added for this person";
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS_WITH_OLD_DEADLINE = MESSAGE_ADD_REMINDER_SUCCESS
-            + ". Please take note that deadline given is before the current date and time.";
+            + ".\nPlease take note that deadline given is before the current date and time.";
 
     private final Index index;
     private final Reminder reminder;
