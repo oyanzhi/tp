@@ -122,9 +122,9 @@ Our target users are insurance agents who:
 
 <box type="info>
 
-**Notes about the command format:**<br>
+**General remarks about the command formats:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+* You need to supply the parameters which are in `UPPER_CASE`.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -204,7 +204,7 @@ Format: `clear`
 
 #### <font color=#5a9f68>2.1.6 Exiting the program : `exit`</font>
 
-Exits the program.
+Exits FinHub.
 
 Format: `exit`
 
@@ -228,7 +228,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ip/INSURANCE_POLICY [t/TAG]
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ip/AIB Premium Plan`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Palace street, block 456, #03-03 p/1234567 t/classmate ip/AIB LifePlan`
+* `add n/Betsy Crowe t/friend e/alexcrowe@example.com a/Palace street, block 456, #03-03 p/1234567 t/classmate ip/AIB LifePlan`
 
 <br>
 
@@ -242,12 +242,11 @@ Format: `delete CLIENT_INDEX`
 
 * Deletes the client at the specified `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* The `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd client in FinHub.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in the displayed client list.
+* `find alex` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 <br>
 
@@ -264,13 +263,12 @@ Format: `edit CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-  specifying any tags after it.
+* You can remove all the client’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com` Changes the first client’s phone number to `91234567`
-  and email to `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Changes the second client’s name to `Betsy Crower` and clears all existing tags.
+* `edit 1 p/91234567 ip/Health policy` Changes the 1st client’s `PHONE` to `91234567`
+  and `INSURANCE_POLICY` to `Health policy` respectively.
+* `edit 2 n/Betsy Crower t/` Changes the 2nd client’s name to `Betsy Crower` and clears all their existing tags.
 
 <br>
 
@@ -282,17 +280,16 @@ Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. 
+* The order of the keywords does not matter. 
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
 
 Examples:
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find ale` returns `Alex Yeoh`.
+* `find Yu Ber` returns `Bernice Yu`
+* `find Alex David` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 <br>
@@ -314,7 +311,7 @@ Examples:
 
 * `list` followed by `star 1` stars the 1st client in the displayed client list
 * `list` followed by `star 2` stars the 2nd client in the displayed client list
-* `find Betsy` followed by `star 1` stars the 1st client in the results of the `find` command.
+* `find Alex` followed by `star 1` stars the 1st client in the results of the `find` command.
 
 <box type="tip" seamless>
 
@@ -339,7 +336,7 @@ Examples:
 
 * `list` followed by `unstar 1` removes star status from the 1st client in the displayed client list
 * `list` followed by `unstar 2` removes star status from the 2nd client in the displayed client list
-* `find Betsy` followed by `unstar 1` removes star status from the 1st client in the results of the `find` command.
+* `find Alex` followed by `unstar 1` removes star status from the 1st client in the results of the `find` command.
 
 <br>
 
@@ -353,13 +350,12 @@ Format: `archive CLIENT_INDEX`
 
 * Archives the client at the specified `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
 * Only one client can be archived at a time.
 
 Examples:
 
-* `list` followed by `archive 1` archives the 1st client in the list
-* `list` followed by `archive 2` archives the 2nd client in the list
+* `list` followed by `archive 1` archives the 1st client in the displayed client list.
+* `find Alex` followed by `archive 1` archives the 1st client in the results of the `find` command.
 
 <box type="tip" seamless>
 
@@ -378,13 +374,12 @@ Format: `unarchive CLIENT_INDEX`
 
 * Unarchives the client at the specified `CLIENT_INDEX`
 * `CLIENT_INDEX` refers to the index number of the client shown in the archived client list.
-* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
 * Only one client can be unarchived at a time.
 
 Examples:
 
-* `archivelist` followed by `unarchive 1` unarchives the 1st client in the list
-* `archivelist` followed by `unarchive 2` unarchives the 2nd client in the list
+* `archivelist` followed by `unarchive 1` unarchives the 1st client in the displayed client list
+* `find Alex` followed by `unarchive 1` unarchives the 1st client in the results of the `find` command.
 
 <br>
 
@@ -394,7 +389,7 @@ Examples:
 
 #### <font color=#5a9f68>2.3.1 Adding a reminder : `reminder`</font>
 
-Adds a reminder to the specified client in FinHub.
+Adds a reminder to a specified client in FinHub.
 
 Format: `reminder CLIENT_INDEX h/HEADER d/DEADLINE`
 
@@ -402,14 +397,16 @@ Format: `reminder CLIENT_INDEX h/HEADER d/DEADLINE`
 * A reminder consists of a `HEADER` which describes the task or event, and a `DEADLINE` which indicates when it's due.
 * `DEADLINE` should be in the format: `yyyy-MM-dd HH:mm`
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* Both the header and deadline must be provided.
+* Both `HEADER` and `DEADLINE` must be provided.
 * Only one reminder can be added at a time.
 * More than one reminder can be added to each client.
 
 Examples:
 
-* `list` followed by `reminder 2 h/Meeting on Friday d/2026-04-24 16:00`
-* `find Betsy` followed by `reminder 1 h/Meeting on Saturday d/2026-06-24 18:00`
+* `list` followed by `reminder 2 h/Meeting on Friday d/2026-04-24 16:00` adds the reminder "Meeting on Friday, due by 
+2026-04-24 16:00" to the 2nd client in the displayed client list. 
+* `find alex` followed by `reminder 1 h/Meeting on Saturday d/2026-06-24 18:00` adds the reminder "Meeting on Saturday, 
+* due by 2026-06-24 18:00" to the 1st client in the results of the `find` command. 
 
 <box type="tip">
 
@@ -429,14 +426,14 @@ Format: `rDelete CLIENT_INDEX REMINDER_INDEX`
 
 * Deletes the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `REMINDER_INDEX` refers to the index number of the reminder to be deleted in the list of the specified client.
-* Both the client index and reminder index must be provided.
+* `REMINDER_INDEX` refers to the index number of the reminder shown in the specified client's displayed reminder list.
+* Both `CLIENT_INDEX` and `REMINDER_INDEX` must be provided.
 * Only one reminder can be deleted at a time.
 
 Examples:
 
-* `list` followed by `rDelete 2 1` deletes the 1st reminder of the 2nd client in FinHub.
-* `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st client in the results of the `find`
+* `list` followed by `rDelete 2 1` deletes the 1st reminder in the displayed reminder list of the 2nd client in the displayed client list.
+* `find alex` followed by `rDelete 1 1` deletes the 1st reminder in the displayed reminder list of the 1st client in the results of the `find`
   command.
 
 <box type="tip">
@@ -455,18 +452,18 @@ Edits a specified reminder from a specified client in FinHub.
 Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
 
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
-* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `REMINDER_INDEX` refers to the index number of the reminder shown in the specified client's displayed reminder list.
-* Both the `CLIENT_INDEX` and `REMINDER_INDEX` must be provided.
 * `h/HEADER` refers to the header of the edited reminder.
 * `d/DEADLINE` refers to the deadline of the edited reminder.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* `REMINDER_INDEX` refers to the index number of the reminder shown in the specified client's displayed reminder list.
+* Both `CLIENT_INDEX` and `REMINDER_INDEX` must be provided.
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
-* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd client in
-  FinHub to the given reminder
-* `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st client
-  in the results of the `find` command to the given reminder
+* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder in the displayed reminder list of the 2nd client in
+  the displayed client list to "Meeting on Friday, due by 2026-04-24 16:00".
+* `find alex` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder in the displayed reminder list of the 1st client
+  in the results of the `find` command to "Meeting on Friday, due by 2026-04-24 16:00".
 
 <br>
 
@@ -476,7 +473,7 @@ Examples:
 
 #### <font color=#5a9f68>2.4.1 Adding a meeting note : `note`</font>
 
-Adds a meeting note to the specified client in FinHub.
+Adds a meeting note to a specified client in FinHub.
 
 Format: `note CLIENT_INDEX TEXT`
 
@@ -490,11 +487,10 @@ Format: `note CLIENT_INDEX TEXT`
 
 Examples:
 
-* `note 1 Client is interested in policy abc`
 * `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the
-  2nd client in FinHub.
-* `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to
-  know more about policy 2" to the 1st client in the result of the `find` command
+  2nd client in the displayed client list.
+* `find alex` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to
+  know more about policy 2" to the 1st client in the result of the `find` command.
 
 <box type="tip" seamless>
 
@@ -511,7 +507,7 @@ Deletes a meeting note from a specified client in FinHub.
 
 Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
 
-* Deletes the meeting note at the given `MEETING_NOTE_INDEX` for the client listed at `CLIENT_INDEX`.
+* Deletes the meeting note at the specified `MEETING_NOTE_INDEX` of the specified client listed at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified client's 
 displayed meeting note list.
@@ -520,8 +516,8 @@ displayed meeting note list.
 
 Examples:
 
-* `list` followed by `nDelete 2 1` deletes the 1st reminder of the 2nd client in FinHub.
-* `find Betsy` followed by `nDelete 1 1` deletes the 1st meeting note of the 1st client in the results of the `find`
+* `list` followed by `nDelete 2 1` deletes the 1st meeting note in the displayed meeting note list of the 2nd client in the displayed client list.
+* `find alex` followed by `nDelete 1 1` deletes the 1st meeting note in the displayed meeting note list of the 1st client in the results of the `find`
   command.
 
 <br>
@@ -619,27 +615,27 @@ Restore a backup of that file or delete it to regenerate sample data. Try to avo
 
 ## <font color=##3a5a40>6. Command Summary</font>
 
-| Action                                                      | Format, Examples                                                                                                                                                                          |
-|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add**](#2-2-1-adding-a-client-add)                       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ip/INSURANCE_POLICY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| [**Delete**](#2-2-2-deleting-a-client-delete)               | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                                                |
-| [**Edit**](#2-2-3-editing-a-client-edit)                    | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ip/INSURANCE_POLICY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                  |
-| [**Clear**](#2-1-3-clearing-all-entires-clear)              | `clear`                                                                                                                                                                                   |
-| [**Find**](#2-2-4-locating-clients-by-name-find)            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                |
-| [**List**](#2-1-2-listing-all-clients-list)                 | `list`                                                                                                                                                                                    |
-| [**archivelist**](#2-1-3-listing-all-active-clients-list)   | `archivelist`                                                                                                                                                                             |
-| [**activelist**](#2-1-4-listing-all-archived-clients-list)  | `activelist`                                                                                                                                                                              |
-| [**Reminder**](#2-3-1-adding-a-reminder-reminder)           | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                                 |
-| [**rDelete**](#2-3-2-deleting-a-reminder-rdelete)           | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                                             |
-| [**rEdit**](#2-3-3-editing-a-reminder-redit)                | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                      |
-| [**Archive**](#2-2-7-archiving-a-client-archive)            | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                                              |
-| [**Unarchive**](#2-2-8-unarchiving-a-client-unarchive)      | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                                          |  
-| [**Note**](#2-4-1-adding-a-meeting-note-note)               | `note CLIENT_INDEX TEXT`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                                         |
-| [**nDelete**](#2-4-2-deleting-a-meeting-note-ndelete)       | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                                         |
-| [**Star**](#2-2-5-starring-a-client-star)                   | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                                    |
-| [**Unstar**](#2-2-6-removing-star-status-of-a-client-unstar) | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                                                |  
-| [**Help**](#2-1-1-viewing-help-help)                        | `help`                                                                                                                                                                                    |
-
+| Action                                                       | Format, Examples                                                                                                                                                                              |
+|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#2-1-1-viewing-help-help)                         | `help`                                                                                                                                                                                        |
+| [**List**](#2-1-2-listing-all-clients-list)                  | `list`                                                                                                                                                                                        | 
+| [**activelist**](#2-1-3-listing-all-active-clients-list)     | `activelist`                                                                                                                                                                                  |
+| [**archivelist**](#2-1-4-listing-all-archive-clients-list)   | `archivelist`                                                                                                                                                                                 |
+| [**Clear**](#2-1-5-clearing-all-entires-clear)               | `clear`                                                                                                                                                                                       |
+| [**Add**](#2-2-1-adding-a-client-add)                        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ip/INSURANCE_POLICY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
+| [**Delete**](#2-2-2-deleting-a-client-delete)                | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                                                    |
+| [**Edit**](#2-2-3-editing-a-client-edit)                     | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ip/INSURANCE_POLICY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                   |g
+| [**Find**](#2-2-4-locating-clients-by-name-find)             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                    |
+| [**Star**](#2-2-5-starring-a-client-star)                    | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                                        |
+| [**Unstar**](#2-2-6-removing-star-status-of-a-client-unstar) | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                                                    |
+| [**Archive**](#2-2-7-archiving-a-client-archive)             | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                                                  |
+| [**Unarchive**](#2-2-8-unarchiving-a-client-unarchive)       | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                                              | 
+| [**Reminder**](#2-3-1-adding-a-reminder-reminder)            | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                                     |   
+| [**rDelete**](#2-3-2-deleting-a-reminder-rdelete)            | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                                                 |
+| [**rEdit**](#2-3-3-editing-a-reminder-redit)                 | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                          |
+| [**Note**](#2-4-1-adding-a-meeting-note-note)                | `note CLIENT_INDEX TEXT`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                                             |
+| [**nDelete**](#2-4-2-deleting-a-meeting-note-ndelete)        | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                                             |   
+                                                                                                                                                                             
 
 ## Glossary
 
