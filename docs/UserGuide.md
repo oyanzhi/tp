@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# <font color=#e46c0a>FinHub User Guide</font>
+# <font color=#344e41>FinHub User Guide</font>
 
 FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimised for use via a Command Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
@@ -26,7 +26,7 @@ each client. You also have the option to star or archive clients for better clie
 --------------------------------------------------------------------------------------------------------------------
 
 <!-- * Table of Contents -->
-## Table of Contents
+## <font color=#3a5a40>Table of Contents</font>
 * [1. Quick Start](#1-quick-start)
 * [2. Features](#2-features)
   * [2.1 General Commands](#21-general-commands)
@@ -50,13 +50,17 @@ each client. You also have the option to star or archive clients for better clie
   * [2.4 Meeting Notes](#24-meeting-notes)
     * [2.4.1 Adding a Meeting Note : `note`](#241-adding-a-meeting-note--note)
     * [2.4.2 Deleting a Meeting Note : `nDelete`](#242-deleting-a-meeting-note--ndelete)
-* [3. FAQ](#3-faq)
-* [4. Known Issues](#4-known-issues)
-* [5. Command Summary](#5-command-summary)
+* [3. Data and Storage]()
+  * [3.1 Saving the Data]()
+  * [3.2 Editing the Data File]()
+  * [3.3 Transferring Data to another Computer]()
+* [4. FAQ](#4-faq)
+* [5. Known Issues](#5-known-issues)
+* [6. Command Summary](#6-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Quick Start
+## <font color=#3a5a40>1. Quick Start</font>
 
 1. Make sure you have Java `17` or above installed in your computer.<br>
    **Mac users:** Make sure you have the precise JDK version
@@ -93,7 +97,7 @@ each client. You also have the option to star or archive clients for better clie
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Features
+## <font color=#3a5a40>2. Features</font>
 
 <box type="info" seamless>
 
@@ -120,9 +124,9 @@ each client. You also have the option to star or archive clients for better clie
   </box>
 
 
-### 2.1 General Commands
+### <font color=#588157>2.1 General Commands</font>
 
-#### 2.1.1 Viewing help : `help`
+#### <font color=#5a9f68>2.1.1 Viewing help : `help`</font>
 
 Displays a message explaining how to access the help page.
 
@@ -132,7 +136,7 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.1.2 Listing all clients : `list`
+#### <font color=#5a9f68>2.1.2 Listing all clients : `list`</font>
 
 Shows a list of all clients in FinHub.
 
@@ -140,7 +144,7 @@ Format: `list`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.1.3 Clearing all entries : `clear`
+#### <font color=#5a9f68>2.1.3 Clearing all entries : `clear`</font>
 
 Clears all entries in FinHub.
 
@@ -148,7 +152,7 @@ Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.1.4 Exiting the program : `exit`
+#### <font color=#5a9f68>2.1.4 Exiting the program : `exit`</font>
 
 Exits the program.
 
@@ -156,9 +160,9 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.2 Managing Clients
+### <font color=#588157>2.2 Managing Clients</font>
 
-#### 2.2.1 Adding a client : `add`
+#### <font color=#5a9f68>2.2.1 Adding a client : `add`</font>
 
 Adds a client to FinHub.
 
@@ -176,7 +180,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.2.2 Deleting a client : `delete`
+#### <font color=#5a9f68>2.2.2 Deleting a client : `delete`</font>
 
 Deletes a specified client from FinHub.
 
@@ -193,7 +197,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.2.3 Editing a client : `edit`
+#### <font color=#5a9f68>2.2.3 Editing a client : `edit`</font>
 
 Edits an existing client in FinHub.
 
@@ -215,7 +219,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.2.4 Locating clients by name : `find`
+#### <font color=#5a9f68>2.2.4 Locating clients by name : `find`</font>
 
 Finds clients whose names contain any of the given keywords.
 
@@ -236,7 +240,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.2.5 Starring a client : `star`
+#### <font color=#5a9f68>2.2.5 Starring a client : `star`</font>
 
 Stars the specified client in FinHub. Starred clients will have a star displayed next to their name, and will be bumped
 to the top of the displayed client lists along with other starred clients.
@@ -261,7 +265,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.2.6 Removing star status of a client : `unstar`
+#### <font color=#5a9f68>2.2.6 Removing star status of a client : `unstar`</font>
 
 Removes the starred status of a specified client in FinHub.
 
@@ -280,7 +284,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.2.7 Archiving a client : `archive`
+#### <font color=#5a9f68>2.2.7 Archiving a client : `archive`</font>
 
 Archives the specified client in FinHub.
 
@@ -303,7 +307,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.2.8 Unarchiving a client : `unarchive`
+#### <font color=#5a9f68>2.2.8 Unarchiving a client : `unarchive`</font>
 
 Unarchives the specified client in FinHub.
 
@@ -321,9 +325,9 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.3 Reminders
+### <font color=#588157>2.3 Reminders</font>
 
-#### 2.3.1 Adding a reminder : `reminder`
+#### <font color=#5a9f68>2.3.1 Adding a reminder : `reminder`</font>
 
 Adds a reminder to the specified client in FinHub.
 
@@ -351,7 +355,7 @@ date again!
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.3.2 Deleting a reminder : `rDelete`
+#### <font color=#5a9f68>2.3.2 Deleting a reminder : `rDelete`</font>
 
 Deletes a reminder from a specified client in FinHub.
 
@@ -377,7 +381,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.3.3 Editing a reminder : `rEdit`
+#### <font color=#5a9f68>2.3.3 Editing a reminder : `rEdit`</font>
 
 Edits a specified reminder from a specified client in FinHub.
 
@@ -400,9 +404,9 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.4 Meeting Notes
+### <font color=#588157>2.4 Meeting Notes</font>
 
-#### 2.4.1 Adding a meeting note : `note`
+#### <font color=#5a9f68>2.4.1 Adding a meeting note : `note`</font>
 
 Adds a meeting note to the specified client in FinHub.
 
@@ -432,7 +436,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.4.2 Deleting a meeting note : `nDelete`
+#### <font color=#5a9f68>2.4.2 Deleting a meeting note : `nDelete`</font>
 
 Deletes a meeting note from a specified client in FinHub.
 
@@ -454,12 +458,14 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Saving the data
+## <font color=#ff990f>3. Data and Storage</font>
+
+### <font color=#588157>3.1 Saving the data</font>
 
 FinHub data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
-### Editing the data file
+### <font color=#588157>3.2 Editing the data file</font>
 
 FinHub data are saved automatically as a JSON file `[JAR file location]/data/finhub.json`. Advanced users are
 welcome to update data directly by editing that data file.
@@ -475,7 +481,7 @@ the acceptable range). Therefore, edit the data file only if you are confident t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. FAQ
+## <font color=#ff990f>4. FAQ</font>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -483,7 +489,7 @@ the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Known Issues
+## <font color=#ff990f>5. Known Issues</font>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. To fix this, delete the `preferences.json` file created by the
@@ -493,7 +499,7 @@ the data of your previous FinHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command Summary
+## <font color=#ff990f>6. Command Summary</font>
 
 | Action                                                       | Format, Examples                                                                                                                                                      |
 |--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
