@@ -258,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Reminders Feature
 
 #### Challenge
-* Reminders was the first feature that we deemed as important for MVP - as we decided that reminders will be stored as an `ArrayList<Reminder>` for each `Person`, we needed to expand the current model/ logic and storage to include this new field.
+* Reminders was the first feature that we deemed as important for MVP - as we decided that reminders will be stored as an `ArrayList<Reminder>` for each `Person`, we needed to expand the current model, logic and storage to include it.
 
 #### Implementation Details
 
@@ -314,7 +314,7 @@ The `add`, `delete` and `edit` reminders commands are then designed as separate 
 
   * This initialises a new `EditReminderCommand.java` with three fields before `EditReminderCommand#execute` is called.
     * `CLIENT_INDEX`
-    * `REMINDER_INDEX` which is the index of the reminder of the reminder 
+    * `REMINDER_INDEX` which is the index of the reminder to be edited.
     * `EDITED_REMINDER` which is the new `Reminder.java` as parsed and initialised before.
     
   <br>
@@ -921,12 +921,12 @@ testers are expected to do more *exploratory* testing.
   * User Input: reminder 1 h/Follow up with client on insurance quote d/2026-11-10 09:00
   * Expected Outcome:
     * A reminder with the header [Follow up with client on insurance quote] and deadline [2026-11-10 09:00] is added to the client at index 1.
-    * A success message is displayed: `Reminder added to [Person's Name]: [Follow up with client on insurance quote], due by [2026-11-10 09:00]`
+    * A success message is displayed: `Reminder added to {Person's Name}: {Follow up with client on insurance quote}, due by {2026-11-10 09:00}`
     * The reminder list for the client at index 1 is re-sorted by the closest deadlines first, followed by the header name.
 
 &nbsp;
 
-* Test Case: Adds a reminder to a client with a invalid index
+* Test Case: Adds a reminder to a client with an invalid index
   * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
   * User Input: reminder 100000 h/Follow up with client on insurance quote d/2026-11-10 09:00
   * Expected Outcome:
@@ -962,12 +962,12 @@ testers are expected to do more *exploratory* testing.
   * User Input: rDelete 1 1
   * Expected Outcome:
     * The first reminder of the first client will be deleted.
-    * A success message is displayed: `Deleted Client [Person's Name]'s Reminder 1: [Deleted Reminder]`
+    * A success message is displayed: `Deleted Client {Person's Name}'s Reminder 1: {Deleted Reminder}`
     * The reminder list for the client at index 1 will not contain the [Deleted Reminder].
 
 &nbsp;
 
-* Test Case: Deletes a reminder with a valid index from a client with a invalid index
+* Test Case: Deletes a reminder with a valid index from a client with an invalid index
   * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
   * User Input: rDelete 100000 1
   * Expected Outcome:
@@ -975,7 +975,7 @@ testers are expected to do more *exploratory* testing.
 
 &nbsp;
 
-* Test Case: Deletes a reminder with a invalid index from a client with a valid index
+* Test Case: Deletes a reminder with an invalid index from a client with a valid index
   * Assumption: Invalid Reminder Index (index exceeds number of reminders of the client's reminder list)
   * User Input: rDelete 1 10000000
   * Expected Outcome:
@@ -995,11 +995,11 @@ testers are expected to do more *exploratory* testing.
   * User Input: rEdit 1 1 h/Submit updated policy document d/2026-11-15 17:30
   * Expected Outcome:
     * The first reminder of the client at index 1 will be replaced with a new reminder with the header [Submit updated policy document] and deadline [2026-11-15 17:30].
-    * A success message is displayed: `Edited Client [Person's Name]'s Reminder 1: from [Previous Reminder] to [Edited Reminder]`
+    * A success message is displayed: `Edited Client {Person's Name}'s Reminder 1: from {Previous Reminder} to {Edited Reminder}`
 
 &nbsp;
 
-* Test Case: Edits a reminder with a valid index from a client with a invalid index
+* Test Case: Edits a reminder with a valid index from a client with an invalid index
   * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
   * User Input: rEdit 100000 1 h/Submit updated policy document d/2026-11-15 17:30
   * Expected Outcome:
@@ -1007,7 +1007,7 @@ testers are expected to do more *exploratory* testing.
 
 &nbsp;
 
-* Test Case: Edits a reminder with a invalid index from a client with a valid index
+* Test Case: Edits a reminder with an invalid index from a client with a valid index
   * Assumption: Invalid Reminder Index (index exceeds number of reminders of the client's reminder list)
   * User Input: rEdit 1 10000000 h/Submit updated policy document d/2026-11-15 17:30
   * Expected Outcome:
@@ -1037,12 +1037,12 @@ testers are expected to do more *exploratory* testing.
     * Input: `star 1`
     * Expected Outcome:
         * The client at index 1 is starred.
-        * A success message is displayed: `Starred Client: [Client]`.
+        * A success message is displayed: `Starred Client: {Client}`.
         * The list is re-sorted such that the starred client appears first.
 
 &nbsp;
 
-* Test Case: Star a client with a invalid index
+* Test Case: Star a client with an invalid index
     * Input: `star 0`
     * Expected Outcome:
         * A failure message is displayed: `Any indices provided should be positive integers.
@@ -1077,12 +1077,12 @@ Parameters: INDEX (must be a positive integer)`.
     * Input: `unstar 1`
     * Expected Outcome:
         * The client at index 1 is unstarred.
-        * A success message is displayed: `Starred status removed from Client:[Client]`.
+        * A success message is displayed: `Starred status removed from Client: {Client}`.
         * The list is re-sorted such that the starred client appears first.
 
 &nbsp;
 
-* Test Case: Unstar a client with a invalid index
+* Test Case: Unstar a client with an invalid index
     * Input: `unstar 0`
     * Expected Outcome:
         * A failure message is displayed: `Any indices provided should be positive integers.
