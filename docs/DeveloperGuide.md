@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+FinHub was adapted from AddressBook-Level3 (AB3) reated by the [SE-EDU initiative](https://se-education.org)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -255,6 +255,77 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Reminders Feature
+
+#### Challenge
+* Reminders was the first feature that we deemed as important for MVP - as we decided that reminders will be stored as an `ArrayList<Reminder>` for each `Person`, we needed to expand the current model, logic and storage to include it.
+
+#### Implementation Details
+
+Reminders are set up as a `Reminder.java` class with two key internal fields.
+* `String` header
+* `LocalDateTime` deadline
+
+<br>
+
+The `add`, `delete` and `edit` reminders commands are then designed as separate commands based on a new field in the `Person.java` class where reminders are internally stored as an `ArrayList<Reminder>` for every `Person` object initialised.
+
+<br>
+
+##### Command Implementation
+* ###### Add Reminder
+  * The user will execute `reminder CLIENT_INDEX h/HEADER d/yyyy-MM-dd HH:mm` which initialises a new `Reminder.java` with the given header and deadline after parsing of the user input is done by `AddReminderCommandParser.java` and validation of header and deadline by `Reminder.java`.
+  
+  <br>
+  
+  * A newly initialised `AddReminderCommand.java` will then have the fields before `AddReminderCommand#exceute` is called.
+    * `CLIENT_INDEX` 
+    * and the previously initialised `Reminder.java`
+
+  <br>
+  
+  * Upon execution of the `AddReminderCommand`, the method `Person#addReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the new `Reminder.java` as parameter and initialises a new `ArrayList<Reminder>` with the `Reminder.java` added to the previous `ArrayList<Reminder>` of the `Person` and returns a new `Person` object with the newly updated `ArrayList<Reminder>`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+* ###### Delete Reminder
+  * The user will execute `rDelete CLIENT_INDEX REMINDER_INDEX` which are based on the indexes on the displayed GUI after parsing of the user input is done by `DeleteReminderCommandParser.java`.
+  
+  <br>
+  
+  * This initialises a new `DeleteReminderCommand.java` with two fields before `DeleteReminderCommand#exceute` is called.
+    * `CLIENT_INDEX`
+    * `REMINDER_INDEX`
+
+  <br>
+
+  * Upon execution of the `DeleteReminderCommand`, the method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the `Reminder.java` as parameter and initialises a new `ArrayList<Reminder>` with the `Reminder.java` removed from the previous `ArrayList<Reminder>` of the `Person` and returns a new `Person` object with the newly updated `ArrayList<Reminder>`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+* ###### Edit Reminder
+  * The user will execute `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/yyyy-MM-dd HH:mm` which initialises a new `Reminder.java` with the given header and deadline after parsing of the user input is done by `EditReminderCommandParser.java` and validation of header and deadline by `Reminder.java`.
+
+  <br>
+
+  * This initialises a new `EditReminderCommand.java` with three fields before `EditReminderCommand#execute` is called.
+    * `CLIENT_INDEX`
+    * `REMINDER_INDEX` which is the index of the reminder to be edited.
+    * `EDITED_REMINDER` which is the new `Reminder.java` as parsed and initialised before.
+    
+  <br>
+
+  * Upon execution of the `EditReminderCommand`
+    1. The method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which utilises `REMINDER_INDEX` to locate the `Reminder.java` in the `Person` and removes the reminder similar to how `DeleteReminderCommand` is implemented. 
+    
+    <br>
+    
+    2. The method `Person#addReminder` is then called on the `Person` with the given `ClIENT_INDEX` in the model which takes in `EDITED_REMINDER` as parameter and adds it to the `Person` similar to how `AddReminderCommand` is implemented.
+
 ### Meeting Notes Feature
 
 #### Challenge
@@ -262,46 +333,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation Details
 
-Meeting Notes are set up as a MeetingNote.java class with two key internal fields.
-* String TEXT
-* LocalDateTime date and time at which the meeting note was created. 
+Meeting Notes are set up as a `MeetingNote.java` class with two key internal fields.
+* `String` TEXT
+* `LocalDateTime` date and time at which the meeting note was created.
 
 <br>
 
-The add and delete meeting note commands are then designed as separate commands based on a new field in the Person.java class where meeting notes are internally stored as an ArrayList<MeetingNote> for every Person object initialised.
+The `add` and `delete` meeting note commands are then designed as separate commands based on a new field in the `Person.java` class where meeting notes are internally stored as an `ArrayList<MeetingNote>` for every `Person` object initialised.
 
 <br>
 
 ##### Command Implementation
 * ###### Add Meeting Note
-    * The user will execute note CLIENT_INDEX TEXT which initialises a new MeetingNote.java with the given text and the current LocalDateTime after parsing of the user input is done by AddMeetingNoteCommandParser.java and validation of the text by MeetingNote.java.
+    * The user will execute `note CLIENT_INDEX TEXT` which initialises a new `MeetingNote.java` with the given text and the current LocalDateTime after parsing of the user input is done by `AddMeetingNoteCommandParser.java` and validation of the text by `MeetingNote.java`.
 
   <br>
 
-    * A newly initialised AddMeetingNoteCommand.java will then have the fields before AddMeetingNoteCommand#exceute is called.
-        * CLIENT_INDEX
-        * and the previously initialised MeetingNote.java
+    * A newly initialised `AddMeetingNoteCommand.java` will then have the fields before `AddMeetingNoteCommand#exceute` is called.
+        * `CLIENT_INDEX`
+        * and the previously initialised `MeetingNote.java`
 
   <br>
 
-    * Upon execution of the AddMeetingNoteCommand, the method Person#addMeetingNote is called on the Person with the given CLIENT_INDEX in the model which takes in the new MeetingNote.java as parameter and initialises a new ArrayList<MeetingNote> with the MeetingNote.java added to the previous ArrayList<MeetingNote> of the Person and returns a new Person object with the newly updated ArrayList<MeetingNote>.
+    * Upon execution of the `AddMeetingNoteCommand`, the method `Person#addMeetingNote` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the new `MeetingNote.java` as parameter and initialises a new `ArrayList<MeetingNote>` with the `MeetingNote.java` added to the previous `ArrayList<MeetingNote>` of the `Person` and returns a new `Person` object with the newly updated `ArrayList<MeetingNote>`.
 
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 * ###### Delete Meeting Note
-    * The user will execute rDelete CLIENT_INDEX MEETING_NOTE_INDEX which are based on the indexes on the displayed GUI after parsing of the user input is done by DeleteMeetingNoteCommandParser.java.
+    * The user will execute `nDelete CLIENT_INDEX MEETING_NOTE_INDEX` which are based on the indexes on the displayed GUI after parsing of the user input is done by `DeleteMeetingNoteCommandParser.java`.
 
   <br>
 
-    * This initialises a new DeleteMeetingNoteCommand.java with two fields before DeleteMeetingNoteCommand#exceute is called.
-        * CLIENT_INDEX
-        * MEETING_NOTE_INDEX
+    * This initialises a new `DeleteMeetingNoteCommand.java` with two fields before `DeleteMeetingNoteCommand#exceute` is called.
+        * `CLIENT_INDEX`
+        * `MEETING_NOTE_INDEX`
 
   <br>
 
-    * Upon execution of the DeleteMeetingNoteCommand, the method Person#removeMeetingNote is called on the Person with the given CLIENT_INDEX in the model which takes in the MeetingNote.java as parameter and initialises a new ArrayList<MeetingNote> with the MeetingNote.java removed from the previous ArrayList<MeetingNote> of the Person and returns a new Person object with the newly updated ArrayList<MeetingNote>.
+    * Upon execution of the `DeleteMeetingNoteCommand`, the method `Person#removeMeetingNote` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the `MeetingNote.java` as parameter and initialises a new `ArrayList<MeetingNote>` with the `MeetingNote.java` removed from the previous `ArrayList<MeetingNote>` of the `Person` and returns a new `Person` object with the newly updated `ArrayList<MeetingNote>`.
 
 <br>
 
@@ -690,7 +761,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  The user <u>searches for the client by their name (UC01)</u>.
-2.  The user selects the option to add meeting notes for the client by their index, and enters the meeting notes.
+2.  The user selects the option to add meeting notes for the client, and enters the meeting notes.
 3.  FinHub validates the updated data.
 4.  FinHub displays a success message.
 
@@ -705,7 +776,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use Case: UC15 - Archive client**
+* 2a. The user enters an invalid note.
+    * 2a1. FinHub warns that the note entered is invalid and prompts the user to enter again.
+
+      Step 2a1 is repeated until a valid note.
+
+      Use case resumes at step 3.
+
+
+**Use case: UC15 - Delete client meeting notes**
+
+**Precondition**: Client list must not be empty.
+
+**MSS**
+
+1.  The user <u>searches for the client by their name (UC01)</u>.
+2.  The user selects which client and which meeting note to delete.
+3.  FinHub displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user selects an invalid client.
+    * 2a1. FinHub warns that user does not exist and prompts the user to select again.
+
+      Step 2a1 is repeated until a correct selection.
+
+      Use case resumes at step 3.
+
+* 2a. The user enters an invalid meeting note.
+    * 23a1. FinHub warns that the meeting note is invalid and prompts the user to enter another note.
+
+      Step 3a1 is repeated until a correct selection.
+
+      Use case resumes at step 4.
+
+**Use Case: UC16 - Archive client**
 
 **Precondition**: User is logged into the CLI System.
 
@@ -730,7 +837,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The user cancels at the confirmation step.
   Use case ends.
 
-**Use Case: UC16 - Enter application with password**
+**Use Case: UC17 - Enter application with password**
 
 **MSS**
 
@@ -753,6 +860,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 6b. The password entered is wrong.
     * 6b1. FinHub will display an error message.
+
+      Use case ends.
+
+**Use Case: UC18 - Star a client**
+
+**MSS**
+
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they wish to star.
+4. FinHub successfully stars the client and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to star the client.
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
+
+* 3b The client has already been starred. 
+    * 3b1 FinHub will display an error message and does not make any changes.
+
+      Use case ends.
+
+**Use Case: UC19 - Unstar a client**
+
+**MSS**
+
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they wish to unstar.
+4. FinHub successfully remove star status from the client and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to unstar the client.
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
+
+* 3b The client has already been unstarred.
+    * 3b1 FinHub will display an error message and does not make any changes.
 
       Use case ends.
 
@@ -826,26 +993,406 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+<br>
 
-1. Dealing with missing/corrupted data files
+--------------------------------------------------------------------------------------------------------------------
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Adding a reminder
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command.
 
-1. _{ more test cases …​ }_
+&nbsp;
 
-### Adding a meeting note 
-1. Prerequisites: Make sure the list of clients displayed is not empty.
-2. Test Case 1: Add a meeting note to a client with a valid index 
-   * Input: `note 1 text`
-   * Expected outcome: 
-     * A new meeting note is added to the meeting note box of the client at index 1 
-     * A success message is displayed: `Meeting note added to [client's name]: [date and time note is added] text`
+* Test Case: Adds a reminder to a client with a valid index
+  * Assumption: Valid Inputs
+  * User Input: `reminder 1 h/Follow up with client on insurance quote d/2026-11-10 09:00`
+  * Expected Outcome:
+    * A reminder with the header {Follow up with client on insurance quote} and deadline {2026-11-10 09:00} is added to the client at index 1.
+    * A success message is displayed: `Reminder added to {Person's Name}: {Follow up with client on insurance quote}, due by {2026-11-10 09:00}`
+    * The reminder list for the client at index 1 is re-sorted by the closest deadlines first, followed by the header name.
+
+&nbsp;
+
+* Test Case: Adds a reminder to a client with an invalid index
+  * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
+  * User Input: `reminder 100000 h/Follow up with client on insurance quote d/2026-11-10 09:00`
+  * Expected Outcome:
+    * A failure message is displayed: `The client index provided is invalid — it exceeds the number of clients currently displayed`
+
+&nbsp;
+
+* Test Case: Adds a reminder to a client with a valid index and deadline but invalid header
+  * Assumption: Valid Client Index but Invalid Header (empty)
+  * User Input: `reminder 1 h/ d/2026-11-10 09:00`
+  * Expected Outcome:
+    * A failure message is displayed: `Reminder can take any value but cannot be blank.`
+
+&nbsp;
+
+* Test Case: Adds a reminder to a client with a valid index and header but invalid deadline format
+  * Assumption: Valid Client Index but invalid deadline format (not formatted to "yyyy-MM-dd HH:mm")
+  * User Input: `reminder 1 h/Follow up with client on insurance quote d/2029-10-10 1000`
+  * Expected Outcome:
+    * A failure message is displayed: `Deadline should be in the following format: yyyy-MM-dd HH:mm`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Deleting a reminder
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command 
+
+&nbsp;
+
+* Test Case: Deletes a reminder with a valid index from a client with a valid index
+  * Assumptions: Valid Inputs & Chosen Client has reminders to be removed
+  * User Input: `rDelete 1 1`
+  * Expected Outcome:
+    * The first reminder of the first client will be deleted.
+    * A success message is displayed: `Deleted Client {Person's Name}'s Reminder 1: {Deleted Reminder}`
+    * The reminder list for the client at index 1 will not contain the {Deleted Reminder}.
+
+&nbsp;
+
+* Test Case: Deletes a reminder with a valid index from a client with an invalid index
+  * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
+  * User Input: `rDelete 100000 1`
+  * Expected Outcome:
+    * A failure message is displayed: `The client index provided is invalid — it exceeds the number of clients currently displayed`
+
+&nbsp;
+
+* Test Case: Deletes a reminder with an invalid index from a client with a valid index
+  * Assumption: Invalid Reminder Index (index exceeds number of reminders of the client's reminder list)
+  * User Input: `rDelete 1 10000000`
+  * Expected Outcome:
+    * A failure message is displayed: `The reminder index provided is invalid — it exceeds the number of reminders this client currently has`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing a reminder
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command
+
+&nbsp;
+
+* Test Case: Edits the reminder at a valid index of the reminder list of a client at a valid index
+  * Assumption: Valid Inputs & Edited Reminder is **different** from Previous Reminder
+  * User Input: `rEdit 1 1 h/Submit updated policy document d/2026-11-15 17:30`
+  * Expected Outcome:
+    * The first reminder of the client at index 1 will be replaced with a new reminder with the header [Submit updated policy document] and deadline [2026-11-15 17:30].
+    * A success message is displayed: `Edited Client {Person's Name}'s Reminder 1: from {Previous Reminder} to {Edited Reminder}`
+
+&nbsp;
+
+* Test Case: Edits a reminder with a valid index from a client with an invalid index
+  * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
+  * User Input: `rEdit 100000 1 h/Submit updated policy document d/2026-11-15 17:30`
+  * Expected Outcome:
+    * A failure message is displayed: `The client index provided is invalid — it exceeds the number of clients currently displayed`
+
+&nbsp;
+
+* Test Case: Edits a reminder with an invalid index from a client with a valid index
+  * Assumption: Invalid Reminder Index (index exceeds number of reminders of the client's reminder list)
+  * User Input: `rEdit 1 10000000 h/Submit updated policy document d/2026-11-15 17:30`
+  * Expected Outcome:
+    * A failure message is displayed: `The reminder index provided is invalid — it exceeds the number of reminders this client currently has`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Adding a meeting note
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command.
+
+&nbsp;
+
+* Test Case: Adds a meeting note to a client with a valid index
+    * Assumption: Valid Inputs
+    * User Input: `note 1 Client is interested in the premium health policy`
+    * Expected Outcome:
+        * A meeting note {Client is interested in the premium health policy} is added to the top of the meeting note list of the client at index 1 .
+        * A success message is displayed: `Meeting note added to {Person's Name}: [date and time when note is created] CLient is interested in the premium health policy`
+
+&nbsp;
+
+* Test Case: Adds a meeting note to a client with an invalid index
+    * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
+    * User Input: `note 10000 Client is interested in the premium health policy`
+    * Expected Outcome:
+        * A failure message is displayed: `The client index provided is invalid — it exceeds the number of clients currently displayed`
+
+&nbsp;
+
+* Test Case: Adds a meeting note to a client with a valid index but invalid text
+    * Assumption: Valid Client Index but Invalid text (empty)
+    * User Input: `note 1`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format!
+          note: Adds a meeting note to the client identified by the index number in the displayed client list.
+          Parameters: INDEX (must be a positive integer) TEXT (cannot be empty)
+          Example: note 1 Client wants to know more about xx policy`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Deleting a meeting note
-1. Prerequisites: Make sure the list of clients displayed is not empty, and the client you want to delete a meeting note from has at least one meeting note.
-2. Test Case 1: Delete a meeting note to a client with a valid index
-    * Input: `nDelete 1 1`
-    * Expected outcome:
-        * The meeting note at the top of the meeting note list of the client at index 1 is removed. 
-        * A success message is displayed: `Deleted Client [client's name]'s meeting note 1: [date and time note is added] text`
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command
+
+&nbsp;
+
+* Test Case: Deletes a meeting note with a valid index from a client with a valid index
+    * Assumptions: Valid Inputs & Chosen Client has meeting notes to be removed
+    * User Input: `nDelete 1 1`
+    * Expected Outcome:
+        * The first meeting note of the first client will be deleted.
+        * A success message is displayed: `Deleted Client {Person's Name}'s Meeting Note 1: [date and time when note is created] {Deleted Meeting Note}`
+        * The meeting note list for the client at index 1 will not contain the {Deleted Meeting Note}.
+
+&nbsp;
+
+* Test Case: Deletes a reminder with a valid index from a client with an invalid index
+    * Assumption: Invalid Client Index (index exceeds number of clients currently displayed)
+    * User Input: nDelete 100000 1
+    * Expected Outcome:
+        * A failure message is displayed: `The client index provided is invalid — it exceeds the number of clients currently displayed`
+
+&nbsp;
+
+* Test Case: Deletes a reminder with an invalid index from a client with a valid index
+    * Assumption: Invalid Reminder Index (index exceeds number of reminders of the client's reminder list)
+    * User Input: rDelete 1 10000000
+    * Expected Outcome:
+        * A failure message is displayed: `The meeting note index provided is invalid — it exceeds the number of meeting notes this client currently has`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Starring a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command. The list should include at least one client who is not starred.
+
+&nbsp;
+
+* Test Case: Star a client with a valid index
+    * Assumption: client 1 is not starred
+    * Input: `star 1`
+    * Expected Outcome:
+        * The client at index 1 is starred.
+        * A success message is displayed: `Starred Client: {Client}`.
+        * The list is re-sorted such that the starred client appears first.
+
+&nbsp;
+
+* Test Case: Star a client with an invalid index
+    * Input: `star 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try starring a client who is already starred
+    * Assumption: client 1 is starred
+    * Input: `star 1`
+    * Expected Outcome:
+        * A failure message is displayed: `Chosen client is already starred.`.
+
+&nbsp;
+
+* Test Case: Try starring with an invalid command (no index)
+    * Input: `star`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+star: stars the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Unstarring a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command. The list should include at least one client who is starred.
+
+&nbsp;
+
+* Test Case: Unstar a client with a valid index
+    * Assumption: client 1 is starred
+    * Input: `unstar 1`
+    * Expected Outcome:
+        * The client at index 1 is unstarred.
+        * A success message is displayed: `Starred status removed from Client: {Client}`.
+        * The list is re-sorted such that the starred client appears first.
+
+&nbsp;
+
+* Test Case: Unstar a client with an invalid index
+    * Input: `unstar 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try unstar a client who is already has no starred status
+    * Assumption: client 1 has no starred status
+    * Input: `unstar 1`
+    * Expected Outcome:
+        * A failure message is displayed: `Chosen client is already unstarred.`.
+
+&nbsp;
+
+* Test Case: Try unstarring with an invalid command (no index)
+    * Input: `unstar`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+unstar: Removes starred status of the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Effort
+
+**Scope vs AB3**
+- AB3 manages one entity type; FinHub extends the model with **per-client Reminders** and **Meeting Notes**, adds **archiving/star** flows, and an **InsurancePolicy** field. This required new parsers, commands, JSON adapters, UI panels, and tests.
+
+**Difficulty**
+
+1. **Per-client list management (two indexes)**
+    - **Why hard:** Commands like `rEdit PERSON_INDEX r/REMINDER_INDEX` touch **two lists**: the filtered people list and a person’s reminder list. Either can be re-indexed after filtering or edits.
+    - **What we did:**
+        - Resolve indices **late** (inside `Command#execute`) using the **current** filtered lists.
+        - Distinguish errors: “invalid **person** index” vs “invalid **reminder** index”.
+        - Tests cover off-by-one, empty lists, and filtered views.
+
+2. **Filtered views for Active vs Archived (no duplicated state)**
+    - **Why hard:** We want `activelist` / `archivelist` without cloning data or drifting out of sync.
+    - **What we did:**
+        - Single source of truth (`AddressBook`) with a `isArchived` flag.
+        - Switch filters with `updateFilteredPersonList(predicate)`; reapply sorts (e.g., starred first) after mutations.
+
+3. **JSON adapters for nested lists & backward compatibility**
+    - **Why hard:** We must serialise/deserialise nested `reminders[]` and `notes[]`, and **not break older JSON files** that don’t have these fields.
+    - **What we did:**
+        - `JsonAdaptedReminder` / `JsonAdaptedMeetingNote` with **tolerant readers** (missing arrays → `[]`; unknown fields → ignored).
+        - Fail clearly on corrupted sub-entries; don’t crash the whole file.
+        - Migration tests: “old to new” round-trip.
+
+4. **Multiple GUI panels (scrolling/height bugs)**
+    - **Why hard:** We now render **three vertical areas**: Client list, Reminder list, Meeting note list. With wrapped text and dynamic content, JavaFX showed:
+        - Double/vanishing scrollbars
+        - Clipped multi-line text
+        - Lists refusing to grow beyond ~3 lines
+        - Scroll focus jumping when lists update
+    - **What we did (practical fixes):**
+        - Avoid `ScrollPane` **inside** `ListView` where possible (one scroll owner).
+        - For wrapped labels: `label.setWrapText(true)` and `label.setMinHeight(Region.USE_PREF_SIZE)`.
+        - Let cell heights grow: `listView.setFixedCellSize(Region.USE_COMPUTED_SIZE)`.
+        - Manage growth in the parent layout: use `VBox.setVgrow(child, Priority.ALWAYS)` only on the container you want to grow; remove conflicting FXML `prefHeight`/`vgrow`.
+        - Reapply comparator/filter after mutations to prevent layout thrashing.
+
+**Challenges**
+
+1. **Unclear error messages**
+    - **Problem:** “Invalid index” was ambiguous—was it the person or the reminder index?
+    - **Fix:** Separate messages (“Invalid **person** index”; “Invalid **reminder** index”) and add tests that assert exact wording.
+
+2. **Filter + command order causing index drift**
+    - **Problem:** After `archivelist`, running `star` could reference the old (unfiltered) indices.
+    - **Fix:** Resolve indices **after** predicates are applied; standardise a **post-mutation refresh** (reapply predicate + optional sort).
+
+3. **Older JSON files breaking on new fields**
+    - **Problem:** Early saves lacked `reminders`/`notes`, causing deserialisation errors.
+    - **Fix:** Default missing arrays to `[]`, ignore unknown fields, and report only the corrupted entry (don’t crash everything).
+
+4. **Scrolling regressions after long result messages**
+    - **Problem:** `ResultDisplay` grew horizontally and triggered unwanted scrollbars.
+    - **Fix:** Wrap long text, avoid nested scrolling, let widths/height be `USE_COMPUTED_SIZE`, and cap max widths where necessary.
+
+
+**Reused work**
+- AB3 infrastructure (UI shell, storage scaffold, test harness, model entities and logic flow).  
+  _Net effect_: reduced boilerplate; effort focused on domain/features.
+
+**Effort Required**
+
+**Design & Architecture (≈ 1–2 person-days)
+- Identified where **new responsibilities** live (model vs parser vs UI), keeping AB3 layering intact.
+- Defined **error messaging strategy** (model-centric constraints; consistent messages).
+- Decided on **single-source-of-truth** for people + **view predicates** for Active/Archived/Starred.
+- Chose **tolerant JSON readers** (forward/backward compatibility) + strict writers.
+
+**Model & Validation (≈ 1–3 person-days)
+- Implemented value objects/entities:
+    - `Reminder` (header + future-only datetime, canonical formatter).
+    - `MeetingNote` (immutable text).
+    - `InsurancePolicy` (trim + regex; explicit constraints).
+- Added invariants + unit tests (null/empty, whitespace, format, “close to now” edges).
+- Ensured **immutability** or safe copying for nested lists.
+
+**Logic & Parsing (≈ 2–4 person-days)
+- New commands & parsers: `addrem`, `editrem`, `delrem`, `addnote`, `delnote`, `archive`, `unarchive`, `activelist`, `archivelist`, `star`, `unstar`.
+- **Late index resolution** in `Command#execute` to avoid stale indices under filters.
+- Distinct error surfaces for **person index** vs **inner list index**.
+- Tests for parsing ambiguity, missing prefixes, and filtered-list behaviors.
+
+**UI Engineering (multi-panel, scrolling) (≈ 3–5 person-days)
+- Panels: `ReminderListPanel`, `GeneralReminderListPanel`, `MeetingNoteListPanel`; cards for both.
+- Fixed **nested scroll bugs** (double scrollbars, clipped text, scroll focus jumps):
+    - Avoid `ScrollPane` inside `ListView`.
+    - `setWrapText(true)` + `setMinHeight(Region.USE_PREF_SIZE)` on labels; `setFixedCellSize(Region.USE_COMPUTED_SIZE)` on lists.
+    - Single **growth owner** in layouts (no conflicting `vgrow`/`prefHeight`).
+- Reapplied comparator/filter **once** after mutations to reduce layout thrashing.
+- Visual markers for **starred/archived** without breaking virtualization.
+
+**Storage & Migration (≈ 2–3 person-days)
+- Adapters: `JsonAdaptedReminder`, `JsonAdaptedMeetingNote`, updated `JsonAdaptedPerson`.
+- **Backward compatibility**: default missing arrays to `[]`, ignore unknown fields; fail only on truly corrupted sub-entries.
+- Round-trip tests: new → JSON → new; **old JSON → new model**; mixed lists with corrupted entries.
+
+**Testing (≈ 3–5 person-days)
+- **Model**: value object constraints, equals/hashCode, string forms.
+- **Logic**: success/failure paths, filtered/archived/starred interactions, two-index commands.
+- **Storage**: deserialisation with missing/extra fields, corrupted sub-entries, non-ASCII.
+- **UI** (selective): render of multi-line reminder/note cards; no horizontal overflow; no crash on long texts.
+- Regression tests for **scrolling bugs** (where feasible) and **message wording**.
+
+**Tooling, CI, Docs (≈ 1–2 person-days)
+- Gradle tasks wired for tests and checks; CI green on model/logic/storage suites.
+- Updated DG & UG, manual testing appendix, and acknowledgements; PlantUML stubs added.
+
+
+**Achievements**
+
+**Reliability & Data Safety
+- **Future-only reminders** with canonical parsing prevent silent “past reminder” entries.
+- **Tolerant JSON readers** mean older saves still load; corrupted sub-items no longer crash the app—users keep the rest of their data.
+- **Late index resolution** eliminates a class of “deleted wrong row” bugs in filtered views.
+
+**Usability & UX
+- **Clear, targeted errors** (format + future-time; person vs reminder index) reduce user confusion.
+- **Multi-panel UI** now handles long, wrapped content without clipping or random scrollbars.
+- **Star/Archive indicators** are visible and consistent with list filters.
+
+**Code Quality & Maintainability
+- Constraints enforced at the **model boundary** (single source of truth).
+- **No duplicated lists** for filters—predicates maintain a coherent view over one dataset.
+- Cohesive adapters (`JsonAdapted*`) isolate serialization concerns, easing future schema changes.
+
+**Performance & Responsiveness
+- **Virtualized lists** remain snappy even with many reminders/notes.
+- Post-mutation **one-shot refresh** prevents relayout storms.
+
+**Developer Experience
+- **Deterministic tests**: reduced flakiness from “close to now” cases.
+- DG/UG now **point to the right classes and flows**, making onboarding easier.
+
+**Why this effort was necessary**
+
+- Agents can **trust** reminders (they won’t silently schedule in the past) and **keep** their old data through releases.
+- The UI supports **realistic, verbose notes** without breaking layout—a must for actual client work.
+- The codebase stays **evolvable**: one dataset, clear boundaries, adapters ready for schema growth.
