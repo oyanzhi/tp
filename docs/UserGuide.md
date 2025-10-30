@@ -34,8 +34,10 @@ each client. You also have the option to star or archive clients for better clie
   * [2.1 General Commands](#2-1-general-commands)
     * [2.1.1 Viewing Help : `help`](#2-1-1-viewing-help-help)
     * [2.1.2 Listing all Clients : `list`](#2-1-2-listing-all-clients-list)
-    * [2.1.3 Clear all Entries : `clear`](#2-1-3-clearing-all-entries-clear)
-    * [2.1.4 Exiting the Program : `exit`](#2-1-4-exiting-the-program-exit)
+    * [2.1.3 Listing all active Clients : `activelist`](#2-1-3-listing-all-active-clients-list)
+    * [2.1.4 Listing all archived Clients : `archivelist`](#2-1-4-listing-all-archived-clients-list)
+    * [2.1.5 Clear all Entries : `clear`](#2-1-5-clearing-all-entries-clear)
+    * [2.1.6 Exiting the Program : `exit`](#2-1-6-exiting-the-program-exit)
   * [2.2 Managing Clients](#2-2-managing-clients)
     * [2.2.1 Adding a Client : `add`](#2-2-1-adding-a-client-add)
     * [2.2.2 Deleting a Client : `delete`](#2-2-2-deleting-a-client-delete)
@@ -154,7 +156,27 @@ Format: `list`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### <font color=#5a9f68>2.1.3 Clearing all entries : `clear`</font>
+#### <font color=#5a9f68>2.1.3 Listing active clients : `activelist`</font>
+
+Displays a list of all active clients in FinHub.
+
+Format: `activelist`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.1.4 Listing active clients : `archivelist`</font>
+
+Displays a list of all archived clients in FinHub.
+
+Format: `archivelist`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.1.5 Clearing all entries : `clear`</font>
 
 Clears all entries in FinHub.
 
@@ -164,7 +186,7 @@ Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### <font color=#5a9f68>2.1.4 Exiting the program : `exit`</font>
+#### <font color=#5a9f68>2.1.6 Exiting the program : `exit`</font>
 
 Exits the program.
 
