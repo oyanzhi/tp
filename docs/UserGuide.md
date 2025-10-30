@@ -10,13 +10,13 @@ FinHub is a **desktop app for insurance agents to manage clients. It helps them 
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
 tasks done faster than traditional GUI apps.
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** In addition to managing standard contact fields, FinHub also allows you to add reminders and meeting notes to 
 each client. You also have the option to star or archive clients for better client organisation.
 </box>
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** Want to skip straight to the available commands?
 <br>
@@ -34,13 +34,7 @@ Our target users are insurance agents who:
 - need to keep track of a huge amount of client information.
 - have client of different priorities.
 - can type fast and prefer typing commands to interacting with UI.
-- have gone through a course to be proficient with CLI.
-
---------------------------------------------------------------------------------------------------------------------
-
-
-## Assumptions of Users
-
+- are equipped with basic CLI knowledge
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -202,7 +196,7 @@ Our target users are insurance agents who:
 
 ## Features
 
-<box type="info" seamless>
+<box type="info>
 
 **Notes about the command format:**<br>
 
@@ -247,7 +241,7 @@ Adds a client to FinHub.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** A client can have any number of tags (including 0)
 </box>
@@ -345,7 +339,7 @@ Examples:
 * `list` followed by `reminder 2 h/Meeting on Friday d/2026-04-24 16:00`
 * `find Betsy` followed by `reminder 1 h/Meeting on Saturday d/2026-06-24 18:00`
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key 
 date again!
@@ -371,7 +365,7 @@ Examples:
 * `find Betsy` followed by `rDelete 1 1` deletes the 1st reminder of the 1st client in the results of the `find`
   command.
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** Regularly delete overdue reminders to maintain a clean and organised workspace!
 </box>
@@ -539,7 +533,7 @@ Clears all entries in FinHub.
 
 Format: `clear`
 
-<box type="warning" seamless>
+<box type="warning">
 
 **Warning:** This action will permanently delete all data.
 </box>
@@ -568,7 +562,7 @@ save manually.
 FinHub data are saved automatically as a `JSON` file `[JAR file location]/data/finhub.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
+<box type="warning">
 
 **Warning:**
 If your changes to the data file makes its format invalid, FinHub will discard all data and start with an empty
