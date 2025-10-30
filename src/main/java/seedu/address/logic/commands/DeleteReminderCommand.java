@@ -45,20 +45,29 @@ public class DeleteReminderCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        assert lastShownList != null : "Filtered person list should not be null";
 
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToDeleteFrom = lastShownList.get(clientIndex.getZeroBased());
+        assert personToDeleteFrom != null : "Person to delete reminder from is null. Index: "
+                + clientIndex.getZeroBased();
+
         ArrayList<Reminder> reminderList = personToDeleteFrom.getReminders();
+        assert reminderList != null : "Person's reminder list should not be null";
 
         if (reminderIndex.getZeroBased() >= reminderList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
 
         Reminder reminderToDelete = reminderList.get(reminderIndex.getZeroBased());
+        assert reminderToDelete != null : "Reminder to be deleted should not be null. Index: "
+                + reminderIndex.getZeroBased();
+
         Person editedPerson = personToDeleteFrom.removeReminder(reminderToDelete);
+        assert editedPerson != null : "Edited person should not be null";
 
         model.setPerson(personToDeleteFrom, editedPerson);
         model.deleteGeneralReminder(personToDeleteFrom, reminderToDelete);
