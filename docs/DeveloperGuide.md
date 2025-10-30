@@ -255,6 +255,55 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Meeting Notes Feature
+
+#### Challenge
+* Next, we wanted a convenient way for users to record and review key discussions with clients in a simple yet efficient way. We needed to decide what order to store and display meeting notes — whether to prioritise a simple internal logic or a more intuitive user interface.
+
+#### Implementation Details
+
+Meeting Notes are set up as a MeetingNote.java class with two key internal fields.
+* String TEXT
+* LocalDateTime date and time at which the meeting note was created. 
+
+<br>
+
+The add and delete meeting note commands are then designed as separate commands based on a new field in the Person.java class where meeting notes are internally stored as an ArrayList<MeetingNote> for every Person object initialised.
+
+<br>
+
+##### Command Implementation
+* ###### Add Meeting Note
+    * The user will execute note CLIENT_INDEX TEXT which initialises a new MeetingNote.java with the given text and the current LocalDateTime after parsing of the user input is done by AddMeetingNoteCommandParser.java and validation of the text by MeetingNote.java.
+
+  <br>
+
+    * A newly initialised AddMeetingNoteCommand.java will then have the fields before AddMeetingNoteCommand#exceute is called.
+        * CLIENT_INDEX
+        * and the previously initialised MeetingNote.java
+
+  <br>
+
+    * Upon execution of the AddMeetingNoteCommand, the method Person#addMeetingNote is called on the Person with the given CLIENT_INDEX in the model which takes in the new MeetingNote.java as parameter and initialises a new ArrayList<MeetingNote> with the MeetingNote.java added to the previous ArrayList<MeetingNote> of the Person and returns a new Person object with the newly updated ArrayList<MeetingNote>.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+* ###### Delete Meeting Note
+    * The user will execute rDelete CLIENT_INDEX MEETING_NOTE_INDEX which are based on the indexes on the displayed GUI after parsing of the user input is done by DeleteMeetingNoteCommandParser.java.
+
+  <br>
+
+    * This initialises a new DeleteMeetingNoteCommand.java with two fields before DeleteMeetingNoteCommand#exceute is called.
+        * CLIENT_INDEX
+        * MEETING_NOTE_INDEX
+
+  <br>
+
+    * Upon execution of the DeleteMeetingNoteCommand, the method Person#removeMeetingNote is called on the Person with the given CLIENT_INDEX in the model which takes in the MeetingNote.java as parameter and initialises a new ArrayList<MeetingNote> with the MeetingNote.java removed from the previous ArrayList<MeetingNote> of the Person and returns a new Person object with the newly updated ArrayList<MeetingNote>.
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -784,3 +833,19 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Adding a meeting note 
+1. Prerequisites: Make sure the list of clients displayed is not empty.
+2. Test Case 1: Add a meeting note to a client with a valid index 
+   * Input: `note 1 text`
+   * Expected outcome: 
+     * A new meeting note is added to the meeting note box of the client at index 1 
+     * A success message is displayed: `Meeting note added to [client's name]: [date and time note is added] text`
+
+### Deleting a meeting note
+1. Prerequisites: Make sure the list of clients displayed is not empty, and the client you want to delete a meeting note from has at least one meeting note.
+2. Test Case 1: Delete a meeting note to a client with a valid index
+    * Input: `nDelete 1 1`
+    * Expected outcome:
+        * The meeting note at the top of the meeting note list of the client at index 1 is removed. 
+        * A success message is displayed: `Deleted Client [client's name]'s meeting note 1: [date and time note is added] text`
