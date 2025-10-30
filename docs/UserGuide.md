@@ -25,7 +25,7 @@ each client. You also have the option to star or archive clients for better clie
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <font color=#ff990f>Target User and Assumptions Made</font>
+## <font color=#3a5a40>Target User and Assumptions Made</font>
 
 Our target users are insurance agents who:
 - manage many existing and potential clients.
