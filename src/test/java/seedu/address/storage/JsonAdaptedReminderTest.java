@@ -12,14 +12,24 @@ import seedu.address.model.reminder.Reminder;
 
 class JsonAdaptedReminderTest {
     private static final String INVALID_HEADER = "";
-    private static final String INVALID_DEADLINE = "2020-12-25 00:00";
+    private static final String VALID_DEADLINE_BEFORE_CURRENT = "2020-12-25 00:00";
+    private static final String INVALID_DEADLINE_FORMAT = "2020-12-25 0000";
 
     @Test
     void toModelType_validReminder_convertsSuccessfully() throws IllegalValueException {
+
+        // deadline after current
         Reminder reminder = new Reminder(VALID_REMINDER_HEADER_AMY, VALID_REMINDER_DEADLINE);
         JsonAdaptedReminder adaptedReminder = new JsonAdaptedReminder(reminder);
         Reminder convertedReminder = adaptedReminder.toModelType();
         assertEquals(reminder, convertedReminder);
+
+        // deadline before current
+        Reminder deadlineBeforeCurrentReminder = new Reminder(VALID_REMINDER_HEADER_AMY,
+                VALID_DEADLINE_BEFORE_CURRENT);
+        JsonAdaptedReminder adaptedDeadlineBeforeCurrentReminder = new JsonAdaptedReminder(VALID_REMINDER_HEADER_AMY,
+                VALID_DEADLINE_BEFORE_CURRENT);
+        assertEquals(deadlineBeforeCurrentReminder, adaptedDeadlineBeforeCurrentReminder.toModelType());
     }
 
     @Test
@@ -29,8 +39,10 @@ class JsonAdaptedReminderTest {
     }
 
     @Test
-    void toModelType_invalidDeadline_throwsIllegalValueException() {
-        JsonAdaptedReminder adaptedReminder = new JsonAdaptedReminder(VALID_REMINDER_HEADER_AMY, INVALID_DEADLINE);
+    void toModelType_invalidDeadlineFormat_throwsIllegalValueException() {
+        String invalidDeadlineFormat = "2020-12-25 0000";
+        JsonAdaptedReminder adaptedReminder = new JsonAdaptedReminder(VALID_REMINDER_HEADER_AMY,
+                INVALID_DEADLINE_FORMAT);
         assertThrows(IllegalValueException.class, adaptedReminder::toModelType);
     }
 
