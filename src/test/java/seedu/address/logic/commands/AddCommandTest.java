@@ -212,7 +212,7 @@ public class AddCommandTest {
 
         @Override
         public void refreshFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
+            // do nothing
         }
     }
 
@@ -231,6 +231,11 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public void refreshFilteredPersonList() {
+            // do nothing
         }
     }
 
