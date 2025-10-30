@@ -440,14 +440,14 @@ Examples:
 
 Adds a meeting note to the specified client in FinHub.
 
-Format: `note CLIENT_INDEX NOTE`
+Format: `note CLIENT_INDEX TEXT`
 
 * Adds a meeting note to the client at the specified `CLIENT_INDEX`
 * When adding a meeting note, FinHub automatically records the date and time the note was added. 
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
-* `NOTE` cannot be empty, must be less than 200 characters, and must contain only letters, numbers, punctuations, 
- symbols, or spaces.
+* `TEXT` refers to the content of the meeting note that you want to add to the specified client.
+* `TEXT` cannot be empty. 
 * Only one meeting note can be added at a time.
 * More than one meeting note can be added to each client.
 
@@ -594,20 +594,20 @@ the data of your previous FinHub home folder.
 | Action                                                       | Format, Examples                                                                                                                                                      |
 |--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Add**](#adding-a-client-add)                              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| [**Delete**](#deleting-a-client-delete)                      | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| [**Delete**](#deleting-a-client-delete)                      | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                            |
 | [**Edit**](#editing-a-client-edit)                           | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |  
 | [**Clear**](#clearing-all-entries-clear)                     | `clear`                                                                                                                                                               |
 | [**Find**](#locating-clients-by-name-find)                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | [**List**](#listing-all-clients-list)                        | `list`                                                                                                                                                                |
 | [**archivelist**](#listing-all-archived-clients-archivelist) | `archivelist`                                                                                                                                                         |
 | [**activelist**](#listing-all-active-clients-activelist)     | `activelist`                                                                                                                                                          |
-| [**Reminder**](#adding-a-reminder-reminder)                  | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                    |
+| [**Reminder**](#adding-a-reminder-reminder)                  | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                             |
 | [**rDelete**](#deleting-a-reminder-rdelete)                  | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         |
 | [**rEdit**](#editing-a-reminder-redit)                       | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                  |
-| [**Archive**](#archiving-a-client-archive)                   | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                                 |
-| [**Unarchive**](#unarchiving-a-client-unarchive)             | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                             |  
-| [**Note**](#adding-a-meeting-note-note)                      | `note INDEX NOTE`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                            |
+| [**Archive**](#archiving-a-client-archive)                   | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                          |
+| [**Unarchive**](#unarchiving-a-client-unarchive)             | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                      |  
+| [**Note**](#adding-a-meeting-note-note)                      | `note CLIENT_INDEX TEXT`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                     |
 | [**nDelete**](#deleting-a-meeting-note-ndelete)              | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                     |
-| [**Star**](#starring-a-client-star)                          | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                       |
-| [**Unstar**](#removing-star-status-of-a-client-unstar)       | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                                   |  
+| [**Star**](#starring-a-client-star)                          | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                |
+| [**Unstar**](#removing-star-status-of-a-client-unstar)       | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                            |  
 | [**Help**](#viewing-help-help)                               | `help`                                                                                                                                                                |
