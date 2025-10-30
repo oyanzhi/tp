@@ -34,6 +34,7 @@ public class ParserUtil {
             + "Enter the command word again without any arguments to view the correct command format.";;
     public static final String MULTIPLE_SPACES_REGEX = "\\s+";
     public static final String LOGGING_MESSAGE_PARSE_INDEX = "Successfully parsed index: ";
+    public static final String LOGGING_MESSAGE_PARSE_INDICES = "Successfully parsed indices: ";
     public static final String LOGGING_MESSAGE_PARSE_FAILURE = "Failed to parse arguments";
 
     /**

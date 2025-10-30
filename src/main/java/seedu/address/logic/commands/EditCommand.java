@@ -112,7 +112,7 @@ public class EditCommand extends Command {
               editPersonDescriptor.getPolicy().orElse(personToEdit.getPolicy());
         // edit command does not allow editing of meeting notes
         ArrayList<MeetingNote> updatedMeetingNotes = personToEdit.getMeetingNotes();
-        // edit command does not allow editing of starred
+        // edit command does not allow editing of isStarred
         boolean isStarred = personToEdit.isStarred();
         // edit command does not allow editing of archive
         boolean isArchived = personToEdit.isArchived();

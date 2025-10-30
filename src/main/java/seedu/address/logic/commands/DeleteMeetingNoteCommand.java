@@ -20,6 +20,7 @@ import seedu.address.model.person.Person;
 public class DeleteMeetingNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "nDelete";
+    public static final String COMMAND_WORD_LOWERCASE = "ndelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the meeting note identified by the index number used in the targeted client's "
