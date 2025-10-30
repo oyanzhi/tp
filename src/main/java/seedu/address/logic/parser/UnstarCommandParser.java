@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.UnstarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

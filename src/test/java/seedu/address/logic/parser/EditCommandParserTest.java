@@ -65,8 +65,11 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
+        // no prefix specified
+        //assertParseFailure(parser, VALID_NAME_AMY, ParserUtil.MESSAGE_MORE_THAN_ONE_INDEX);
+
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -78,16 +81,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", EditCommand.MESSAGE_NOT_EDITED);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", EditCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test

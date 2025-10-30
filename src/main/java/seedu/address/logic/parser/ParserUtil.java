@@ -28,9 +28,9 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Any indices provided should be positive integers.\n"
             + "Enter the command word again without any arguments to view the correct command format.";
-    public static final String MESSAGE_MORE_THAN_ONE_INDEX = "Please only enter one index.\n"
+    public static final String MESSAGE_MORE_THAN_ONE_INDEX = "Please only enter one positive integer for the index.\n"
             + "Enter the command word again without any arguments to view the correct command format.";;
-    public static final String MESSAGE_NOT_TWO_INDICES = "Please enter two indices.\n"
+    public static final String MESSAGE_NOT_TWO_INDICES = "Please enter two positive integers for the indices.\n"
             + "Enter the command word again without any arguments to view the correct command format.";;
     public static final String MULTIPLE_SPACES_REGEX = "\\s+";
     public static final String LOGGING_MESSAGE_PARSE_INDEX = "Successfully parsed index: ";
