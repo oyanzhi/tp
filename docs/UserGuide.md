@@ -258,8 +258,8 @@ Edits a specified reminder from a specified client in FinHub.
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
-* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd client in 
-FinHub to the given reminder 
+* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd client in
+FinHub to the given reminder
 * `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st client
 in the results of the `find` command to the given reminder
 
@@ -313,10 +313,10 @@ Adds a meeting note to the specified client in FinHub.
 Format: `note CLIENT_INDEX NOTE`
 
 * Adds a meeting note to the client at the specified `CLIENT_INDEX`
-* When adding a meeting note, FinHub automatically records the date and time the note was added. 
+* When adding a meeting note, FinHub automatically records the date and time the note was added.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
-* The note cannot be empty. 
+* The note cannot be empty.
 * Only one meeting note can be added at a time.
 * More than one meeting note can be added to each client.
 
@@ -325,7 +325,7 @@ Examples:
 * `note 1 Client is interested in policy abc`
 * `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the
 2nd client in FinHub. 
-* `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to 
+* `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to
 know more about policy 2" to the 1st client in the result of the `find` command
 
 <box type="tip" seamless>
@@ -343,7 +343,7 @@ Format: `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`
 
 * Deletes the meeting note at the given `MEETING_NOTE_INDEX` for the client listed at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified client's 
+* `MEETING_NOTE_INDEX` refers to the index number of the meeting note shown in the specified client's
 displayed meeting note list.
 * Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` **must be positive integers** 1, 2, 3, …​
 * Both `CLIENT_INDEX` and `MEETING_NOTE_INDEX` must be provided.
@@ -360,7 +360,7 @@ Examples:
 ### Starring a client : `star`
 
 Stars the specified client in FinHub. Starred clients will have a star displayed next to their name, and will be bumped
-to the top of the displayed client lists along with other starred clients. 
+to the top of the displayed client lists along with other starred clients.
 
 Format: `star CLIENT_INDEX`
 
@@ -376,7 +376,7 @@ Examples:
 
 <box type="tip" seamless>
 
-**Tip:** You can use this feature to mark important clients as favourites! 
+**Tip:** You can use this feature to mark important clients as favourites!
 </box>
 
 <br>
