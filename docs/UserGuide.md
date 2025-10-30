@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# <font color=#e46c0a>FinHub User Guide</font>
+# <font color=#344e41>FinHub User Guide</font>
 
 FinHub is a **desktop app for insurance agents to manage clients. It helps them to better organise all information related to each client, optimised for use via a Command Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinHub can get your client management
@@ -36,128 +36,48 @@ Our target users are insurance agents who:
 - can type fast and prefer typing commands to interacting with UI.
 - are equipped with basic CLI knowledge
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <!-- * Table of Contents -->
-<h2 style="font color=#ff990f"> Table of Contents </h2>
+## <font color=#3a5a40>Table of Contents</font>
+* [1. Quick Start](#1-quick-start)
+* [2. Features](#2-features)
+  * [2.1 General Commands](#2-1-general-commands)
+    * [2.1.1 Viewing Help : `help`](#2-1-1-viewing-help-help)
+    * [2.1.2 Listing all Clients : `list`](#2-1-2-listing-all-clients-list)
+    * [2.1.3 Clear all Entries : `clear`](#2-1-3-clearing-all-entries-clear)
+    * [2.1.4 Exiting the Program : `exit`](#2-1-4-exiting-the-program-exit)
+  * [2.2 Managing Clients](#2-2-managing-clients)
+    * [2.2.1 Adding a Client : `add`](#2-2-1-adding-a-client-add)
+    * [2.2.2 Deleting a Client : `delete`](#2-2-2-deleting-a-client-delete)
+    * [2.2.3 Editing a Client : `edit`](#2-2-3-editing-a-client-edit)
+    * [2.2.4 Locating a Client : `find`](#2-2-4-locating-clients-by-name-find)
+    * [2.2.5 Staring a Client : `star`](#2-2-5-starring-a-client-star)
+    * [2.2.6 Removing Star of a Client : `unstar`](#2-2-6-removing-star-status-of-a-client-unstar)
+    * [2.2.7 Archiving a Client : `archive`](#2-2-7-archiving-a-client-archive)
+    * [2.2.8 Unarchiving a Client : `unarchive`](#2-2-8-unarchiving-a-client-unarchive)
+  * [2.3 Reminders](#2-2-3-reminders)
+    * [2.3.1 Adding a Reminder : `reminder`](#2-3-1-adding-a-reminder-reminder)
+    * [2.3.2 Deleting a Reminder : `rDelete`](#2-3-2-deleting-a-reminder-rdelete)
+    * [2.3.3 Editing a Reminder : `rEdit`](#2-3-3-editing-a-reminder-redit)
+  * [2.4 Meeting Notes](#2-4-meeting-notes)
+    * [2.4.1 Adding a Meeting Note : `note`](#2-4-1-adding-a-meeting-note-note)
+    * [2.4.2 Deleting a Meeting Note : `nDelete`](#2-4-2-deleting-a-meeting-note-ndelete)
+* [3. Data and Storage](#3-data-and-storage)
+  * [3.1 Saving the Data](#3-1-saving-the-data)
+  * [3.2 Editing the Data File](#3-2-editing-the-data-file)
+  * [3.3 Transferring Data to another Computer](#3-3-transferring-data-to-another-computer)
+* [4. FAQ](#4-faq)
+* [5. Known Issues](#5-known-issues)
+* [6. Command Summary](#6-command-summary)
 
-<ul>
-
-<!-- * Quick Start -->
-<li><a href="#quick-start">Quick Start</a></li>
-
-<!-- Main Separator for TOC Indentation -->
-
-<!-- * Features -->
-<li style="list-style: none; margin-left: -15px;">
-
-<details>
-<summary><a href="#features">Features</a></summary>
-
-<ul>
-
-<li style="list-style: none; margin-left: -15px">
-
-<!-- General Commands -->
-<details>
-<summary>General</summary>
-
-<ul>
-<li><a href="#viewing-help-help">View Help</a></li>
-
-<li><a href="#listing-all-clients-list">Listing all Clients</a></li>
-
-<li><a href="#clearing-all-entries-clear">Clear all Entries</a></li>
-
-<li><a href="#exiting-the-program-exit">Exiting the Program</a></li>
-</ul>
-
-</details>
-
-<!-- Separator for Feature List Indentation -->
-
-<!-- Client Management -->
-<details>
-<summary>Managing Clients</summary>
-
-<ul>
-<li><a href="#adding-a-client-add">Adding a Client</a></li>
-
-<li><a href="#editing-a-client-edit">Editing a Client</a></li>
-
-<li><a href="#locating-clients-by-name-find">Locating a Client</a></li>
-
-<li><a href="#deleting-a-client-delete">Deleting a Client</a></li>
-
-<li><a href="#starring-a-client-star">Starring a Client</a></li>
-
-<li><a href="#removing-star-status-of-a-client-unstar">Remove Star of a Client</a></li>
-
-<li><a href="#archiving-a-client-archive">Archiving a Client</a></li>
-
-<li><a href="#unarchiving-a-client-unarchive">Unarchiving a Client</a></li>
-</ul>
-
-</details>
-
-<!-- Separator for Feature List Indentation -->
-
-<!-- Reminder Management Commands -->
-<details>
-<summary>Reminders</summary>
-
-<ul>
-<li><a href="#adding-a-reminder-reminder">Adding a Reminder</a></li>
-
-<li><a href="#deleting-a-reminder-rdelete">Deleting a Reminder</a></li>
-
-<li><a href="#editing-a-reminder-redit">Editing a Reminder</a></li>
-</ul>
-
-</details>
-
-<!-- Separator for Feature List Indentation -->
-
-<!-- Meeting Notes Management -->
-<details>
-<summary>Meeting Notes</summary>
-
-<ul>
-<li><a href="#adding-a-meeting-note-note">Adding a Meeting Note</a></li>
-
-<li><a href="#deleting-a-meeting-note-ndelete">Deleting a Meeting Note</a></li>
-</ul>
-
-</details>
-
-<!-- Separator for Feature List Indentation -->
-
-</ul>
-
-</details>
-
-</li>
-
-<!-- Main Separator for TOC Indentation -->
-
-<!-- * FAQ -->
-<li><a href="#faq">FAQ</a></li>
-
-<!-- Main Separator for TOC Indentation -->
-
-<!-- * Known Issues -->
-<li><a href="#known-issues">Known Issues</a></li>
-
-<!-- Main Separator for TOC Indentation -->
-
-<!-- * Command Summary -->
-<li><a href="#command-summary">Command Summary</a></li>
-
-</ul>
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <font color=#ff990f>Quick Start</font>
+## <font color=#3a5a40>1. Quick Start</font>
 
 1. Make sure you have Java `17` or above installed in your computer.<br>
    **Mac users:** Make sure you have the precise JDK version
@@ -192,13 +112,15 @@ Our target users are insurance agents who:
 
 1. Refer to the [Features](#features) below for details of each command.
 
+<br>
 
-## <font color=#ff990f>Features</font>
+--------------------------------------------------------------------------------------------------------------------
+
+## <font color=#3a5a40>2. Features</font>
 
 <box type="info>
 
 **Notes about the command format:**<br>
-
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -223,9 +145,10 @@ Our target users are insurance agents who:
 * Any indices i.e. `CLIENT_INDEX`, `REMINDER_INDEX` and `MEETING_NOTE_INDEX` 
   **must be positive integers** 1, 2, 3, …​
 
-<br>
 
-### <font color=#f88379>Viewing help</font> : `help`
+### <font color=#588157>2.1 General Commands</font>
+
+#### <font color=#5a9f68>2.1.1 Viewing help : `help`</font>
 
 Displays a message explaining how to access the help page.
 
@@ -235,7 +158,42 @@ Format: `help`
 
 <br>
 
-### <font color=#f88379>Adding a client</font> : `add`
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.1.2 Listing all clients : `list`</font>
+
+Displays a list of all clients in FinHub.
+
+Format: `list`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.1.3 Clearing all entries : `clear`</font>
+
+Clears all entries in FinHub.
+
+Format: `clear`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.1.4 Exiting the program : `exit`</font>
+
+Exits the program.
+
+Format: `exit`
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### <font color=#588157>2.2 Managing Clients</font>
+
+#### <font color=#5a9f68>2.2.1 Adding a client : `add`</font>
+
 Adds a client to FinHub.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [ip/INSURANCE_POLICY]`
@@ -252,37 +210,35 @@ Examples:
 
 <br>
 
-### <font color=#f88379>Listing all clients</font> : `list`
-Displays a list of all clients in FinHub.
+--------------------------------------------------------------------------------------------------------------------
 
-Format: `list`
+#### <font color=#5a9f68>2.2.2 Deleting a client : `delete`</font>
 
-<br>
+Deletes a specified client from FinHub.
 
-### <font color=#f88379>Listing all archived clients</font> : `archivelist`
+Format: `delete CLIENT_INDEX`
 
-Displays a list of all archived clients in FinHub.
+* Deletes the client at the specified `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* The `CLIENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
-Format: `archivelist`
+Examples:
 
-<br>
-
-### <font color=#f88379>Listing all active clients</font> : `activelist`
-
-Displays a list of all active clients in FinHub.
-
-Format: `activelist`
+* `list` followed by `delete 2` deletes the 2nd client in FinHub.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 <br>
 
-### <font color=#f88379>Editing a client</font> : `edit`
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.2.3 Editing a client : `edit`</font>
 
 Edits an existing client in FinHub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
+Format: `edit CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ip/INSURANCE_POLICY]`
 
-* Edits the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
+* Edits the client at the specified `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -296,7 +252,9 @@ Examples:
 
 <br>
 
-### <font color=#f88379>Locating clients by name</font>: `find`
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.2.4 Locating clients by name : `find`</font>
 
 Finds clients whose names contain any of the given keywords.
 
@@ -317,24 +275,102 @@ Examples:
 
 <br>
 
-### <font color=#f88379>Deleting a client</font> : `delete`
+--------------------------------------------------------------------------------------------------------------------
 
-Deletes a specified client from FinHub.
+#### <font color=#5a9f68>2.2.5 Starring a client : `star`</font>
 
-Format: `delete INDEX`
+Stars the specified client in FinHub. Starred clients will have a star displayed next to their name, and will be bumped
+to the top of the displayed client lists along with other starred clients.
 
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `star CLIENT_INDEX`
+
+* Stars the client at the specified `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* Only one client can be starred at a time.
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd client in FinHub.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `list` followed by `star 1` stars the 1st client in the displayed client list
+* `list` followed by `star 2` stars the 2nd client in the displayed client list
+* `find Betsy` followed by `star 1` stars the 1st client in the results of the `find` command.
+
+<box type="tip" seamless>
+
+**Tip:** You can use this feature to mark important clients as favourites!
+</box>
 
 <br>
 
-### <font color=#f88379>Adding a reminder</font> : `reminder`
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.2.6 Removing star status of a client : `unstar`</font>
+
+Removes the starred status of a specified client in FinHub.
+
+Format: `unstar CLIENT_INDEX`
+
+* Removes the starred status of the client at the specified `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* You can only remove the star status from one client at a time.
+
+Examples:
+
+* `list` followed by `unstar 1` removes star status from the 1st client in the displayed client list
+* `list` followed by `unstar 2` removes star status from the 2nd client in the displayed client list
+* `find Betsy` followed by `unstar 1` removes star status from the 1st client in the results of the `find` command.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.2.7 Archiving a client : `archive`</font>
+
+Archives the specified client in FinHub.
+
+Format: `archive CLIENT_INDEX`
+
+* Archives the client at the specified `CLIENT_INDEX`.
+* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
+* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
+* Only one client can be archived at a time.
+
+Examples:
+
+* `list` followed by `archive 1` archives the 1st client in the list
+* `list` followed by `archive 2` archives the 2nd client in the list
+
+<box type="tip" seamless>
+
+**Tip:** Temporarily archive inactive clients to de-clutter your active client list!
+</box>
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.2.8 Unarchiving a client : `unarchive`</font>
+
+Unarchives the specified client in FinHub.
+
+Format: `unarchive CLIENT_INDEX`
+
+* Unarchives the client at the specified `CLIENT_INDEX`
+* `CLIENT_INDEX` refers to the index number of the client shown in the archived client list.
+* The `CLIENT_INDEX` **must be positive integers** 1, 2, 3, …​
+* Only one client can be unarchived at a time.
+
+Examples:
+
+* `archivelist` followed by `unarchive 1` unarchives the 1st client in the list
+* `archivelist` followed by `unarchive 2` unarchives the 2nd client in the list
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### <font color=#588157>2.3 Reminders</font>
+
+#### <font color=#5a9f68>2.3.1 Adding a reminder : `reminder`</font>
 
 Adds a reminder to the specified client in FinHub.
 
@@ -355,13 +391,15 @@ Examples:
 
 <box type="tip">
 
-**Tip:** You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key 
+**Tip:** You can use reminders to stay on top of important client events, renewals, or follow-ups — never miss a key
 date again!
 </box>
 
 <br>
 
-### <font color=#f88379>Deleting a reminder</font> : `rDelete`
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.3.2 Deleting a reminder : `rDelete`</font>
 
 Deletes a reminder from a specified client in FinHub.
 
@@ -386,9 +424,9 @@ Examples:
 
 <br>
 
-<br>
+--------------------------------------------------------------------------------------------------------------------
 
-### <font color=#f88379>Editing a reminder</font> : `rEdit`
+#### <font color=#5a9f68>2.3.3 Editing a reminder : `rEdit`</font>
 
 Edits a specified reminder from a specified client in FinHub.
 
@@ -397,66 +435,31 @@ Format: `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`
 * Edits the reminder at the specified `REMINDER_INDEX` of the specified client at `CLIENT_INDEX`.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `REMINDER_INDEX` refers to the index number of the reminder shown in the specified client's displayed reminder list.
-* Both the client index and reminder index must be provided.
+* Both the `CLIENT_INDEX` and `REMINDER_INDEX` must be provided.
 * `h/HEADER` refers to the header of the edited reminder.
 * `d/DEADLINE` refers to the deadline of the edited reminder.
 * Only one reminder will be replaced by the new reminder at a time.
 
 Examples:
-* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd client in 
-FinHub to the given reminder 
+* `list` followed by `rEdit 2 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 2nd client in
+  FinHub to the given reminder
 * `find Betsy` followed by `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00` edits the 1st reminder of the 1st client
-in the results of the `find` command to the given reminder
+  in the results of the `find` command to the given reminder
 
 <br>
 
-### <font color=#f88379>Archiving a client</font> : `archive`
+--------------------------------------------------------------------------------------------------------------------
 
-Archives the specified client in FinHub.
+### <font color=#588157>2.4 Meeting Notes</font>
 
-Format: `archive INDEX`
-
-* Archives the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* Only one client can be archived at a time.
-
-Examples:
-
-* `list` followed by `archive 1` archives the 1st client in the list
-* `list` followed by `archive 2` archives the 2nd client in the list
-
-<box type="tip" seamless>
-
-**Tip:** Temporarily archive inactive clients to de-clutter your active client list!
-</box>
-
-<br>
-
-### <font color=#f88379>Unarchiving a client</font> : `unarchive`
-
-Unarchives the specified client in FinHub.
-
-Format: `unarchive INDEX`
-
-* Unarchives the client at the specified `INDEX`
-* The index refers to the index number shown in the archived client list.
-* Only one client can be unarchived at a time.
-
-Examples:
-
-* `archivelist` followed by `unarchive 1` unarchives the 1st client in the list
-* `archivelist` followed by `unarchive 2` unarchives the 2nd client in the list
-
-<br>
-
-### <font color=#f88379>Adding a meeting note</font> : `note`
+#### <font color=#5a9f68>2.4.1 Adding a meeting note : `note`</font>
 
 Adds a meeting note to the specified client in FinHub.
 
 Format: `note CLIENT_INDEX TEXT`
 
 * Adds a meeting note to the client at the specified `CLIENT_INDEX`
-* When adding a meeting note, FinHub automatically records the date and time the note was added. 
+* When adding a meeting note, FinHub automatically records the date and time the note was added.
 * `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
 * `TEXT` refers to the content of the meeting note that you want to add to the specified client.
 * `TEXT` cannot be empty. 
@@ -466,10 +469,10 @@ Format: `note CLIENT_INDEX TEXT`
 Examples:
 
 * `note 1 Client is interested in policy abc`
-* `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the 
-2nd client in FinHub. 
-* `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to 
-know more about policy 2" to the 1st client in the result of the `find` command
+* `list` followed by `note 2 Client wants to renew policy` adds the meeting note "Client wants to renew policy" to the
+  2nd client in FinHub.
+* `find Betsy` followed by `note 1 Client wants to know about policy 2` adds the meeting note "Client wants to
+  know more about policy 2" to the 1st client in the result of the `find` command
 
 <box type="tip" seamless>
 
@@ -478,7 +481,9 @@ know more about policy 2" to the 1st client in the result of the `find` command
 
 <br>
 
-### <font color=#f88379>Deleting a meeting note</font> : `nDelete`
+--------------------------------------------------------------------------------------------------------------------
+
+#### <font color=#5a9f68>2.4.2 Deleting a meeting note : `nDelete`</font>
 
 Deletes a meeting note from a specified client in FinHub.
 
@@ -499,77 +504,20 @@ Examples:
 
 <br>
 
-### <font color=#f88379>Starring a client</font> : `star`
+--------------------------------------------------------------------------------------------------------------------
 
-Stars the specified client in FinHub. Starred clients will have a star displayed next to their name, and will be bumped
-to the top of the displayed client lists along with other starred clients. 
+## <font color=#3a5a40>3. Data and Storage</font>
 
-Format: `star CLIENT_INDEX`
-
-* Stars the client at the specified `CLIENT_INDEX`.
-* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* Only one client can be starred at a time.
-
-Examples:
-
-* `list` followed by `star 1` stars the 1st client in the displayed client list
-* `list` followed by `star 2` stars the 2nd client in the displayed client list
-* `find Betsy` followed by `star 1` stars the 1st client in the results of the `find` command.
-
-<box type="tip" seamless>
-
-**Tip:** You can use this feature to mark important clients as favourites! 
-</box>
-
-<br>
-
-### <font color=#f88379>Removing star status of a client</font> : `unstar`
-
-Removes the starred status of a specified client in FinHub.
-
-Format: `unstar CLIENT_INDEX`
-
-* Removes the starred status of the client at the specified `CLIENT_INDEX`.
-* `CLIENT_INDEX` refers to the index number of the client shown in the displayed client list.
-* You can only remove the star status from one client at a time.
-
-Examples:
-
-* `list` followed by `unstar 1` removes star status from the 1st client in the displayed client list
-* `list` followed by `unstar 2` removes star status from the 2nd client in the displayed client list
-* `find Betsy` followed by `unstar 1` removes star status from the 1st client in the results of the `find` command.
-
-<br>
-
-### <font color=#f88379>Clearing all entries</font> : `clear`
-
-Clears all entries in FinHub.
-
-Format: `clear`
-
-<box type="warning">
-
-**Warning:** This action will permanently delete all data.
-</box>
-
-<br>
-
-### <font color=#f88379>Exiting the program </font>: `exit`
-
-Exits the program.
-
-Format: `exit`
-
-<br>
-
-### <font color=#f88379>Saving the data</font>
+### <font color=#588157>3.1 Saving the data</font>
 
 FinHub data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 <br>
 
-### <font color=#f88379>Editing the data file</font>
+--------------------------------------------------------------------------------------------------------------------
+
+### <font color=#588157>3.2 Editing the data file</font>
 
 FinHub data are saved automatically as a `JSON` file `[JAR file location]/data/finhub.json`. Advanced users are
 welcome to update data directly by editing that data file.
@@ -585,12 +533,21 @@ the acceptable range). Therefore, edit the data file only if you are confident t
 
 <br>
 
-## <font color=#ff990f>FAQ</font>
+--------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+### <font color=#588157>3.3 Transferring Data to another Computer</font>
+
+Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous FinHub home folder.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## <font color=##3a5a40>4. FAQ</font>
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates by 
+**A**: Install the app in the other computer and overwrite the empty data file it creates by
 copying the entire previous `data/finhub.json` file to the same location
 
 **Q**: What happens if I make a mistake when entering client information?<br>
@@ -600,7 +557,7 @@ copying the entire previous `data/finhub.json` file to the same location
 **A**: These pre-existing clients are sample data. You may simply use `clear` to remove them.
 
 **Q**: I mistyped a client’s details. How do I update just one or two fields?<br>
-**A**: Use `edit` with only the fields you want to change, e.g. 
+**A**: Use `edit` with only the fields you want to change, e.g.
 `edit 2 p/91234567 e/new@example.com`.
 Existing values you don’t mention will be kept.
 
@@ -611,7 +568,7 @@ Existing values you don’t mention will be kept.
 **A**: Right now, find searches names only. It’s case-insensitive and matches full words.
 
 **Q**: FinHub won’t load; did I break the data file?<br>
-**A**: If the `data/finhub.json` file is edited manually and becomes invalid, FinHub starts empty. 
+**A**: If the `data/finhub.json` file is edited manually and becomes invalid, FinHub starts empty.
 Restore a backup of that file or delete it to regenerate sample data. Try to avoid hand-editing it.
 
 **Q**: Do commands accept parameters in any order?<br>
@@ -621,9 +578,12 @@ Restore a backup of that file or delete it to regenerate sample data. Try to avo
 
 `add p/9123 a/Bishan ip/AIB Premium Plan e/amy@x.com n/Amy`
 
+
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <font color=#ff990f>Known issues</font>
+## <font color=##3a5a40>5. Known Issues</font>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. To fix this, delete the `preferences.json` file created by the
@@ -631,27 +591,29 @@ Restore a backup of that file or delete it to regenerate sample data. Try to avo
 2. **If you minimise the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut
    `F1`) again, the original Help Window will remain minimised, and no new Help Window will appear. To fix this, manually restore the minimised Help Window.
 
+<br>
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <font color=#ff990f>Command Summary</font>
+## <font color=##3a5a40>6. Command Summary</font>
 
-| Action                                                       | Format, Examples                                                                                                                                                      |
-|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add**](#adding-a-client-add)                              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| [**Delete**](#deleting-a-client-delete)                      | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                            |
-| [**Edit**](#editing-a-client-edit)                           | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |  
-| [**Clear**](#clearing-all-entries-clear)                     | `clear`                                                                                                                                                               |
-| [**Find**](#locating-clients-by-name-find)                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| [**List**](#listing-all-clients-list)                        | `list`                                                                                                                                                                |
-| [**archivelist**](#listing-all-archived-clients-archivelist) | `archivelist`                                                                                                                                                         |
-| [**activelist**](#listing-all-active-clients-activelist)     | `activelist`                                                                                                                                                          |
-| [**Reminder**](#adding-a-reminder-reminder)                  | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                             |
-| [**rDelete**](#deleting-a-reminder-rdelete)                  | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                         |
-| [**rEdit**](#editing-a-reminder-redit)                       | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                  |
-| [**Archive**](#archiving-a-client-archive)                   | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                          |
-| [**Unarchive**](#unarchiving-a-client-unarchive)             | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                      |  
-| [**Note**](#adding-a-meeting-note-note)                      | `note CLIENT_INDEX TEXT`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                     |
-| [**nDelete**](#deleting-a-meeting-note-ndelete)              | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                     |
-| [**Star**](#starring-a-client-star)                          | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                |
-| [**Unstar**](#removing-star-status-of-a-client-unstar)       | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                            |  
-| [**Help**](#viewing-help-help)                               | `help`                                                                                                                                                                |
+| Action                                                       | Format, Examples                                                                                                                                                         |
+|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add**](#2-2-1-adding-a-client-add)                        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| [**Delete**](#2-2-2-deleting-a-client-delete)                | `delete CLIENT_INDEX`<br> e.g., `delete 3`                                                                                                                               |
+| [**Edit**](#2-2-3-editing-a-client-edit)                     | `edit CLIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
+| [**Clear**](#2-1-3-clearing-all-entires-clear)               | `clear`                                                                                                                                                                  |
+| [**Find**](#2-2-4-locating-clients-by-name-find)             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                               |
+| [**List**](##2-1-2-listing-all-clients-list)                 | `list`                                                                                                                                                                   |
+| [**archivelist**](#temp)                                     | `archivelist`                                                                                                                                                            |
+| [**activelist**](#temp)                                      | `activelist`                                                                                                                                                             |
+| [**Reminder**](#2-3-1-adding-a-reminder-reminder)            | `reminder CLIENT_INDEX h/HEADER d/DEADLINE`<br> e.g., `reminder 1 h/Meeting on Friday d/2026-04-24 16:00`                                                                |
+| [**rDelete**](#2-3-2-deleting-a-reminder-rdelete)            | `rDelete CLIENT_INDEX REMINDER_INDEX`<br> e.g., `rDelete 2 1`                                                                                                            |
+| [**rEdit**](#2-3-3-editing-a-reminder-redit)                 | `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/DEADLINE`<br> e.g., `rEdit 1 1 h/Meeting on Friday d/2026-04-24 16:00`                                                     |
+| [**Archive**](#2-2-7-archiving-a-client-archive)             | `archive CLIENT_INDEX`<br> e.g., `archive 1`                                                                                                                             |
+| [**Unarchive**](#2-2-8-unarchiving-a-client-unarchive)       | `unarchive CLIENT_INDEX`<br> e.g., `unarchive 1`                                                                                                                         |  
+| [**Note**](#2-4-1-adding-a-meeting-note-note)                | `note CLIENT_INDEX TEXT`<br> e.g., `note 1 Client wants to know about policy abc`                                                                                        |
+| [**nDelete**](#2-4-2-deleting-a-meeting-note-ndelete)        | `nDelete CLIENT_INDEX MEETING_NOTE_INDEX`<br> e.g., `nDelete 1 1`                                                                                                        |
+| [**Star**](#2-2-5-starring-a-client-star)                    | `star CLIENT_INDEX`<br> e.g., `star 1`                                                                                                                                   |
+| [**Unstar**](#2-2-6-removing-star-status-of-a-client-unstar) | `unstar CLIENT_INDEX`<br> e.g., `unstar 1`                                                                                                                               |  
+| [**Help**](#2-1-1-viewing-help-help)                         | `help`                                                                                                                                                                   |
