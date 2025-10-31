@@ -180,15 +180,15 @@ The `add`, `delete` and `edit` reminders commands are then designed as separate 
 ##### Command Implementation
 * ###### Add Reminder
   * The user will execute `reminder CLIENT_INDEX h/HEADER d/yyyy-MM-dd HH:mm` which initialises a new `Reminder.java` with the given header and deadline after parsing of the user input is done by `AddReminderCommandParser.java` and validation of header and deadline by `Reminder.java`.
-  
-  <br>
-  
+
+<br>
+
   * A newly initialised `AddReminderCommand.java` will then have the fields before `AddReminderCommand#exceute` is called.
     * `CLIENT_INDEX` 
     * and the previously initialised `Reminder.java`
 
-  <br>
-  
+<br>
+
   * Upon execution of the `AddReminderCommand`, the method `Person#addReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the new `Reminder.java` as parameter and initialises a new `ArrayList<Reminder>` with the `Reminder.java` added to the previous `ArrayList<Reminder>` of the `Person` and returns a new `Person` object with the newly updated `ArrayList<Reminder>`
 
 <br>
@@ -197,14 +197,14 @@ The `add`, `delete` and `edit` reminders commands are then designed as separate 
 
 * ###### Delete Reminder
   * The user will execute `rDelete CLIENT_INDEX REMINDER_INDEX` which are based on the indexes on the displayed GUI after parsing of the user input is done by `DeleteReminderCommandParser.java`.
-  
-  <br>
-  
+
+<br>
+
   * This initialises a new `DeleteReminderCommand.java` with two fields before `DeleteReminderCommand#exceute` is called.
     * `CLIENT_INDEX`
     * `REMINDER_INDEX`
 
-  <br>
+<br>
 
   * Upon execution of the `DeleteReminderCommand`, the method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the `Reminder.java` as parameter and initialises a new `ArrayList<Reminder>` with the `Reminder.java` removed from the previous `ArrayList<Reminder>` of the `Person` and returns a new `Person` object with the newly updated `ArrayList<Reminder>`
 
@@ -215,20 +215,20 @@ The `add`, `delete` and `edit` reminders commands are then designed as separate 
 * ###### Edit Reminder
   * The user will execute `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/yyyy-MM-dd HH:mm` which initialises a new `Reminder.java` with the given header and deadline after parsing of the user input is done by `EditReminderCommandParser.java` and validation of header and deadline by `Reminder.java`.
 
-  <br>
+<br>
 
   * This initialises a new `EditReminderCommand.java` with three fields before `EditReminderCommand#execute` is called.
     * `CLIENT_INDEX`
     * `REMINDER_INDEX` which is the index of the reminder to be edited.
     * `EDITED_REMINDER` which is the new `Reminder.java` as parsed and initialised before.
-    
-  <br>
+
+<br>
 
   * Upon execution of the `EditReminderCommand`
-    1. The method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which utilises `REMINDER_INDEX` to locate the `Reminder.java` in the `Person` and removes the reminder similar to how `DeleteReminderCommand` is implemented. 
-    
-    <br>
-    
+    1. The method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which utilises `REMINDER_INDEX` to locate the `Reminder.java` in the `Person` and removes the reminder similar to how `DeleteReminderCommand` is implemented.
+
+<br>
+
     2. The method `Person#addReminder` is then called on the `Person` with the given `ClIENT_INDEX` in the model which takes in `EDITED_REMINDER` as parameter and adds it to the `Person` similar to how `AddReminderCommand` is implemented.
 
 <br>
@@ -698,9 +698,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  The user <u>searches for the client to delete by their name (UC01)</u>.
 2.  The user selects the client to be deleted.
-3.  FinHub asks for confirmation of the deletion.
-4.  FinHub removes the client from the address book.
-5.  FinHub displays a success message.
+3.  FinHub removes the client from the address book.
+4.  FinHub displays a success message.
 
     Use case ends.
 
@@ -712,11 +711,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Step 2a1 is repeated until a valid client has been selected.
 
       Use case resumes at step 3.
-
-
-* 3a. The user cancels the deletion.
-  Use case ends.
-
 
 **Use case: UC07 - Edit a client's information**
 
@@ -942,54 +936,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use Case: UC16 - Archive client**
 
-**Precondition**: User is logged into the CLI System.
+**Precondition**: User is viewing active list.
 
 **MSS**
 
-1.  The user <u>searches for the client by their name (UC01)</u>.
-2.  The user types the archive command.
-3.  FinHub prompts for confirmation.
-4.  The user confirms.
-5.  FinHub changes the client's status from active to archived in the database.
-6.  FinHub displays a success message.
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they want to archive.
+4. FinHub successfully archives the client and displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The user selects an invalid client.
-    * 2a1. FinHub displays a message that client is not found.
+* 2a. The list is empty.
 
-      Use case ends.
-
-* 3a. The user cancels at the confirmation step.
   Use case ends.
 
-**Use Case: UC17 - Enter application with password**
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to archive the client
+
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
+
+**Use Case: UC17 - Unarchiving a client**
+
+**Precondition**: User is viewing archive list.
 
 **MSS**
 
-1.  The user launches the application.
-2.  FinHub prompts user to enter username.
-3.  The user enters their username.
-4.  FinHub prompts for password.
-5.  The user enters their password.
-6.  FinHub validates the credentials against stored records.
-7.  If valid, the user is granted access.
+1. The user <u>searches for the client by their name (UC01)</u>.
+2. FinHub displays a list of clients.
+3. The user selects the client they wish to unarchive.
+4. FinHub successfully unarchives the client and displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 6a. The user account does not exist.
-    * 6a1. FinHub will display an error message.
+* 2a. The list is empty.
 
-      Use case ends.
+  Use case ends.
 
-* 6b. The password entered is wrong.
-    * 6b1. FinHub will display an error message.
+* 3a. FinHub detects an error in the command entered.
+    * 3a1. FinHub displays an error message and prompts the user to input again.
+    * 3a2. The user re-enters the command to unarchive the client.
 
-      Use case ends.
+      Steps 3a1-3a2 are repeated until the command and data entered are correct.
+
+      Use case resumes at step 4.
 
 **Use Case: UC18 - Star a client**
 
@@ -1016,7 +1013,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-* 3b The client has already been starred. 
+* 3b The client has already been starred.
     * 3b1 FinHub will display an error message and does not make any changes.
 
       Use case ends.
@@ -1150,7 +1147,7 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ### Deleting a reminder
-* Prerequisites: Make sure the list of clients is displayed using the `activelist` command 
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command
 
 &nbsp;
 
@@ -1282,6 +1279,74 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Archiving a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command.
+  The list should include at least one client.
+
+&nbsp;
+
+* Test Case: Archiving a client with a valid index
+    * Input: `archive 1`
+    * Expected Outcome:
+        * The client at index 1 is archived.
+        * A success message is displayed: `Archived Client: [Client]`.
+        * The list is re-sorted with the remaining clients.
+
+&nbsp;
+
+* Test Case: Archiving a client with a invalid index
+    * Input: `archive 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try archiving with an invalid command (no index)
+    * Input: `archive`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+archive: archives the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Unarchiving a client
+* Prerequisites: Make sure the list of clients is displayed using the `archivelist` command.
+  The list should include at least one client.
+
+&nbsp;
+
+* Test Case: Unarchiving a client with a valid index
+    * Input: `unarchive 1`
+    * Expected Outcome:
+        * The client at index 1 is unarchived.
+        * A success message is displayed: `Unarchived Client:[Client]`.
+        * The list is re-sorted with the remaining clients.
+
+&nbsp;
+
+* Test Case: Unarchive a client with an invalid index
+    * Input: `unarchive 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try unarchiving with an invalid command (no index)
+    * Input: `unarchive`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format!
+unarchive: unarchives client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Starring a client
 * Prerequisites: Make sure the list of clients is displayed using the `activelist` command. The list should include at least one client who is not starred.
 
@@ -1316,7 +1381,7 @@ Enter the command word again without any arguments to view the correct command f
 * Test Case: Try starring with an invalid command (no index)
     * Input: `star`
     * Expected Outcome:
-        * A failure message is displayed: `Invalid command format! 
+        * A failure message is displayed: `Invalid command format!
 star: stars the client identified by the index number used in the displayed client list.
 Parameters: INDEX (must be a positive integer)`.
 
@@ -1358,7 +1423,7 @@ Enter the command word again without any arguments to view the correct command f
 * Test Case: Try unstarring with an invalid command (no index)
     * Input: `unstar`
     * Expected Outcome:
-        * A failure message is displayed: `Invalid command format! 
+        * A failure message is displayed: `Invalid command format!
 unstar: Removes starred status of the client identified by the index number used in the displayed client list.
 Parameters: INDEX (must be a positive integer).`
 
@@ -1426,7 +1491,7 @@ Parameters: INDEX (must be a positive integer).`
 
 
 **Reused work**
-- AB3 infrastructure (UI shell, storage scaffold, test harness, model entities and logic flow).  
+- AB3 infrastructure (UI shell, storage scaffold, test harness, model entities and logic flow).
   _Net effect_: reduced boilerplate; effort focused on domain/features.
 
 **Effort Required**
