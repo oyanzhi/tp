@@ -275,15 +275,15 @@ The `add`, `delete` and `edit` reminders commands are then designed as separate 
 ##### Command Implementation
 * ###### Add Reminder
   * The user will execute `reminder CLIENT_INDEX h/HEADER d/yyyy-MM-dd HH:mm` which initialises a new `Reminder.java` with the given header and deadline after parsing of the user input is done by `AddReminderCommandParser.java` and validation of header and deadline by `Reminder.java`.
-  
-  <br>
-  
+
+<br>
+
   * A newly initialised `AddReminderCommand.java` will then have the fields before `AddReminderCommand#exceute` is called.
     * `CLIENT_INDEX` 
     * and the previously initialised `Reminder.java`
 
-  <br>
-  
+<br>
+
   * Upon execution of the `AddReminderCommand`, the method `Person#addReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the new `Reminder.java` as parameter and initialises a new `ArrayList<Reminder>` with the `Reminder.java` added to the previous `ArrayList<Reminder>` of the `Person` and returns a new `Person` object with the newly updated `ArrayList<Reminder>`
 
 <br>
@@ -292,14 +292,14 @@ The `add`, `delete` and `edit` reminders commands are then designed as separate 
 
 * ###### Delete Reminder
   * The user will execute `rDelete CLIENT_INDEX REMINDER_INDEX` which are based on the indexes on the displayed GUI after parsing of the user input is done by `DeleteReminderCommandParser.java`.
-  
-  <br>
-  
+
+<br>
+
   * This initialises a new `DeleteReminderCommand.java` with two fields before `DeleteReminderCommand#exceute` is called.
     * `CLIENT_INDEX`
     * `REMINDER_INDEX`
 
-  <br>
+<br>
 
   * Upon execution of the `DeleteReminderCommand`, the method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which takes in the `Reminder.java` as parameter and initialises a new `ArrayList<Reminder>` with the `Reminder.java` removed from the previous `ArrayList<Reminder>` of the `Person` and returns a new `Person` object with the newly updated `ArrayList<Reminder>`
 
@@ -310,20 +310,20 @@ The `add`, `delete` and `edit` reminders commands are then designed as separate 
 * ###### Edit Reminder
   * The user will execute `rEdit CLIENT_INDEX REMINDER_INDEX h/HEADER d/yyyy-MM-dd HH:mm` which initialises a new `Reminder.java` with the given header and deadline after parsing of the user input is done by `EditReminderCommandParser.java` and validation of header and deadline by `Reminder.java`.
 
-  <br>
+<br>
 
   * This initialises a new `EditReminderCommand.java` with three fields before `EditReminderCommand#execute` is called.
     * `CLIENT_INDEX`
     * `REMINDER_INDEX` which is the index of the reminder to be edited.
     * `EDITED_REMINDER` which is the new `Reminder.java` as parsed and initialised before.
-    
-  <br>
+
+<br>
 
   * Upon execution of the `EditReminderCommand`
-    1. The method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which utilises `REMINDER_INDEX` to locate the `Reminder.java` in the `Person` and removes the reminder similar to how `DeleteReminderCommand` is implemented. 
-    
-    <br>
-    
+    1. The method `Person#removeReminder` is called on the `Person` with the given `CLIENT_INDEX` in the model which utilises `REMINDER_INDEX` to locate the `Reminder.java` in the `Person` and removes the reminder similar to how `DeleteReminderCommand` is implemented.
+
+<br>
+
     2. The method `Person#addReminder` is then called on the `Person` with the given `ClIENT_INDEX` in the model which takes in `EDITED_REMINDER` as parameter and adds it to the `Person` similar to how `AddReminderCommand` is implemented.
 
 ### Meeting Notes Feature
@@ -885,7 +885,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-* 3b The client has already been starred. 
+* 3b The client has already been starred.
     * 3b1 FinHub will display an error message and does not make any changes.
 
       Use case ends.
@@ -1036,7 +1036,7 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ### Deleting a reminder
-* Prerequisites: Make sure the list of clients is displayed using the `activelist` command 
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command
 
 &nbsp;
 
@@ -1228,7 +1228,7 @@ Enter the command word again without any arguments to view the correct command f
 * Test Case: Try unarchiving with an invalid command (no index)
     * Input: `unarchive`
     * Expected Outcome:
-        * A failure message is displayed: `Invalid command format! 
+        * A failure message is displayed: `Invalid command format!
 unarchive: unarchives client identified by the index number used in the displayed client list.
 Parameters: INDEX (must be a positive integer)`.
 
@@ -1270,7 +1270,7 @@ Enter the command word again without any arguments to view the correct command f
 * Test Case: Try starring with an invalid command (no index)
     * Input: `star`
     * Expected Outcome:
-        * A failure message is displayed: `Invalid command format! 
+        * A failure message is displayed: `Invalid command format!
 star: stars the client identified by the index number used in the displayed client list.
 Parameters: INDEX (must be a positive integer)`.
 
@@ -1312,7 +1312,7 @@ Enter the command word again without any arguments to view the correct command f
 * Test Case: Try unstarring with an invalid command (no index)
     * Input: `unstar`
     * Expected Outcome:
-        * A failure message is displayed: `Invalid command format! 
+        * A failure message is displayed: `Invalid command format!
 unstar: Removes starred status of the client identified by the index number used in the displayed client list.
 Parameters: INDEX (must be a positive integer)`.
 
@@ -1380,7 +1380,7 @@ Parameters: INDEX (must be a positive integer)`.
 
 
 **Reused work**
-- AB3 infrastructure (UI shell, storage scaffold, test harness, model entities and logic flow).  
+- AB3 infrastructure (UI shell, storage scaffold, test harness, model entities and logic flow).
   _Net effect_: reduced boilerplate; effort focused on domain/features.
 
 **Effort Required**
