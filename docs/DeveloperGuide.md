@@ -833,7 +833,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use Case: UC16 - Unarchiving a client**
+**Use Case: UC17 - Unarchiving a client**
 
 **Precondition**: User is viewing archive list.
 
@@ -1168,6 +1168,74 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Archiving a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command.
+  The list should include at least one client.
+
+&nbsp;
+
+* Test Case: Archiving a client with a valid index
+    * Input: `archive 1`
+    * Expected Outcome:
+        * The client at index 1 is archived.
+        * A success message is displayed: `Archived Client: [Client]`.
+        * The list is re-sorted with the remaining clients.
+
+&nbsp;
+
+* Test Case: Archiving a client with a invalid index
+    * Input: `archive 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try archiving with an invalid command (no index)
+    * Input: `archive`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+archive: archives the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Unarchiving a client
+* Prerequisites: Make sure the list of clients is displayed using the `archivelist` command.
+  The list should include at least one client.
+
+&nbsp;
+
+* Test Case: Unarchiving a client with a valid index
+    * Input: `unarchive 1`
+    * Expected Outcome:
+        * The client at index 1 is unarchived.
+        * A success message is displayed: `Unarchived Client:[Client]`.
+        * The list is re-sorted with the remaining clients.
+
+&nbsp;
+
+* Test Case: Unarchive a client with an invalid index
+    * Input: `unarchive 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try unarchiving with an invalid command (no index)
+    * Input: `unarchive`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+unarchive: unarchives client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Starring a client
 * Prerequisites: Make sure the list of clients is displayed using the `activelist` command. The list should include at least one client who is not starred.
 
@@ -1246,70 +1314,6 @@ Enter the command word again without any arguments to view the correct command f
     * Expected Outcome:
         * A failure message is displayed: `Invalid command format! 
 unstar: Removes starred status of the client identified by the index number used in the displayed client list.
-Parameters: INDEX (must be a positive integer)`.
-
-<br>
-
-### Archiving a client
-* Prerequisites: Make sure the list of clients is displayed using the `activelist` command.
-  The list should include at least one client.
-
-&nbsp;
-
-* Test Case: Archiving a client with a valid index
-    * Input: `archive 1`
-    * Expected Outcome:
-        * The client at index 1 is archived.
-        * A success message is displayed: `Archived Client: [Client]`.
-        * The list is re-sorted with the remaining clients.
-
-&nbsp;
-
-* Test Case: Archiving a client with a invalid index
-    * Input: `archive 0`
-    * Expected Outcome:
-        * A failure message is displayed: `Any indices provided should be positive integers.
-Enter the command word again without any arguments to view the correct command format.`.
-
-&nbsp;
-
-* Test Case: Try archiving with an invalid command (no index)
-    * Input: `archive`
-    * Expected Outcome:
-        * A failure message is displayed: `Invalid command format! 
-archive: archives the client identified by the index number used in the displayed client list.
-Parameters: INDEX (must be a positive integer)`.
-
-<br>
-
-### Unarchiving a client
-* Prerequisites: Make sure the list of clients is displayed using the `archivelist` command.
-  The list should include at least one client.
-
-&nbsp;
-
-* Test Case: Unarchiving a client with a valid index
-    * Input: `unarchive 1`
-    * Expected Outcome:
-        * The client at index 1 is unarchived.
-        * A success message is displayed: `Unarchived Client:[Client]`.
-        * The list is re-sorted with the remaining clients.
-
-&nbsp;
-
-* Test Case: Unarchive a client with an invalid index
-    * Input: `unarchive 0`
-    * Expected Outcome:
-        * A failure message is displayed: `Any indices provided should be positive integers.
-Enter the command word again without any arguments to view the correct command format.`.
-
-&nbsp;
-
-* Test Case: Try unarchiving with an invalid command (no index)
-    * Input: `unarchive`
-    * Expected Outcome:
-        * A failure message is displayed: `Invalid command format! 
-unarchive: unarchives client identified by the index number used in the displayed client list.
 Parameters: INDEX (must be a positive integer)`.
 
 <br>
