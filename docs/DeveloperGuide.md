@@ -196,7 +196,7 @@ The `add`, `delete` and `edit` reminders commands are then designed as separate 
 --------------------------------------------------------------------------------------------------------------------
 
 * ###### Delete Reminder
-  * The user will execute `rDelete CLIENT_INDEX REMINDER_INDEX` which arebased on the indexes on the displayed GUI after parsing of the user input is done by `DeleteReminderCommandParser.java`.
+  * The user will execute `rDelete CLIENT_INDEX REMINDER_INDEX` which are based on the indexes on the displayed GUI after parsing of the user input is done by `DeleteReminderCommandParser.java`.
 
 <br>
 
