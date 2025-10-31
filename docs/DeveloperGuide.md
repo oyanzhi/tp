@@ -162,7 +162,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Reminders Feature
 
-#### Challenges
+#### Challenge
 * Reminders was the first feature that we deemed as important for MVP - as we decided that reminders will be stored as an `ArrayList<Reminder>` for each `Person`, we needed to expand the current model, logic and storage to include it.
 
 #### Implementation Details
@@ -1343,7 +1343,7 @@ Parameters: INDEX (must be a positive integer)`.
     * Input: `unstar 0`
     * Expected Outcome:
         * A failure message is displayed: `Any indices provided should be positive integers.
-Enter the command word again without any arguments to view the correct command format`.
+Enter the command word again without any arguments to view the correct command format.`
 
 &nbsp;
 
@@ -1360,7 +1360,7 @@ Enter the command word again without any arguments to view the correct command f
     * Expected Outcome:
         * A failure message is displayed: `Invalid command format! 
 unstar: Removes starred status of the client identified by the index number used in the displayed client list.
-Parameters: INDEX (must be a positive integer)`.
+Parameters: INDEX (must be a positive integer).`
 
 <br>
 
@@ -1406,7 +1406,7 @@ Parameters: INDEX (must be a positive integer)`.
         - Manage growth in the parent layout: use `VBox.setVgrow(child, Priority.ALWAYS)` only on the container you want to grow; remove conflicting FXML `prefHeight`/`vgrow`.
         - Reapply comparator/filter after mutations to prevent layout thrashing.
 
-**Challenges**
+**Challenge**
 
 1. **Unclear error messages**
     - **Problem:** “Invalid index” was ambiguous—was it the person or the reminder index?
