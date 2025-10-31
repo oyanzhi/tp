@@ -649,58 +649,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use Case: UC15 - Archive client**
-
-**Precondition**: User is logged into the CLI System.
-
-**MSS**
-
-1.  The user <u>searches for the client by their name (UC01)</u>.
-2.  The user types the archive command.
-3.  FinHub prompts for confirmation.
-4.  The user confirms.
-5.  FinHub changes the client's status from active to archived in the database.
-6.  FinHub displays a success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The user selects an invalid client.
-    * 2a1. FinHub displays a message that client is not found.
-
-      Use case ends.
-
-* 3a. The user cancels at the confirmation step.
-  Use case ends.
-
-**Use Case: UC16 - Enter application with password**
-
-**MSS**
-
-1.  The user launches the application.
-2.  FinHub prompts user to enter username.
-3.  The user enters their username.
-4.  FinHub prompts for password.
-5.  The user enters their password.
-6.  FinHub validates the credentials against stored records.
-7.  If valid, the user is granted access.
-
-    Use case ends.
-
-**Extensions**
-
-* 6a. The user account does not exist.
-    * 6a1. FinHub will display an error message.
-
-      Use case ends.
-
-* 6b. The password entered is wrong.
-    * 6b1. FinHub will display an error message.
-
-      Use case ends.
-
-**Use Case: UC17 - Archiving a client**
+**Use Case: UC15 - Archiving a client**
 
 **MSS**
 
@@ -727,7 +676,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use Case: UC18 - Unarchiving a client**
+**Use Case: UC16 - Unarchiving a client**
 
 **MSS**
 
@@ -831,3 +780,69 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<br>
+
+### Archiving a client
+* Prerequisites: Make sure the list of clients is displayed using the `activelist` command.
+  The list should include at least one client.
+
+&nbsp;
+
+* Test Case: Archiving a client with a valid index
+    * Input: `archive 1`
+    * Expected Outcome:
+        * The client at index 1 is archived.
+        * A success message is displayed: `Archived Client: [Client]`.
+        * The list is re-sorted with the remaining clients.
+
+&nbsp;
+
+* Test Case: Archiving a client with a invalid index
+    * Input: `archive 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try archiving with an invalid command (no index)
+    * Input: `archive`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+archive: archives the client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
+
+### Unarchiving a client
+* Prerequisites: Make sure the list of clients is displayed using the `archivelist` command. 
+  The list should include at least one client.
+
+&nbsp;
+
+* Test Case: Unarchiving a client with a valid index
+    * Input: `unarchive 1`
+    * Expected Outcome:
+        * The client at index 1 is unarchived.
+        * A success message is displayed: `Unarchived Client:[Client]`.
+        * The list is re-sorted with the remaining clients.
+
+&nbsp;
+
+* Test Case: Unarchive a client with an invalid index
+    * Input: `unarchive 0`
+    * Expected Outcome:
+        * A failure message is displayed: `Any indices provided should be positive integers.
+Enter the command word again without any arguments to view the correct command format.`.
+
+&nbsp;
+
+* Test Case: Try unarchiving with an invalid command (no index)
+    * Input: `unarchive`
+    * Expected Outcome:
+        * A failure message is displayed: `Invalid command format! 
+unarchive: unarchives client identified by the index number used in the displayed client list.
+Parameters: INDEX (must be a positive integer)`.
+
+<br>
