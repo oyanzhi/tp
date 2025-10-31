@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEADER;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +37,6 @@ public class EditReminderCommand extends Command {
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Client %1$s's Reminder %2$d: from %3$s to %4$s";
 
-    public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
-
     public static final String MESSAGE_REMINDER_ALREADY_EXISTS = "This reminder already exists.";
 
     private final Index clientIndex;
@@ -69,7 +66,7 @@ public class EditReminderCommand extends Command {
 
         ArrayList<Reminder> reminderList = target.getReminders();
         if (reminderIndex.getZeroBased() >= reminderList.size()) {
-            throw new CommandException(MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
         Reminder toEdit = reminderList.get(this.reminderIndex.getZeroBased());
 
@@ -84,7 +81,7 @@ public class EditReminderCommand extends Command {
         model.deleteGeneralReminder(addedToPerson, toEdit);
 
         model.setPerson(target, addedToPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.refreshFilteredPersonList();
         return new CommandResult(String.format(
                 MESSAGE_EDIT_REMINDER_SUCCESS,
                 target.getName(),

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.meetingnote.MeetingNote;
+import seedu.address.model.meetingnote.MeetingNoteSorter;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderSorter;
 import seedu.address.model.tag.Tag;
@@ -130,6 +131,7 @@ public class Person implements Comparable<Person> {
         // Defensive copy of the existing meeting notes to avoid modifying the original set
         ArrayList<MeetingNote> updatedMeetingNotes = new ArrayList<>(meetingNotes);
         updatedMeetingNotes.add(meetingNote);
+        updatedMeetingNotes.sort(new MeetingNoteSorter());
 
         return new Person(name, phone, email, address, tags, reminders, policy, updatedMeetingNotes, isStarred);
     }
@@ -212,6 +214,9 @@ public class Person implements Comparable<Person> {
         return isArchived;
     }
 
+    /**
+     * @return Person to be archived with their reminders cleared
+     */
     public Person archive() {
         return new Person(name, phone, email, address, tags, reminders, policy, meetingNotes, isStarred, true);
     }
@@ -254,8 +259,7 @@ public class Person implements Comparable<Person> {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && policy.equals(otherPerson.policy)
-                && isArchived == otherPerson.isArchived;
+                && policy.equals(otherPerson.policy);
         //TODO - Update to include reminders
         //may not need to implement as reminders is not core identity of person
     }

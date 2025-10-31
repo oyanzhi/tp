@@ -38,6 +38,11 @@ public class UnarchiveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.isViewingArchivedList()) {
+            throw new CommandException("You must be viewing the archive list to unarchive a person.");
+        }
+
         List<Person> archivedList = model.getArchivedPersonList();
 
         if (targetIndex.getZeroBased() >= archivedList.size()) {
@@ -49,9 +54,13 @@ public class UnarchiveCommand extends Command {
             throw new CommandException(MESSAGE_NOT_ARCHIVED);
         }
 
+        personToUnarchive.getReminders().forEach(reminder -> {
+            model.addGeneralReminder(personToUnarchive, reminder);
+        });
+
         Person unarchivedPerson = personToUnarchive.unarchive();
         model.setPerson(personToUnarchive, unarchivedPerson);
-        model.updateFilteredPersonList(person -> !person.isArchived());
+        model.refreshFilteredPersonList();
         return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, Messages.format(unarchivedPerson)));
     }
 
